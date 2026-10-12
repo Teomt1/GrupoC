@@ -1,6 +1,6 @@
-﻿namespace GrupoC.GrupoC.Empaquetarpedidogenerarordendeentrega
+﻿namespace GrupoC.Empaquetar_Pedido_y_Generar_Orden_de_Entrega
 {
-    partial class Empaquetar_pedido_y_generar_orden_de_entrega
+    partial class Empaquetar_Pedido_y_Generar_Orden_de_Entrega_Form
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Empaquetar_pedido_y_generar_orden_de_entrega";
+            this.Text = "Empaquetar_Pedido_y_Generar_Orden_de_Entrega_Form";
         }
 
         #endregion
