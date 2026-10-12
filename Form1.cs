@@ -1,4 +1,5 @@
 using GrupoC.Empaquetar_Pedido_y_Generar_Orden_de_Entrega;
+using GrupoC.GenerarOrdenSeleccion;
 using GrupoC.GrupoC.Registrar_Orden_de_Preparación;
 
 namespace GrupoC
@@ -26,6 +27,12 @@ namespace GrupoC
         {
             IngresoStockForm ingstock = new IngresoStockForm();
             ingstock.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            GenerarOrdenSeleccionForm ordselect = new GenerarOrdenSeleccionForm();
+            ordselect.Show();
         }
     }
 }
