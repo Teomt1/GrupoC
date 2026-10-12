@@ -18,7 +18,7 @@ namespace GrupoC
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Empaquetar_Pedido_y_Generar_Orden_de_Entrega_Form ordenentreg = new Empaquetar_Pedido_y_Generar_Orden_de_Entrega_Form();
+            Empaqu_y_Generar_Orden_de_Entrega_Form ordenentreg = new Empaqu_y_Generar_Orden_de_Entrega_Form();
             ordenentreg.Show();
         }
     }
