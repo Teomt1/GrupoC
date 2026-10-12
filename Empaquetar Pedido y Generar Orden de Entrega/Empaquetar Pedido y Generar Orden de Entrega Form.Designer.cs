@@ -49,6 +49,21 @@
             label14 = new Label();
             label15 = new Label();
             label16 = new Label();
+            label17 = new Label();
+            textBox2 = new TextBox();
+            button2 = new Button();
+            groupBox1 = new GroupBox();
+            groupBox2 = new GroupBox();
+            label18 = new Label();
+            label19 = new Label();
+            textBox1 = new TextBox();
+            textBox3 = new TextBox();
+            button3 = new Button();
+            label20 = new Label();
+            label21 = new Label();
+            label22 = new Label();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // Guardar
@@ -171,7 +186,7 @@
             // 
             // listView2
             // 
-            listView2.Location = new Point(12, 267);
+            listView2.Location = new Point(12, 415);
             listView2.Name = "listView2";
             listView2.Size = new Size(951, 158);
             listView2.TabIndex = 11;
@@ -191,7 +206,7 @@
             // 
             label9.AutoSize = true;
             label9.BackColor = SystemColors.ButtonFace;
-            label9.Location = new Point(12, 239);
+            label9.Location = new Point(12, 387);
             label9.Name = "label9";
             label9.Size = new Size(157, 25);
             label9.TabIndex = 13;
@@ -201,7 +216,7 @@
             // 
             label10.AutoSize = true;
             label10.BackColor = SystemColors.ButtonHighlight;
-            label10.Location = new Point(72, 276);
+            label10.Location = new Point(67, 428);
             label10.Name = "label10";
             label10.Size = new Size(44, 25);
             label10.TabIndex = 14;
@@ -212,7 +227,7 @@
             // 
             label11.AutoSize = true;
             label11.BackColor = SystemColors.ButtonHighlight;
-            label11.Location = new Point(29, 276);
+            label11.Location = new Point(29, 428);
             label11.Name = "label11";
             label11.Size = new Size(32, 25);
             label11.TabIndex = 15;
@@ -222,7 +237,7 @@
             // 
             label12.AutoSize = true;
             label12.BackColor = SystemColors.ButtonHighlight;
-            label12.Location = new Point(143, 276);
+            label12.Location = new Point(126, 428);
             label12.Name = "label12";
             label12.Size = new Size(104, 25);
             label12.TabIndex = 16;
@@ -232,17 +247,18 @@
             // 
             label13.AutoSize = true;
             label13.BackColor = SystemColors.ButtonHighlight;
-            label13.Location = new Point(288, 276);
+            label13.Location = new Point(251, 428);
             label13.Name = "label13";
             label13.Size = new Size(164, 25);
             label13.TabIndex = 17;
             label13.Text = "Cantidad Solicitada";
+            label13.Click += label13_Click;
             // 
             // label14
             // 
             label14.AutoSize = true;
             label14.BackColor = SystemColors.ButtonHighlight;
-            label14.Location = new Point(489, 276);
+            label14.Location = new Point(458, 428);
             label14.Name = "label14";
             label14.Size = new Size(168, 25);
             label14.TabIndex = 18;
@@ -252,7 +268,7 @@
             // 
             label15.AutoSize = true;
             label15.BackColor = SystemColors.ButtonHighlight;
-            label15.Location = new Point(714, 276);
+            label15.Location = new Point(668, 428);
             label15.Name = "label15";
             label15.Size = new Size(66, 25);
             label15.TabIndex = 19;
@@ -262,18 +278,150 @@
             // 
             label16.AutoSize = true;
             label16.BackColor = SystemColors.ButtonHighlight;
-            label16.Location = new Point(855, 276);
+            label16.Location = new Point(807, 428);
             label16.Name = "label16";
             label16.Size = new Size(65, 25);
             label16.TabIndex = 20;
             label16.Text = "Acción";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(16, 43);
+            label17.Name = "label17";
+            label17.Size = new Size(202, 25);
+            label17.TabIndex = 22;
+            label17.Text = "Ingresar o Escanear SKU";
+            // 
+            // textBox2
+            // 
+            textBox2.BackColor = SystemColors.ControlLight;
+            textBox2.Location = new Point(239, 40);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(679, 31);
+            textBox2.TabIndex = 23;
+            // 
+            // button2
+            // 
+            button2.BackColor = SystemColors.ControlLight;
+            button2.Location = new Point(239, 77);
+            button2.Name = "button2";
+            button2.Size = new Size(679, 34);
+            button2.TabIndex = 24;
+            button2.Text = "validar";
+            button2.UseVisualStyleBackColor = false;
+            // 
+            // groupBox1
+            // 
+            groupBox1.BackColor = SystemColors.ButtonHighlight;
+            groupBox1.Controls.Add(button2);
+            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(label17);
+            groupBox1.ForeColor = SystemColors.WindowText;
+            groupBox1.Location = new Point(12, 232);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(951, 141);
+            groupBox1.TabIndex = 25;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Escaneo/Validación";
+            groupBox1.Enter += groupBox1_Enter;
+            // 
+            // groupBox2
+            // 
+            groupBox2.BackColor = SystemColors.HighlightText;
+            groupBox2.Controls.Add(label22);
+            groupBox2.Controls.Add(label21);
+            groupBox2.Controls.Add(label20);
+            groupBox2.Controls.Add(button3);
+            groupBox2.Controls.Add(textBox3);
+            groupBox2.Controls.Add(textBox1);
+            groupBox2.Controls.Add(label19);
+            groupBox2.Controls.Add(label18);
+            groupBox2.Location = new Point(988, 232);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(300, 341);
+            groupBox2.TabIndex = 26;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Empaquetado y Etiquetado";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(30, 42);
+            label18.Name = "label18";
+            label18.Size = new Size(78, 25);
+            label18.TabIndex = 0;
+            label18.Text = "Bulto N°";
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(154, 43);
+            label19.Name = "label19";
+            label19.Size = new Size(128, 25);
+            label19.TabIndex = 1;
+            label19.Text = "Peso Estimado";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(18, 79);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(118, 31);
+            textBox1.TabIndex = 2;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(157, 79);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(118, 31);
+            textBox3.TabIndex = 3;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(21, 266);
+            button3.Name = "button3";
+            button3.Size = new Size(254, 34);
+            button3.TabIndex = 4;
+            button3.Text = "Imprimir Etiqueta";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(6, 126);
+            label20.Name = "label20";
+            label20.Size = new Size(291, 25);
+            label20.TabIndex = 5;
+            label20.Text = "Recordá: el peso máximo por bulto";
+            label20.Click += label20_Click;
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(6, 151);
+            label21.Name = "label21";
+            label21.Size = new Size(269, 25);
+            label21.TabIndex = 6;
+            label21.Text = " es de 35 kg. Si supera ese peso,";
+            label21.Click += label21_Click;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(6, 176);
+            label22.Name = "label22";
+            label22.Size = new Size(227, 25);
+            label22.TabIndex = 7;
+            label22.Text = " solicitá autorización al jefe.";
+            label22.Click += label22_Click;
             // 
             // Empaqu_y_Generar_Orden_de_Entrega_Form
             // 
             AccessibleName = "";
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1315, 656);
+            ClientSize = new Size(1312, 656);
+            Controls.Add(groupBox2);
             Controls.Add(label16);
             Controls.Add(label15);
             Controls.Add(label14);
@@ -295,9 +443,14 @@
             Controls.Add(comboBox1);
             Controls.Add(button1);
             Controls.Add(Guardar);
+            Controls.Add(groupBox1);
             Name = "Empaqu_y_Generar_Orden_de_Entrega_Form";
             Text = "Empaquetar_Pedido_y_Generar_Orden_de_Entrega_Form";
             Load += Empaqu_y_Generar_Orden_de_Entrega_Form_Load;
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -325,5 +478,18 @@
         private Label label14;
         private Label label15;
         private Label label16;
+        private Label label17;
+        private TextBox textBox2;
+        private Button button2;
+        private GroupBox groupBox1;
+        private GroupBox groupBox2;
+        private Label label18;
+        private TextBox textBox3;
+        private TextBox textBox1;
+        private Label label19;
+        private Label label20;
+        private Button button3;
+        private Label label22;
+        private Label label21;
     }
 }
