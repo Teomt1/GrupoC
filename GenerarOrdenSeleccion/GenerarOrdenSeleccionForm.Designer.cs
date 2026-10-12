@@ -43,6 +43,8 @@
             lblDepositoTitulo.AutoSize = true;
             lblDepositoTitulo.Location = new Point(20, 20);
             lblDepositoTitulo.Name = "lblDepositoTitulo";
+            lblDepositoTitulo.Size = new Size(54, 15);
+            lblDepositoTitulo.TabIndex = 10;
             lblDepositoTitulo.Text = "Depósito";
             // 
             // lblDeposito
@@ -50,6 +52,8 @@
             lblDeposito.AutoSize = true;
             lblDeposito.Location = new Point(20, 42);
             lblDeposito.Name = "lblDeposito";
+            lblDeposito.Size = new Size(61, 15);
+            lblDeposito.TabIndex = 9;
             lblDeposito.Text = "[depósito]";
             // 
             // lblNroOrdenTitulo
@@ -57,6 +61,8 @@
             lblNroOrdenTitulo.AutoSize = true;
             lblNroOrdenTitulo.Location = new Point(240, 20);
             lblNroOrdenTitulo.Name = "lblNroOrdenTitulo";
+            lblNroOrdenTitulo.Size = new Size(77, 15);
+            lblNroOrdenTitulo.TabIndex = 8;
             lblNroOrdenTitulo.Text = "Nro de orden";
             // 
             // lblNroOrden
@@ -64,13 +70,18 @@
             lblNroOrden.AutoSize = true;
             lblNroOrden.Location = new Point(240, 42);
             lblNroOrden.Name = "lblNroOrden";
+            lblNroOrden.Size = new Size(81, 15);
+            lblNroOrden.TabIndex = 7;
             lblNroOrden.Text = "[próximo nro]";
+            lblNroOrden.Click += lblNroOrden_Click;
             // 
             // lblFechaTitulo
             // 
             lblFechaTitulo.AutoSize = true;
             lblFechaTitulo.Location = new Point(460, 20);
             lblFechaTitulo.Name = "lblFechaTitulo";
+            lblFechaTitulo.Size = new Size(38, 15);
+            lblFechaTitulo.TabIndex = 6;
             lblFechaTitulo.Text = "Fecha";
             // 
             // lblFecha
@@ -78,6 +89,8 @@
             lblFecha.AutoSize = true;
             lblFecha.Location = new Point(460, 42);
             lblFecha.Name = "lblFecha";
+            lblFecha.Size = new Size(96, 15);
+            lblFecha.TabIndex = 5;
             lblFecha.Text = "dd/MM/yy [hoy]";
             // 
             // lblPendientes
@@ -85,6 +98,8 @@
             lblPendientes.AutoSize = true;
             lblPendientes.Location = new Point(20, 80);
             lblPendientes.Name = "lblPendientes";
+            lblPendientes.Size = new Size(194, 15);
+            lblPendientes.TabIndex = 4;
             lblPendientes.Text = "Órdenes de preparación pendientes";
             // 
             // lvOrdenesPendientes
@@ -96,6 +111,7 @@
             lvOrdenesPendientes.MultiSelect = false;
             lvOrdenesPendientes.Name = "lvOrdenesPendientes";
             lvOrdenesPendientes.Size = new Size(645, 170);
+            lvOrdenesPendientes.TabIndex = 3;
             lvOrdenesPendientes.UseCompatibleStateImageBehavior = false;
             lvOrdenesPendientes.View = View.Details;
             // 
@@ -124,6 +140,8 @@
             lblMercaderia.AutoSize = true;
             lblMercaderia.Location = new Point(20, 290);
             lblMercaderia.Name = "lblMercaderia";
+            lblMercaderia.Size = new Size(137, 15);
+            lblMercaderia.TabIndex = 2;
             lblMercaderia.Text = "Mercadería a seleccionar";
             // 
             // lvMercaderia
@@ -134,6 +152,7 @@
             lvMercaderia.Location = new Point(20, 312);
             lvMercaderia.Name = "lvMercaderia";
             lvMercaderia.Size = new Size(645, 170);
+            lvMercaderia.TabIndex = 1;
             lvMercaderia.UseCompatibleStateImageBehavior = false;
             lvMercaderia.View = View.Details;
             // 
@@ -162,6 +181,7 @@
             btnGenerar.Location = new Point(20, 500);
             btnGenerar.Name = "btnGenerar";
             btnGenerar.Size = new Size(645, 35);
+            btnGenerar.TabIndex = 0;
             btnGenerar.Text = "Generar orden de selección";
             btnGenerar.UseVisualStyleBackColor = true;
             // 

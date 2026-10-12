@@ -48,6 +48,7 @@
             label10 = new Label();
             listView1 = new ListView();
             SKU = new ColumnHeader();
+            Depósito = new ColumnHeader();
             Producto = new ColumnHeader();
             Cantidad = new ColumnHeader();
             label11 = new Label();
@@ -60,7 +61,6 @@
             textBox6 = new TextBox();
             button2 = new Button();
             button3 = new Button();
-            Depósito = new ColumnHeader();
             label16 = new Label();
             comboBox2 = new ComboBox();
             SuspendLayout();
@@ -237,18 +237,31 @@
             listView1.Size = new Size(403, 134);
             listView1.TabIndex = 19;
             listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.Details;
             // 
             // SKU
             // 
             SKU.DisplayIndex = 2;
+            SKU.Text = "SKU";
+            SKU.Width = 100;
+            // 
+            // Depósito
+            // 
+            Depósito.DisplayIndex = 3;
+            Depósito.Text = "Depósito";
+            Depósito.Width = 100;
             // 
             // Producto
             // 
             Producto.DisplayIndex = 0;
+            Producto.Text = "Producto";
+            Producto.Width = 100;
             // 
             // Cantidad
             // 
             Cantidad.DisplayIndex = 1;
+            Cantidad.Text = "Cantidad";
+            Cantidad.Width = 100;
             // 
             // label11
             // 
@@ -334,10 +347,6 @@
             button3.TabIndex = 29;
             button3.Text = "Cancelar";
             button3.UseVisualStyleBackColor = true;
-            // 
-            // Depósito
-            // 
-            Depósito.DisplayIndex = 3;
             // 
             // label16
             // 

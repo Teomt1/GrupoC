@@ -14,5 +14,10 @@ namespace GrupoC.GenerarOrdenSeleccion
         {
             InitializeComponent();
         }
+
+        private void lblNroOrden_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
