@@ -1,3 +1,6 @@
+using GrupoC.Empaquetar_Pedido_y_Generar_Orden_de_Entrega;
+using GrupoC.GrupoC.Registrar_Orden_de_Preparación;
+
 namespace GrupoC
 {
     public partial class Form1 : Form
@@ -5,6 +8,18 @@ namespace GrupoC
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Registrar_orden_de_preparación ordenprep = new Registrar_orden_de_preparación();
+            ordenprep.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Empaquetar_Pedido_y_Generar_Orden_de_Entrega_Form ordenentreg = new Empaquetar_Pedido_y_Generar_Orden_de_Entrega_Form();
+            ordenentreg.Show();
         }
     }
 }
