@@ -1,5 +1,7 @@
 using GrupoC.Empaquetar_Pedido_y_Generar_Orden_de_Entrega;
 using GrupoC.GenerarOrdenSeleccion;
+using GrupoC.GrupoC.Completar_Orden_de_Preparación;
+using GrupoC.GrupoC.Entrega_a_Transportista;
 using GrupoC.GrupoC.Registrar_Orden_de_Preparación;
 
 namespace GrupoC
@@ -33,6 +35,18 @@ namespace GrupoC
         {
             GenerarOrdenSeleccionForm ordselect = new GenerarOrdenSeleccionForm();
             ordselect.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Entrega_a_Transportista entrega = new Entrega_a_Transportista();
+            entrega.Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Completar_Orden_de_Preparación prepcomp = new Completar_Orden_de_Preparación();
+            prepcomp.Show();
         }
     }
 }
