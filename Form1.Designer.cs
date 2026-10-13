@@ -34,6 +34,7 @@
             button4 = new Button();
             button5 = new Button();
             button6 = new Button();
+            button7 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -68,7 +69,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(51, 232);
+            button4.Location = new Point(51, 304);
             button4.Name = "button4";
             button4.Size = new Size(133, 58);
             button4.TabIndex = 3;
@@ -78,7 +79,7 @@
             // 
             // button5
             // 
-            button5.Location = new Point(266, 225);
+            button5.Location = new Point(277, 297);
             button5.Name = "button5";
             button5.Size = new Size(122, 73);
             button5.TabIndex = 4;
@@ -88,7 +89,7 @@
             // 
             // button6
             // 
-            button6.Location = new Point(489, 235);
+            button6.Location = new Point(477, 297);
             button6.Name = "button6";
             button6.Size = new Size(121, 71);
             button6.TabIndex = 5;
@@ -96,11 +97,22 @@
             button6.UseVisualStyleBackColor = true;
             button6.Click += button6_Click;
             // 
+            // button7
+            // 
+            button7.Location = new Point(627, 183);
+            button7.Name = "button7";
+            button7.Size = new Size(119, 69);
+            button7.TabIndex = 6;
+            button7.Text = "Recepción Mercadería";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button7);
             Controls.Add(button6);
             Controls.Add(button5);
             Controls.Add(button4);
@@ -120,5 +132,6 @@
         private Button button4;
         private Button button5;
         private Button button6;
+        private Button button7;
     }
 }

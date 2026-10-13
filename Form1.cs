@@ -3,6 +3,7 @@ using GrupoC.GenerarOrdenSeleccion;
 using GrupoC.GrupoC.Completar_Orden_de_Preparación;
 using GrupoC.GrupoC.Entrega_a_Transportista;
 using GrupoC.GrupoC.Registrar_Orden_de_Preparación;
+using GrupoC.Recepción_de_Mercadería;
 
 namespace GrupoC
 {
@@ -47,6 +48,12 @@ namespace GrupoC
         {
             Completar_Orden_de_Preparación prepcomp = new Completar_Orden_de_Preparación();
             prepcomp.Show();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Recepción_de_mercaderia_Form recepcion = new Recepción_de_mercaderia_Form();
+            recepcion.Show();
         }
     }
 }
