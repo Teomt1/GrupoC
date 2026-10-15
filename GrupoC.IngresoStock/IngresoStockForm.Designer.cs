@@ -1,11 +1,16 @@
-﻿using System.Data;
-
-namespace GrupoC
+﻿namespace GrupoC.GrupoC.IngresoStock
 {
     partial class IngresoStockForm
     {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -15,305 +20,382 @@ namespace GrupoC
             base.Dispose(disposing);
         }
 
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
         private void InitializeComponent()
         {
-            lblTitulo = new Label();
-            gbxBusqueda = new GroupBox();
+            groupBox1 = new GroupBox();
             btnBuscar = new Button();
             txtNroOrden = new TextBox();
-            lblNroOrden = new Label();
-            gbxDatosOrden = new GroupBox();
+            label1 = new Label();
+            groupBox2 = new GroupBox();
             txtEstadoOrden = new TextBox();
-            lblEstadoOrden = new Label();
-            txtCliente = new TextBox();
-            lblCliente = new Label();
-            gbxDetalle = new GroupBox();
-            dgvSkus = new DataGridView();
-            gbxUbicacion = new GroupBox();
+            label3 = new Label();
+            txtClienteOrigen = new TextBox();
+            label2 = new Label();
+            groupBox3 = new GroupBox();
+            listViewSkus = new ListView();
+            columnHeader1 = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
+            columnHeader4 = new ColumnHeader();
+            groupBox4 = new GroupBox();
+            btnAgregarUbicacion = new Button();
+            txtCantidadUbicar = new TextBox();
+            label8 = new Label();
             cmbNivelZ = new ComboBox();
-            lblNivel = new Label();
+            label7 = new Label();
             cmbFilaY = new ComboBox();
-            lblFila = new Label();
+            label6 = new Label();
             cmbPasilloX = new ComboBox();
-            lblPasillo = new Label();
-            cmbSku = new ComboBox();
-            lblSkuSeleccionado = new Label();
+            label5 = new Label();
+            cmbSkuSeleccionado = new ComboBox();
+            label4 = new Label();
             btnConfirmar = new Button();
             btnCancelar = new Button();
-            gbxBusqueda.SuspendLayout();
-            gbxDatosOrden.SuspendLayout();
-            gbxDetalle.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvSkus).BeginInit();
-            gbxUbicacion.SuspendLayout();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
+            groupBox4.SuspendLayout();
             SuspendLayout();
             // 
-            // lblTitulo
+            // groupBox1
             // 
-            lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            lblTitulo.Location = new Point(20, 15);
-            lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(188, 32);
-            lblTitulo.TabIndex = 6;
-            lblTitulo.Text = "Ingreso a stock";
-            // 
-            // gbxBusqueda
-            // 
-            gbxBusqueda.Controls.Add(btnBuscar);
-            gbxBusqueda.Controls.Add(txtNroOrden);
-            gbxBusqueda.Controls.Add(lblNroOrden);
-            gbxBusqueda.Location = new Point(20, 50);
-            gbxBusqueda.Name = "gbxBusqueda";
-            gbxBusqueda.Size = new Size(740, 70);
-            gbxBusqueda.TabIndex = 5;
-            gbxBusqueda.TabStop = false;
-            gbxBusqueda.Text = "Búsqueda de Orden de Recepción";
+            groupBox1.Controls.Add(btnBuscar);
+            groupBox1.Controls.Add(txtNroOrden);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Location = new Point(14, 16);
+            groupBox1.Margin = new Padding(3, 4, 3, 4);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Padding = new Padding(3, 4, 3, 4);
+            groupBox1.Size = new Size(709, 80);
+            groupBox1.TabIndex = 0;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Búsqueda de Orden de Recepción";
             // 
             // btnBuscar
             // 
-            btnBuscar.Location = new Point(339, 26);
+            btnBuscar.Location = new Point(491, 28);
+            btnBuscar.Margin = new Padding(3, 4, 3, 4);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(100, 26);
-            btnBuscar.TabIndex = 0;
+            btnBuscar.Size = new Size(103, 33);
+            btnBuscar.TabIndex = 2;
             btnBuscar.Text = "Buscar";
-            btnBuscar.Click += btnBuscar_Click;
+            btnBuscar.UseVisualStyleBackColor = true;
             // 
             // txtNroOrden
             // 
-            txtNroOrden.Location = new Point(168, 23);
+            txtNroOrden.Location = new Point(171, 29);
+            txtNroOrden.Margin = new Padding(3, 4, 3, 4);
             txtNroOrden.Name = "txtNroOrden";
-            txtNroOrden.Size = new Size(150, 27);
+            txtNroOrden.Size = new Size(297, 27);
             txtNroOrden.TabIndex = 1;
             // 
-            // lblNroOrden
+            // label1
             // 
-            lblNroOrden.AutoSize = true;
-            lblNroOrden.Location = new Point(15, 28);
-            lblNroOrden.Name = "lblNroOrden";
-            lblNroOrden.Size = new Size(147, 20);
-            lblNroOrden.TabIndex = 2;
-            lblNroOrden.Text = "N° Orden Recepción:";
+            label1.AutoSize = true;
+            label1.Location = new Point(17, 33);
+            label1.Name = "label1";
+            label1.Size = new Size(147, 20);
+            label1.TabIndex = 0;
+            label1.Text = "N° Orden Recepción:";
             // 
-            // gbxDatosOrden
+            // groupBox2
             // 
-            gbxDatosOrden.Controls.Add(txtEstadoOrden);
-            gbxDatosOrden.Controls.Add(lblEstadoOrden);
-            gbxDatosOrden.Controls.Add(txtCliente);
-            gbxDatosOrden.Controls.Add(lblCliente);
-            gbxDatosOrden.Location = new Point(20, 130);
-            gbxDatosOrden.Name = "gbxDatosOrden";
-            gbxDatosOrden.Size = new Size(740, 70);
-            gbxDatosOrden.TabIndex = 4;
-            gbxDatosOrden.TabStop = false;
-            gbxDatosOrden.Text = "Datos de la Orden de Recepción";
+            groupBox2.Controls.Add(txtEstadoOrden);
+            groupBox2.Controls.Add(label3);
+            groupBox2.Controls.Add(txtClienteOrigen);
+            groupBox2.Controls.Add(label2);
+            groupBox2.Location = new Point(14, 104);
+            groupBox2.Margin = new Padding(3, 4, 3, 4);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Padding = new Padding(3, 4, 3, 4);
+            groupBox2.Size = new Size(709, 80);
+            groupBox2.TabIndex = 1;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Datos de la Orden de Recepción";
             // 
             // txtEstadoOrden
             // 
-            txtEstadoOrden.Location = new Point(488, 25);
+            txtEstadoOrden.Location = new Point(571, 33);
+            txtEstadoOrden.Margin = new Padding(3, 4, 3, 4);
             txtEstadoOrden.Name = "txtEstadoOrden";
             txtEstadoOrden.ReadOnly = true;
-            txtEstadoOrden.Size = new Size(200, 27);
-            txtEstadoOrden.TabIndex = 0;
+            txtEstadoOrden.Size = new Size(131, 27);
+            txtEstadoOrden.TabIndex = 3;
             // 
-            // lblEstadoOrden
+            // label3
             // 
-            lblEstadoOrden.AutoSize = true;
-            lblEstadoOrden.Location = new Point(380, 28);
-            lblEstadoOrden.Name = "lblEstadoOrden";
-            lblEstadoOrden.Size = new Size(102, 20);
-            lblEstadoOrden.TabIndex = 1;
-            lblEstadoOrden.Text = "Estado Orden:";
+            label3.AutoSize = true;
+            label3.Location = new Point(463, 33);
+            label3.Name = "label3";
+            label3.Size = new Size(102, 20);
+            label3.TabIndex = 2;
+            label3.Text = "Estado Orden:";
             // 
-            // txtCliente
+            // txtClienteOrigen
             // 
-            txtCliente.Location = new Point(130, 26);
-            txtCliente.Name = "txtCliente";
-            txtCliente.ReadOnly = true;
-            txtCliente.Size = new Size(230, 27);
-            txtCliente.TabIndex = 2;
+            txtClienteOrigen.Location = new Point(131, 33);
+            txtClienteOrigen.Margin = new Padding(3, 4, 3, 4);
+            txtClienteOrigen.Name = "txtClienteOrigen";
+            txtClienteOrigen.ReadOnly = true;
+            txtClienteOrigen.Size = new Size(319, 27);
+            txtClienteOrigen.TabIndex = 1;
             // 
-            // lblCliente
+            // label2
             // 
-            lblCliente.AutoSize = true;
-            lblCliente.Location = new Point(15, 28);
-            lblCliente.Name = "lblCliente";
-            lblCliente.Size = new Size(117, 20);
-            lblCliente.TabIndex = 3;
-            lblCliente.Text = "Cliente / Origen:";
+            label2.AutoSize = true;
+            label2.Location = new Point(17, 33);
+            label2.Name = "label2";
+            label2.Size = new Size(117, 20);
+            label2.TabIndex = 0;
+            label2.Text = "Cliente / Origen:";
             // 
-            // gbxDetalle
+            // groupBox3
             // 
-            gbxDetalle.Controls.Add(dgvSkus);
-            gbxDetalle.Location = new Point(20, 210);
-            gbxDetalle.Name = "gbxDetalle";
-            gbxDetalle.Size = new Size(740, 180);
-            gbxDetalle.TabIndex = 3;
-            gbxDetalle.TabStop = false;
-            gbxDetalle.Text = "Ítems y SKUs a Ubicar";
+            groupBox3.Controls.Add(listViewSkus);
+            groupBox3.Location = new Point(14, 192);
+            groupBox3.Margin = new Padding(3, 4, 3, 4);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Padding = new Padding(3, 4, 3, 4);
+            groupBox3.Size = new Size(709, 213);
+            groupBox3.TabIndex = 2;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Ítems y SKUs a Ubicar";
             // 
-            // dgvSkus
+            // listViewSkus
             // 
-            dgvSkus.AllowUserToAddRows = false;
-            dgvSkus.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvSkus.ColumnHeadersHeight = 29;
-            dgvSkus.Location = new Point(15, 25);
-            dgvSkus.Name = "dgvSkus";
-            dgvSkus.ReadOnly = true;
-            dgvSkus.RowHeadersWidth = 51;
-            dgvSkus.Size = new Size(710, 140);
-            dgvSkus.TabIndex = 0;
+            listViewSkus.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4 });
+            listViewSkus.Location = new Point(17, 29);
+            listViewSkus.Margin = new Padding(3, 4, 3, 4);
+            listViewSkus.Name = "listViewSkus";
+            listViewSkus.Size = new Size(674, 165);
+            listViewSkus.TabIndex = 0;
+            listViewSkus.UseCompatibleStateImageBehavior = false;
+            listViewSkus.View = View.Details;
             // 
-            // gbxUbicacion
+            // columnHeader1
             // 
-            gbxUbicacion.Controls.Add(cmbNivelZ);
-            gbxUbicacion.Controls.Add(lblNivel);
-            gbxUbicacion.Controls.Add(cmbFilaY);
-            gbxUbicacion.Controls.Add(lblFila);
-            gbxUbicacion.Controls.Add(cmbPasilloX);
-            gbxUbicacion.Controls.Add(lblPasillo);
-            gbxUbicacion.Controls.Add(cmbSku);
-            gbxUbicacion.Controls.Add(lblSkuSeleccionado);
-            gbxUbicacion.Location = new Point(20, 400);
-            gbxUbicacion.Name = "gbxUbicacion";
-            gbxUbicacion.Size = new Size(740, 110);
-            gbxUbicacion.TabIndex = 2;
-            gbxUbicacion.TabStop = false;
-            gbxUbicacion.Text = "Ubicación Física en Racks (Coordenadas X - Y - Z)";
+            columnHeader1.Text = "SKU";
+            columnHeader1.Width = 100;
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "Descripción";
+            columnHeader2.Width = 240;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Cantidad Recepcionada";
+            columnHeader3.Width = 180;
+            // 
+            // columnHeader4
+            // 
+            columnHeader4.Text = "Cantidad a ubicar";
+            columnHeader4.Width = 130;
+            // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(btnAgregarUbicacion);
+            groupBox4.Controls.Add(txtCantidadUbicar);
+            groupBox4.Controls.Add(label8);
+            groupBox4.Controls.Add(cmbNivelZ);
+            groupBox4.Controls.Add(label7);
+            groupBox4.Controls.Add(cmbFilaY);
+            groupBox4.Controls.Add(label6);
+            groupBox4.Controls.Add(cmbPasilloX);
+            groupBox4.Controls.Add(label5);
+            groupBox4.Controls.Add(cmbSkuSeleccionado);
+            groupBox4.Controls.Add(label4);
+            groupBox4.Location = new Point(14, 413);
+            groupBox4.Margin = new Padding(3, 4, 3, 4);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Padding = new Padding(3, 4, 3, 4);
+            groupBox4.Size = new Size(709, 173);
+            groupBox4.TabIndex = 3;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Ubicación Física en Racks (Coordenadas X - Y - Z)";
+            // 
+            // btnAgregarUbicacion
+            // 
+            btnAgregarUbicacion.Location = new Point(526, 123);
+            btnAgregarUbicacion.Margin = new Padding(3, 4, 3, 4);
+            btnAgregarUbicacion.Name = "btnAgregarUbicacion";
+            btnAgregarUbicacion.Size = new Size(166, 37);
+            btnAgregarUbicacion.TabIndex = 10;
+            btnAgregarUbicacion.Text = "Agregar Ubicación";
+            btnAgregarUbicacion.UseVisualStyleBackColor = true;
+            // 
+            // txtCantidadUbicar
+            // 
+            txtCantidadUbicar.Location = new Point(589, 29);
+            txtCantidadUbicar.Margin = new Padding(3, 4, 3, 4);
+            txtCantidadUbicar.Name = "txtCantidadUbicar";
+            txtCantidadUbicar.Size = new Size(102, 27);
+            txtCantidadUbicar.TabIndex = 9;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(514, 33);
+            label8.Name = "label8";
+            label8.Size = new Size(72, 20);
+            label8.TabIndex = 8;
+            label8.Text = "Cantidad:";
             // 
             // cmbNivelZ
             // 
-            cmbNivelZ.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbNivelZ.Location = new Point(521, 67);
+            cmbNivelZ.FormattingEnabled = true;
+            cmbNivelZ.Items.AddRange(new object[] { "Nivel 1", "Nivel 2", "Nivel 3" });
+            cmbNivelZ.Location = new Point(560, 80);
+            cmbNivelZ.Margin = new Padding(3, 4, 3, 4);
             cmbNivelZ.Name = "cmbNivelZ";
-            cmbNivelZ.Size = new Size(119, 28);
-            cmbNivelZ.TabIndex = 0;
-            cmbNivelZ.SelectedIndexChanged += cmbNivelZ_SelectedIndexChanged;
+            cmbNivelZ.Size = new Size(131, 28);
+            cmbNivelZ.TabIndex = 7;
             // 
-            // lblNivel
+            // label7
             // 
-            lblNivel.AutoSize = true;
-            lblNivel.Location = new Point(400, 70);
-            lblNivel.Name = "lblNivel";
-            lblNivel.Size = new Size(115, 20);
-            lblNivel.TabIndex = 1;
-            lblNivel.Text = "Nivel/Altura (Z):";
+            label7.AutoSize = true;
+            label7.Location = new Point(440, 83);
+            label7.Name = "label7";
+            label7.Size = new Size(115, 20);
+            label7.TabIndex = 6;
+            label7.Text = "Nivel/Altura (Z):";
+            label7.Click += label7_Click;
             // 
             // cmbFilaY
             // 
-            cmbFilaY.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbFilaY.Location = new Point(300, 67);
+            cmbFilaY.FormattingEnabled = true;
+            cmbFilaY.Items.AddRange(new object[] { "Fila 1", "Fila 2", "Fila 3" });
+            cmbFilaY.Location = new Point(303, 80);
+            cmbFilaY.Margin = new Padding(3, 4, 3, 4);
             cmbFilaY.Name = "cmbFilaY";
-            cmbFilaY.Size = new Size(90, 28);
-            cmbFilaY.TabIndex = 2;
+            cmbFilaY.Size = new Size(131, 28);
+            cmbFilaY.TabIndex = 5;
             // 
-            // lblFila
+            // label6
             // 
-            lblFila.AutoSize = true;
-            lblFila.Location = new Point(240, 70);
-            lblFila.Name = "lblFila";
-            lblFila.Size = new Size(57, 20);
-            lblFila.TabIndex = 3;
-            lblFila.Text = "Fila (Y):";
+            label6.AutoSize = true;
+            label6.Location = new Point(246, 84);
+            label6.Name = "label6";
+            label6.Size = new Size(57, 20);
+            label6.TabIndex = 4;
+            label6.Text = "Fila (Y):";
             // 
             // cmbPasilloX
             // 
-            cmbPasilloX.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbPasilloX.Location = new Point(130, 67);
+            cmbPasilloX.FormattingEnabled = true;
+            cmbPasilloX.Items.AddRange(new object[] { "Pasillo 1", "Pasillo 2", "Pasillo 3" });
+            cmbPasilloX.Location = new Point(131, 80);
+            cmbPasilloX.Margin = new Padding(3, 4, 3, 4);
             cmbPasilloX.Name = "cmbPasilloX";
-            cmbPasilloX.Size = new Size(90, 28);
-            cmbPasilloX.TabIndex = 4;
+            cmbPasilloX.Size = new Size(97, 28);
+            cmbPasilloX.TabIndex = 3;
             // 
-            // lblPasillo
+            // label5
             // 
-            lblPasillo.AutoSize = true;
-            lblPasillo.Location = new Point(15, 70);
-            lblPasillo.Name = "lblPasillo";
-            lblPasillo.Size = new Size(114, 20);
-            lblPasillo.TabIndex = 5;
-            lblPasillo.Text = "Pasillo/Rack (X):";
+            label5.AutoSize = true;
+            label5.Location = new Point(17, 84);
+            label5.Name = "label5";
+            label5.Size = new Size(114, 20);
+            label5.TabIndex = 2;
+            label5.Text = "Pasillo/Rack (X):";
             // 
-            // cmbSku
+            // cmbSkuSeleccionado
             // 
-            cmbSku.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbSku.Location = new Point(153, 26);
-            cmbSku.Name = "cmbSku";
-            cmbSku.Size = new Size(200, 28);
-            cmbSku.TabIndex = 6;
+            cmbSkuSeleccionado.FormattingEnabled = true;
+            cmbSkuSeleccionado.Location = new Point(149, 29);
+            cmbSkuSeleccionado.Margin = new Padding(3, 4, 3, 4);
+            cmbSkuSeleccionado.Name = "cmbSkuSeleccionado";
+            cmbSkuSeleccionado.Size = new Size(342, 28);
+            cmbSkuSeleccionado.TabIndex = 1;
             // 
-            // lblSkuSeleccionado
+            // label4
             // 
-            lblSkuSeleccionado.AutoSize = true;
-            lblSkuSeleccionado.Location = new Point(15, 30);
-            lblSkuSeleccionado.Name = "lblSkuSeleccionado";
-            lblSkuSeleccionado.Size = new Size(132, 20);
-            lblSkuSeleccionado.TabIndex = 7;
-            lblSkuSeleccionado.Text = "SKU Seleccionado:";
+            label4.AutoSize = true;
+            label4.Location = new Point(17, 33);
+            label4.Name = "label4";
+            label4.Size = new Size(132, 20);
+            label4.TabIndex = 0;
+            label4.Text = "SKU Seleccionado:";
             // 
             // btnConfirmar
             // 
-            btnConfirmar.Location = new Point(469, 530);
+            btnConfirmar.Location = new Point(549, 600);
+            btnConfirmar.Margin = new Padding(3, 4, 3, 4);
             btnConfirmar.Name = "btnConfirmar";
-            btnConfirmar.Size = new Size(141, 35);
-            btnConfirmar.TabIndex = 1;
-            btnConfirmar.Text = "Confirmar ingreso";
-            btnConfirmar.Click += btnConfirmar_Click;
+            btnConfirmar.Size = new Size(174, 47);
+            btnConfirmar.TabIndex = 4;
+            btnConfirmar.Text = "Confirmar Ingreso";
+            btnConfirmar.UseVisualStyleBackColor = true;
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(630, 530);
+            btnCancelar.Location = new Point(417, 600);
+            btnCancelar.Margin = new Padding(3, 4, 3, 4);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(130, 35);
-            btnCancelar.TabIndex = 0;
+            btnCancelar.Size = new Size(114, 47);
+            btnCancelar.TabIndex = 5;
             btnCancelar.Text = "Cancelar";
-            btnCancelar.Click += btnCancelar_Click;
+            btnCancelar.UseVisualStyleBackColor = true;
             // 
             // IngresoStockForm
             // 
-            ClientSize = new Size(784, 591);
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(735, 661);
             Controls.Add(btnCancelar);
             Controls.Add(btnConfirmar);
-            Controls.Add(gbxUbicacion);
-            Controls.Add(gbxDetalle);
-            Controls.Add(gbxDatosOrden);
-            Controls.Add(gbxBusqueda);
-            Controls.Add(lblTitulo);
+            Controls.Add(groupBox4);
+            Controls.Add(groupBox3);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "IngresoStockForm";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Pampazon S.A. - Ingreso a stock";
-            Load += IngresoStockForm_Load;
-            gbxBusqueda.ResumeLayout(false);
-            gbxBusqueda.PerformLayout();
-            gbxDatosOrden.ResumeLayout(false);
-            gbxDatosOrden.PerformLayout();
-            gbxDetalle.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvSkus).EndInit();
-            gbxUbicacion.ResumeLayout(false);
-            gbxUbicacion.PerformLayout();
+            Text = "Pampazon S.A. - Ingreso a Stock";
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            groupBox3.ResumeLayout(false);
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
-        private Label lblTitulo;
-        private GroupBox gbxBusqueda;
-        private Label lblNroOrden;
-        private TextBox txtNroOrden;
+        #endregion
+
+        private GroupBox groupBox1;
         private Button btnBuscar;
-        private GroupBox gbxDatosOrden;
-        private Label lblCliente;
-        private TextBox txtCliente;
-        private Label lblEstadoOrden;
+        private TextBox txtNroOrden;
+        private Label label1;
+        private GroupBox groupBox2;
         private TextBox txtEstadoOrden;
-        private GroupBox gbxDetalle;
-        private DataGridView dgvSkus;
-        private GroupBox gbxUbicacion;
-        private Label lblSkuSeleccionado;
-        private ComboBox cmbSku;
-        private Label lblPasillo;
+        private Label label3;
+        private TextBox txtClienteOrigen;
+        private Label label2;
+        private GroupBox groupBox3;
+        private ListView listViewSkus;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
+        private ColumnHeader columnHeader4;
+        private GroupBox groupBox4;
+        private ComboBox cmbSkuSeleccionado;
+        private Label label4;
         private ComboBox cmbPasilloX;
-        private Label lblFila;
+        private Label label5;
         private ComboBox cmbFilaY;
-        private Label lblNivel;
+        private Label label6;
         private ComboBox cmbNivelZ;
+        private Label label7;
+        private TextBox txtCantidadUbicar;
+        private Label label8;
+        private Button btnAgregarUbicacion;
         private Button btnConfirmar;
         private Button btnCancelar;
     }
