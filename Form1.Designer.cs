@@ -33,7 +33,6 @@
             button3 = new Button();
             button4 = new Button();
             button5 = new Button();
-            button6 = new Button();
             button7 = new Button();
             button8 = new Button();
             SuspendLayout();
@@ -88,16 +87,6 @@
             button5.UseVisualStyleBackColor = true;
             button5.Click += button5_Click;
             // 
-            // button6
-            // 
-            button6.Location = new Point(477, 297);
-            button6.Name = "button6";
-            button6.Size = new Size(121, 71);
-            button6.TabIndex = 5;
-            button6.Text = "Completar Preparación";
-            button6.UseVisualStyleBackColor = true;
-            button6.Click += button6_Click;
-            // 
             // button7
             // 
             button7.Location = new Point(643, 59);
@@ -110,7 +99,7 @@
             // 
             // button8
             // 
-            button8.Location = new Point(643, 297);
+            button8.Location = new Point(500, 293);
             button8.Name = "button8";
             button8.Size = new Size(119, 69);
             button8.TabIndex = 7;
@@ -125,7 +114,6 @@
             ClientSize = new Size(800, 450);
             Controls.Add(button8);
             Controls.Add(button7);
-            Controls.Add(button6);
             Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(button3);
@@ -143,7 +131,6 @@
         private Button button3;
         private Button button4;
         private Button button5;
-        private Button button6;
         private Button button7;
         private Button button8;
     }
