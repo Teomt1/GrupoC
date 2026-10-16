@@ -6,11 +6,11 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace GrupoC.GenerarOrdenSeleccion
+namespace GrupoC.CumplirOrdenSeleccion
 {
-    public partial class GenerarOrdenSeleccionForm : Form
+    public partial class CumplirOrdenSeleccionForm : Form
     {
-        public GenerarOrdenSeleccionForm()
+        public CumplirOrdenSeleccionForm()
         {
             InitializeComponent();
         }
