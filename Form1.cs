@@ -1,11 +1,8 @@
 using GrupoC.Empaquetar_Pedido_y_Generar_Orden_de_Entrega;
-using GrupoC.GenerarOrdenSeleccion;
-using GrupoC.GrupoC.Completar_Orden_de_Preparación;
 using GrupoC.GrupoC.Entrega_a_Transportista;
 using GrupoC.GrupoC.Registrar_Orden_de_Preparación;
-using GrupoC.Recepción_de_Mercadería;
-using GrupoC.RegistroExcedente;
 using GrupoC.IngresoStock;
+using GrupoC.Recepción_de_Mercadería;
 
 namespace GrupoC
 {
@@ -36,8 +33,8 @@ namespace GrupoC
 
         private void button4_Click(object sender, EventArgs e)
         {
-            GenerarOrdenSeleccionForm ordselect = new GenerarOrdenSeleccionForm();
-            ordselect.Show();
+            //GenerarOrdenSeleccionForm ordselect = new GenerarOrdenSeleccionForm();
+            //ordselect.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -48,8 +45,9 @@ namespace GrupoC
 
         private void button6_Click(object sender, EventArgs e)
         {
+            /*
             Completar_Orden_de_Preparación prepcomp = new Completar_Orden_de_Preparación();
-            prepcomp.Show();
+            prepcomp.Show();*/
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -60,8 +58,9 @@ namespace GrupoC
 
         private void button8_Click(object sender, EventArgs e)
         {
+            /*
             RegistroExcedenteForm registroExcedente = new RegistroExcedenteForm();
-            registroExcedente.Show();
+            registroExcedente.Show();*/
         }
     }
 }

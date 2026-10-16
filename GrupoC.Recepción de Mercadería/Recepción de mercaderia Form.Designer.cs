@@ -59,8 +59,8 @@
             Descripción = new ColumnHeader();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
-            Posición = new ColumnHeader();
             button2 = new Button();
+            label9 = new Label();
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).BeginInit();
             SuspendLayout();
             // 
@@ -106,7 +106,7 @@
             label3.Location = new Point(22, 92);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(74, 15);
+            label3.Size = new Size(75, 15);
             label3.TabIndex = 3;
             label3.Text = "Transportista";
             // 
@@ -332,7 +332,7 @@
             // 
             // listView1
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { SkuCodigo, Descripción, columnHeader1, columnHeader2, Posición });
+            listView1.Columns.AddRange(new ColumnHeader[] { SkuCodigo, Descripción, columnHeader1, columnHeader2 });
             listView1.Location = new Point(16, 232);
             listView1.Margin = new Padding(3, 2, 3, 2);
             listView1.Name = "listView1";
@@ -361,11 +361,6 @@
             columnHeader2.Text = "Cantidad remito";
             columnHeader2.Width = 100;
             // 
-            // Posición
-            // 
-            Posición.Text = "Posición";
-            Posición.Width = 100;
-            // 
             // button2
             // 
             button2.BackColor = SystemColors.ButtonFace;
@@ -377,12 +372,21 @@
             button2.Text = "- Quitar Ítem";
             button2.UseVisualStyleBackColor = false;
             // 
+            // label9
+            // 
+            label9.Location = new Point(23, 441);
+            label9.Name = "label9";
+            label9.Size = new Size(657, 45);
+            label9.TabIndex = 49;
+            label9.Text = "*** NOTA: Esta pantalla tiene que generar una nota de espacio insuficiente si la cantidad ingresada supera los limites del cliente, y borrar esta nota";
+            // 
             // Recepción_de_mercaderia_Form
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
-            ClientSize = new Size(722, 431);
+            ClientSize = new Size(722, 540);
+            Controls.Add(label9);
             Controls.Add(button2);
             Controls.Add(listView1);
             Controls.Add(label8);
@@ -452,6 +456,6 @@
         private Button button2;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
-        private ColumnHeader Posición;
+        private Label label9;
     }
 }

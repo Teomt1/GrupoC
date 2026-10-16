@@ -36,11 +36,9 @@
             label7 = new Label();
             listView2 = new ListView();
             Orden_preparación = new ColumnHeader();
-            Paquetes = new ColumnHeader();
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
-            button4 = new Button();
             checkBox1 = new CheckBox();
             SuspendLayout();
             // 
@@ -66,7 +64,7 @@
             label5.AutoSize = true;
             label5.Location = new Point(12, 15);
             label5.Name = "label5";
-            label5.Size = new Size(74, 15);
+            label5.Size = new Size(75, 15);
             label5.TabIndex = 6;
             label5.Text = "Transportista";
             // 
@@ -95,10 +93,10 @@
             // 
             // listView2
             // 
-            listView2.Columns.AddRange(new ColumnHeader[] { Orden_preparación, Paquetes });
+            listView2.Columns.AddRange(new ColumnHeader[] { Orden_preparación });
             listView2.Location = new Point(12, 161);
             listView2.Name = "listView2";
-            listView2.Size = new Size(244, 77);
+            listView2.Size = new Size(244, 155);
             listView2.TabIndex = 12;
             listView2.UseCompatibleStateImageBehavior = false;
             listView2.View = View.Details;
@@ -107,11 +105,6 @@
             // 
             Orden_preparación.Text = "Órden";
             Orden_preparación.Width = 120;
-            // 
-            // Paquetes
-            // 
-            Paquetes.Text = "Paquetes";
-            Paquetes.Width = 120;
             // 
             // button1
             // 
@@ -127,7 +120,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(152, 398);
+            button2.Location = new Point(157, 386);
             button2.Name = "button2";
             button2.Size = new Size(99, 63);
             button2.TabIndex = 16;
@@ -136,26 +129,17 @@
             // 
             // button3
             // 
-            button3.Location = new Point(12, 398);
+            button3.Location = new Point(17, 386);
             button3.Name = "button3";
             button3.Size = new Size(105, 63);
             button3.TabIndex = 17;
             button3.Text = "Cancelar";
             button3.UseVisualStyleBackColor = true;
             // 
-            // button4
-            // 
-            button4.Location = new Point(12, 276);
-            button4.Name = "button4";
-            button4.Size = new Size(105, 68);
-            button4.TabIndex = 18;
-            button4.Text = "Generar Remito";
-            button4.UseVisualStyleBackColor = true;
-            // 
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(140, 302);
+            checkBox1.Location = new Point(17, 335);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(111, 19);
             checkBox1.TabIndex = 19;
@@ -166,9 +150,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(282, 493);
+            ClientSize = new Size(326, 486);
             Controls.Add(checkBox1);
-            Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -195,11 +178,9 @@
         private Label label7;
         private ListView listView2;
         private ColumnHeader Orden_preparación;
-        private ColumnHeader Paquetes;
         private Button button1;
         private Button button2;
         private Button button3;
-        private Button button4;
         private CheckBox checkBox1;
     }
 }

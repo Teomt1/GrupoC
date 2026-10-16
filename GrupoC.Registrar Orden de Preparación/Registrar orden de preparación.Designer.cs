@@ -297,7 +297,7 @@
             label15.AutoSize = true;
             label15.Location = new Point(761, 268);
             label15.Name = "label15";
-            label15.Size = new Size(126, 15);
+            label15.Size = new Size(127, 15);
             label15.TabIndex = 26;
             label15.Text = "Empresa de Transporte";
             // 

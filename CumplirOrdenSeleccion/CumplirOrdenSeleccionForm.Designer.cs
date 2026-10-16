@@ -35,6 +35,8 @@
             lblOrdenTitulo.AutoSize = true;
             lblOrdenTitulo.Location = new Point(20, 20);
             lblOrdenTitulo.Name = "lblOrdenTitulo";
+            lblOrdenTitulo.Size = new Size(108, 15);
+            lblOrdenTitulo.TabIndex = 6;
             lblOrdenTitulo.Text = "Orden de selección";
             // 
             // lblOrden
@@ -42,6 +44,8 @@
             lblOrden.AutoSize = true;
             lblOrden.Location = new Point(20, 42);
             lblOrden.Name = "lblOrden";
+            lblOrden.Size = new Size(33, 15);
+            lblOrden.TabIndex = 5;
             lblOrden.Text = "[nro]";
             // 
             // lblFechaTitulo
@@ -49,6 +53,8 @@
             lblFechaTitulo.AutoSize = true;
             lblFechaTitulo.Location = new Point(240, 20);
             lblFechaTitulo.Name = "lblFechaTitulo";
+            lblFechaTitulo.Size = new Size(38, 15);
+            lblFechaTitulo.TabIndex = 4;
             lblFechaTitulo.Text = "Fecha";
             // 
             // lblFecha
@@ -56,6 +62,8 @@
             lblFecha.AutoSize = true;
             lblFecha.Location = new Point(240, 42);
             lblFecha.Name = "lblFecha";
+            lblFecha.Size = new Size(96, 15);
+            lblFecha.TabIndex = 3;
             lblFecha.Text = "dd/MM/yy [hoy]";
             // 
             // lblMercaderia
@@ -63,6 +71,8 @@
             lblMercaderia.AutoSize = true;
             lblMercaderia.Location = new Point(20, 80);
             lblMercaderia.Name = "lblMercaderia";
+            lblMercaderia.Size = new Size(104, 15);
+            lblMercaderia.TabIndex = 2;
             lblMercaderia.Text = "Mercadería a bajar";
             // 
             // lvMercaderia
@@ -74,6 +84,7 @@
             lvMercaderia.MultiSelect = false;
             lvMercaderia.Name = "lvMercaderia";
             lvMercaderia.Size = new Size(645, 330);
+            lvMercaderia.TabIndex = 1;
             lvMercaderia.UseCompatibleStateImageBehavior = false;
             lvMercaderia.View = View.Details;
             // 
@@ -102,6 +113,7 @@
             btnConfirmar.Location = new Point(20, 450);
             btnConfirmar.Name = "btnConfirmar";
             btnConfirmar.Size = new Size(645, 35);
+            btnConfirmar.TabIndex = 0;
             btnConfirmar.Text = "Confirmar entrega a Preparación";
             btnConfirmar.UseVisualStyleBackColor = true;
             // 
