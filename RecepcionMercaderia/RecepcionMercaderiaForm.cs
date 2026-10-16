@@ -1,8 +1,8 @@
-﻿namespace GrupoC.Recepción_de_Mercadería
+﻿namespace GrupoC.RecepcionMercaderia
 {
-    public partial class Recepción_de_mercaderia_Form : Form
+    public partial class RecepcionMercaderiaForm : Form
     {
-        public Recepción_de_mercaderia_Form()
+        public RecepcionMercaderiaForm()
         {
             InitializeComponent();
         }

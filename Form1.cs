@@ -1,8 +1,6 @@
-using GrupoC.Empaquetar_Pedido_y_Generar_Orden_de_Entrega;
-using GrupoC.GrupoC.Entrega_a_Transportista;
-using GrupoC.GrupoC.Registrar_Orden_de_Preparación;
+using GrupoC.EmpaquetarPedido;
 using GrupoC.IngresoStock;
-using GrupoC.Recepción_de_Mercadería;
+using GrupoC.RecepcionMercaderia;
 
 namespace GrupoC
 {
@@ -15,13 +13,13 @@ namespace GrupoC
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Registrar_orden_de_preparación ordenprep = new Registrar_orden_de_preparación();
+            var ordenprep = new RegistrarOrdenDePreparacion.RegistrarOrdenDePreparacionForm();
             ordenprep.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Empaqu_y_Generar_Orden_de_Entrega_Form ordenentreg = new Empaqu_y_Generar_Orden_de_Entrega_Form();
+            EmpaquetarPedidoForm ordenentreg = new EmpaquetarPedidoForm();
             ordenentreg.Show();
         }
 
@@ -39,8 +37,8 @@ namespace GrupoC
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Entrega_a_Transportista entrega = new Entrega_a_Transportista();
-            entrega.Show();
+            /*Entrega_a_Transportista entrega = new Entrega_a_Transportista();
+            entrega.Show();*/
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -52,7 +50,7 @@ namespace GrupoC
 
         private void button7_Click(object sender, EventArgs e)
         {
-            Recepción_de_mercaderia_Form recepcion = new Recepción_de_mercaderia_Form();
+            RecepcionMercaderiaForm recepcion = new RecepcionMercaderiaForm();
             recepcion.Show();
         }
 

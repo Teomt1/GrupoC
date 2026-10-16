@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-
-namespace GrupoC.Empaquetar_Pedido_y_Generar_Orden_de_Entrega
+﻿namespace GrupoC.EmpaquetarPedido
 {
-    public partial class Empaqu_y_Generar_Orden_de_Entrega_Form : Form
+    public partial class EmpaquetarPedidoForm : Form
     {
-        private readonly Empaquetar_Pedido_y_Gernerar_Orden_de_Entrega_MODELO modelo = new();
-
-        public Empaqu_y_Generar_Orden_de_Entrega_Form()
+        public EmpaquetarPedidoForm()
         {
             InitializeComponent();
         }

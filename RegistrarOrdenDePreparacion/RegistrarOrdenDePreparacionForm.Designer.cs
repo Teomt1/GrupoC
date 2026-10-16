@@ -1,6 +1,6 @@
-﻿namespace GrupoC.GrupoC.Registrar_Orden_de_Preparación
+﻿namespace GrupoC.RegistrarOrdenDePreparacion
 {
-    partial class Registrar_orden_de_preparación
+    partial class RegistrarOrdenDePreparacionForm
     {
         /// <summary>
         /// Required designer variable.

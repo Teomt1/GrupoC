@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-
-namespace GrupoC.GrupoC.Entrega_a_Transportista
+﻿namespace GrupoC.EntregaATransportista
 {
-    public partial class Entrega_a_Transportista : Form
+    public partial class EntregaATransportistaForm : Form
     {
-        public Entrega_a_Transportista()
+        public EntregaATransportistaForm()
         {
             InitializeComponent();
         }

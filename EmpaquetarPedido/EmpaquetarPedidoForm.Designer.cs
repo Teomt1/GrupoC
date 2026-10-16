@@ -1,6 +1,6 @@
-﻿namespace GrupoC.Empaquetar_Pedido_y_Generar_Orden_de_Entrega
+﻿namespace GrupoC.EmpaquetarPedido
 {
-    partial class Empaqu_y_Generar_Orden_de_Entrega_Form
+    partial class EmpaquetarPedidoForm
     {
         /// <summary>
         /// Required designer variable.

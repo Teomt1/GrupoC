@@ -1,6 +1,6 @@
-﻿namespace GrupoC.Recepción_de_Mercadería
+﻿namespace GrupoC.RecepcionMercaderia
 {
-    partial class Recepción_de_mercaderia_Form
+    partial class RecepcionMercaderiaForm
     {
         /// <summary>
         /// Required designer variable.

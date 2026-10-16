@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-
-namespace GrupoC.GrupoC.Registrar_Orden_de_Preparación
+﻿namespace GrupoC.RegistrarOrdenDePreparacion
 {
-    public partial class Registrar_orden_de_preparación : Form
+    public partial class RegistrarOrdenDePreparacionForm : Form
     {
-        public Registrar_orden_de_preparación()
+        public RegistrarOrdenDePreparacionForm()
         {
             InitializeComponent();
         }

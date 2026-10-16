@@ -1,6 +1,6 @@
-﻿namespace GrupoC.GrupoC.Entrega_a_Transportista
+﻿namespace GrupoC.EntregaATransportista
 {
-    partial class Entrega_a_Transportista
+    partial class EntregaATransportistaForm
     {
         /// <summary>
         /// Required designer variable.
