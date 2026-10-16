@@ -5,6 +5,7 @@ using GrupoC.GrupoC.Entrega_a_Transportista;
 using GrupoC.GrupoC.Registrar_Orden_de_Preparación;
 using GrupoC.Recepción_de_Mercadería;
 using GrupoC.RegistroExcedente;
+using GrupoC.IngresoStock;
 
 namespace GrupoC
 {
