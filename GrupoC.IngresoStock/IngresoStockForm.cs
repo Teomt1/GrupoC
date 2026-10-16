@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace GrupoC.GrupoC.IngresoStock
+namespace GrupoC.IngresoStock
 {
     public partial class IngresoStockForm : Form
     {
