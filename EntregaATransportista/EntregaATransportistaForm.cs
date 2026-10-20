@@ -17,8 +17,8 @@ namespace GrupoC.EntregaATransportista
         {
             var error = modelo.Buscar(txtDni.Text);
 
-            // Si el transportista está habilitado pero sin órdenes, el nombre queda a la vista.
-            txtTransportista.Text = modelo.Transportista?.ApellidoNombre ?? "";
+            // Si el transportista está autorizado pero sin órdenes, el nombre queda a la vista.
+            txtTransportista.Text = modelo.TransportistaNombre ?? "";
             lstDetalle.Items.Clear();
             foreach (var orden in modelo.Ordenes)
             {
@@ -35,7 +35,7 @@ namespace GrupoC.EntregaATransportista
         private void txtDni_TextChanged(object sender, EventArgs e)
         {
             // Si cambia el DNI después de buscar, el nombre y la grilla dejan de corresponder.
-            if (modelo.Remito == null && (modelo.Transportista != null || lstDetalle.Items.Count > 0))
+            if (modelo.Remito == null && (modelo.TransportistaNombre != null || lstDetalle.Items.Count > 0))
             {
                 modelo.Reiniciar();
                 txtTransportista.Clear();
@@ -62,7 +62,7 @@ namespace GrupoC.EntregaATransportista
         {
             var remito = modelo.Remito!;
             var respuesta = MessageBox.Show(
-                $"¿Confirma el despacho de {modelo.Ordenes.Count} órdenes al transportista {remito.TransportistaNombre} (DNI {remito.TransportistaDni}) con el remito N° {remito.Numero}?",
+                $"¿Confirma el despacho de {modelo.Ordenes.Count} órdenes al transportista {remito.TransportistaNombre} con el remito N° {remito.Numero}?",
                 Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta != DialogResult.Yes)
                 return;

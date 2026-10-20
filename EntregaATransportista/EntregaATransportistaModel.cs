@@ -10,21 +10,25 @@ namespace GrupoC.EntregaATransportista
 
     /// <summary>
     /// Lógica del caso de uso "Entregar mercadería al transportista".
-    /// El transportista se identifica solo por su DNI; el nombre lo toma el sistema de la tabla Transportistas.
+    /// El transportista se identifica solo por su DNI; el nombre lo toma el sistema de la orden de preparación.
     /// </summary>
     public class EntregaATransportistaModel
     {
-        public const string MensajeDniInvalido = "Ingrese un DNI válido de 8 dígitos, sin puntos";
+        public const string MensajeDniInvalido = "Ingrese un DNI válido";
+        public const string MensajeNoAutorizado = "El transportista no está autorizado a retirar mercadería en este depósito";
+        public const string MensajeSinOrdenes = "El transportista no tiene órdenes listas para retirar";
 
-        public Transportista? Transportista { get; private set; }
+        /// <summary>Nombre del transportista autorizado, o null si no se encontró ninguno.</summary>
+        public string? TransportistaNombre { get; private set; }
+        public int TransportistaDni { get; private set; }
         public List<OrdenADespachar> Ordenes { get; } = new();
         public RemitoEntrega? Remito { get; private set; }
 
         private Usuario Usuario => Datos.UsuarioActual;
 
         /// <summary>
-        /// Pasos 4 a 7. Devuelve el mensaje de error, o null si encontró órdenes para el transportista.
-        /// Si el transportista está habilitado pero no tiene órdenes, queda cargado en <see cref="Transportista"/>.
+        /// Pasos 3 a 5. Devuelve el mensaje de error, o null si encontró órdenes para el transportista.
+        /// Si está autorizado pero no tiene órdenes pendientes, el nombre queda cargado igual.
         /// </summary>
         public string? Buscar(string dniTexto)
         {
@@ -38,18 +42,17 @@ namespace GrupoC.EntregaATransportista
             if (dni < 10000000)
                 return MensajeDniInvalido;
 
-            var transportista = Datos.Transportistas.FirstOrDefault(t => t.Dni == dni);
-            if (transportista == null)
-                return $"No existe un transportista registrado con el DNI {dni}";
-
-            if (transportista.Estado != EstadoTransportista.Habilitado)
-                return $"El transportista con DNI {dni} no está habilitado para retirar mercadería";
-
-            Transportista = transportista;
-
+            // Autorizado: el DNI figura en alguna orden de preparación del depósito.
             var ordenesPreparacion = Datos.OrdenesPreparacion
                 .Where(op => op.CodigoDeposito == Usuario.CodigoDeposito && op.TransportistaDni == dni)
-                .OrderBy(op => op.Numero);
+                .OrderBy(op => op.Numero)
+                .ToList();
+
+            if (ordenesPreparacion.Count == 0)
+                return MensajeNoAutorizado;
+
+            TransportistaNombre = ordenesPreparacion[0].TransportistaNombre;
+            TransportistaDni = dni;
 
             foreach (var op in ordenesPreparacion)
             {
@@ -61,17 +64,19 @@ namespace GrupoC.EntregaATransportista
             }
 
             if (Ordenes.Count == 0)
-                return $"El transportista {transportista.ApellidoNombre} no tiene órdenes listas para retirar en este depósito";
+                return MensajeSinOrdenes;
 
+            // Se muestra el nombre registrado en las órdenes que se van a entregar.
+            TransportistaNombre = Ordenes[0].OrdenPreparacion.TransportistaNombre;
             return null;
         }
 
         /// <summary>
-        /// Paso 11. Registra el remito en estado Emitido y su detalle.
+        /// Paso 8. Registra el remito en estado Emitido y su detalle.
         /// </summary>
         public RemitoEntrega GenerarRemito()
         {
-            if (Transportista == null || Ordenes.Count == 0)
+            if (TransportistaNombre == null || Ordenes.Count == 0)
                 throw new InvalidOperationException("No hay órdenes para generar el remito.");
             if (Remito != null)
                 throw new InvalidOperationException("El remito ya fue generado.");
@@ -83,8 +88,8 @@ namespace GrupoC.EntregaATransportista
                 Numero = numero,
                 FechaHora = DateTime.Now,
                 CodigoDeposito = Usuario.CodigoDeposito,
-                TransportistaNombre = Transportista.ApellidoNombre,
-                TransportistaDni = Transportista.Dni,
+                TransportistaNombre = TransportistaNombre,
+                TransportistaDni = TransportistaDni,
                 CodigoUsuario = Usuario.Codigo,
                 Estado = EstadoRemito.Emitido,
             };
@@ -104,7 +109,7 @@ namespace GrupoC.EntregaATransportista
         }
 
         /// <summary>
-        /// Pasos 18 a 20. Registra el cumplido, despacha las órdenes y el egreso de mercadería.
+        /// Pasos 14 a 16. Registra el cumplido, despacha las órdenes y el egreso de mercadería.
         /// </summary>
         public void ConfirmarDespacho()
         {
@@ -148,7 +153,8 @@ namespace GrupoC.EntregaATransportista
 
         public void Reiniciar()
         {
-            Transportista = null;
+            TransportistaNombre = null;
+            TransportistaDni = 0;
             Ordenes.Clear();
             Remito = null;
         }
