@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace GrupoC.EntregaATransportista
@@ -161,7 +162,20 @@ namespace GrupoC.EntregaATransportista
         private static string NormalizarNombre(string nombre) =>
             Regex.Replace(nombre.Trim(), @"\s+", " ");
 
+        // Ignora mayúsculas, tildes, signos de puntuación y el orden de las palabras:
+        // "Martínez, Luis", "MARTINEZ LUIS" y "Luis Martínez" son el mismo nombre.
         private static bool MismoNombre(string a, string b) =>
-            string.Compare(NormalizarNombre(a), NormalizarNombre(b), Cultura, CompareOptions.IgnoreCase) == 0;
+            PalabrasDelNombre(a) == PalabrasDelNombre(b);
+
+        private static string PalabrasDelNombre(string nombre)
+        {
+            var sinTildes = string.Concat(nombre.Normalize(NormalizationForm.FormD)
+                .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark));
+            var palabras = Regex.Replace(sinTildes, @"[^\p{L}\p{N}]+", " ")
+                .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                .Select(p => p.ToUpper(Cultura))
+                .OrderBy(p => p, StringComparer.Ordinal);
+            return string.Join(" ", palabras);
+        }
     }
 }
