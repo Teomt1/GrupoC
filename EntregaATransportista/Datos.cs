@@ -6,6 +6,15 @@ namespace GrupoC.EntregaATransportista
 
     public enum EstadoRemito { Emitido, Firmado, Anulado }
 
+    public enum EstadoTransportista { Habilitado, Inhabilitado }
+
+    public class Transportista
+    {
+        public int Dni { get; set; }
+        public string ApellidoNombre { get; set; } = "";
+        public EstadoTransportista Estado { get; set; }
+    }
+
     public class Usuario
     {
         public string Codigo { get; set; } = "";
@@ -17,7 +26,6 @@ namespace GrupoC.EntregaATransportista
         public int Numero { get; set; }
         public string CodigoCliente { get; set; } = "";
         public string CodigoDeposito { get; set; } = "";
-        public string TransportistaNombre { get; set; } = "";
         public int TransportistaDni { get; set; }
         public EstadoOrdenPreparacion Estado { get; set; }
         public int? NumeroRemito { get; set; }
@@ -71,18 +79,29 @@ namespace GrupoC.EntregaATransportista
     {
         public static Usuario UsuarioActual { get; } = new Usuario { Codigo = "OPD01", CodigoDeposito = "DEP01" };
 
+        // 99999999 no está registrado a propósito (excepción "DNI inexistente").
+        public static List<Transportista> Transportistas { get; } = new()
+        {
+            new Transportista { Dni = 30123456, ApellidoNombre = "Martínez, Luis", Estado = EstadoTransportista.Habilitado },
+            new Transportista { Dni = 27888999, ApellidoNombre = "Gómez, Carlos", Estado = EstadoTransportista.Habilitado },
+            new Transportista { Dni = 28555111, ApellidoNombre = "Sosa, Ana", Estado = EstadoTransportista.Habilitado },
+            new Transportista { Dni = 31222333, ApellidoNombre = "Ruiz, Pedro", Estado = EstadoTransportista.Inhabilitado },
+        };
+
         public static List<OrdenPreparacion> OrdenesPreparacion { get; } = new()
         {
-            // Martínez, Luis: autorizado con dos órdenes listas para retirar en DEP01.
-            new OrdenPreparacion { Numero = 2001, CodigoCliente = "CLI001", CodigoDeposito = "DEP01", TransportistaNombre = "Martínez, Luis", TransportistaDni = 30123456, Estado = EstadoOrdenPreparacion.Preparada },
-            new OrdenPreparacion { Numero = 2005, CodigoCliente = "CLI002", CodigoDeposito = "DEP01", TransportistaNombre = "Martínez, Luis", TransportistaDni = 30123456, Estado = EstadoOrdenPreparacion.Preparada },
+            // Martínez, Luis: dos órdenes listas para retirar en DEP01.
+            new OrdenPreparacion { Numero = 2001, CodigoCliente = "CLI001", CodigoDeposito = "DEP01", TransportistaDni = 30123456, Estado = EstadoOrdenPreparacion.Preparada },
+            new OrdenPreparacion { Numero = 2005, CodigoCliente = "CLI002", CodigoDeposito = "DEP01", TransportistaDni = 30123456, Estado = EstadoOrdenPreparacion.Preparada },
             // Martínez, Luis en otro depósito: no debe aparecer en la grilla.
-            new OrdenPreparacion { Numero = 2006, CodigoCliente = "CLI003", CodigoDeposito = "DEP02", TransportistaNombre = "Martínez, Luis", TransportistaDni = 30123456, Estado = EstadoOrdenPreparacion.Preparada },
+            new OrdenPreparacion { Numero = 2006, CodigoCliente = "CLI003", CodigoDeposito = "DEP02", TransportistaDni = 30123456, Estado = EstadoOrdenPreparacion.Preparada },
             // Gómez, Carlos: otro transportista con una orden lista.
-            new OrdenPreparacion { Numero = 2002, CodigoCliente = "CLI001", CodigoDeposito = "DEP01", TransportistaNombre = "Gómez, Carlos", TransportistaDni = 27888999, Estado = EstadoOrdenPreparacion.Preparada },
-            // Sosa, Ana: autorizada, pero una orden ya fue despachada y la otra todavía no está preparada.
-            new OrdenPreparacion { Numero = 2003, CodigoCliente = "CLI002", CodigoDeposito = "DEP01", TransportistaNombre = "Sosa, Ana", TransportistaDni = 28555111, Estado = EstadoOrdenPreparacion.Cumplida, NumeroRemito = 5000 },
-            new OrdenPreparacion { Numero = 2004, CodigoCliente = "CLI003", CodigoDeposito = "DEP01", TransportistaNombre = "Sosa, Ana", TransportistaDni = 28555111, Estado = EstadoOrdenPreparacion.Pendiente },
+            new OrdenPreparacion { Numero = 2002, CodigoCliente = "CLI001", CodigoDeposito = "DEP01", TransportistaDni = 27888999, Estado = EstadoOrdenPreparacion.Preparada },
+            // Sosa, Ana: una orden ya fue despachada y la otra todavía no está preparada.
+            new OrdenPreparacion { Numero = 2003, CodigoCliente = "CLI002", CodigoDeposito = "DEP01", TransportistaDni = 28555111, Estado = EstadoOrdenPreparacion.Cumplida, NumeroRemito = 5000 },
+            new OrdenPreparacion { Numero = 2004, CodigoCliente = "CLI003", CodigoDeposito = "DEP01", TransportistaDni = 28555111, Estado = EstadoOrdenPreparacion.Pendiente },
+            // Ruiz, Pedro: tiene una orden lista, pero está inhabilitado y no puede retirarla.
+            new OrdenPreparacion { Numero = 2007, CodigoCliente = "CLI001", CodigoDeposito = "DEP01", TransportistaDni = 31222333, Estado = EstadoOrdenPreparacion.Preparada },
         };
 
         public static List<OrdenEntrega> OrdenesEntrega { get; } = new()
@@ -92,6 +111,7 @@ namespace GrupoC.EntregaATransportista
             new OrdenEntrega { Numero = 3003, NumeroOrdenPreparacion = 2003, CodigoDeposito = "DEP01", CantidadPaquetes = 4, Estado = EstadoOrdenEntrega.Despachada, FechaHoraDespacho = new DateTime(2026, 10, 1, 10, 30, 0) },
             new OrdenEntrega { Numero = 3005, NumeroOrdenPreparacion = 2005, CodigoDeposito = "DEP01", CantidadPaquetes = 2, Estado = EstadoOrdenEntrega.Pendiente },
             new OrdenEntrega { Numero = 3006, NumeroOrdenPreparacion = 2006, CodigoDeposito = "DEP02", CantidadPaquetes = 4, Estado = EstadoOrdenEntrega.Pendiente },
+            new OrdenEntrega { Numero = 3007, NumeroOrdenPreparacion = 2007, CodigoDeposito = "DEP01", CantidadPaquetes = 1, Estado = EstadoOrdenEntrega.Pendiente },
         };
 
         public static List<RemitoEntrega> RemitosEntrega { get; } = new()

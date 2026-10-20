@@ -15,16 +15,11 @@ namespace GrupoC.EntregaATransportista
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            var error = modelo.Buscar(txtDni.Text);
+
+            // Si el transportista está habilitado pero sin órdenes, el nombre queda a la vista.
+            txtTransportista.Text = modelo.Transportista?.ApellidoNombre ?? "";
             lstDetalle.Items.Clear();
-
-            var error = modelo.Buscar(txtTransportista.Text, txtDni.Text);
-            if (error != null)
-            {
-                MessageBox.Show(error, Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ActualizarControles();
-                return;
-            }
-
             foreach (var orden in modelo.Ordenes)
             {
                 var item = new ListViewItem(orden.OrdenPreparacion.Numero.ToString());
@@ -32,14 +27,18 @@ namespace GrupoC.EntregaATransportista
                 lstDetalle.Items.Add(item);
             }
             ActualizarControles();
+
+            if (error != null)
+                MessageBox.Show(error, Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
-        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        private void txtDni_TextChanged(object sender, EventArgs e)
         {
-            // Si cambian los datos del transportista, la grilla deja de corresponder.
-            if (modelo.Remito == null && lstDetalle.Items.Count > 0)
+            // Si cambia el DNI después de buscar, el nombre y la grilla dejan de corresponder.
+            if (modelo.Remito == null && (modelo.Transportista != null || lstDetalle.Items.Count > 0))
             {
                 modelo.Reiniciar();
+                txtTransportista.Clear();
                 lstDetalle.Items.Clear();
                 ActualizarControles();
             }
@@ -49,7 +48,7 @@ namespace GrupoC.EntregaATransportista
         {
             var remito = modelo.GenerarRemito();
             ImprimirRemito();
-            MessageBox.Show($"Remito N° {remito.Numero} generado. Entregue el original y solicite la firma de la copia.",
+            MessageBox.Show($"Remito N° {remito.Numero} generado. Entregue el original y solicite la firma de la copia",
                 Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             ActualizarControles();
         }
@@ -63,7 +62,7 @@ namespace GrupoC.EntregaATransportista
         {
             var remito = modelo.Remito!;
             var respuesta = MessageBox.Show(
-                $"¿Confirma el despacho de {modelo.Ordenes.Count} órdenes al transportista {modelo.TransportistaNombre} con el remito N° {remito.Numero}?",
+                $"¿Confirma el despacho de {modelo.Ordenes.Count} órdenes al transportista {remito.TransportistaNombre} (DNI {remito.TransportistaDni}) con el remito N° {remito.Numero}?",
                 Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta != DialogResult.Yes)
                 return;
@@ -112,14 +111,13 @@ namespace GrupoC.EntregaATransportista
             lstDetalle.Items.Clear();
             chkRemitoFirmado.Checked = false;
             ActualizarControles();
-            txtTransportista.Focus();
+            txtDni.Focus();
         }
 
         private void ActualizarControles()
         {
             bool remitoGenerado = modelo.Remito != null;
 
-            txtTransportista.Enabled = !remitoGenerado;
             txtDni.Enabled = !remitoGenerado;
             btnBuscar.Enabled = !remitoGenerado;
             btnGenerarRemito.Enabled = !remitoGenerado && modelo.Ordenes.Count > 0;

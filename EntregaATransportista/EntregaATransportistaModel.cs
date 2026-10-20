@@ -1,5 +1,3 @@
-using System.Globalization;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace GrupoC.EntregaATransportista
@@ -12,49 +10,48 @@ namespace GrupoC.EntregaATransportista
 
     /// <summary>
     /// Lógica del caso de uso "Entregar mercadería al transportista".
+    /// El transportista se identifica solo por su DNI; el nombre lo toma el sistema de la tabla Transportistas.
     /// </summary>
     public class EntregaATransportistaModel
     {
-        public const string MensajeDatosInvalidos = "Ingrese el nombre del transportista y un DNI válido";
-        public const string MensajeNoAutorizado = "El transportista no está autorizado a retirar mercadería en este depósito";
-        public const string MensajeSinOrdenes = "El transportista no tiene órdenes listas para retirar";
+        public const string MensajeDniInvalido = "Ingrese un DNI válido de 8 dígitos, sin puntos";
 
-        private static readonly CultureInfo Cultura = CultureInfo.GetCultureInfo("es-AR");
-
-        public string TransportistaNombre { get; private set; } = "";
-        public int TransportistaDni { get; private set; }
+        public Transportista? Transportista { get; private set; }
         public List<OrdenADespachar> Ordenes { get; } = new();
         public RemitoEntrega? Remito { get; private set; }
 
         private Usuario Usuario => Datos.UsuarioActual;
 
         /// <summary>
-        /// Pasos 3 y 4. Devuelve el mensaje de error, o null si encontró órdenes para el transportista.
+        /// Pasos 4 a 7. Devuelve el mensaje de error, o null si encontró órdenes para el transportista.
+        /// Si el transportista está habilitado pero no tiene órdenes, queda cargado en <see cref="Transportista"/>.
         /// </summary>
-        public string? Buscar(string nombre, string dniTexto)
+        public string? Buscar(string dniTexto)
         {
-            Ordenes.Clear();
-            nombre = NormalizarNombre(nombre);
+            Reiniciar();
             dniTexto = dniTexto.Trim();
 
-            if (nombre.Length == 0 || !Regex.IsMatch(dniTexto, @"^\d{8}$"))
-                return MensajeDatosInvalidos;
+            if (!Regex.IsMatch(dniTexto, @"^\d{8}$"))
+                return MensajeDniInvalido;
 
             int dni = int.Parse(dniTexto);
             if (dni < 10000000)
-                return MensajeDatosInvalidos;
+                return MensajeDniInvalido;
 
-            // Transportista autorizado: figura con ese DNI y nombre en alguna orden de preparación del depósito.
-            var ordenesDelTransportista = Datos.OrdenesPreparacion
-                .Where(op => op.CodigoDeposito == Usuario.CodigoDeposito
-                          && op.TransportistaDni == dni
-                          && MismoNombre(op.TransportistaNombre, nombre))
-                .ToList();
+            var transportista = Datos.Transportistas.FirstOrDefault(t => t.Dni == dni);
+            if (transportista == null)
+                return $"No existe un transportista registrado con el DNI {dni}";
 
-            if (ordenesDelTransportista.Count == 0)
-                return MensajeNoAutorizado;
+            if (transportista.Estado != EstadoTransportista.Habilitado)
+                return $"El transportista con DNI {dni} no está habilitado para retirar mercadería";
 
-            foreach (var op in ordenesDelTransportista.OrderBy(op => op.Numero))
+            Transportista = transportista;
+
+            var ordenesPreparacion = Datos.OrdenesPreparacion
+                .Where(op => op.CodigoDeposito == Usuario.CodigoDeposito && op.TransportistaDni == dni)
+                .OrderBy(op => op.Numero);
+
+            foreach (var op in ordenesPreparacion)
             {
                 var oe = Datos.OrdenesEntrega.FirstOrDefault(oe => oe.NumeroOrdenPreparacion == op.Numero
                                                                 && oe.CodigoDeposito == Usuario.CodigoDeposito
@@ -64,19 +61,17 @@ namespace GrupoC.EntregaATransportista
             }
 
             if (Ordenes.Count == 0)
-                return MensajeSinOrdenes;
+                return $"El transportista {transportista.ApellidoNombre} no tiene órdenes listas para retirar en este depósito";
 
-            TransportistaNombre = ordenesDelTransportista[0].TransportistaNombre;
-            TransportistaDni = dni;
             return null;
         }
 
         /// <summary>
-        /// Paso 8. Registra el remito en estado Emitido y su detalle.
+        /// Paso 11. Registra el remito en estado Emitido y su detalle.
         /// </summary>
         public RemitoEntrega GenerarRemito()
         {
-            if (Ordenes.Count == 0)
+            if (Transportista == null || Ordenes.Count == 0)
                 throw new InvalidOperationException("No hay órdenes para generar el remito.");
             if (Remito != null)
                 throw new InvalidOperationException("El remito ya fue generado.");
@@ -88,8 +83,8 @@ namespace GrupoC.EntregaATransportista
                 Numero = numero,
                 FechaHora = DateTime.Now,
                 CodigoDeposito = Usuario.CodigoDeposito,
-                TransportistaNombre = TransportistaNombre,
-                TransportistaDni = TransportistaDni,
+                TransportistaNombre = Transportista.ApellidoNombre,
+                TransportistaDni = Transportista.Dni,
                 CodigoUsuario = Usuario.Codigo,
                 Estado = EstadoRemito.Emitido,
             };
@@ -109,7 +104,7 @@ namespace GrupoC.EntregaATransportista
         }
 
         /// <summary>
-        /// Pasos 14 a 16. Registra el cumplido, despacha las órdenes y el egreso de mercadería.
+        /// Pasos 18 a 20. Registra el cumplido, despacha las órdenes y el egreso de mercadería.
         /// </summary>
         public void ConfirmarDespacho()
         {
@@ -153,29 +148,9 @@ namespace GrupoC.EntregaATransportista
 
         public void Reiniciar()
         {
-            TransportistaNombre = "";
-            TransportistaDni = 0;
+            Transportista = null;
             Ordenes.Clear();
             Remito = null;
-        }
-
-        private static string NormalizarNombre(string nombre) =>
-            Regex.Replace(nombre.Trim(), @"\s+", " ");
-
-        // Ignora mayúsculas, tildes, signos de puntuación y el orden de las palabras:
-        // "Martínez, Luis", "MARTINEZ LUIS" y "Luis Martínez" son el mismo nombre.
-        private static bool MismoNombre(string a, string b) =>
-            PalabrasDelNombre(a) == PalabrasDelNombre(b);
-
-        private static string PalabrasDelNombre(string nombre)
-        {
-            var sinTildes = string.Concat(nombre.Normalize(NormalizationForm.FormD)
-                .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark));
-            var palabras = Regex.Replace(sinTildes, @"[^\p{L}\p{N}]+", " ")
-                .Split(' ', StringSplitOptions.RemoveEmptyEntries)
-                .Select(p => p.ToUpper(Cultura))
-                .OrderBy(p => p, StringComparer.Ordinal);
-            return string.Join(" ", palabras);
         }
     }
 }

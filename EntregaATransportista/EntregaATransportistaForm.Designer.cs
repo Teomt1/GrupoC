@@ -46,38 +46,39 @@
             // lblDni
             //
             lblDni.AutoSize = true;
-            lblDni.Location = new Point(12, 68);
+            lblDni.Location = new Point(12, 15);
             lblDni.Name = "lblDni";
             lblDni.Size = new Size(27, 15);
-            lblDni.TabIndex = 2;
+            lblDni.TabIndex = 0;
             lblDni.Text = "DNI";
             //
             // lblTransportista
             //
             lblTransportista.AutoSize = true;
-            lblTransportista.Location = new Point(12, 15);
+            lblTransportista.Location = new Point(12, 74);
             lblTransportista.Name = "lblTransportista";
             lblTransportista.Size = new Size(75, 15);
-            lblTransportista.TabIndex = 0;
+            lblTransportista.TabIndex = 3;
             lblTransportista.Text = "Transportista";
             //
             // txtTransportista
             //
-            txtTransportista.Location = new Point(12, 42);
+            txtTransportista.Location = new Point(12, 92);
             txtTransportista.MaxLength = 50;
             txtTransportista.Name = "txtTransportista";
-            txtTransportista.Size = new Size(122, 23);
-            txtTransportista.TabIndex = 1;
-            txtTransportista.TextChanged += txtBusqueda_TextChanged;
+            txtTransportista.ReadOnly = true;
+            txtTransportista.Size = new Size(244, 23);
+            txtTransportista.TabIndex = 4;
+            txtTransportista.TabStop = false;
             //
             // txtDni
             //
-            txtDni.Location = new Point(12, 86);
+            txtDni.Location = new Point(12, 36);
             txtDni.MaxLength = 8;
             txtDni.Name = "txtDni";
             txtDni.Size = new Size(122, 23);
-            txtDni.TabIndex = 3;
-            txtDni.TextChanged += txtBusqueda_TextChanged;
+            txtDni.TabIndex = 1;
+            txtDni.TextChanged += txtDni_TextChanged;
             //
             // lblDetalle
             //
@@ -115,10 +116,10 @@
             //
             btnBuscar.BackColor = SystemColors.ControlLight;
             btnBuscar.FlatStyle = FlatStyle.Popup;
-            btnBuscar.Location = new Point(164, 51);
+            btnBuscar.Location = new Point(152, 30);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(104, 49);
-            btnBuscar.TabIndex = 4;
+            btnBuscar.Size = new Size(104, 35);
+            btnBuscar.TabIndex = 2;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = false;
             btnBuscar.Click += btnBuscar_Click;
