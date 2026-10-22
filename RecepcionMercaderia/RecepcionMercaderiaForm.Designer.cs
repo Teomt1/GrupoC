@@ -29,317 +29,317 @@
         private void InitializeComponent()
         {
             Remito = new ListBox();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            comboBox1 = new ComboBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            dateTimePicker1 = new DateTimePicker();
-            label4 = new Label();
-            label5 = new Label();
-            textBox3 = new TextBox();
-            label6 = new Label();
-            textBox4 = new TextBox();
-            label10 = new Label();
-            label11 = new Label();
-            button1 = new Button();
-            textBox5 = new TextBox();
-            button4 = new Button();
-            button5 = new Button();
-            label22 = new Label();
-            textBox11 = new TextBox();
+            ClieRem = new Label();
+            NRem = new Label();
+            TranspRem = new Label();
+            comboBoxClieR = new ComboBox();
+            textBoxNRem = new TextBox();
+            textBoxTransRem = new TextBox();
+            dateTimePickerFRem = new DateTimePicker();
+            FecRem = new Label();
+            NARem = new Label();
+            textBoxNARem = new TextBox();
+            PatenR = new Label();
+            As = new TextBox();
+            CantRem = new Label();
+            CantContRem = new Label();
+            buttonAgregIRem = new Button();
+            textBoxSKURem = new TextBox();
+            CancRem = new Button();
+            ConfRem = new Button();
+            ObsRem = new Label();
+            textBoxObsRem = new TextBox();
             fileSystemWatcher1 = new FileSystemWatcher();
-            label7 = new Label();
-            textBox12 = new TextBox();
-            textBox13 = new TextBox();
-            label8 = new Label();
-            listView1 = new ListView();
+            SKUREM = new Label();
+            textBoxCatnCRem = new TextBox();
+            textBoxCanRem = new TextBox();
+            DetMercRRem = new Label();
+            listViewRem = new ListView();
             SkuCodigo = new ColumnHeader();
             Descripción = new ColumnHeader();
-            columnHeader1 = new ColumnHeader();
-            columnHeader2 = new ColumnHeader();
-            button2 = new Button();
-            label9 = new Label();
+            CantcR = new ColumnHeader();
+            CantR = new ColumnHeader();
+            buttonQuitIRem = new Button();
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).BeginInit();
             SuspendLayout();
             // 
             // Remito
             // 
             Remito.FormattingEnabled = true;
-            Remito.Location = new Point(15, 20);
-            Remito.Margin = new Padding(2);
+            Remito.Location = new Point(17, 27);
+            Remito.Margin = new Padding(2, 3, 2, 3);
             Remito.Name = "Remito";
-            Remito.Size = new Size(693, 109);
+            Remito.Size = new Size(791, 144);
             Remito.TabIndex = 0;
             Remito.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
-            // label1
+            // ClieRem
             // 
-            label1.AutoSize = true;
-            label1.BackColor = SystemColors.ButtonHighlight;
-            label1.ForeColor = SystemColors.ActiveCaptionText;
-            label1.Location = new Point(22, 50);
-            label1.Margin = new Padding(2, 0, 2, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(44, 15);
-            label1.TabIndex = 1;
-            label1.Text = "Cliente";
+            ClieRem.AutoSize = true;
+            ClieRem.BackColor = SystemColors.ButtonHighlight;
+            ClieRem.ForeColor = SystemColors.ActiveCaptionText;
+            ClieRem.Location = new Point(25, 67);
+            ClieRem.Margin = new Padding(2, 0, 2, 0);
+            ClieRem.Name = "ClieRem";
+            ClieRem.Size = new Size(55, 20);
+            ClieRem.TabIndex = 1;
+            ClieRem.Text = "Cliente";
             // 
-            // label2
+            // NRem
             // 
-            label2.AutoSize = true;
-            label2.BackColor = SystemColors.ButtonHighlight;
-            label2.ForeColor = SystemColors.ActiveCaptionText;
-            label2.Location = new Point(22, 72);
-            label2.Margin = new Padding(2, 0, 2, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(62, 15);
-            label2.TabIndex = 2;
-            label2.Text = "N° Remito";
+            NRem.AutoSize = true;
+            NRem.BackColor = SystemColors.ButtonHighlight;
+            NRem.ForeColor = SystemColors.ActiveCaptionText;
+            NRem.Location = new Point(25, 96);
+            NRem.Margin = new Padding(2, 0, 2, 0);
+            NRem.Name = "NRem";
+            NRem.Size = new Size(78, 20);
+            NRem.TabIndex = 2;
+            NRem.Text = "N° Remito";
             // 
-            // label3
+            // TranspRem
             // 
-            label3.AutoSize = true;
-            label3.BackColor = SystemColors.ButtonHighlight;
-            label3.ForeColor = SystemColors.ActiveCaptionText;
-            label3.Location = new Point(22, 92);
-            label3.Margin = new Padding(2, 0, 2, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(75, 15);
-            label3.TabIndex = 3;
-            label3.Text = "Transportista";
+            TranspRem.AutoSize = true;
+            TranspRem.BackColor = SystemColors.ButtonHighlight;
+            TranspRem.ForeColor = SystemColors.ActiveCaptionText;
+            TranspRem.Location = new Point(25, 123);
+            TranspRem.Margin = new Padding(2, 0, 2, 0);
+            TranspRem.Name = "TranspRem";
+            TranspRem.Size = new Size(94, 20);
+            TranspRem.TabIndex = 3;
+            TranspRem.Text = "Transportista";
             // 
-            // comboBox1
+            // comboBoxClieR
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(85, 48);
-            comboBox1.Margin = new Padding(2);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(216, 23);
-            comboBox1.TabIndex = 4;
+            comboBoxClieR.FormattingEnabled = true;
+            comboBoxClieR.Location = new Point(97, 64);
+            comboBoxClieR.Margin = new Padding(2, 3, 2, 3);
+            comboBoxClieR.Name = "comboBoxClieR";
+            comboBoxClieR.Size = new Size(246, 28);
+            comboBoxClieR.TabIndex = 4;
             // 
-            // textBox1
+            // textBoxNRem
             // 
-            textBox1.Location = new Point(89, 73);
-            textBox1.Margin = new Padding(2);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(211, 23);
-            textBox1.TabIndex = 5;
+            textBoxNRem.Location = new Point(102, 97);
+            textBoxNRem.Margin = new Padding(2, 3, 2, 3);
+            textBoxNRem.Name = "textBoxNRem";
+            textBoxNRem.Size = new Size(241, 27);
+            textBoxNRem.TabIndex = 5;
             // 
-            // textBox2
+            // textBoxTransRem
             // 
-            textBox2.Location = new Point(110, 94);
-            textBox2.Margin = new Padding(2);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(190, 23);
-            textBox2.TabIndex = 6;
+            textBoxTransRem.Location = new Point(126, 125);
+            textBoxTransRem.Margin = new Padding(2, 3, 2, 3);
+            textBoxTransRem.Name = "textBoxTransRem";
+            textBoxTransRem.Size = new Size(217, 27);
+            textBoxTransRem.TabIndex = 6;
             // 
-            // dateTimePicker1
+            // dateTimePickerFRem
             // 
-            dateTimePicker1.Location = new Point(441, 46);
-            dateTimePicker1.Margin = new Padding(2);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(255, 23);
-            dateTimePicker1.TabIndex = 7;
+            dateTimePickerFRem.Location = new Point(504, 61);
+            dateTimePickerFRem.Margin = new Padding(2, 3, 2, 3);
+            dateTimePickerFRem.Name = "dateTimePickerFRem";
+            dateTimePickerFRem.Size = new Size(291, 27);
+            dateTimePickerFRem.TabIndex = 7;
             // 
-            // label4
+            // FecRem
             // 
-            label4.AutoSize = true;
-            label4.BackColor = SystemColors.ButtonHighlight;
-            label4.ForeColor = SystemColors.ActiveCaptionText;
-            label4.Location = new Point(318, 50);
-            label4.Margin = new Padding(2, 0, 2, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(98, 15);
-            label4.TabIndex = 8;
-            label4.Text = "Fecha del Remito";
+            FecRem.AutoSize = true;
+            FecRem.BackColor = SystemColors.ButtonHighlight;
+            FecRem.ForeColor = SystemColors.ActiveCaptionText;
+            FecRem.Location = new Point(363, 67);
+            FecRem.Margin = new Padding(2, 0, 2, 0);
+            FecRem.Name = "FecRem";
+            FecRem.Size = new Size(124, 20);
+            FecRem.TabIndex = 8;
+            FecRem.Text = "Fecha del Remito";
             // 
-            // label5
+            // NARem
             // 
-            label5.AutoSize = true;
-            label5.BackColor = SystemColors.ButtonHighlight;
-            label5.ForeColor = SystemColors.ActiveCaptionText;
-            label5.Location = new Point(318, 72);
-            label5.Margin = new Padding(2, 0, 2, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(107, 15);
-            label5.TabIndex = 9;
-            label5.Text = "Nombre y Apellido";
+            NARem.AutoSize = true;
+            NARem.BackColor = SystemColors.ButtonHighlight;
+            NARem.ForeColor = SystemColors.ActiveCaptionText;
+            NARem.Location = new Point(363, 96);
+            NARem.Margin = new Padding(2, 0, 2, 0);
+            NARem.Name = "NARem";
+            NARem.Size = new Size(136, 20);
+            NARem.TabIndex = 9;
+            NARem.Text = "Nombre y Apellido";
             // 
-            // textBox3
+            // textBoxNARem
             // 
-            textBox3.Location = new Point(441, 70);
-            textBox3.Margin = new Padding(2);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(255, 23);
-            textBox3.TabIndex = 10;
+            textBoxNARem.Location = new Point(504, 93);
+            textBoxNARem.Margin = new Padding(2, 3, 2, 3);
+            textBoxNARem.Name = "textBoxNARem";
+            textBoxNARem.Size = new Size(291, 27);
+            textBoxNARem.TabIndex = 10;
             // 
-            // label6
+            // PatenR
             // 
-            label6.AutoSize = true;
-            label6.BackColor = SystemColors.ButtonHighlight;
-            label6.ForeColor = SystemColors.ActiveCaptionText;
-            label6.Location = new Point(318, 98);
-            label6.Margin = new Padding(2, 0, 2, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(47, 15);
-            label6.TabIndex = 11;
-            label6.Text = "Patente";
+            PatenR.AutoSize = true;
+            PatenR.BackColor = SystemColors.ButtonHighlight;
+            PatenR.ForeColor = SystemColors.ActiveCaptionText;
+            PatenR.Location = new Point(363, 131);
+            PatenR.Margin = new Padding(2, 0, 2, 0);
+            PatenR.Name = "PatenR";
+            PatenR.Size = new Size(58, 20);
+            PatenR.TabIndex = 11;
+            PatenR.Text = "Patente";
             // 
-            // textBox4
+            // As
             // 
-            textBox4.Location = new Point(441, 96);
-            textBox4.Margin = new Padding(2);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(255, 23);
-            textBox4.TabIndex = 12;
+            As.Location = new Point(504, 128);
+            As.Margin = new Padding(2, 3, 2, 3);
+            As.Name = "As";
+            As.Size = new Size(291, 27);
+            As.TabIndex = 12;
             // 
-            // label10
+            // CantRem
             // 
-            label10.AutoSize = true;
-            label10.BackColor = SystemColors.ControlLight;
-            label10.ForeColor = SystemColors.ActiveCaptionText;
-            label10.Location = new Point(277, 141);
-            label10.Margin = new Padding(2, 0, 2, 0);
-            label10.Name = "label10";
-            label10.Size = new Size(76, 15);
-            label10.TabIndex = 17;
-            label10.Text = "Cant. Remito";
-            label10.Click += label10_Click;
+            CantRem.AutoSize = true;
+            CantRem.BackColor = SystemColors.ControlLight;
+            CantRem.ForeColor = SystemColors.ActiveCaptionText;
+            CantRem.Location = new Point(317, 188);
+            CantRem.Margin = new Padding(2, 0, 2, 0);
+            CantRem.Name = "CantRem";
+            CantRem.Size = new Size(94, 20);
+            CantRem.TabIndex = 17;
+            CantRem.Text = "Cant. Remito";
+            CantRem.Click += label10_Click;
             // 
-            // label11
+            // CantContRem
             // 
-            label11.AutoSize = true;
-            label11.BackColor = SystemColors.ControlLight;
-            label11.ForeColor = SystemColors.ActiveCaptionText;
-            label11.Location = new Point(149, 141);
-            label11.Margin = new Padding(2, 0, 2, 0);
-            label11.Name = "label11";
-            label11.Size = new Size(83, 15);
-            label11.TabIndex = 18;
-            label11.Text = "Cant. Contada";
-            label11.Click += label11_Click;
+            CantContRem.AutoSize = true;
+            CantContRem.BackColor = SystemColors.ControlLight;
+            CantContRem.ForeColor = SystemColors.ActiveCaptionText;
+            CantContRem.Location = new Point(170, 188);
+            CantContRem.Margin = new Padding(2, 0, 2, 0);
+            CantContRem.Name = "CantContRem";
+            CantContRem.Size = new Size(102, 20);
+            CantContRem.TabIndex = 18;
+            CantContRem.Text = "Cant. Contada";
+            CantContRem.Click += label11_Click;
             // 
-            // button1
+            // buttonAgregIRem
             // 
-            button1.BackColor = SystemColors.ButtonFace;
-            button1.Location = new Point(420, 169);
-            button1.Margin = new Padding(2);
-            button1.Name = "button1";
-            button1.Size = new Size(105, 20);
-            button1.TabIndex = 20;
-            button1.Text = "+ Agregar Ítem";
-            button1.UseVisualStyleBackColor = false;
+            buttonAgregIRem.BackColor = SystemColors.ButtonFace;
+            buttonAgregIRem.Location = new Point(480, 225);
+            buttonAgregIRem.Margin = new Padding(2, 3, 2, 3);
+            buttonAgregIRem.Name = "buttonAgregIRem";
+            buttonAgregIRem.Size = new Size(120, 27);
+            buttonAgregIRem.TabIndex = 20;
+            buttonAgregIRem.Text = "+ Agregar Ítem";
+            buttonAgregIRem.UseVisualStyleBackColor = false;
             // 
-            // textBox5
+            // textBoxSKURem
             // 
-            textBox5.Location = new Point(15, 168);
-            textBox5.Margin = new Padding(2);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(121, 23);
-            textBox5.TabIndex = 24;
+            textBoxSKURem.Location = new Point(17, 224);
+            textBoxSKURem.Margin = new Padding(2, 3, 2, 3);
+            textBoxSKURem.Name = "textBoxSKURem";
+            textBoxSKURem.Size = new Size(138, 27);
+            textBoxSKURem.TabIndex = 24;
             // 
-            // button4
+            // CancRem
             // 
-            button4.BackColor = SystemColors.ButtonFace;
-            button4.Location = new Point(492, 400);
-            button4.Margin = new Padding(2);
-            button4.Name = "button4";
-            button4.Size = new Size(105, 20);
-            button4.TabIndex = 33;
-            button4.Text = "Cancelar";
-            button4.UseVisualStyleBackColor = false;
+            CancRem.BackColor = SystemColors.ButtonFace;
+            CancRem.Location = new Point(562, 533);
+            CancRem.Margin = new Padding(2, 3, 2, 3);
+            CancRem.Name = "CancRem";
+            CancRem.Size = new Size(120, 27);
+            CancRem.TabIndex = 33;
+            CancRem.Text = "Cancelar";
+            CancRem.UseVisualStyleBackColor = false;
             // 
-            // button5
+            // ConfRem
             // 
-            button5.BackColor = SystemColors.ButtonFace;
-            button5.Location = new Point(602, 400);
-            button5.Margin = new Padding(2);
-            button5.Name = "button5";
-            button5.Size = new Size(105, 20);
-            button5.TabIndex = 34;
-            button5.Text = "Confirmar Recepeción";
-            button5.UseVisualStyleBackColor = false;
+            ConfRem.BackColor = SystemColors.ButtonFace;
+            ConfRem.Location = new Point(688, 533);
+            ConfRem.Margin = new Padding(2, 3, 2, 3);
+            ConfRem.Name = "ConfRem";
+            ConfRem.Size = new Size(120, 27);
+            ConfRem.TabIndex = 34;
+            ConfRem.Text = "Confirmar Recepeción";
+            ConfRem.UseVisualStyleBackColor = false;
+            ConfRem.Click += button5_Click;
             // 
-            // label22
+            // ObsRem
             // 
-            label22.AutoSize = true;
-            label22.BackColor = SystemColors.ControlLight;
-            label22.ForeColor = SystemColors.ActiveCaptionText;
-            label22.Location = new Point(16, 353);
-            label22.Margin = new Padding(2, 0, 2, 0);
-            label22.Name = "label22";
-            label22.Size = new Size(87, 15);
-            label22.TabIndex = 41;
-            label22.Text = "Observaciones:";
+            ObsRem.AutoSize = true;
+            ObsRem.BackColor = SystemColors.ControlLight;
+            ObsRem.ForeColor = SystemColors.ActiveCaptionText;
+            ObsRem.Location = new Point(18, 471);
+            ObsRem.Margin = new Padding(2, 0, 2, 0);
+            ObsRem.Name = "ObsRem";
+            ObsRem.Size = new Size(108, 20);
+            ObsRem.TabIndex = 41;
+            ObsRem.Text = "Observaciones:";
             // 
-            // textBox11
+            // textBoxObsRem
             // 
-            textBox11.Location = new Point(16, 370);
-            textBox11.Margin = new Padding(2);
-            textBox11.Name = "textBox11";
-            textBox11.Size = new Size(234, 23);
-            textBox11.TabIndex = 42;
-            textBox11.Text = "Caja con golpes visibles...";
+            textBoxObsRem.Location = new Point(18, 493);
+            textBoxObsRem.Margin = new Padding(2, 3, 2, 3);
+            textBoxObsRem.Name = "textBoxObsRem";
+            textBoxObsRem.Size = new Size(267, 27);
+            textBoxObsRem.TabIndex = 42;
+            textBoxObsRem.Text = "Caja con golpes visibles...";
             // 
             // fileSystemWatcher1
             // 
             fileSystemWatcher1.EnableRaisingEvents = true;
             fileSystemWatcher1.SynchronizingObject = this;
             // 
-            // label7
+            // SKUREM
             // 
-            label7.AutoSize = true;
-            label7.BackColor = SystemColors.ControlLight;
-            label7.ForeColor = SystemColors.ActiveCaptionText;
-            label7.Location = new Point(15, 141);
-            label7.Margin = new Padding(2, 0, 2, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(75, 15);
-            label7.TabIndex = 43;
-            label7.Text = "SKU/ Código";
-            label7.Click += label7_Click_1;
+            SKUREM.AutoSize = true;
+            SKUREM.BackColor = SystemColors.ControlLight;
+            SKUREM.ForeColor = SystemColors.ActiveCaptionText;
+            SKUREM.Location = new Point(17, 188);
+            SKUREM.Margin = new Padding(2, 0, 2, 0);
+            SKUREM.Name = "SKUREM";
+            SKUREM.Size = new Size(95, 20);
+            SKUREM.TabIndex = 43;
+            SKUREM.Text = "SKU/ Código";
+            SKUREM.Click += label7_Click_1;
             // 
-            // textBox12
+            // textBoxCatnCRem
             // 
-            textBox12.Location = new Point(149, 168);
-            textBox12.Margin = new Padding(2);
-            textBox12.Name = "textBox12";
-            textBox12.Size = new Size(121, 23);
-            textBox12.TabIndex = 44;
+            textBoxCatnCRem.Location = new Point(170, 224);
+            textBoxCatnCRem.Margin = new Padding(2, 3, 2, 3);
+            textBoxCatnCRem.Name = "textBoxCatnCRem";
+            textBoxCatnCRem.Size = new Size(138, 27);
+            textBoxCatnCRem.TabIndex = 44;
             // 
-            // textBox13
+            // textBoxCanRem
             // 
-            textBox13.Location = new Point(277, 168);
-            textBox13.Margin = new Padding(2);
-            textBox13.Name = "textBox13";
-            textBox13.Size = new Size(121, 23);
-            textBox13.TabIndex = 45;
+            textBoxCanRem.Location = new Point(317, 224);
+            textBoxCanRem.Margin = new Padding(2, 3, 2, 3);
+            textBoxCanRem.Name = "textBoxCanRem";
+            textBoxCanRem.Size = new Size(138, 27);
+            textBoxCanRem.TabIndex = 45;
             // 
-            // label8
+            // DetMercRRem
             // 
-            label8.AutoSize = true;
-            label8.BackColor = SystemColors.ControlLight;
-            label8.ForeColor = SystemColors.ActiveCaptionText;
-            label8.Location = new Point(15, 204);
-            label8.Margin = new Padding(2, 0, 2, 0);
-            label8.Name = "label8";
-            label8.Size = new Size(169, 15);
-            label8.TabIndex = 46;
-            label8.Text = "Detalle de Mercaderia Recibida";
-            label8.Click += label8_Click;
+            DetMercRRem.AutoSize = true;
+            DetMercRRem.BackColor = SystemColors.ControlLight;
+            DetMercRRem.ForeColor = SystemColors.ActiveCaptionText;
+            DetMercRRem.Location = new Point(17, 272);
+            DetMercRRem.Margin = new Padding(2, 0, 2, 0);
+            DetMercRRem.Name = "DetMercRRem";
+            DetMercRRem.Size = new Size(219, 20);
+            DetMercRRem.TabIndex = 46;
+            DetMercRRem.Text = "Detalle de Mercaderia Recibida";
+            DetMercRRem.Click += label8_Click;
             // 
-            // listView1
+            // listViewRem
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { SkuCodigo, Descripción, columnHeader1, columnHeader2 });
-            listView1.Location = new Point(16, 232);
-            listView1.Margin = new Padding(3, 2, 3, 2);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(496, 90);
-            listView1.TabIndex = 47;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            listViewRem.Columns.AddRange(new ColumnHeader[] { SkuCodigo, Descripción, CantcR, CantR });
+            listViewRem.Location = new Point(18, 309);
+            listViewRem.Name = "listViewRem";
+            listViewRem.Size = new Size(566, 119);
+            listViewRem.TabIndex = 47;
+            listViewRem.UseCompatibleStateImageBehavior = false;
+            listViewRem.View = View.Details;
+            listViewRem.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
             // SkuCodigo
             // 
@@ -351,71 +351,62 @@
             Descripción.Text = "Descripción";
             Descripción.Width = 100;
             // 
-            // columnHeader1
+            // CantcR
             // 
-            columnHeader1.Text = "Cantidad contada";
-            columnHeader1.Width = 100;
+            CantcR.Text = "Cantidad contada";
+            CantcR.Width = 100;
             // 
-            // columnHeader2
+            // CantR
             // 
-            columnHeader2.Text = "Cantidad remito";
-            columnHeader2.Width = 100;
+            CantR.Text = "Cantidad remito";
+            CantR.Width = 100;
             // 
-            // button2
+            // buttonQuitIRem
             // 
-            button2.BackColor = SystemColors.ButtonFace;
-            button2.Location = new Point(16, 324);
-            button2.Margin = new Padding(2);
-            button2.Name = "button2";
-            button2.Size = new Size(495, 20);
-            button2.TabIndex = 48;
-            button2.Text = "- Quitar Ítem";
-            button2.UseVisualStyleBackColor = false;
+            buttonQuitIRem.BackColor = SystemColors.ButtonFace;
+            buttonQuitIRem.Location = new Point(18, 432);
+            buttonQuitIRem.Margin = new Padding(2, 3, 2, 3);
+            buttonQuitIRem.Name = "buttonQuitIRem";
+            buttonQuitIRem.Size = new Size(566, 27);
+            buttonQuitIRem.TabIndex = 48;
+            buttonQuitIRem.Text = "- Quitar Ítem";
+            buttonQuitIRem.UseVisualStyleBackColor = false;
             // 
-            // label9
+            // RecepcionMercaderiaForm
             // 
-            label9.Location = new Point(23, 441);
-            label9.Name = "label9";
-            label9.Size = new Size(657, 45);
-            label9.TabIndex = 49;
-            label9.Text = "*** NOTA: Esta pantalla tiene que generar una nota de espacio insuficiente si la cantidad ingresada supera los limites del cliente, y borrar esta nota";
-            // 
-            // Recepción_de_mercaderia_Form
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
-            ClientSize = new Size(722, 540);
-            Controls.Add(label9);
-            Controls.Add(button2);
-            Controls.Add(listView1);
-            Controls.Add(label8);
-            Controls.Add(textBox13);
-            Controls.Add(textBox12);
-            Controls.Add(label7);
-            Controls.Add(textBox11);
-            Controls.Add(label22);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(textBox5);
-            Controls.Add(button1);
-            Controls.Add(label11);
-            Controls.Add(label10);
-            Controls.Add(textBox4);
-            Controls.Add(label6);
-            Controls.Add(textBox3);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(dateTimePicker1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(comboBox1);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            ClientSize = new Size(825, 720);
+            Controls.Add(buttonQuitIRem);
+            Controls.Add(listViewRem);
+            Controls.Add(DetMercRRem);
+            Controls.Add(textBoxCanRem);
+            Controls.Add(textBoxCatnCRem);
+            Controls.Add(SKUREM);
+            Controls.Add(textBoxObsRem);
+            Controls.Add(ObsRem);
+            Controls.Add(ConfRem);
+            Controls.Add(CancRem);
+            Controls.Add(textBoxSKURem);
+            Controls.Add(buttonAgregIRem);
+            Controls.Add(CantContRem);
+            Controls.Add(CantRem);
+            Controls.Add(As);
+            Controls.Add(PatenR);
+            Controls.Add(textBoxNARem);
+            Controls.Add(NARem);
+            Controls.Add(FecRem);
+            Controls.Add(dateTimePickerFRem);
+            Controls.Add(textBoxTransRem);
+            Controls.Add(textBoxNRem);
+            Controls.Add(comboBoxClieR);
+            Controls.Add(TranspRem);
+            Controls.Add(NRem);
+            Controls.Add(ClieRem);
             Controls.Add(Remito);
-            Margin = new Padding(2);
-            Name = "Recepción_de_mercaderia_Form";
+            Margin = new Padding(2, 3, 2, 3);
+            Name = "RecepcionMercaderiaForm";
             Text = "Vlidar";
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).EndInit();
             ResumeLayout(false);
@@ -425,37 +416,36 @@
         #endregion
 
         private ListBox Remito;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private ComboBox comboBox1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private DateTimePicker dateTimePicker1;
-        private Label label4;
-        private Label label5;
-        private TextBox textBox3;
-        private Label label6;
-        private TextBox textBox4;
-        private Label label10;
-        private Label label11;
-        private Button button1;
-        private TextBox textBox5;
-        private Button button4;
-        private Button button5;
-        private Label label22;
-        private TextBox textBox11;
+        private Label ClieRem;
+        private Label NRem;
+        private Label TranspRem;
+        private ComboBox comboBoxClieR;
+        private TextBox textBoxNRem;
+        private TextBox textBoxTransRem;
+        private DateTimePicker dateTimePickerFRem;
+        private Label FecRem;
+        private Label NARem;
+        private TextBox textBoxNARem;
+        private Label PatenR;
+        private TextBox As;
+        private Label CantRem;
+        private Label CantContRem;
+        private Button buttonAgregIRem;
+        private TextBox textBoxSKURem;
+        private Button CancRem;
+        private Button ConfRem;
+        private Label ObsRem;
+        private TextBox textBoxObsRem;
         private FileSystemWatcher fileSystemWatcher1;
-        private Label label7;
-        private TextBox textBox13;
-        private TextBox textBox12;
-        private Label label8;
-        private ListView listView1;
+        private Label SKUREM;
+        private TextBox textBoxCanRem;
+        private TextBox textBoxCatnCRem;
+        private Label DetMercRRem;
+        private ListView listViewRem;
         private ColumnHeader SkuCodigo;
         private ColumnHeader Descripción;
-        private Button button2;
-        private ColumnHeader columnHeader1;
-        private ColumnHeader columnHeader2;
-        private Label label9;
+        private Button buttonQuitIRem;
+        private ColumnHeader CantcR;
+        private ColumnHeader CantR;
     }
 }
