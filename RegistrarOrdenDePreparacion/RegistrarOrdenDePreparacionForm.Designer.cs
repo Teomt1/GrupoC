@@ -267,6 +267,7 @@
             textnombre.Name = "textnombre";
             textnombre.Size = new Size(138, 23);
             textnombre.TabIndex = 22;
+            textnombre.KeyPress += textnombre_KeyPress;
             // 
             // labnombre
             // 

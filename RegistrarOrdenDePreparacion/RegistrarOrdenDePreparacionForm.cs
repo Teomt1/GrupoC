@@ -6,40 +6,12 @@ using System.Windows.Forms;
 
 namespace GrupoC.RegistrarOrdenDePreparacion
 {
-    /*
-     * PROTOTIPO - CU 4: Registrar Orden de Preparación
-     * ----------------------------------------------------------------------------
-     * Toda la funcionalidad está en este archivo. El Designer NO se modifica:
-     * los eventos de botones, combos y radios se vinculan por código en el
-     * constructor (método VincularEventos).
-     *
-     * Los datos son de prueba y viven en memoria (no hay base de datos).
-     *
-     * Cómo probar cada flujo del caso de uso:
-     *  - Camino feliz.............: DEP-01, Palet Cerrado, 10 de "Arroz 1 kg",
-     *                               completar el transportista y Confirmar Orden.
-     *  - 4.1 / 4.2................: elegir Fullfilment / Palet Cerrado y ver cómo
-     *                               aparece / desaparece <Datos para el Etiquetado>.
-     *  - 8.1  Stock insuficiente..: DEP-03 -> 50 de "Fideos 500 g" (hay 10).
-     *  - 13.1 Campos incompletos..: Confirmar Orden dejando algún campo vacío.
-     *  - 13.2 Orden sin productos.: completar todo menos los productos y confirmar.
-     *  - 15.2.1 Stock mínimo......: DEP-01 -> 30 de "Yerba 1 kg" (hay 120, mínimo 100).
-     *  - 15.1 Sin stock mínimo....: dejar vacío el diccionario de stock mínimo
-     *                               de "clienteLoggeado" (más abajo).
-     *  - Quitar un producto.......: seleccionarlo en la lista y presionar Supr
-     *                               (o hacerle doble click).
-     */
+
     public partial class RegistrarOrdenDePreparacionForm : Form
     {
         #region Datos de prueba del prototipo (en memoria)
 
-        // Son "static" para que se conserven mientras la aplicación esté abierta
-        // (por ejemplo, el stock que ya descontó una orden registrada antes).
 
-        // Cliente actualmente loggeado y su stock mínimo contratado por producto
-        // (SKU -> cantidad mínima que debe quedar en el depósito).
-        // Para probar el paso 15.1 (cliente SIN stock mínimo contratado), reemplazar
-        // el diccionario por:  new Dictionary<string, int>()
         private static readonly Cliente clienteLoggeado = new Cliente(
             "Distribuidora Andina S.A.",
             new Dictionary<string, int>
@@ -808,5 +780,17 @@ namespace GrupoC.RegistrarOrdenDePreparacion
         }
 
         #endregion
+
+        private void textnombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false; 
+            }
+            else
+            {
+                e.Handled = true; 
+            }
+        }
     }
 }
