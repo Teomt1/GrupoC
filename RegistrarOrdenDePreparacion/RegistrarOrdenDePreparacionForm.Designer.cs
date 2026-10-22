@@ -28,151 +28,151 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            textBox1 = new TextBox();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            textBox2 = new TextBox();
-            label6 = new Label();
-            radioButton1 = new RadioButton();
-            radioButton2 = new RadioButton();
-            dateTimePicker1 = new DateTimePicker();
-            label7 = new Label();
+            labusuario = new Label();
+            labtemp = new Label();
+            textnomtrans = new TextBox();
+            labdatostrans = new Label();
+            labnomtrans = new Label();
+            labDNI = new Label();
+            textDNI = new TextBox();
+            labmodalidad = new Label();
+            radiocerrado = new RadioButton();
+            radiofullfilment = new RadioButton();
+            datefecha = new DateTimePicker();
+            labfecha = new Label();
             label8 = new Label();
-            comboBox1 = new ComboBox();
-            label9 = new Label();
-            button1 = new Button();
-            textBox3 = new TextBox();
-            label10 = new Label();
-            listView1 = new ListView();
+            comboprodretirar = new ComboBox();
+            labprodretirar = new Label();
+            btnagregar = new Button();
+            textcantretirar = new TextBox();
+            labcantretirar = new Label();
+            listordenact = new ListView();
             SKU = new ColumnHeader();
             Producto = new ColumnHeader();
             Cantidad = new ColumnHeader();
-            label12 = new Label();
-            textBox4 = new TextBox();
-            label13 = new Label();
-            label14 = new Label();
-            textBox5 = new TextBox();
-            label15 = new Label();
-            textBox6 = new TextBox();
-            button2 = new Button();
-            button3 = new Button();
-            label16 = new Label();
-            comboBox2 = new ComboBox();
+            labdatosetiq = new Label();
+            textnombre = new TextBox();
+            labnombre = new Label();
+            labdireccion = new Label();
+            textdireccion = new TextBox();
+            labempresa = new Label();
+            textempresatrans = new TextBox();
+            btnconfirmar = new Button();
+            btncancelar = new Button();
+            labdepo = new Label();
+            combodepo = new ComboBox();
             SuspendLayout();
             // 
-            // label1
+            // labusuario
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Usuario:";
-            label1.Click += label1_Click;
+            labusuario.AutoSize = true;
+            labusuario.Location = new Point(12, 9);
+            labusuario.Name = "labusuario";
+            labusuario.Size = new Size(50, 15);
+            labusuario.TabIndex = 0;
+            labusuario.Text = "Usuario:";
+            labusuario.Click += label1_Click;
             // 
-            // label2
+            // labtemp
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(68, 9);
-            label2.Name = "label2";
-            label2.Size = new Size(238, 15);
-            label2.TabIndex = 1;
-            label2.Text = "(Nombre del cliente actualmente loggeado)";
+            labtemp.AutoSize = true;
+            labtemp.Location = new Point(68, 9);
+            labtemp.Name = "labtemp";
+            labtemp.Size = new Size(238, 15);
+            labtemp.TabIndex = 1;
+            labtemp.Text = "(Nombre del cliente actualmente loggeado)";
             // 
-            // textBox1
+            // textnomtrans
             // 
-            textBox1.Location = new Point(496, 286);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(122, 23);
-            textBox1.TabIndex = 2;
-            textBox1.TextChanged += textBox1_TextChanged;
+            textnomtrans.Location = new Point(496, 286);
+            textnomtrans.Name = "textnomtrans";
+            textnomtrans.Size = new Size(122, 23);
+            textnomtrans.TabIndex = 2;
+            textnomtrans.TextChanged += textBox1_TextChanged;
             // 
-            // label3
+            // labdatostrans
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(496, 237);
-            label3.Name = "label3";
-            label3.Size = new Size(230, 15);
-            label3.TabIndex = 3;
-            label3.Text = "Datos del transportista autorizado a reitrar:";
+            labdatostrans.AutoSize = true;
+            labdatostrans.Location = new Point(496, 237);
+            labdatostrans.Name = "labdatostrans";
+            labdatostrans.Size = new Size(230, 15);
+            labdatostrans.TabIndex = 3;
+            labdatostrans.Text = "Datos del transportista autorizado a reitrar:";
             // 
-            // label4
+            // labnomtrans
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(498, 268);
-            label4.Name = "label4";
-            label4.Size = new Size(51, 15);
-            label4.TabIndex = 4;
-            label4.Text = "Nombre";
-            label4.Click += label4_Click;
+            labnomtrans.AutoSize = true;
+            labnomtrans.Location = new Point(498, 268);
+            labnomtrans.Name = "labnomtrans";
+            labnomtrans.Size = new Size(51, 15);
+            labnomtrans.TabIndex = 4;
+            labnomtrans.Text = "Nombre";
+            labnomtrans.Click += label4_Click;
             // 
-            // label5
+            // labDNI
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(652, 268);
-            label5.Name = "label5";
-            label5.Size = new Size(27, 15);
-            label5.TabIndex = 5;
-            label5.Text = "DNI";
+            labDNI.AutoSize = true;
+            labDNI.Location = new Point(652, 268);
+            labDNI.Name = "labDNI";
+            labDNI.Size = new Size(27, 15);
+            labDNI.TabIndex = 5;
+            labDNI.Text = "DNI";
             // 
-            // textBox2
+            // textDNI
             // 
-            textBox2.Location = new Point(652, 286);
-            textBox2.MaxLength = 8;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(79, 23);
-            textBox2.TabIndex = 6;
-            textBox2.TextChanged += textBox2_TextChanged;
+            textDNI.Location = new Point(652, 286);
+            textDNI.MaxLength = 8;
+            textDNI.Name = "textDNI";
+            textDNI.Size = new Size(79, 23);
+            textDNI.TabIndex = 6;
+            textDNI.TextChanged += textBox2_TextChanged;
             // 
-            // label6
+            // labmodalidad
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(12, 119);
-            label6.Name = "label6";
-            label6.Size = new Size(160, 15);
-            label6.TabIndex = 8;
-            label6.Text = "Modalidad de Empaquetado:";
+            labmodalidad.AutoSize = true;
+            labmodalidad.Location = new Point(12, 119);
+            labmodalidad.Name = "labmodalidad";
+            labmodalidad.Size = new Size(160, 15);
+            labmodalidad.TabIndex = 8;
+            labmodalidad.Text = "Modalidad de Empaquetado:";
             // 
-            // radioButton1
+            // radiocerrado
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(12, 149);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(96, 19);
-            radioButton1.TabIndex = 9;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Palet Cerrado";
-            radioButton1.UseVisualStyleBackColor = true;
+            radiocerrado.AutoSize = true;
+            radiocerrado.Location = new Point(12, 149);
+            radiocerrado.Name = "radiocerrado";
+            radiocerrado.Size = new Size(96, 19);
+            radiocerrado.TabIndex = 9;
+            radiocerrado.TabStop = true;
+            radiocerrado.Text = "Palet Cerrado";
+            radiocerrado.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // radiofullfilment
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(114, 149);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(82, 19);
-            radioButton2.TabIndex = 10;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Fullfilment";
-            radioButton2.UseVisualStyleBackColor = true;
+            radiofullfilment.AutoSize = true;
+            radiofullfilment.Location = new Point(114, 149);
+            radiofullfilment.Name = "radiofullfilment";
+            radiofullfilment.Size = new Size(82, 19);
+            radiofullfilment.TabIndex = 10;
+            radiofullfilment.TabStop = true;
+            radiofullfilment.Text = "Fullfilment";
+            radiofullfilment.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
+            // datefecha
             // 
-            dateTimePicker1.Location = new Point(498, 187);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(228, 23);
-            dateTimePicker1.TabIndex = 11;
+            datefecha.Location = new Point(498, 187);
+            datefecha.Name = "datefecha";
+            datefecha.Size = new Size(228, 23);
+            datefecha.TabIndex = 11;
             // 
-            // label7
+            // labfecha
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(498, 169);
-            label7.Name = "label7";
-            label7.Size = new Size(91, 15);
-            label7.TabIndex = 12;
-            label7.Text = "Fecha de Retiro:";
+            labfecha.AutoSize = true;
+            labfecha.Location = new Point(498, 169);
+            labfecha.Name = "labfecha";
+            labfecha.Size = new Size(91, 15);
+            labfecha.TabIndex = 12;
+            labfecha.Text = "Fecha de Retiro:";
             // 
             // label8
             // 
@@ -183,58 +183,58 @@
             label8.Size = new Size(0, 15);
             label8.TabIndex = 13;
             // 
-            // comboBox1
+            // comboprodretirar
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Prod 1", "Prod 2", "Prod 3" });
-            comboBox1.Location = new Point(12, 213);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(165, 23);
-            comboBox1.TabIndex = 14;
+            comboprodretirar.FormattingEnabled = true;
+            comboprodretirar.Items.AddRange(new object[] { "Prod 1", "Prod 2", "Prod 3" });
+            comboprodretirar.Location = new Point(12, 213);
+            comboprodretirar.Name = "comboprodretirar";
+            comboprodretirar.Size = new Size(165, 23);
+            comboprodretirar.TabIndex = 14;
             // 
-            // label9
+            // labprodretirar
             // 
-            label9.AutoSize = true;
-            label9.Location = new Point(12, 195);
-            label9.Name = "label9";
-            label9.Size = new Size(107, 15);
-            label9.TabIndex = 15;
-            label9.Text = "Productos a retirar:";
+            labprodretirar.AutoSize = true;
+            labprodretirar.Location = new Point(12, 195);
+            labprodretirar.Name = "labprodretirar";
+            labprodretirar.Size = new Size(107, 15);
+            labprodretirar.TabIndex = 15;
+            labprodretirar.Text = "Productos a retirar:";
             // 
-            // button1
+            // btnagregar
             // 
-            button1.Location = new Point(267, 382);
-            button1.Name = "button1";
-            button1.Size = new Size(127, 41);
-            button1.TabIndex = 16;
-            button1.Text = "Agregar a la Orden";
-            button1.UseVisualStyleBackColor = true;
+            btnagregar.Location = new Point(267, 382);
+            btnagregar.Name = "btnagregar";
+            btnagregar.Size = new Size(127, 41);
+            btnagregar.TabIndex = 16;
+            btnagregar.Text = "Agregar a la Orden";
+            btnagregar.UseVisualStyleBackColor = true;
             // 
-            // textBox3
+            // textcantretirar
             // 
-            textBox3.Location = new Point(202, 213);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(92, 23);
-            textBox3.TabIndex = 17;
+            textcantretirar.Location = new Point(202, 213);
+            textcantretirar.Name = "textcantretirar";
+            textcantretirar.Size = new Size(92, 23);
+            textcantretirar.TabIndex = 17;
             // 
-            // label10
+            // labcantretirar
             // 
-            label10.AutoSize = true;
-            label10.Location = new Point(202, 195);
-            label10.Name = "label10";
-            label10.Size = new Size(104, 15);
-            label10.TabIndex = 18;
-            label10.Text = "Cantidad a Retirar:";
+            labcantretirar.AutoSize = true;
+            labcantretirar.Location = new Point(202, 195);
+            labcantretirar.Name = "labcantretirar";
+            labcantretirar.Size = new Size(104, 15);
+            labcantretirar.TabIndex = 18;
+            labcantretirar.Text = "Cantidad a Retirar:";
             // 
-            // listView1
+            // listordenact
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { SKU, Producto, Cantidad });
-            listView1.Location = new Point(12, 242);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(382, 134);
-            listView1.TabIndex = 19;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            listordenact.Columns.AddRange(new ColumnHeader[] { SKU, Producto, Cantidad });
+            listordenact.Location = new Point(12, 242);
+            listordenact.Name = "listordenact";
+            listordenact.Size = new Size(382, 134);
+            listordenact.TabIndex = 19;
+            listordenact.UseCompatibleStateImageBehavior = false;
+            listordenact.View = View.Details;
             // 
             // SKU
             // 
@@ -251,136 +251,136 @@
             Cantidad.Text = "Cantidad";
             Cantidad.Width = 100;
             // 
-            // label12
+            // labdatosetiq
             // 
-            label12.AutoSize = true;
-            label12.Location = new Point(498, 70);
-            label12.Name = "label12";
-            label12.Size = new Size(138, 15);
-            label12.TabIndex = 21;
-            label12.Text = "Datos para el Etiquetado:";
+            labdatosetiq.AutoSize = true;
+            labdatosetiq.Location = new Point(498, 70);
+            labdatosetiq.Name = "labdatosetiq";
+            labdatosetiq.Size = new Size(138, 15);
+            labdatosetiq.TabIndex = 21;
+            labdatosetiq.Text = "Datos para el Etiquetado:";
             // 
-            // textBox4
+            // textnombre
             // 
-            textBox4.Location = new Point(498, 129);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(138, 23);
-            textBox4.TabIndex = 22;
+            textnombre.Location = new Point(498, 129);
+            textnombre.Name = "textnombre";
+            textnombre.Size = new Size(138, 23);
+            textnombre.TabIndex = 22;
             // 
-            // label13
+            // labnombre
             // 
-            label13.AutoSize = true;
-            label13.Location = new Point(498, 100);
-            label13.Name = "label13";
-            label13.Size = new Size(139, 15);
-            label13.TabIndex = 23;
-            label13.Text = "Nombre del Destinatario:";
+            labnombre.AutoSize = true;
+            labnombre.Location = new Point(498, 100);
+            labnombre.Name = "labnombre";
+            labnombre.Size = new Size(139, 15);
+            labnombre.TabIndex = 23;
+            labnombre.Text = "Nombre del Destinatario:";
             // 
-            // label14
+            // labdireccion
             // 
-            label14.AutoSize = true;
-            label14.Location = new Point(700, 100);
-            label14.Name = "label14";
-            label14.Size = new Size(119, 15);
-            label14.TabIndex = 24;
-            label14.Text = "Dirección de Destino:";
+            labdireccion.AutoSize = true;
+            labdireccion.Location = new Point(700, 100);
+            labdireccion.Name = "labdireccion";
+            labdireccion.Size = new Size(119, 15);
+            labdireccion.TabIndex = 24;
+            labdireccion.Text = "Dirección de Destino:";
             // 
-            // textBox5
+            // textdireccion
             // 
-            textBox5.Location = new Point(700, 129);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(119, 23);
-            textBox5.TabIndex = 25;
+            textdireccion.Location = new Point(700, 129);
+            textdireccion.Name = "textdireccion";
+            textdireccion.Size = new Size(119, 23);
+            textdireccion.TabIndex = 25;
             // 
-            // label15
+            // labempresa
             // 
-            label15.AutoSize = true;
-            label15.Location = new Point(761, 268);
-            label15.Name = "label15";
-            label15.Size = new Size(127, 15);
-            label15.TabIndex = 26;
-            label15.Text = "Empresa de Transporte";
+            labempresa.AutoSize = true;
+            labempresa.Location = new Point(761, 268);
+            labempresa.Name = "labempresa";
+            labempresa.Size = new Size(126, 15);
+            labempresa.TabIndex = 26;
+            labempresa.Text = "Empresa de Transporte";
             // 
-            // textBox6
+            // textempresatrans
             // 
-            textBox6.Location = new Point(761, 286);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(126, 23);
-            textBox6.TabIndex = 27;
+            textempresatrans.Location = new Point(761, 286);
+            textempresatrans.Name = "textempresatrans";
+            textempresatrans.Size = new Size(126, 23);
+            textempresatrans.TabIndex = 27;
             // 
-            // button2
+            // btnconfirmar
             // 
-            button2.BackColor = SystemColors.Control;
-            button2.Location = new Point(749, 404);
-            button2.Name = "button2";
-            button2.Size = new Size(103, 45);
-            button2.TabIndex = 28;
-            button2.Text = "Confirmar Orden";
-            button2.UseVisualStyleBackColor = false;
+            btnconfirmar.BackColor = SystemColors.Control;
+            btnconfirmar.Location = new Point(749, 404);
+            btnconfirmar.Name = "btnconfirmar";
+            btnconfirmar.Size = new Size(103, 45);
+            btnconfirmar.TabIndex = 28;
+            btnconfirmar.Text = "Confirmar Orden";
+            btnconfirmar.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // btncancelar
             // 
-            button3.Location = new Point(592, 404);
-            button3.Name = "button3";
-            button3.Size = new Size(103, 45);
-            button3.TabIndex = 29;
-            button3.Text = "Cancelar";
-            button3.UseVisualStyleBackColor = true;
+            btncancelar.Location = new Point(592, 404);
+            btncancelar.Name = "btncancelar";
+            btncancelar.Size = new Size(103, 45);
+            btncancelar.TabIndex = 29;
+            btncancelar.Text = "Cancelar";
+            btncancelar.UseVisualStyleBackColor = true;
             // 
-            // label16
+            // labdepo
             // 
-            label16.AutoSize = true;
-            label16.Location = new Point(12, 44);
-            label16.Name = "label16";
-            label16.Size = new Size(57, 15);
-            label16.TabIndex = 30;
-            label16.Text = "Depósito:";
+            labdepo.AutoSize = true;
+            labdepo.Location = new Point(12, 44);
+            labdepo.Name = "labdepo";
+            labdepo.Size = new Size(57, 15);
+            labdepo.TabIndex = 30;
+            labdepo.Text = "Depósito:";
             // 
-            // comboBox2
+            // combodepo
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "Depo 1", "Depo 2", "Depo 3" });
-            comboBox2.Location = new Point(12, 62);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(343, 23);
-            comboBox2.TabIndex = 31;
+            combodepo.FormattingEnabled = true;
+            combodepo.Items.AddRange(new object[] { "Depo 1", "Depo 2", "Depo 3" });
+            combodepo.Location = new Point(12, 62);
+            combodepo.Name = "combodepo";
+            combodepo.Size = new Size(343, 23);
+            combodepo.TabIndex = 31;
             // 
-            // Registrar_orden_de_preparación
+            // RegistrarOrdenDePreparacionForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(899, 474);
-            Controls.Add(comboBox2);
-            Controls.Add(label16);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(textBox6);
-            Controls.Add(label15);
-            Controls.Add(textBox5);
-            Controls.Add(label14);
-            Controls.Add(label13);
-            Controls.Add(textBox4);
-            Controls.Add(label12);
-            Controls.Add(listView1);
-            Controls.Add(label10);
-            Controls.Add(textBox3);
-            Controls.Add(button1);
-            Controls.Add(label9);
-            Controls.Add(comboBox1);
+            Controls.Add(combodepo);
+            Controls.Add(labdepo);
+            Controls.Add(btncancelar);
+            Controls.Add(btnconfirmar);
+            Controls.Add(textempresatrans);
+            Controls.Add(labempresa);
+            Controls.Add(textdireccion);
+            Controls.Add(labdireccion);
+            Controls.Add(labnombre);
+            Controls.Add(textnombre);
+            Controls.Add(labdatosetiq);
+            Controls.Add(listordenact);
+            Controls.Add(labcantretirar);
+            Controls.Add(textcantretirar);
+            Controls.Add(btnagregar);
+            Controls.Add(labprodretirar);
+            Controls.Add(comboprodretirar);
             Controls.Add(label8);
-            Controls.Add(label7);
-            Controls.Add(dateTimePicker1);
-            Controls.Add(radioButton2);
-            Controls.Add(radioButton1);
-            Controls.Add(label6);
-            Controls.Add(textBox2);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(textBox1);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Name = "Registrar_orden_de_preparación";
+            Controls.Add(labfecha);
+            Controls.Add(datefecha);
+            Controls.Add(radiofullfilment);
+            Controls.Add(radiocerrado);
+            Controls.Add(labmodalidad);
+            Controls.Add(textDNI);
+            Controls.Add(labDNI);
+            Controls.Add(labnomtrans);
+            Controls.Add(labdatostrans);
+            Controls.Add(textnomtrans);
+            Controls.Add(labtemp);
+            Controls.Add(labusuario);
+            Name = "RegistrarOrdenDePreparacionForm";
             Text = "Registrar_orden_de_preparación";
             ResumeLayout(false);
             PerformLayout();
@@ -388,38 +388,38 @@
 
         #endregion
 
-        private Label label1;
-        private Label label2;
-        private TextBox textBox1;
-        private Label label3;
-        private Label label4;
-        private Label label5;
-        private TextBox textBox2;
-        private Label label6;
-        private RadioButton radioButton1;
-        private RadioButton radioButton2;
-        private DateTimePicker dateTimePicker1;
-        private Label label7;
+        private Label labusuario;
+        private Label labtemp;
+        private TextBox textnomtrans;
+        private Label labdatostrans;
+        private Label labnomtrans;
+        private Label labDNI;
+        private TextBox textDNI;
+        private Label labmodalidad;
+        private RadioButton radiocerrado;
+        private RadioButton radiofullfilment;
+        private DateTimePicker datefecha;
+        private Label labfecha;
         private Label label8;
-        private ComboBox comboBox1;
-        private Label label9;
-        private Button button1;
-        private TextBox textBox3;
-        private Label label10;
-        private ListView listView1;
+        private ComboBox comboprodretirar;
+        private Label labprodretirar;
+        private Button btnagregar;
+        private TextBox textcantretirar;
+        private Label labcantretirar;
+        private ListView listordenact;
         private ColumnHeader Producto;
         private ColumnHeader Cantidad;
         private ColumnHeader SKU;
-        private Label label12;
-        private TextBox textBox4;
-        private Label label13;
-        private Label label14;
-        private TextBox textBox5;
-        private Label label15;
-        private TextBox textBox6;
-        private Button button2;
-        private Button button3;
-        private Label label16;
-        private ComboBox comboBox2;
+        private Label labdatosetiq;
+        private TextBox textnombre;
+        private Label labnombre;
+        private Label labdireccion;
+        private TextBox textdireccion;
+        private Label labempresa;
+        private TextBox textempresatrans;
+        private Button btnconfirmar;
+        private Button btncancelar;
+        private Label labdepo;
+        private ComboBox combodepo;
     }
 }
