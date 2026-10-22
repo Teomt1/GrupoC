@@ -28,37 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            listView1 = new ListView();
+            Prodaprep = new Label();
+            listViewProdPrep = new ListView();
             Producto = new ColumnHeader();
             Cantidad = new ColumnHeader();
             Tipo_de_Pedido = new ColumnHeader();
-            button2 = new Button();
-            label2 = new Label();
+            buttonConfIEmp = new Button();
+            OrdenPrepNro = new Label();
             SuspendLayout();
             // 
-            // label1
+            // Prodaprep
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(11, 67);
-            label1.Margin = new Padding(2, 0, 2, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(117, 15);
-            label1.TabIndex = 3;
-            label1.Text = "Productos a preparar";
-            label1.Click += label1_Click;
+            Prodaprep.AutoSize = true;
+            Prodaprep.Location = new Point(13, 89);
+            Prodaprep.Margin = new Padding(2, 0, 2, 0);
+            Prodaprep.Name = "Prodaprep";
+            Prodaprep.Size = new Size(148, 20);
+            Prodaprep.TabIndex = 3;
+            Prodaprep.Text = "Productos a preparar";
+            Prodaprep.Click += label1_Click;
             // 
-            // listView1
+            // listViewProdPrep
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { Producto, Cantidad, Tipo_de_Pedido });
-            listView1.Location = new Point(11, 113);
-            listView1.Margin = new Padding(2, 2, 2, 2);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(474, 301);
-            listView1.TabIndex = 4;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
-            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
+            listViewProdPrep.Columns.AddRange(new ColumnHeader[] { Producto, Cantidad, Tipo_de_Pedido });
+            listViewProdPrep.Location = new Point(13, 151);
+            listViewProdPrep.Margin = new Padding(2, 3, 2, 3);
+            listViewProdPrep.Name = "listViewProdPrep";
+            listViewProdPrep.Size = new Size(541, 400);
+            listViewProdPrep.TabIndex = 4;
+            listViewProdPrep.UseCompatibleStateImageBehavior = false;
+            listViewProdPrep.View = View.Details;
+            listViewProdPrep.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
             // Producto
             // 
@@ -75,40 +75,40 @@
             Tipo_de_Pedido.Text = "Tipo_de_pedido";
             Tipo_de_Pedido.Width = 140;
             // 
-            // button2
+            // buttonConfIEmp
             // 
-            button2.BackColor = SystemColors.ControlLight;
-            button2.Location = new Point(11, 418);
-            button2.Margin = new Padding(2, 2, 2, 2);
-            button2.Name = "button2";
-            button2.Size = new Size(483, 38);
-            button2.TabIndex = 24;
-            button2.Text = "Confirmar ingreso";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            buttonConfIEmp.BackColor = SystemColors.ControlLight;
+            buttonConfIEmp.Location = new Point(13, 557);
+            buttonConfIEmp.Margin = new Padding(2, 3, 2, 3);
+            buttonConfIEmp.Name = "buttonConfIEmp";
+            buttonConfIEmp.Size = new Size(552, 51);
+            buttonConfIEmp.TabIndex = 24;
+            buttonConfIEmp.Text = "Confirmar ingreso";
+            buttonConfIEmp.UseVisualStyleBackColor = false;
+            buttonConfIEmp.Click += button2_Click;
             // 
-            // label2
+            // OrdenPrepNro
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 15F);
-            label2.Location = new Point(278, 20);
-            label2.Name = "label2";
-            label2.Size = new Size(207, 28);
-            label2.TabIndex = 25;
-            label2.Text = "[Orden de prep. Nro...]";
+            OrdenPrepNro.AutoSize = true;
+            OrdenPrepNro.Font = new Font("Segoe UI", 15F);
+            OrdenPrepNro.Location = new Point(318, 27);
+            OrdenPrepNro.Name = "OrdenPrepNro";
+            OrdenPrepNro.Size = new Size(265, 35);
+            OrdenPrepNro.TabIndex = 25;
+            OrdenPrepNro.Text = "[Orden de prep. Nro...]";
             // 
-            // Empaqu_y_Generar_Orden_de_Entrega_Form
+            // EmpaquetarPedidoForm
             // 
             AccessibleName = "";
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(506, 489);
-            Controls.Add(label2);
-            Controls.Add(button2);
-            Controls.Add(listView1);
-            Controls.Add(label1);
-            Margin = new Padding(2, 2, 2, 2);
-            Name = "Empaqu_y_Generar_Orden_de_Entrega_Form";
+            ClientSize = new Size(578, 652);
+            Controls.Add(OrdenPrepNro);
+            Controls.Add(buttonConfIEmp);
+            Controls.Add(listViewProdPrep);
+            Controls.Add(Prodaprep);
+            Margin = new Padding(2, 3, 2, 3);
+            Name = "EmpaquetarPedidoForm";
             Text = "Empaquetar_Pedido_y_Generar_Orden_de_Entrega_Form";
             Load += Empaqu_y_Generar_Orden_de_Entrega_Form_Load;
             ResumeLayout(false);
@@ -116,12 +116,12 @@
         }
 
         #endregion
-        private Label label1;
-        private ListView listView1;
+        private Label Prodaprep;
+        private ListView listViewProdPrep;
         private ColumnHeader Producto;
         private ColumnHeader Cantidad;
         private ColumnHeader Tipo_de_Pedido;
-        private Button button2;
-        private Label label2;
+        private Button buttonConfIEmp;
+        private Label OrdenPrepNro;
     }
 }
