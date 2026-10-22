@@ -209,6 +209,7 @@
             btnagregar.TabIndex = 16;
             btnagregar.Text = "Agregar a la Orden";
             btnagregar.UseVisualStyleBackColor = true;
+            btnagregar.Click += btnagregar_Click;
             // 
             // textcantretirar
             // 
