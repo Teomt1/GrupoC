@@ -120,7 +120,7 @@ namespace GrupoC.RegistrarOrdenDePreparacion
             FormClosing -= RegistrarOrdenDePreparacionForm_FormClosing;
             FormClosing += RegistrarOrdenDePreparacionForm_FormClosing;
 
-            // Comportamiento de teclado (no cambia la apariencia de los controles)
+            // Comportamiento de teclado 
             combodepo.KeyPress += ComboSinEscritura_KeyPress;
             combodepo.KeyDown += ComboSinEscritura_KeyDown;
             comboprodretirar.KeyPress += ComboSinEscritura_KeyPress;
@@ -147,7 +147,7 @@ namespace GrupoC.RegistrarOrdenDePreparacion
             textnombre.Clear();
             textdireccion.Clear();
 
-            datefecha.MinDate = DateTime.Today;   // no se puede elegir una fecha de retiro pasada
+            datefecha.MinDate = DateTime.Today;   
             datefecha.Value = DateTime.Today;
 
             textnomtrans.Clear();
@@ -158,7 +158,6 @@ namespace GrupoC.RegistrarOrdenDePreparacion
         /// <summary>
         /// Carga solo los depósitos donde el cliente tiene mercadería
         /// (precondición: el cliente ingresó previamente mercadería al depósito).
-        /// Reemplaza los ítems de ejemplo ("Depo 1", "Depo 2"...) que trae el Designer.
         /// </summary>
         private void CargarDepositos()
         {
@@ -180,7 +179,6 @@ namespace GrupoC.RegistrarOrdenDePreparacion
 
         /// <summary>
         /// Carga en "Productos a retirar" los productos del cliente con stock en el depósito elegido.
-        /// Reemplaza los ítems de ejemplo ("Prod 1", "Prod 2"...) que trae el Designer.
         /// </summary>
         private void CargarProductosDelDeposito()
         {
@@ -263,10 +261,8 @@ namespace GrupoC.RegistrarOrdenDePreparacion
             ActualizarSeccionEtiquetado();
         }
 
-        /// <summary>
         /// 4.1: con "Fullfilment" se muestra la sección &lt;Datos para el Etiquetado&gt;.
         /// 4.2: con "Palet Cerrado" (o sin modalidad elegida) no se muestra.
-        /// </summary>
         private void ActualizarSeccionEtiquetado()
         {
             bool mostrar = radiofullfilment.Checked;
@@ -335,7 +331,7 @@ namespace GrupoC.RegistrarOrdenDePreparacion
                 return;
             }
 
-            // Paso 9: se agrega a la orden actual (si el producto ya estaba, se suma la cantidad)
+            // Paso 9: se agrega a la orden actual
             if (itemExistente != null)
                 itemExistente.Cantidad += cantidad;
             else
@@ -349,7 +345,7 @@ namespace GrupoC.RegistrarOrdenDePreparacion
             comboprodretirar.Focus();
         }
 
-        /// <summary>Muestra el estado actual de la orden en la lista (SKU, Producto, Cantidad).</summary>
+        /// Muestra el estado actual de la orden en la lista (SKU, Producto, Cantidad).
         private void RefrescarListaOrden()
         {
             listordenact.BeginUpdate();
@@ -357,7 +353,7 @@ namespace GrupoC.RegistrarOrdenDePreparacion
 
             foreach (var item in itemsOrden)
             {
-                var fila = new ListViewItem(item.Sku);
+                var fila = new ListViewItem(item.Sku); // (Teo) Posible error, a confirmar con Andrés
                 fila.SubItems.Add(item.Nombre);
                 fila.SubItems.Add(item.Cantidad.ToString());
                 fila.Tag = item;
@@ -442,7 +438,6 @@ namespace GrupoC.RegistrarOrdenDePreparacion
             if (deposito == null)
                 RegistrarFaltante("Depósito", combodepo);
 
-            // (no se le pasa el foco a los radio buttons porque eso los tilda solos)
             if (!radiocerrado.Checked && !radiofullfilment.Checked)
                 RegistrarFaltante("Modalidad de Empaquetado", null);
 
@@ -510,7 +505,7 @@ namespace GrupoC.RegistrarOrdenDePreparacion
                 foreach (var item in itemsOrden)
                 {
                     if (!clienteLoggeado.StockMinimoPorSku.TryGetValue(item.Sku, out int minimo))
-                        continue;   // ese producto no tiene mínimo contratado
+                        continue;  
 
                     int stockRestante = deposito.StockDe(item.Sku) - item.Cantidad;
                     if (stockRestante < minimo)
@@ -552,10 +547,8 @@ namespace GrupoC.RegistrarOrdenDePreparacion
             combodepo.Focus();
         }
 
-        /// <summary>
         /// Registra la orden en estado "Pendiente" y descuenta del stock disponible
         /// las unidades pedidas (quedan comprometidas por la orden).
-        /// </summary>
         private OrdenPreparacion GuardarOrden(Deposito deposito)
         {
             bool esFullfilment = radiofullfilment.Checked;
@@ -593,7 +586,7 @@ namespace GrupoC.RegistrarOrdenDePreparacion
         // El cliente puede cancelar en cualquier momento con el botón "Cancelar"
         private void btncancelar_Click(object? sender, EventArgs e)
         {
-            Close();   // la confirmación se pide en FormClosing (también cubre la "X" de la ventana)
+            Close();  
         }
 
         private void RegistrarOrdenDePreparacionForm_FormClosing(object? sender, FormClosingEventArgs e)
@@ -690,7 +683,7 @@ namespace GrupoC.RegistrarOrdenDePreparacion
 
         private void comboBox1_SelectedIndexChanged(object? sender, EventArgs e)
         {
-            // Venía en el Form original. No está vinculado a ningún control; se deja por compatibilidad.
+            // No está vinculado a ningún control; se deja por compatibilidad.
         }
 
         #endregion
@@ -721,7 +714,7 @@ namespace GrupoC.RegistrarOrdenDePreparacion
                 Nombre = nombre;
             }
 
-            public override string ToString() => Nombre;   // texto que se ve en el ComboBox
+            public override string ToString() => Nombre;  
         }
 
         private sealed class Deposito
@@ -744,7 +737,7 @@ namespace GrupoC.RegistrarOrdenDePreparacion
 
             public void DescontarStock(string sku, int cantidad) => stockPorSku[sku] = StockDe(sku) - cantidad;
 
-            public override string ToString() => $"{Codigo} - {Nombre}";   // texto que se ve en el ComboBox
+            public override string ToString() => $"{Codigo} - {Nombre}";   
         }
 
         private sealed class ItemOrden
