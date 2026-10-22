@@ -1,4 +1,5 @@
 using GrupoC.EmpaquetarPedido;
+using GrupoC.EntregaATransportista;
 using GrupoC.IngresoStock;
 using GrupoC.RecepcionMercaderia;
 
@@ -37,8 +38,8 @@ namespace GrupoC
 
         private void button5_Click(object sender, EventArgs e)
         {
-            /*Entrega_a_Transportista entrega = new Entrega_a_Transportista();
-            entrega.Show();*/
+            EntregaATransportistaForm entrega = new EntregaATransportistaForm();
+            entrega.Show();
         }
 
         private void button6_Click(object sender, EventArgs e)
