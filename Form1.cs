@@ -2,6 +2,7 @@ using GrupoC.EmpaquetarPedido;
 using GrupoC.EntregaATransportista;
 using GrupoC.IngresoStock;
 using GrupoC.RecepcionMercaderia;
+using GrupoC.RegistrarOrdenDePreparacion;
 
 namespace GrupoC
 {
@@ -32,8 +33,8 @@ namespace GrupoC
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //GenerarOrdenSeleccionForm ordselect = new GenerarOrdenSeleccionForm();
-            //ordselect.Show();
+            RegistrarOrdenDePreparacionForm regprep = new RegistrarOrdenDePreparacionForm();
+            regprep.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
