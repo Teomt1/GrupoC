@@ -11,11 +11,9 @@ using System.Windows.Forms;
 
 namespace GrupoC.EmpaquetarPedido
 {
-    /// <summary>
-    /// Pantalla "Empaquetar pedido y generar orden de entrega" (Empaquetar_Pedido_y_Generar_Orden_de_Entrega_Form).
-    ///
-    /// ARCHIVO ÚNICO: reemplaza a EmpaquetarPedidoForm.cs y no necesita ningún otro archivo.
-    /// El Designer (EmpaquetarPedidoForm.Designer.cs) NO se modifica:
+    
+    
+    // El Designer (EmpaquetarPedidoForm.Designer.cs) NO se modifica:
     ///  - Se conservan, con el mismo nombre, todos los eventos que tenía este archivo (button1_Click,
     ///    listView1_SelectedIndexChanged, label1_Click, Empaqu_y_Generar_Orden_de_Entrega_Form_Load, etc.),
     ///    así el Designer compila igual. Quedan vacíos para que nada se ejecute dos veces.
@@ -23,15 +21,15 @@ namespace GrupoC.EmpaquetarPedido
     ///    (columna "Producto", texto "Confirmar", texto "Orden"), así funciona con el Designer tal cual está.
     ///    Ver UbicarControlesDelDesigner().
     ///
-    /// Funcionamiento (caso de uso v2):
+    /// Funcionamiento:
     ///  - Al abrir, el sistema toma la orden de preparación más vieja, muestra "Orden de prep. N° [nro]"
     ///    y carga en la grilla sus productos, cantidades y tipo de pedido.
     ///  - Productos y cantidades NO se editan: quedan como los da la orden de preparación.
     ///    El operario prepara la orden, controla contra la grilla y presiona "Confirmar ingreso".
     ///  - "Confirmar ingreso" exige al menos un producto, pide confirmación y genera la orden de entrega.
     ///  - La X de la ventana pregunta antes de salir.
-    /// Los datos de prueba y el cartel con botones personalizados están al final de este archivo.
-    /// </summary>
+    /// Los datos de prueba y el cartel con botones personalizados están al final.
+   
     public partial class EmpaquetarPedidoForm : Form
     {
         // Reglas de los datos que llegan en la orden: producto solo letras, cantidad solo números.
@@ -419,11 +417,11 @@ namespace GrupoC.EmpaquetarPedido
 
         #endregion
 
-        // =====================================================================================
+        
         //  MODELO Y DATOS DE PRUEBA (en memoria). En el sistema real saldrían de las tablas
         //  Órdenes de preparación, Detalle de orden de preparación, Órdenes de entrega y
         //  Movimientos de mercadería.
-        // =====================================================================================
+        
 
         private sealed class RenglonOrden
         {
@@ -490,7 +488,7 @@ namespace GrupoC.EmpaquetarPedido
             public IReadOnlyList<OrdenEntrega> OrdenesDeEntrega => ordenesDeEntrega;
             public IReadOnlyList<string> Movimientos => movimientos;
 
-            /// <summary>Paso 2: la orden "En preparación" de número más bajo que no tomó otro puesto.</summary>
+            /// Paso 2: la orden "En preparación" de número más bajo que no tomó otro puesto.
             public OrdenPreparacion? TomarSiguienteOrden()
             {
                 OrdenPreparacion? orden = ordenes
@@ -504,13 +502,13 @@ namespace GrupoC.EmpaquetarPedido
                 return orden;
             }
 
-            /// <summary>Salida sin confirmar: la orden sigue "En preparación" y queda libre.</summary>
+            /// Salida sin confirmar: la orden sigue "En preparación" y queda libre.
             public void LiberarOrden(OrdenPreparacion orden)
             {
                 orden.TomadaPor = null;
             }
 
-            /// <summary>Pasos 8 a 10: orden de entrega "Pendiente", orden "Preparada" y movimiento para facturar.</summary>
+            /// Pasos 8 a 10: orden de entrega "Pendiente", orden "Preparada" y movimiento para facturar.
             public OrdenEntrega GenerarOrdenDeEntrega(OrdenPreparacion orden)
             {
                 ultimaOrdenDeEntrega++;
@@ -548,10 +546,10 @@ namespace GrupoC.EmpaquetarPedido
             }
         }
 
-        // =====================================================================================
+        
         //  CARTEL MODAL con textos de botones personalizados (MessageBox no permite
         //  "Sí, descartar cambios" ni "OK" en español). Se arma por código: no necesita Designer.
-        // =====================================================================================
+        
 
         private enum TipoMensaje
         {
@@ -633,7 +631,7 @@ namespace GrupoC.EmpaquetarPedido
                 AjustarTamanio();
             }
 
-            /// <summary>Pregunta con dos botones. True si se eligió el botón principal.</summary>
+            /// Pregunta con dos botones. True si se eligió el botón principal.
             public static bool Preguntar(IWin32Window propietario, string titulo, string mensaje,
                                          string textoSi, string textoNo,
                                          TipoMensaje tipo = TipoMensaje.Advertencia, bool enfocarNo = true)
@@ -649,7 +647,7 @@ namespace GrupoC.EmpaquetarPedido
                 }
             }
 
-            /// <summary>Aviso con un solo botón.</summary>
+            /// Aviso con un solo botón.
             public static void Informar(IWin32Window propietario, string titulo, string mensaje,
                                         TipoMensaje tipo = TipoMensaje.Informacion, string textoBoton = "Aceptar",
                                         int anchoTexto = 380)

@@ -33,8 +33,8 @@ namespace GrupoC
 
         private void button4_Click(object sender, EventArgs e)
         {
-            RegistrarOrdenDePreparacionForm regprep = new RegistrarOrdenDePreparacionForm();
-            regprep.Show();
+            var cumplir = new GrupoC.CumplirOrdenSeleccion.CumplirOrdenSeleccionForm();
+            cumplir.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
