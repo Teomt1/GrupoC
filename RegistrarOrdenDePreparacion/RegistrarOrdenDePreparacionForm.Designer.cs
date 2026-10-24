@@ -209,7 +209,7 @@
             btnagregar.TabIndex = 16;
             btnagregar.Text = "Agregar a la Orden";
             btnagregar.UseVisualStyleBackColor = true;
-            btnagregar.Click += btnagregar_Click;
+            // btnagregar.Click += btnagregar_Click;
             // 
             // textcantretirar
             // 
@@ -267,7 +267,7 @@
             textnombre.Name = "textnombre";
             textnombre.Size = new Size(138, 23);
             textnombre.TabIndex = 22;
-            textnombre.KeyPress += textnombre_KeyPress;
+            //textnombre.KeyPress += textnombre_KeyPress;
             // 
             // labnombre
             // 
