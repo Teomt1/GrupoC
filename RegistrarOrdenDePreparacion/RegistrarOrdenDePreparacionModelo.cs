@@ -139,6 +139,8 @@ namespace GrupoC.RegistrarOrdenDePreparacion
             btnagregar.Click += btnagregar_Click;
             btnconfirmar.Click += btnconfirmar_Click;
             btncancelar.Click += btncancelar_Click;
+            textnomtrans.KeyPress += textsololetras_KeyPress;
+            textnombre.KeyPress += textsololetras_KeyPress;
         }
 
         private void CargarDepositos()
@@ -448,5 +450,15 @@ namespace GrupoC.RegistrarOrdenDePreparacion
         {
             MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void textsololetras_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+
     }
 }
