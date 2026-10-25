@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+namespace GrupoC.RegistrarOrdenDePreparacion;
 
-namespace GrupoC.RegistrarOrdenDePreparacion
+internal enum ModalidadEmpaquetado
 {
-    public enum ModalidadEmpaquetado
-    {
-        PaletCerrado,
-        Fullfilment
-    }
+    PaletCerrado,
+    Fullfilment
 }
