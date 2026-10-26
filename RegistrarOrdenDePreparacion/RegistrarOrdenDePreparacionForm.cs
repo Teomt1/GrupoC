@@ -136,5 +136,10 @@ namespace GrupoC.RegistrarOrdenDePreparacion
         {
             Close();
         }
+
+        private void textcantretirar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

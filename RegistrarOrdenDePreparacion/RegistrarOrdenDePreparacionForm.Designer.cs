@@ -143,7 +143,7 @@
             radiocerrado.Text = "Palet Cerrado";
             radiocerrado.UseVisualStyleBackColor = true;
             radiocerrado.CheckedChanged += radiomodalidad_CheckedChanged;
-            //
+            // 
             // radiofullfilment
             // 
             radiofullfilment.AutoSize = true;
@@ -215,6 +215,7 @@
             textcantretirar.Name = "textcantretirar";
             textcantretirar.Size = new Size(92, 23);
             textcantretirar.TabIndex = 17;
+            textcantretirar.TextChanged += textcantretirar_TextChanged;
             // 
             // labcantretirar
             // 
@@ -265,7 +266,6 @@
             textnombre.Name = "textnombre";
             textnombre.Size = new Size(138, 23);
             textnombre.TabIndex = 22;
-            //textnombre.KeyPress += textnombre_KeyPress;
             // 
             // labnombre
             // 
