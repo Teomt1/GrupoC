@@ -1,16 +1,13 @@
-﻿namespace GrupoC.IngresoStock
+namespace GrupoC.IngresoStock
 {
-    // Existencia de un SKU en una posición física del depósito (AL.3 Mercaderías)
+    // Existencia "Disponible en Guarda" de un SKU en una posición del depósito
     public class Mercaderia
     {
         public string Sku { get; }
         public string Pasillo { get; }
         public string Fila { get; }
         public string Nivel { get; }
-        public int Cantidad { get; private set; }
-        public EstadoMercaderia Estado { get; }
-
-        public string Posicion => $"{Pasillo} - {Fila} - {Nivel}";
+        public int Cantidad { get; set; }
 
         public Mercaderia(string sku, string pasillo, string fila, string nivel, int cantidad)
         {
@@ -19,17 +16,6 @@
             Fila = fila;
             Nivel = nivel;
             Cantidad = cantidad;
-            Estado = EstadoMercaderia.DisponibleEnGuarda;
-        }
-
-        public bool EstaEn(string sku, string pasillo, string fila, string nivel)
-        {
-            return Sku == sku && Pasillo == pasillo && Fila == fila && Nivel == nivel;
-        }
-
-        public void IncrementarStock(int cantidad)
-        {
-            Cantidad += cantidad;
         }
     }
 }

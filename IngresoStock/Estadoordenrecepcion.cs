@@ -1,4 +1,4 @@
-﻿namespace GrupoC.IngresoStock
+namespace GrupoC.IngresoStock
 {
     public enum EstadoOrdenRecepcion
     {

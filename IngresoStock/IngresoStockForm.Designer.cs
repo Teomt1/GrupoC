@@ -89,6 +89,7 @@
             btnBuscar.TabIndex = 2;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click;
             // 
             // txtNroOrden
             // 
@@ -212,6 +213,7 @@
             btnAgregarUbicacion.TabIndex = 10;
             btnAgregarUbicacion.Text = "Agregar Ubicación";
             btnAgregarUbicacion.UseVisualStyleBackColor = true;
+            btnAgregarUbicacion.Click += btnAgregarUbicacion_Click;
             // 
             // txtCantidadUbicar
             // 
@@ -314,6 +316,7 @@
             btnConfirmar.TabIndex = 4;
             btnConfirmar.Text = "Confirmar Ingreso";
             btnConfirmar.UseVisualStyleBackColor = true;
+            btnConfirmar.Click += btnConfirmar_Click;
             // 
             // btnCancelar
             // 
@@ -324,6 +327,7 @@
             btnCancelar.TabIndex = 5;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // listView1
             // 
@@ -379,6 +383,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "IngresoStockForm";
             Text = "Pampazon S.A. - Ingreso a Stock";
+            Load += IngresoStockForm_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
