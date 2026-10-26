@@ -21,8 +21,8 @@ namespace GrupoC.RegistrarOrdenDePreparacion
             comboprodretirar.DisplayMember = nameof(RegistrarOrdenDePreparacion.Producto.Nombre);
             comboprodretirar.Items.Clear();
 
-            datefecha.MinDate = DateTime.Today;
-            datefecha.Value = DateTime.Today;
+            datefecha.MinDate = modelo.FechaMinimaRetiro;
+            datefecha.Value = modelo.FechaRetiro;
 
             radiomodalidad_CheckedChanged(sender, e);
         }
@@ -43,24 +43,29 @@ namespace GrupoC.RegistrarOrdenDePreparacion
 
         private void radiomodalidad_CheckedChanged(object? sender, EventArgs e)
         {
+            ModalidadEmpaquetado? modalidad = null;
             if (radiocerrado.Checked)
             {
-                modelo.Modalidad = ModalidadEmpaquetado.PaletCerrado;
+                modalidad = ModalidadEmpaquetado.PaletCerrado;
             }
             else if (radiofullfilment.Checked)
             {
-                modelo.Modalidad = ModalidadEmpaquetado.Fullfilment;
+                modalidad = ModalidadEmpaquetado.Fullfilment;
             }
-            else
-            {
-                modelo.Modalidad = null;
-            }
+
+            string? mensaje = modelo.SeleccionarModalidad(modalidad);
 
             labdatosetiq.Visible = modelo.RequiereDatosEtiquetado;
             labnombre.Visible = modelo.RequiereDatosEtiquetado;
             textnombre.Visible = modelo.RequiereDatosEtiquetado;
             labdireccion.Visible = modelo.RequiereDatosEtiquetado;
             textdireccion.Visible = modelo.RequiereDatosEtiquetado;
+
+            if (mensaje != null)
+            {
+                listordenact.Items.Clear();
+                MessageBox.Show(mensaje, Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btnagregar_Click(object? sender, EventArgs e)
@@ -86,7 +91,7 @@ namespace GrupoC.RegistrarOrdenDePreparacion
             listordenact.Items.Clear();
             foreach (ItemOrden item in modelo.ItemsOrden)
             {
-                listordenact.Items.Add(new ListViewItem(new[] { item.Producto.Sku, item.Producto.Nombre, item.Cantidad.ToString() }));
+                listordenact.Items.Add(new ListViewItem(new[] { item.Producto.Sku, item.Producto.Nombre, $"{item.Cantidad} {modelo.UnidadDeCantidad}" }));
             }
 
             textcantretirar.Clear();
@@ -105,6 +110,7 @@ namespace GrupoC.RegistrarOrdenDePreparacion
                 dni = dniIngresado;
             }
 
+            modelo.FechaRetiro = datefecha.Value;
             modelo.NombreDestinatario = textnombre.Text;
             modelo.DireccionDestino = textdireccion.Text;
             modelo.NombreTransportista = textnomtrans.Text;
@@ -129,7 +135,7 @@ namespace GrupoC.RegistrarOrdenDePreparacion
             radiocerrado.Checked = false;
             radiofullfilment.Checked = false;
             textcantretirar.Clear();
-            datefecha.Value = DateTime.Today;
+            datefecha.Value = modelo.FechaRetiro;
             textnombre.Clear();
             textdireccion.Clear();
             textnomtrans.Clear();
@@ -142,7 +148,6 @@ namespace GrupoC.RegistrarOrdenDePreparacion
             Close();
         }
 
-        // Bloquea al tipear cualquier caracter que no sea un dígito.
         private void textsolonumeros_KeyPress(object? sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -151,47 +156,42 @@ namespace GrupoC.RegistrarOrdenDePreparacion
             }
         }
 
-        // Bloquea al tipear cualquier caracter que no sea una letra o un espacio.
+        private void textsolonumeros_TextChanged(object? sender, EventArgs e)
+        {
+            if (sender is not TextBox textBox)
+            {
+                return;
+            }
+
+            string filtrado = new string(textBox.Text.Where(char.IsDigit).ToArray());
+            if (filtrado != textBox.Text)
+            {
+                textBox.Text = filtrado;
+                textBox.SelectionStart = filtrado.Length;
+            }
+        }
+
         private void textsololetras_KeyPress(object? sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != ' ')
+            if (!char.IsControl(e.KeyChar) && !modelo.EsCaracterValidoParaNombre(e.KeyChar))
             {
                 e.Handled = true;
             }
         }
 
-        // Los TextChanged quitan los caracteres inválidos que lleguen al pegar texto.
-        private void textcantretirar_TextChanged(object? sender, EventArgs e)
+        private void textsololetras_TextChanged(object? sender, EventArgs e)
         {
-            FiltrarTexto(textcantretirar, char.IsDigit);
-        }
-
-        private void textDNI_TextChanged(object? sender, EventArgs e)
-        {
-            FiltrarTexto(textDNI, char.IsDigit);
-        }
-
-        private void textnomtrans_TextChanged(object? sender, EventArgs e)
-        {
-            FiltrarTexto(textnomtrans, c => char.IsLetter(c) || c == ' ');
-        }
-
-        private void textnombre_TextChanged(object? sender, EventArgs e)
-        {
-            FiltrarTexto(textnombre, c => char.IsLetter(c) || c == ' ');
-        }
-
-        private static void FiltrarTexto(TextBox textBox, Func<char, bool> esValido)
-        {
-            string filtrado = new string(textBox.Text.Where(esValido).ToArray());
-            if (filtrado == textBox.Text)
+            if (sender is not TextBox textBox)
             {
                 return;
             }
 
-            int posicion = Math.Max(0, textBox.SelectionStart - (textBox.Text.Length - filtrado.Length));
-            textBox.Text = filtrado;
-            textBox.SelectionStart = Math.Min(posicion, filtrado.Length);
+            string filtrado = modelo.QuitarCaracteresInvalidosDeNombre(textBox.Text);
+            if (filtrado != textBox.Text)
+            {
+                textBox.Text = filtrado;
+                textBox.SelectionStart = filtrado.Length;
+            }
         }
     }
 }

@@ -87,7 +87,7 @@
             textnomtrans.Name = "textnomtrans";
             textnomtrans.Size = new Size(122, 23);
             textnomtrans.TabIndex = 2;
-            textnomtrans.TextChanged += textnomtrans_TextChanged;
+            textnomtrans.TextChanged += textsololetras_TextChanged;
             textnomtrans.KeyPress += textsololetras_KeyPress;
             // 
             // labdatostrans
@@ -124,7 +124,7 @@
             textDNI.Name = "textDNI";
             textDNI.Size = new Size(79, 23);
             textDNI.TabIndex = 6;
-            textDNI.TextChanged += textDNI_TextChanged;
+            textDNI.TextChanged += textsolonumeros_TextChanged;
             textDNI.KeyPress += textsolonumeros_KeyPress;
             // 
             // labmodalidad
@@ -220,7 +220,7 @@
             textcantretirar.Name = "textcantretirar";
             textcantretirar.Size = new Size(92, 23);
             textcantretirar.TabIndex = 17;
-            textcantretirar.TextChanged += textcantretirar_TextChanged;
+            textcantretirar.TextChanged += textsolonumeros_TextChanged;
             textcantretirar.KeyPress += textsolonumeros_KeyPress;
             // 
             // labcantretirar
@@ -272,7 +272,7 @@
             textnombre.Name = "textnombre";
             textnombre.Size = new Size(138, 23);
             textnombre.TabIndex = 22;
-            textnombre.TextChanged += textnombre_TextChanged;
+            textnombre.TextChanged += textsololetras_TextChanged;
             textnombre.KeyPress += textsololetras_KeyPress;
             // 
             // labnombre
