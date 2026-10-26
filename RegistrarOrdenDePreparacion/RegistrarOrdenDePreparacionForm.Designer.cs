@@ -71,7 +71,6 @@
             labusuario.Size = new Size(50, 15);
             labusuario.TabIndex = 0;
             labusuario.Text = "Usuario:";
-            labusuario.Click += label1_Click;
             // 
             // labtemp
             // 
@@ -88,7 +87,8 @@
             textnomtrans.Name = "textnomtrans";
             textnomtrans.Size = new Size(122, 23);
             textnomtrans.TabIndex = 2;
-            textnomtrans.TextChanged += textBox1_TextChanged;
+            textnomtrans.TextChanged += textsololetras_TextChanged;
+            textnomtrans.KeyPress += textsololetras_KeyPress;
             // 
             // labdatostrans
             // 
@@ -107,7 +107,6 @@
             labnomtrans.Size = new Size(51, 15);
             labnomtrans.TabIndex = 4;
             labnomtrans.Text = "Nombre";
-            labnomtrans.Click += label4_Click;
             // 
             // labDNI
             // 
@@ -125,7 +124,8 @@
             textDNI.Name = "textDNI";
             textDNI.Size = new Size(79, 23);
             textDNI.TabIndex = 6;
-            textDNI.TextChanged += textBox2_TextChanged;
+            textDNI.TextChanged += textsolonumeros_TextChanged;
+            textDNI.KeyPress += textsolonumeros_KeyPress;
             // 
             // labmodalidad
             // 
@@ -146,6 +146,7 @@
             radiocerrado.TabStop = true;
             radiocerrado.Text = "Palet Cerrado";
             radiocerrado.UseVisualStyleBackColor = true;
+            radiocerrado.CheckedChanged += radiomodalidad_CheckedChanged;
             // 
             // radiofullfilment
             // 
@@ -157,6 +158,7 @@
             radiofullfilment.TabStop = true;
             radiofullfilment.Text = "Fullfilment";
             radiofullfilment.UseVisualStyleBackColor = true;
+            radiofullfilment.CheckedChanged += radiomodalidad_CheckedChanged;
             // 
             // datefecha
             // 
@@ -185,6 +187,7 @@
             // 
             // comboprodretirar
             // 
+            comboprodretirar.DropDownStyle = ComboBoxStyle.DropDownList;
             comboprodretirar.FormattingEnabled = true;
             comboprodretirar.Items.AddRange(new object[] { "Prod 1", "Prod 2", "Prod 3" });
             comboprodretirar.Location = new Point(12, 213);
@@ -209,7 +212,7 @@
             btnagregar.TabIndex = 16;
             btnagregar.Text = "Agregar a la Orden";
             btnagregar.UseVisualStyleBackColor = true;
-            // btnagregar.Click += btnagregar_Click;
+            btnagregar.Click += btnagregar_Click;
             // 
             // textcantretirar
             // 
@@ -217,6 +220,8 @@
             textcantretirar.Name = "textcantretirar";
             textcantretirar.Size = new Size(92, 23);
             textcantretirar.TabIndex = 17;
+            textcantretirar.TextChanged += textsolonumeros_TextChanged;
+            textcantretirar.KeyPress += textsolonumeros_KeyPress;
             // 
             // labcantretirar
             // 
@@ -267,7 +272,8 @@
             textnombre.Name = "textnombre";
             textnombre.Size = new Size(138, 23);
             textnombre.TabIndex = 22;
-            //textnombre.KeyPress += textnombre_KeyPress;
+            textnombre.TextChanged += textsololetras_TextChanged;
+            textnombre.KeyPress += textsololetras_KeyPress;
             // 
             // labnombre
             // 
@@ -319,6 +325,7 @@
             btnconfirmar.TabIndex = 28;
             btnconfirmar.Text = "Confirmar Orden";
             btnconfirmar.UseVisualStyleBackColor = false;
+            btnconfirmar.Click += btnconfirmar_Click;
             // 
             // btncancelar
             // 
@@ -328,6 +335,7 @@
             btncancelar.TabIndex = 29;
             btncancelar.Text = "Cancelar";
             btncancelar.UseVisualStyleBackColor = true;
+            btncancelar.Click += btncancelar_Click;
             // 
             // labdepo
             // 
@@ -340,12 +348,14 @@
             // 
             // combodepo
             // 
+            combodepo.DropDownStyle = ComboBoxStyle.DropDownList;
             combodepo.FormattingEnabled = true;
             combodepo.Items.AddRange(new object[] { "Depo 1", "Depo 2", "Depo 3" });
             combodepo.Location = new Point(12, 62);
             combodepo.Name = "combodepo";
             combodepo.Size = new Size(343, 23);
             combodepo.TabIndex = 31;
+            combodepo.SelectedIndexChanged += combodepo_SelectedIndexChanged;
             // 
             // RegistrarOrdenDePreparacionForm
             // 
@@ -384,6 +394,7 @@
             Controls.Add(labusuario);
             Name = "RegistrarOrdenDePreparacionForm";
             Text = "Registrar_orden_de_preparación";
+            Load += RegistrarOrdenDePreparacionForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

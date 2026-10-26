@@ -377,6 +377,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
+            BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(825, 720);
             Controls.Add(buttonQuitIRem);
             Controls.Add(listViewRem);
@@ -405,9 +406,10 @@
             Controls.Add(NRem);
             Controls.Add(ClieRem);
             Controls.Add(Remito);
+            Cursor = Cursors.AppStarting;
             Margin = new Padding(2, 3, 2, 3);
             Name = "RecepcionMercaderiaForm";
-            Text = "Vlidar";
+            Text = "RecepcionMercaderia";
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).EndInit();
             ResumeLayout(false);
             PerformLayout();

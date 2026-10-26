@@ -1,23 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+namespace GrupoC.RegistrarOrdenDePreparacion;
 
-namespace GrupoC.RegistrarOrdenDePreparacion
+internal class StockProducto
 {
-    public class StockProducto
-    {
-        public Producto Producto { get; }
-        public int Cantidad { get; private set; }
+    public required Producto Producto { get; set; }
+    public int CantidadPalets { get; set; }
+    // Unidades de palets ya abiertos (no cuentan como palets completos).
+    public int UnidadesSueltas { get; set; }
 
-        public StockProducto(Producto producto, int cantidad)
-        {
-            Producto = producto;
-            Cantidad = cantidad;
-        }
-
-        public void Descontar(int cantidad)
-        {
-            Cantidad -= cantidad;
-        }
-    }
+    public int CantidadUnidades => CantidadPalets * Producto.UnidadesPorPalet + UnidadesSueltas;
 }
