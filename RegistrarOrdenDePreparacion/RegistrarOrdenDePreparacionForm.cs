@@ -21,6 +21,9 @@ namespace GrupoC.RegistrarOrdenDePreparacion
             comboprodretirar.DisplayMember = nameof(RegistrarOrdenDePreparacion.Producto.Nombre);
             comboprodretirar.Items.Clear();
 
+            datefecha.MinDate = DateTime.Today;
+            datefecha.Value = DateTime.Today;
+
             radiomodalidad_CheckedChanged(sender, e);
         }
 
@@ -121,6 +124,8 @@ namespace GrupoC.RegistrarOrdenDePreparacion
             }
 
             combodepo.SelectedIndex = -1;
+            comboprodretirar.Items.Clear();
+            comboprodretirar.SelectedIndex = -1;
             radiocerrado.Checked = false;
             radiofullfilment.Checked = false;
             textcantretirar.Clear();
@@ -137,9 +142,56 @@ namespace GrupoC.RegistrarOrdenDePreparacion
             Close();
         }
 
-        private void textcantretirar_TextChanged(object sender, EventArgs e)
+        // Bloquea al tipear cualquier caracter que no sea un dígito.
+        private void textsolonumeros_KeyPress(object? sender, KeyPressEventArgs e)
         {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
 
+        // Bloquea al tipear cualquier caracter que no sea una letra o un espacio.
+        private void textsololetras_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
+
+        // Los TextChanged quitan los caracteres inválidos que lleguen al pegar texto.
+        private void textcantretirar_TextChanged(object? sender, EventArgs e)
+        {
+            FiltrarTexto(textcantretirar, char.IsDigit);
+        }
+
+        private void textDNI_TextChanged(object? sender, EventArgs e)
+        {
+            FiltrarTexto(textDNI, char.IsDigit);
+        }
+
+        private void textnomtrans_TextChanged(object? sender, EventArgs e)
+        {
+            FiltrarTexto(textnomtrans, c => char.IsLetter(c) || c == ' ');
+        }
+
+        private void textnombre_TextChanged(object? sender, EventArgs e)
+        {
+            FiltrarTexto(textnombre, c => char.IsLetter(c) || c == ' ');
+        }
+
+        private static void FiltrarTexto(TextBox textBox, Func<char, bool> esValido)
+        {
+            string filtrado = new string(textBox.Text.Where(esValido).ToArray());
+            if (filtrado == textBox.Text)
+            {
+                return;
+            }
+
+            int posicion = Math.Max(0, textBox.SelectionStart - (textBox.Text.Length - filtrado.Length));
+            textBox.Text = filtrado;
+            textBox.SelectionStart = Math.Min(posicion, filtrado.Length);
         }
     }
 }

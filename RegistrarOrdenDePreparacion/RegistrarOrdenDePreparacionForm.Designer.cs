@@ -87,6 +87,8 @@
             textnomtrans.Name = "textnomtrans";
             textnomtrans.Size = new Size(122, 23);
             textnomtrans.TabIndex = 2;
+            textnomtrans.TextChanged += textnomtrans_TextChanged;
+            textnomtrans.KeyPress += textsololetras_KeyPress;
             // 
             // labdatostrans
             // 
@@ -122,6 +124,8 @@
             textDNI.Name = "textDNI";
             textDNI.Size = new Size(79, 23);
             textDNI.TabIndex = 6;
+            textDNI.TextChanged += textDNI_TextChanged;
+            textDNI.KeyPress += textsolonumeros_KeyPress;
             // 
             // labmodalidad
             // 
@@ -183,6 +187,7 @@
             // 
             // comboprodretirar
             // 
+            comboprodretirar.DropDownStyle = ComboBoxStyle.DropDownList;
             comboprodretirar.FormattingEnabled = true;
             comboprodretirar.Items.AddRange(new object[] { "Prod 1", "Prod 2", "Prod 3" });
             comboprodretirar.Location = new Point(12, 213);
@@ -216,6 +221,7 @@
             textcantretirar.Size = new Size(92, 23);
             textcantretirar.TabIndex = 17;
             textcantretirar.TextChanged += textcantretirar_TextChanged;
+            textcantretirar.KeyPress += textsolonumeros_KeyPress;
             // 
             // labcantretirar
             // 
@@ -266,6 +272,8 @@
             textnombre.Name = "textnombre";
             textnombre.Size = new Size(138, 23);
             textnombre.TabIndex = 22;
+            textnombre.TextChanged += textnombre_TextChanged;
+            textnombre.KeyPress += textsololetras_KeyPress;
             // 
             // labnombre
             // 
@@ -340,6 +348,7 @@
             // 
             // combodepo
             // 
+            combodepo.DropDownStyle = ComboBoxStyle.DropDownList;
             combodepo.FormattingEnabled = true;
             combodepo.Items.AddRange(new object[] { "Depo 1", "Depo 2", "Depo 3" });
             combodepo.Location = new Point(12, 62);
