@@ -172,9 +172,6 @@ internal class RegistrarOrdenDePreparacionModelo
             return "Error: por favor rellene todos los campos antes de completar la orden";
         }
 
-        bool nombreDestinatarioInvalido = RequiereDatosEtiquetado
-            && QuitarCaracteresInvalidosDeNombre(NombreDestinatario) != NombreDestinatario;
-
         if (ItemsOrden.Count == 0)
         {
             return "Error: la orden de preparación debe contener al menos 1 producto";

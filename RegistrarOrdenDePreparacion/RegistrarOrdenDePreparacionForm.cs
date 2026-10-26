@@ -70,16 +70,7 @@ namespace GrupoC.RegistrarOrdenDePreparacion
 
         private void btnagregar_Click(object? sender, EventArgs e)
         {
-            int? cantidad = null;
-            if (!string.IsNullOrWhiteSpace(textcantretirar.Text))
-            {
-                if (!int.TryParse(textcantretirar.Text, out int cantidadIngresada))
-                {
-                    MessageBox.Show("Error: la cantidad a retirar debe ser un número entero", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                cantidad = cantidadIngresada;
-            }
+            int? cantidad = int.TryParse(textcantretirar.Text, out int cantidadIngresada) ? cantidadIngresada : null;
 
             string? error = modelo.AgregarProducto(comboprodretirar.SelectedItem as Producto, cantidad);
             if (error != null)
@@ -99,16 +90,7 @@ namespace GrupoC.RegistrarOrdenDePreparacion
 
         private void btnconfirmar_Click(object? sender, EventArgs e)
         {
-            int? dni = null;
-            if (!string.IsNullOrWhiteSpace(textDNI.Text))
-            {
-                if (!int.TryParse(textDNI.Text, out int dniIngresado))
-                {
-                    MessageBox.Show("Error: el DNI debe ser un número entero", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                dni = dniIngresado;
-            }
+            int? dni = int.TryParse(textDNI.Text, out int dniIngresado) ? dniIngresado : null;
 
             modelo.FechaRetiro = datefecha.Value;
             modelo.NombreDestinatario = textnombre.Text;
