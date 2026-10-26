@@ -1,12 +1,11 @@
 ﻿using System.Drawing.Printing;
+using System.Globalization;
 
 namespace GrupoC.EntregaATransportista
 {
     public partial class EntregaATransportistaForm : Form
     {
         private readonly EntregaATransportistaModel modelo = new();
-        private bool cerrandoPorCancelar;
-        private int paginaImpresion;
 
         public EntregaATransportistaForm()
         {
@@ -15,18 +14,28 @@ namespace GrupoC.EntregaATransportista
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            var error = modelo.Buscar(txtDni.Text);
+            // Única validación del formulario: que el DNI se pueda convertir a entero (sin signo, puntos ni espacios).
+            string? error;
+            if (int.TryParse(txtDni.Text, NumberStyles.None, CultureInfo.InvariantCulture, out int dni))
+            {
+                error = modelo.Buscar(dni);
+            }
+            else
+            {
+                modelo.Reiniciar();
+                error = "Ingrese un DNI válido";
+            }
 
             // Si el transportista está autorizado pero sin órdenes, el nombre queda a la vista.
             txtTransportista.Text = modelo.TransportistaNombre ?? "";
             lstDetalle.Items.Clear();
-            foreach (var orden in modelo.Ordenes)
+            foreach (var orden in modelo.OrdenesAEntregar)
             {
-                var item = new ListViewItem(orden.OrdenPreparacion.Numero.ToString());
-                item.SubItems.Add(orden.OrdenEntrega.CantidadPaquetes.ToString());
+                var item = new ListViewItem(orden.NumeroOrdenPreparacion.ToString());
+                item.SubItems.Add(orden.CantidadPaquetes.ToString());
                 lstDetalle.Items.Add(item);
             }
-            ActualizarControles();
+            btnGenerarRemito.Enabled = modelo.PuedeGenerarRemito;
 
             if (error != null)
                 MessageBox.Show(error, Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -40,29 +49,81 @@ namespace GrupoC.EntregaATransportista
                 modelo.Reiniciar();
                 txtTransportista.Clear();
                 lstDetalle.Items.Clear();
-                ActualizarControles();
+                btnGenerarRemito.Enabled = modelo.PuedeGenerarRemito;
             }
         }
 
         private void btnGenerarRemito_Click(object sender, EventArgs e)
         {
             var remito = modelo.GenerarRemito();
-            ImprimirRemito();
+
+            // Impresión del remito: página 1 original, página 2 copia para firmar.
+            using var documento = new PrintDocument { DocumentName = $"Remito {remito.Numero}" };
+            int pagina = 0;
+            documento.PrintPage += (s, ev) =>
+            {
+                var g = ev.Graphics!;
+                using var fuenteTitulo = new Font("Segoe UI", 16, FontStyle.Bold);
+                using var fuente = new Font("Segoe UI", 11);
+                float x = ev.MarginBounds.Left;
+                float y = ev.MarginBounds.Top;
+                float renglon = fuente.GetHeight(g) + 4;
+
+                g.DrawString($"REMITO DE ENTREGA N° {remito.Numero} - {(pagina == 0 ? "ORIGINAL" : "COPIA")}", fuenteTitulo, Brushes.Black, x, y);
+                y += fuenteTitulo.GetHeight(g) + 12;
+
+                g.DrawString($"Fecha y hora: {remito.FechaHora:dd/MM/yyyy HH:mm}", fuente, Brushes.Black, x, y); y += renglon;
+                g.DrawString($"Depósito: {remito.CodigoDeposito}", fuente, Brushes.Black, x, y); y += renglon;
+                g.DrawString($"Transportista: {remito.TransportistaNombre} - DNI {remito.TransportistaDni}", fuente, Brushes.Black, x, y); y += renglon;
+                g.DrawString($"Usuario: {remito.CodigoUsuario}", fuente, Brushes.Black, x, y); y += renglon * 2;
+
+                g.DrawString("Orden de preparación", fuente, Brushes.Black, x, y);
+                g.DrawString("Paquetes", fuente, Brushes.Black, x + 250, y);
+                y += renglon;
+                foreach (var orden in modelo.OrdenesAEntregar)
+                {
+                    g.DrawString(orden.NumeroOrdenPreparacion.ToString(), fuente, Brushes.Black, x, y);
+                    g.DrawString(orden.CantidadPaquetes.ToString(), fuente, Brushes.Black, x + 250, y);
+                    y += renglon;
+                }
+                y += renglon;
+                g.DrawString($"Total de paquetes: {modelo.OrdenesAEntregar.Sum(o => o.CantidadPaquetes)}", fuente, Brushes.Black, x, y);
+
+                if (pagina == 1)
+                {
+                    y += renglon * 4;
+                    g.DrawString("Firma del transportista: ______________________________", fuente, Brushes.Black, x, y);
+                }
+
+                pagina++;
+                ev.HasMorePages = pagina < 2;
+                if (!ev.HasMorePages)
+                    pagina = 0;
+            };
+            using var vistaPrevia = new PrintPreviewDialog { Document = documento, Width = 800, Height = 900 };
+            vistaPrevia.ShowDialog(this);
+
             MessageBox.Show($"Remito N° {remito.Numero} generado. Entregue el original y solicite la firma de la copia",
                 Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            ActualizarControles();
+
+            txtDni.Enabled = modelo.PuedeBuscar;
+            btnBuscar.Enabled = modelo.PuedeBuscar;
+            btnGenerarRemito.Enabled = modelo.PuedeGenerarRemito;
+            chkRemitoFirmado.Enabled = modelo.PuedeMarcarRemitoFirmado;
+            btnConfirmarDespacho.Enabled = modelo.PuedeConfirmarDespacho;
         }
 
         private void chkRemitoFirmado_CheckedChanged(object sender, EventArgs e)
         {
-            ActualizarControles();
+            modelo.RemitoFirmado = chkRemitoFirmado.Checked;
+            btnConfirmarDespacho.Enabled = modelo.PuedeConfirmarDespacho;
         }
 
         private void btnConfirmarDespacho_Click(object sender, EventArgs e)
         {
             var remito = modelo.Remito!;
             var respuesta = MessageBox.Show(
-                $"¿Confirma el despacho de {modelo.Ordenes.Count} órdenes al transportista {remito.TransportistaNombre} con el remito N° {remito.Numero}?",
+                $"¿Confirma el despacho de {modelo.OrdenesAEntregar.Count} órdenes al transportista {remito.TransportistaNombre} con el remito N° {remito.Numero}?",
                 Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta != DialogResult.Yes)
                 return;
@@ -70,116 +131,44 @@ namespace GrupoC.EntregaATransportista
             modelo.ConfirmarDespacho();
             MessageBox.Show($"Despacho confirmado. Remito N° {remito.Numero}", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            // Pantalla lista para el siguiente transportista.
             modelo.Reiniciar();
-            LimpiarPantalla();
+            txtTransportista.Clear();
+            txtDni.Clear();
+            lstDetalle.Items.Clear();
+            chkRemitoFirmado.Checked = false;
+            txtDni.Enabled = modelo.PuedeBuscar;
+            btnBuscar.Enabled = modelo.PuedeBuscar;
+            btnGenerarRemito.Enabled = modelo.PuedeGenerarRemito;
+            chkRemitoFirmado.Enabled = modelo.PuedeMarcarRemitoFirmado;
+            btnConfirmarDespacho.Enabled = modelo.PuedeConfirmarDespacho;
+            txtDni.Focus();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            if (!ConfirmarCancelacion())
+            var respuesta = MessageBox.Show("¿Desea cancelar la entrega? No se registrará el despacho",
+                Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (respuesta != DialogResult.Yes)
                 return;
 
-            cerrandoPorCancelar = true;
+            // Anula el remito si se había generado; después de esto el cierre no vuelve a preguntar.
+            modelo.Cancelar();
             Close();
         }
 
         private void EntregaATransportistaForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Cerrar la pantalla con un remito emitido equivale a cancelar la entrega.
-            if (cerrandoPorCancelar || modelo.Remito?.Estado != EstadoRemito.Emitido)
+            if (modelo.Remito?.Estado != EstadoRemito.Emitido)
                 return;
 
-            if (!ConfirmarCancelacion())
-                e.Cancel = true;
-        }
-
-        private bool ConfirmarCancelacion()
-        {
             var respuesta = MessageBox.Show("¿Desea cancelar la entrega? No se registrará el despacho",
                 Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (respuesta != DialogResult.Yes)
-                return false;
-
-            modelo.Cancelar();
-            return true;
-        }
-
-        private void LimpiarPantalla()
-        {
-            txtTransportista.Clear();
-            txtDni.Clear();
-            lstDetalle.Items.Clear();
-            chkRemitoFirmado.Checked = false;
-            ActualizarControles();
-            txtDni.Focus();
-        }
-
-        private void ActualizarControles()
-        {
-            bool remitoGenerado = modelo.Remito != null;
-
-            txtDni.Enabled = !remitoGenerado;
-            btnBuscar.Enabled = !remitoGenerado;
-            btnGenerarRemito.Enabled = !remitoGenerado && modelo.Ordenes.Count > 0;
-
-            chkRemitoFirmado.Enabled = remitoGenerado;
-            if (!remitoGenerado)
-                chkRemitoFirmado.Checked = false;
-
-            btnConfirmarDespacho.Enabled = remitoGenerado && chkRemitoFirmado.Checked;
-        }
-
-        private void ImprimirRemito()
-        {
-            using var documento = new PrintDocument { DocumentName = $"Remito {modelo.Remito!.Numero}" };
-            paginaImpresion = 0;
-            documento.PrintPage += Documento_PrintPage;
-
-            using var vistaPrevia = new PrintPreviewDialog { Document = documento, Width = 800, Height = 900 };
-            vistaPrevia.ShowDialog(this);
-        }
-
-        // Página 1: original, página 2: copia para firmar.
-        private void Documento_PrintPage(object sender, PrintPageEventArgs e)
-        {
-            var remito = modelo.Remito!;
-            var g = e.Graphics!;
-            using var fuenteTitulo = new Font("Segoe UI", 16, FontStyle.Bold);
-            using var fuente = new Font("Segoe UI", 11);
-            float x = e.MarginBounds.Left;
-            float y = e.MarginBounds.Top;
-            float renglon = fuente.GetHeight(g) + 4;
-
-            g.DrawString($"REMITO DE ENTREGA N° {remito.Numero} - {(paginaImpresion == 0 ? "ORIGINAL" : "COPIA")}", fuenteTitulo, Brushes.Black, x, y);
-            y += fuenteTitulo.GetHeight(g) + 12;
-
-            g.DrawString($"Fecha y hora: {remito.FechaHora:dd/MM/yyyy HH:mm}", fuente, Brushes.Black, x, y); y += renglon;
-            g.DrawString($"Depósito: {remito.CodigoDeposito}", fuente, Brushes.Black, x, y); y += renglon;
-            g.DrawString($"Transportista: {remito.TransportistaNombre} - DNI {remito.TransportistaDni}", fuente, Brushes.Black, x, y); y += renglon;
-            g.DrawString($"Usuario: {remito.CodigoUsuario}", fuente, Brushes.Black, x, y); y += renglon * 2;
-
-            g.DrawString("Orden de preparación", fuente, Brushes.Black, x, y);
-            g.DrawString("Paquetes", fuente, Brushes.Black, x + 250, y);
-            y += renglon;
-            foreach (var orden in modelo.Ordenes)
-            {
-                g.DrawString(orden.OrdenPreparacion.Numero.ToString(), fuente, Brushes.Black, x, y);
-                g.DrawString(orden.OrdenEntrega.CantidadPaquetes.ToString(), fuente, Brushes.Black, x + 250, y);
-                y += renglon;
-            }
-            y += renglon;
-            g.DrawString($"Total de paquetes: {modelo.Ordenes.Sum(o => o.OrdenEntrega.CantidadPaquetes)}", fuente, Brushes.Black, x, y);
-
-            if (paginaImpresion == 1)
-            {
-                y += renglon * 4;
-                g.DrawString("Firma del transportista: ______________________________", fuente, Brushes.Black, x, y);
-            }
-
-            paginaImpresion++;
-            e.HasMorePages = paginaImpresion < 2;
-            if (!e.HasMorePages)
-                paginaImpresion = 0;
+            if (respuesta == DialogResult.Yes)
+                modelo.Cancelar();
+            else
+                e.Cancel = true;
         }
     }
 }
