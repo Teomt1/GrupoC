@@ -116,6 +116,7 @@
             btnConfirmar.TabIndex = 0;
             btnConfirmar.Text = "Confirmar entrega a Preparación";
             btnConfirmar.UseVisualStyleBackColor = true;
+            btnConfirmar.Click += btnConfirmar_Click;
             // 
             // CumplirOrdenSeleccionForm
             // 
@@ -134,6 +135,7 @@
             Name = "CumplirOrdenSeleccionForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cumplir orden de selección";
+            Shown += CumplirOrdenSeleccionForm_Shown;
             ResumeLayout(false);
             PerformLayout();
         }
