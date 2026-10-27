@@ -1,9 +1,8 @@
-namespace GrupoC.EntregaATransportista
+namespace GrupoC.EntregaATransportista;
+
+internal enum EstadoRemito
 {
-    public enum EstadoRemito
-    {
-        Emitido,
-        Firmado,
-        Anulado
-    }
+    Emitido,
+    Firmado,
+    Anulado
 }

@@ -1,9 +1,8 @@
-namespace GrupoC.EntregaATransportista
+namespace GrupoC.EntregaATransportista;
+
+internal enum EstadoOrdenPreparacion
 {
-    public enum EstadoOrdenPreparacion
-    {
-        Pendiente,
-        Preparada,
-        Cumplida
-    }
+    Pendiente,
+    Preparada,
+    Cumplida
 }

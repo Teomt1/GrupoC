@@ -1,9 +1,8 @@
-namespace GrupoC.EntregaATransportista
+namespace GrupoC.EntregaATransportista;
+
+internal class DetalleRemitoEntrega
 {
-    public class DetalleRemitoEntrega
-    {
-        public int NumeroRemito { get; set; }
-        public int NumeroOrdenPreparacion { get; set; }
-        public int CantidadPaquetes { get; set; }
-    }
+    public int NumeroRemito { get; set; }
+    public int NumeroOrdenPreparacion { get; set; }
+    public int CantidadPaquetes { get; set; }
 }
