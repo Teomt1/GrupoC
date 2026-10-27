@@ -1,7 +1,7 @@
 #nullable enable
 namespace GrupoC.EntregaATransportista;
 
-internal class EntregaATransportistaModel
+internal class EntregaATransportistaModelo
 {
     // Usuario identificado en el sistema y su depósito.
     public string CodigoUsuario { get; } = "OPD01";

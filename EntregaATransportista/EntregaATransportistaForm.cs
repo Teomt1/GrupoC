@@ -5,7 +5,7 @@ namespace GrupoC.EntregaATransportista
 {
     public partial class EntregaATransportistaForm : Form
     {
-        private readonly EntregaATransportistaModel modelo = new();
+        private readonly EntregaATransportistaModelo modelo = new();
 
         public EntregaATransportistaForm()
         {
