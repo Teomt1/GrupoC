@@ -35,6 +35,16 @@ namespace GrupoC.EntregaATransportista
 
         private void txtDni_TextChanged(object? sender, EventArgs e)
         {
+            // El DNI solo admite números: se quita cualquier otro carácter, también si se pega texto.
+            string filtrado = new string(txtDni.Text.Where(char.IsAsciiDigit).ToArray());
+            if (filtrado != txtDni.Text)
+            {
+                // Al reasignar el texto el evento se vuelve a disparar con el valor ya filtrado.
+                txtDni.Text = filtrado;
+                txtDni.SelectionStart = filtrado.Length;
+                return;
+            }
+
             // Si cambia el DNI después de buscar, el nombre y la grilla dejan de corresponder.
             if (modelo.Remito == null && (modelo.TransportistaNombre != null || lstDetalle.Items.Count > 0))
             {
