@@ -10,9 +10,6 @@ namespace GrupoC.IngresoStock
         public IngresoStockForm()
         {
             InitializeComponent();
-
-            modelo.MensajeEmitido += modelo_MensajeEmitido;
-            modelo.DatosActualizados += modelo_DatosActualizados;
         }
 
         private void IngresoStockForm_Load(object sender, EventArgs e)
@@ -28,7 +25,14 @@ namespace GrupoC.IngresoStock
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             modelo.NumeroOrden = txtNroOrden.Text;
-            modelo.BuscarOrden();
+
+            string? error = modelo.BuscarOrden();
+            if (error != null)
+            {
+                MessageBox.Show(error, Text);
+            }
+
+            MostrarDatos();
         }
 
         private void btnAgregarUbicacion_Click(object sender, EventArgs e)
@@ -38,7 +42,16 @@ namespace GrupoC.IngresoStock
             modelo.Pasillo = cmbPasilloX.Text;
             modelo.Fila = cmbFilaY.Text;
             modelo.Nivel = cmbNivelZ.Text;
-            modelo.AgregarUbicacion();
+
+            string? error = modelo.AgregarUbicacion();
+            if (error != null)
+            {
+                MessageBox.Show(error, Text);
+                txtCantidadUbicar.Text = modelo.Cantidad;
+                return;
+            }
+
+            MostrarDatos();
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,25 +64,36 @@ namespace GrupoC.IngresoStock
         // Botón "Quitar seleccionada"
         private void button1_Click(object sender, EventArgs e)
         {
-            modelo.QuitarUbicacion();
+            string? error = modelo.QuitarUbicacion();
+            if (error != null)
+            {
+                MessageBox.Show(error, Text);
+                return;
+            }
+
+            MostrarDatos();
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            modelo.ConfirmarIngreso();
+            string? error = modelo.ValidarIngreso();
+            if (error != null)
+            {
+                MessageBox.Show(error, Text);
+                return;
+            }
+
+            MessageBox.Show(modelo.ConfirmarIngreso(), Text);
+            MostrarDatos();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             modelo.Cancelar();
+            MostrarDatos();
         }
 
-        private void modelo_MensajeEmitido(object? sender, string mensaje)
-        {
-            MessageBox.Show(mensaje, Text);
-        }
-
-        private void modelo_DatosActualizados(object? sender, EventArgs e)
+        private void MostrarDatos()
         {
             txtNroOrden.Text = modelo.NumeroOrden;
             txtClienteOrigen.Text = modelo.ClienteOrigen;

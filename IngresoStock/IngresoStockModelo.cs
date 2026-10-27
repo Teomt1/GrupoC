@@ -6,12 +6,6 @@ namespace GrupoC.IngresoStock
 {
     public class IngresoStockModelo
     {
-        // La pantalla muestra el mensaje antes de que el modelo siga con el paso
-        public event EventHandler<string>? MensajeEmitido;
-
-        // La pantalla vuelve a mostrar los datos del modelo
-        public event EventHandler? DatosActualizados;
-
         #region Datos que ingresa el operario
 
         public string NumeroOrden { get; set; } = string.Empty;
@@ -95,15 +89,14 @@ namespace GrupoC.IngresoStock
 
         #region Pasos 3 a 6: buscar la orden
 
-        public void BuscarOrden()
+        // Devuelve el error a mostrar, o null si se encontró la orden.
+        public string? BuscarOrden()
         {
             // Paso 4
             if (!int.TryParse(NumeroOrden.Trim(), out int numero) || numero <= 0)
             {
-                EmitirMensaje("El número de orden debe ser un valor numérico");
                 NumeroOrden = string.Empty;
-                AvisarCambios();
-                return;
+                return "El número de orden debe ser un valor numérico";
             }
 
             // Paso 5
@@ -112,9 +105,8 @@ namespace GrupoC.IngresoStock
 
             if (orden == null)
             {
-                EmitirMensaje("No se encontró ninguna orden pendiente de ubicación con ese número");
                 Restablecer();
-                return;
+                return "No se encontró ninguna orden pendiente de ubicación con ese número";
             }
 
             // Paso 6
@@ -127,19 +119,19 @@ namespace GrupoC.IngresoStock
             UbicacionSeleccionada = null;
             SkuSeleccionado = null;
             LimpiarDatosUbicacion();
-            AvisarCambios();
+            return null;
         }
 
         #endregion
 
         #region Pasos 9 a 11: agregar y quitar ubicaciones
 
-        public void AgregarUbicacion()
+        // Devuelve el error a mostrar, o null si se agregó la ubicación.
+        public string? AgregarUbicacion()
         {
             if (SkuSeleccionado == null || !Items.Contains(SkuSeleccionado))
             {
-                EmitirMensaje("Debe seleccionar un SKU de la orden de recepción");
-                return;
+                return "Debe seleccionar un SKU de la orden de recepción";
             }
 
             // Paso 8
@@ -148,17 +140,14 @@ namespace GrupoC.IngresoStock
 
             if (!cantidadValida || !coordenadasValidas)
             {
-                EmitirMensaje("Debe seleccionar Pasillo, Fila, Nivel e ingresar una cantidad válida");
-                return;
+                return "Debe seleccionar Pasillo, Fila, Nivel e ingresar una cantidad válida";
             }
 
             // Paso 10
             if (cantidad > SkuSeleccionado.CantidadAUbicar)
             {
-                EmitirMensaje("La cantidad a ubicar no puede ser mayor a la cantidad pendiente recepcionada");
                 Cantidad = string.Empty;
-                AvisarCambios();
-                return;
+                return "La cantidad a ubicar no puede ser mayor a la cantidad pendiente recepcionada";
             }
 
             // Si el SKU ya tiene esa misma posición, se suma la cantidad
@@ -176,41 +165,45 @@ namespace GrupoC.IngresoStock
 
             SkuSeleccionado.CantidadAUbicar -= cantidad;
             LimpiarDatosUbicacion();
-            AvisarCambios();
+            return null;
         }
 
-        public void QuitarUbicacion()
+        // Devuelve el error a mostrar, o null si se quitó la ubicación.
+        public string? QuitarUbicacion()
         {
             if (UbicacionSeleccionada == null)
             {
-                EmitirMensaje("Debe seleccionar una ubicación de la lista para quitar");
-                return;
+                return "Debe seleccionar una ubicación de la lista para quitar";
             }
 
             UbicacionSeleccionada.Item.CantidadAUbicar += UbicacionSeleccionada.Cantidad;
             Ubicaciones.Remove(UbicacionSeleccionada);
             UbicacionSeleccionada = null;
-            AvisarCambios();
+            return null;
         }
 
         #endregion
 
         #region Pasos 12 a 16: confirmar el ingreso
 
-        public void ConfirmarIngreso()
+        // Devuelve el error a mostrar, o null si el ingreso se puede confirmar.
+        public string? ValidarIngreso()
         {
             if (ordenActual == null)
             {
-                EmitirMensaje("Debe buscar una orden de recepción antes de confirmar el ingreso");
-                return;
+                return "Debe buscar una orden de recepción antes de confirmar el ingreso";
             }
 
             if (ordenActual.Items.Any(i => i.CantidadAUbicar > 0))
             {
-                EmitirMensaje("Debe ubicar toda la mercadería recepcionada antes de confirmar el ingreso");
-                return;
+                return "Debe ubicar toda la mercadería recepcionada antes de confirmar el ingreso";
             }
 
+            return null;
+        }
+
+        public string ConfirmarIngreso()
+        {
             // Paso 13
             foreach (AsignacionUbicacion ubicacion in Ubicaciones)
             {
@@ -227,14 +220,14 @@ namespace GrupoC.IngresoStock
             }
 
             // Paso 14
-            ordenActual.Estado = EstadoOrdenRecepcion.Cumplida;
+            ordenActual!.Estado = EstadoOrdenRecepcion.Cumplida;
 
             // Paso 15
             historialAuditoria.Add(new RegistroAuditoria("operario.almacen", DateTime.Now, ordenActual.Numero));
 
             // Paso 16
-            EmitirMensaje("Mercadería ingresada a stock con éxito");
             Restablecer();
+            return "Mercadería ingresada a stock con éxito";
         }
 
         #endregion
@@ -256,7 +249,6 @@ namespace GrupoC.IngresoStock
             UbicacionSeleccionada = null;
             Ubicaciones.Clear();
             LimpiarDatosUbicacion();
-            AvisarCambios();
         }
 
         private void LimpiarDatosUbicacion()
@@ -265,16 +257,6 @@ namespace GrupoC.IngresoStock
             Pasillo = string.Empty;
             Fila = string.Empty;
             Nivel = string.Empty;
-        }
-
-        private void EmitirMensaje(string mensaje)
-        {
-            MensajeEmitido?.Invoke(this, mensaje);
-        }
-
-        private void AvisarCambios()
-        {
-            DatosActualizados?.Invoke(this, EventArgs.Empty);
         }
     }
 }
