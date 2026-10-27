@@ -2,14 +2,10 @@
 {
     partial class RecepcionMercaderiaForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+        
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
+        
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
@@ -22,10 +18,7 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
+        
         private void InitializeComponent()
         {
             Remito = new ListBox();
@@ -117,6 +110,9 @@
             comboBoxClieR.Name = "comboBoxClieR";
             comboBoxClieR.Size = new Size(246, 28);
             comboBoxClieR.TabIndex = 4;
+            comboBoxClieR.SelectedIndexChanged += comboBoxClieR_SelectedIndexChanged;
+            comboBoxClieR.KeyPress += comboBoxClieR_KeyPress;
+            comboBoxClieR.Leave += comboBoxClieR_Leave;
             // 
             // textBoxNRem
             // 
@@ -125,6 +121,9 @@
             textBoxNRem.Name = "textBoxNRem";
             textBoxNRem.Size = new Size(241, 27);
             textBoxNRem.TabIndex = 5;
+            textBoxNRem.TextChanged += textBoxNRem_TextChanged;
+            textBoxNRem.KeyPress += textBoxNRem_KeyPress;
+            textBoxNRem.Leave += textBoxNRem_Leave;
             // 
             // textBoxTransRem
             // 
@@ -133,6 +132,7 @@
             textBoxTransRem.Name = "textBoxTransRem";
             textBoxTransRem.Size = new Size(217, 27);
             textBoxTransRem.TabIndex = 6;
+            textBoxTransRem.KeyPress += textBoxTransRem_KeyPress;
             // 
             // dateTimePickerFRem
             // 
@@ -173,6 +173,7 @@
             textBoxNARem.Name = "textBoxNARem";
             textBoxNARem.Size = new Size(291, 27);
             textBoxNARem.TabIndex = 10;
+            textBoxNARem.KeyPress += textBoxNARem_KeyPress;
             // 
             // PatenR
             // 
@@ -230,6 +231,7 @@
             buttonAgregIRem.TabIndex = 20;
             buttonAgregIRem.Text = "+ Agregar Ítem";
             buttonAgregIRem.UseVisualStyleBackColor = false;
+            buttonAgregIRem.Click += buttonAgregIRem_Click;
             // 
             // textBoxSKURem
             // 
@@ -249,6 +251,7 @@
             CancRem.TabIndex = 33;
             CancRem.Text = "Cancelar";
             CancRem.UseVisualStyleBackColor = false;
+            CancRem.Click += CancRem_Click;
             // 
             // ConfRem
             // 
@@ -308,6 +311,7 @@
             textBoxCatnCRem.Name = "textBoxCatnCRem";
             textBoxCatnCRem.Size = new Size(138, 27);
             textBoxCatnCRem.TabIndex = 44;
+            textBoxCatnCRem.KeyPress += textBoxCatnCRem_KeyPress;
             // 
             // textBoxCanRem
             // 
@@ -316,6 +320,7 @@
             textBoxCanRem.Name = "textBoxCanRem";
             textBoxCanRem.Size = new Size(138, 27);
             textBoxCanRem.TabIndex = 45;
+            textBoxCanRem.KeyPress += textBoxCanRem_KeyPress;
             // 
             // DetMercRRem
             // 
@@ -371,6 +376,7 @@
             buttonQuitIRem.TabIndex = 48;
             buttonQuitIRem.Text = "- Quitar Ítem";
             buttonQuitIRem.UseVisualStyleBackColor = false;
+            buttonQuitIRem.Click += buttonQuitIRem_Click;
             // 
             // RecepcionMercaderiaForm
             // 
@@ -410,6 +416,8 @@
             Margin = new Padding(2, 3, 2, 3);
             Name = "RecepcionMercaderiaForm";
             Text = "RecepcionMercaderia";
+            FormClosing += RecepcionMercaderiaForm_FormClosing;
+            Load += RecepcionMercaderiaForm_Load;
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).EndInit();
             ResumeLayout(false);
             PerformLayout();
