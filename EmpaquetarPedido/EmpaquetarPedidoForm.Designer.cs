@@ -46,7 +46,6 @@
             Prodaprep.Size = new Size(179, 25);
             Prodaprep.TabIndex = 3;
             Prodaprep.Text = "Productos a preparar";
-            Prodaprep.Click += label1_Click;
             // 
             // listViewProdPrep
             // 
@@ -58,7 +57,7 @@
             listViewProdPrep.TabIndex = 4;
             listViewProdPrep.UseCompatibleStateImageBehavior = false;
             listViewProdPrep.View = View.Details;
-            listViewProdPrep.SelectedIndexChanged += listView1_SelectedIndexChanged;
+            // listViewProdPrep.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
             // Producto
             // 
