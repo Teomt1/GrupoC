@@ -234,6 +234,7 @@
             // 
             // cmbNivelZ
             // 
+            cmbNivelZ.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbNivelZ.FormattingEnabled = true;
             cmbNivelZ.Items.AddRange(new object[] { "Nivel 1", "Nivel 2", "Nivel 3" });
             cmbNivelZ.Location = new Point(560, 80);
@@ -253,6 +254,7 @@
             // 
             // cmbFilaY
             // 
+            cmbFilaY.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFilaY.FormattingEnabled = true;
             cmbFilaY.Items.AddRange(new object[] { "Fila 1", "Fila 2", "Fila 3" });
             cmbFilaY.Location = new Point(303, 80);
@@ -272,6 +274,7 @@
             // 
             // cmbPasilloX
             // 
+            cmbPasilloX.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbPasilloX.FormattingEnabled = true;
             cmbPasilloX.Items.AddRange(new object[] { "Pasillo 1", "Pasillo 2", "Pasillo 3" });
             cmbPasilloX.Location = new Point(131, 80);
@@ -291,6 +294,7 @@
             // 
             // cmbSkuSeleccionado
             // 
+            cmbSkuSeleccionado.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbSkuSeleccionado.FormattingEnabled = true;
             cmbSkuSeleccionado.Location = new Point(149, 29);
             cmbSkuSeleccionado.Margin = new Padding(3, 4, 3, 4);
@@ -383,6 +387,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "IngresoStockForm";
             Text = "Pampazon S.A. - Ingreso a Stock";
+            FormClosing += IngresoStockForm_FormClosing;
             Load += IngresoStockForm_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

@@ -32,6 +32,12 @@ namespace GrupoC.IngresoStock
 
         public List<AsignacionUbicacion> Ubicaciones { get; } = new List<AsignacionUbicacion>();
 
+        // Si se cierra la pantalla con ubicaciones sin confirmar, se pierden
+        public bool HayUbicacionesSinConfirmar
+        {
+            get { return Ubicaciones.Count > 0; }
+        }
+
         public List<string> Pasillos { get; } = new List<string> { "Pasillo 1", "Pasillo 2", "Pasillo 3" };
         public List<string> Filas { get; } = new List<string> { "Fila 1", "Fila 2", "Fila 3" };
         public List<string> Niveles { get; } = new List<string> { "Nivel 1", "Nivel 2", "Nivel 3" };
@@ -73,13 +79,8 @@ namespace GrupoC.IngresoStock
                 })
         };
 
-        // Al.2 Mercaderías: stock que ya existe en el depósito
-        private readonly List<Mercaderia> mercaderias = new List<Mercaderia>
-        {
-            new Mercaderia("ELE-0001", "Pasillo 1", "Fila 1", "Nivel 1", 15),
-            new Mercaderia("IND-0101", "Pasillo 2", "Fila 1", "Nivel 2", 50),
-            new Mercaderia("LIB-0202", "Pasillo 3", "Fila 3", "Nivel 1", 12)
-        };
+        // Al.2 Mercaderías: arranca vacío y se completa con cada ingreso confirmado
+        private readonly List<Mercaderia> mercaderias = new List<Mercaderia>();
 
         private readonly List<RegistroAuditoria> historialAuditoria = new List<RegistroAuditoria>();
 
@@ -135,12 +136,19 @@ namespace GrupoC.IngresoStock
             }
 
             // Paso 8
-            bool cantidadValida = int.TryParse(Cantidad.Trim(), out int cantidad) && cantidad > 0;
-            bool coordenadasValidas = Pasillos.Contains(Pasillo) && Filas.Contains(Fila) && Niveles.Contains(Nivel);
-
-            if (!cantidadValida || !coordenadasValidas)
+            if (!int.TryParse(Cantidad.Trim(), out int cantidad))
             {
-                return "Debe seleccionar Pasillo, Fila, Nivel e ingresar una cantidad válida";
+                return "La cantidad debe ser un valor numérico";
+            }
+
+            if (cantidad <= 0)
+            {
+                return "La cantidad debe ser mayor a 0";
+            }
+
+            if (!Pasillos.Contains(Pasillo) || !Filas.Contains(Fila) || !Niveles.Contains(Nivel))
+            {
+                return "Debe seleccionar Pasillo, Fila y Nivel";
             }
 
             // Paso 10
@@ -150,19 +158,25 @@ namespace GrupoC.IngresoStock
                 return "La cantidad a ubicar no puede ser mayor a la cantidad pendiente recepcionada";
             }
 
-            // Si el SKU ya tiene esa misma posición, se suma la cantidad
-            AsignacionUbicacion? existente = Ubicaciones.FirstOrDefault(u =>
-                u.Item == SkuSeleccionado && u.Pasillo == Pasillo && u.Fila == Fila && u.Nivel == Nivel);
+            // Una posición no puede tener dos SKUs distintos, ni entre lo agregado ni con el stock existente
+            bool ocupadaPorOtroSku =
+                Ubicaciones.Any(u => u.Item.Sku != SkuSeleccionado.Sku && u.Pasillo == Pasillo && u.Fila == Fila && u.Nivel == Nivel)
+                || mercaderias.Any(m => m.Sku != SkuSeleccionado.Sku && m.Pasillo == Pasillo && m.Fila == Fila && m.Nivel == Nivel);
 
-            if (existente != null)
+            if (ocupadaPorOtroSku)
             {
-                existente.Cantidad += cantidad;
-            }
-            else
-            {
-                Ubicaciones.Add(new AsignacionUbicacion(SkuSeleccionado, cantidad, Pasillo, Fila, Nivel));
+                return "La ubicación seleccionada ya está ocupada por otro SKU";
             }
 
+            // Cada coordenada se ubica una sola vez: al fraccionar, cada parte va a una coordenada distinta
+            bool yaUbicadoEnLaPosicion = Ubicaciones.Any(u => u.Pasillo == Pasillo && u.Fila == Fila && u.Nivel == Nivel);
+
+            if (yaUbicadoEnLaPosicion)
+            {
+                return "El SKU ya fue ubicado en esas coordenadas";
+            }
+
+            Ubicaciones.Add(new AsignacionUbicacion(SkuSeleccionado, cantidad, Pasillo, Fila, Nivel));
             SkuSeleccionado.CantidadAUbicar -= cantidad;
             LimpiarDatosUbicacion();
             return null;

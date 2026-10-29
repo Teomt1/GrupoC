@@ -22,6 +22,16 @@ namespace GrupoC.IngresoStock
             cmbNivelZ.Items.AddRange(modelo.Niveles.ToArray());
         }
 
+        private void IngresoStockForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (modelo.HayUbicacionesSinConfirmar
+                && MessageBox.Show("Hay ubicaciones agregadas sin confirmar. Si sale, se descartan. ¿Desea salir?",
+                    Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             modelo.NumeroOrden = txtNroOrden.Text;
@@ -112,11 +122,11 @@ namespace GrupoC.IngresoStock
 
             cmbSkuSeleccionado.Items.Clear();
             cmbSkuSeleccionado.Items.AddRange(modelo.Items.ToArray());
-            cmbSkuSeleccionado.Text = modelo.SkuSeleccionado?.ToString();
+            cmbSkuSeleccionado.SelectedItem = modelo.SkuSeleccionado;
             txtCantidadUbicar.Text = modelo.Cantidad;
-            cmbPasilloX.Text = modelo.Pasillo;
-            cmbFilaY.Text = modelo.Fila;
-            cmbNivelZ.Text = modelo.Nivel;
+            cmbPasilloX.SelectedIndex = cmbPasilloX.Items.IndexOf(modelo.Pasillo);
+            cmbFilaY.SelectedIndex = cmbFilaY.Items.IndexOf(modelo.Fila);
+            cmbNivelZ.SelectedIndex = cmbNivelZ.Items.IndexOf(modelo.Nivel);
 
             listView1.Items.Clear();
             foreach (AsignacionUbicacion ubicacion in modelo.Ubicaciones)
