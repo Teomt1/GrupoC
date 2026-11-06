@@ -25,7 +25,7 @@ namespace GrupoC.Almacenes
         public static void Guardar()
         {
             string contenido = JsonSerializer.Serialize(Producto, new JsonSerializerOptions {WriteIndented = true });
-            File.WriteAllText(@"DatosDatos\Producto.json", contenido);
+            File.WriteAllText(@"Datos\Producto.json", contenido);
         }
     }
 }

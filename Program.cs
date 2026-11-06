@@ -16,5 +16,18 @@ internal static class Program
 
         //La app se cierra, giardamos los almacenes
         ProductoAlmacen.Guardar();
-        }
+        ClienteAlmacen.Guardar();
+        ContratosAlmacen.Guardar();
+        DepositoAlmacen.Guardar();
+        EmpleadoAlmacen.Guardar();
+        MovimientoMercaderiaAlmacen.Guardar();
+        OrdenEntregaAlmacen.Guardar();
+        OrdenPreparacionAlmacen.Guardar();
+        OrdenRecepcionAlmacen.Guardar();
+        OrdenSeleccionAlmacen.Guardar();
+        OrdenTrasladoAlmacen.Guardar();
+        ProveedorAlmacen.Guardar();
+        RegistroContableAlmacen.Guardar();
+        RemitoEntregaAlmacen.Guardar();
+    }
     }
