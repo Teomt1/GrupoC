@@ -1,8 +1,20 @@
 #nullable enable
+using Alm = GrupoC.Almacenes;
+
 namespace GrupoC.RecepcionMercaderia;
 
 internal class RecepcionMercaderiaModelo
 {
+    // Depósito asignado al usuario logueado (paso 3 del caso de uso).
+    private const string CodigoDeposito = "D01";
+
+    // Legajo del usuario logueado: se toma uno de los empleados habilitados al abrir la pantalla.
+    private readonly int? legajoUsuario;
+
+    // Relación entre las clases de la pantalla y los datos de los almacenes (no salen del modelo).
+    private readonly Dictionary<Cliente, string> codigoCliente = new();
+    private readonly Dictionary<Posicion, Alm.Posicion> posicionAlmacen = new();
+
     public List<Cliente> Clientes { get; }
     public List<Posicion> Posiciones { get; }
     public List<OrdenRecepcion> OrdenesRegistradas { get; } = new();
@@ -20,48 +32,65 @@ internal class RecepcionMercaderiaModelo
     public bool CodigoInvalido { get; private set; }
     public bool CantidadesInvalidas { get; private set; }
 
-    public int UltimoNumeroOrden { get; private set; } = 1047;
+    public int UltimoNumeroOrden { get; private set; }
 
     public RecepcionMercaderiaModelo()
     {
-        var yerba = new Producto("AND-1001", "Yerba mate 1 kg", "PAL-AND-1001", 120);
-        var aceite = new Producto("AND-1002", "Aceite girasol 1,5 L", "PAL-AND-1002", 96);
-        var arroz = new Producto("AND-1003", "Arroz largo fino 1 kg", null, 0);
-        var licuadora = new Producto("ELS-2001", "Licuadora 600 W", "PAL-ELS-2001", 40);
-        var pava = new Producto("ELS-2002", "Pava eléctrica 1,7 L", null, 0);
-        var remera = new Producto("TXP-3001", "Remera algodón talle M", null, 0);
-        var jean = new Producto("TXP-3002", "Jean clásico talle 42", "PAL-TXP-3002", 200);
-        var pelota = new Producto("JMF-5001", "Pelota de fútbol N°5", null, 0);
-
-        Clientes = new List<Cliente>
+        List<Alm.EmpleadoEntidad> empleados = Alm.EmpleadoAlmacen.Empleado;
+        if (empleados.Count > 0)
         {
-            new Cliente("Distribuidora Andina", true, new List<Producto> { yerba, aceite, arroz },
-                new List<string> { "00001-00004521", "00001-00004522" }),
-            new Cliente("ElectroSur", true, new List<Producto> { licuadora, pava },
-                new List<string> { "00003-00001187" }),
-            new Cliente("Textil Pampa", true, new List<Producto> { remera, jean },
-                new List<string> { "00002-00000915" }),
-            // Contrato vencido: no se muestra en la lista de clientes (precondición del caso de uso).
-            new Cliente("Juguetería Mundo Feliz", false, new List<Producto> { pelota },
-                new List<string>())
-        };
+            legajoUsuario = empleados[Random.Shared.Next(empleados.Count)].Legajo;
+        }
 
-        // Posiciones del depósito (Sector-Posición-Fila); las primeras ya están ocupadas.
-        Posiciones = new List<Posicion>
+        List<Alm.OrdenRecepcionEntidad> ordenes = Alm.OrdenRecepcionAlmacen.OrdenRecepcion;
+        UltimoNumeroOrden = ordenes.Count == 0 ? 0 : ordenes.Max(o => o.NumeroOrdRecep);
+
+        // Productos: se transforman una sola vez para que cada SKU sea un único objeto Producto.
+        var productos = new Dictionary<string, Producto>();
+        foreach (Alm.ProductoEntidad p in Alm.ProductoAlmacen.Producto)
         {
-            new Posicion("A-01-1", true),
-            new Posicion("A-01-2", true),
-            new Posicion("A-01-3", true),
-            new Posicion("A-01-4", false),
-            new Posicion("A-02-1", false),
-            new Posicion("A-02-2", false),
-            new Posicion("A-02-3", false),
-            new Posicion("A-02-4", false),
-            new Posicion("B-01-1", false),
-            new Posicion("B-01-2", false),
-            new Posicion("B-01-3", false),
-            new Posicion("B-01-4", false)
-        };
+            productos[p.Sku] = new Producto(p.Sku, p.Descripcion, p.CodigoPallet, p.UnidadesPorPallet);
+        }
+
+        // Clientes con sus SKU dados de alta y los remitos que ya tienen orden de recepción (paso 6).
+        Clientes = new List<Cliente>();
+        foreach (Alm.ClienteEntidad c in Alm.ClienteAlmacen.Cliente)
+        {
+            List<Producto> productosCliente = c.Productos
+                .Where(sku => productos.ContainsKey(sku))
+                .Select(sku => productos[sku])
+                .ToList();
+            List<string> remitos = ordenes
+                .Where(o => o.CodigoCliente == c.Codigo)
+                .Select(o => o.NumeroRemito)
+                .ToList();
+
+            var cliente = new Cliente(c.RazonSocial, c.VigenteContratos, productosCliente, remitos);
+            Clientes.Add(cliente);
+            codigoCliente[cliente] = c.Codigo;
+        }
+
+        // Posiciones del depósito (Pasillo-Fila-Nivel). Está ocupada si guarda mercadería
+        // o si está reservada por una orden de recepción que todavía no se almacenó.
+        Posiciones = new List<Posicion>();
+        Alm.DepositoEntidad? deposito = Alm.DepositoAlmacen.Deposito.Find(d => d.Codigo == CodigoDeposito);
+        if (deposito != null)
+        {
+            List<Alm.ItemRecepcion> reservados = ordenes
+                .Where(o => o.CodigoDeposito == CodigoDeposito && o.Estado != Alm.EstadoOrdenRecepcionEnum.Cumplida)
+                .SelectMany(o => o.Items)
+                .ToList();
+
+            foreach (Alm.Posicion p in deposito.Posiciones)
+            {
+                bool reservada = reservados.Any(i =>
+                    i.PosicionPasillo == p.Pasillo && i.PosicionFila == p.Fila && i.PosicionNivel == p.Nivel);
+
+                var posicion = new Posicion($"{p.Pasillo}-{p.Fila}-{p.Nivel}", p.Sku != null || reservada);
+                Posiciones.Add(posicion);
+                posicionAlmacen[posicion] = p;
+            }
+        }
     }
 
     public List<Cliente> ClientesConContratoVigente => Clientes.Where(c => c.ContratoVigente).ToList();
@@ -314,11 +343,13 @@ internal class RecepcionMercaderiaModelo
     {
         var mensajes = new List<string>();
         string estado = "Pendiente de almacenamiento";
+        Alm.EstadoOrdenRecepcionEnum estadoAlmacen = Alm.EstadoOrdenRecepcionEnum.PendienteDeAlmacenamiento;
 
         // Excepción paso 18: cantidad contada menor que la del remito.
         if (Items.Find(i => i.Diferencia < 0) != null)
         {
             estado = "Recibida con diferencias";
+            estadoAlmacen = Alm.EstadoOrdenRecepcionEnum.RecibidaConDiferencia;
             mensajes.Add("Se registraron diferencias con el remito. Entregue al transportista la nota de diferencias");
         }
 
@@ -326,6 +357,7 @@ internal class RecepcionMercaderiaModelo
         if (Items.Find(i => i.Diferencia > 0) != null)
         {
             estado = "Pendiente - Excedente";
+            estadoAlmacen = Alm.EstadoOrdenRecepcionEnum.PendienteExcedente;
             mensajes.Add("Se recibió más mercadería que la indicada en el remito. Haga firmar la orden de espacio insuficiente al transportista");
         }
 
@@ -334,6 +366,48 @@ internal class RecepcionMercaderiaModelo
             Transportista.Trim(), Chofer.Trim(), Patente.Trim().ToUpper(), Observaciones.Trim(), Items.ToList(), estado);
         OrdenesRegistradas.Add(orden);
         orden.Cliente.RemitosRegistrados.Add(orden.NumeroRemito);
+
+        // Se registra la orden de recepción en el almacén (las posiciones quedan reservadas por la orden).
+        Alm.OrdenRecepcionAlmacen.OrdenRecepcion.Add(new Alm.OrdenRecepcionEntidad
+        {
+            NumeroOrdRecep = orden.Numero,
+            CodigoCliente = codigoCliente[orden.Cliente],
+            CodigoDeposito = CodigoDeposito,
+            TransportistaEmpresa = orden.Transportista,
+            Patente = orden.Patente,
+            TransportistaNombreYApellido = orden.Chofer,
+            NumeroRemito = orden.NumeroRemito,
+            FechaRemito = orden.FechaRemito,
+            FechaHoraRecepcion = orden.FechaHoraRecepcion,
+            Observaciones = orden.Observaciones,
+            Estado = estadoAlmacen,
+            Items = orden.Items.Select(i =>
+            {
+                Alm.Posicion? p = i.Posicion == null ? null : posicionAlmacen[i.Posicion];
+                return new Alm.ItemRecepcion
+                {
+                    SKU_Producto = i.Producto.Sku,
+                    EsPallet = i.EsPallet,
+                    CantidadRemito = i.CantidadRemito,
+                    CantidadContada = i.CantidadContada,
+                    PosicionPasillo = p?.Pasillo ?? "",
+                    PosicionFila = p?.Fila ?? "",
+                    PosicionNivel = p?.Nivel ?? ""
+                };
+            }).ToList()
+        });
+
+        // Paso 19: ingreso en Movimientos de mercadería para que Administración Financiera lo cobre.
+        Alm.MovimientoMercaderiaAlmacen.MovimientoMercaderia.Add(new Alm.MovimientoMercaderiaEntidad
+        {
+            Tipo = Alm.TipoMovimientoEnum.Ingreso,
+            FechaHora = orden.FechaHoraRecepcion,
+            CodigoCliente = codigoCliente[orden.Cliente],
+            NumeroOrdenRecepcion = orden.Numero,
+            NumeroOrdenPreparacion = null,
+            NumeroRemitoEntrega = null,
+            LegajoUsuario = legajoUsuario
+        });
 
         mensajes.Add($"Orden de recepción N° {orden.Numero} registrada con éxito. Estado: {orden.Estado}" + Environment.NewLine +
                      $"Cliente: {orden.Cliente.RazonSocial} - Remito N° {orden.NumeroRemito}" + Environment.NewLine +
