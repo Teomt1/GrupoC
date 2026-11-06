@@ -58,9 +58,7 @@ namespace GrupoC
 
         private void button8_Click(object sender, EventArgs e)
         {
-            /*
-            RegistroExcedenteForm registroExcedente = new RegistroExcedenteForm();
-            registroExcedente.Show();*/
+           
         }
     }
 }

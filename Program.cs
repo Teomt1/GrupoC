@@ -1,4 +1,3 @@
-namespace GrupoC
 {
     internal static class Program
     {
