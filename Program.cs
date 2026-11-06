@@ -1,5 +1,7 @@
-{
-    internal static class Program
+using GrupoC;
+using GrupoC.Almacenes;
+
+internal static class Program
     {
         /// <summary>
         ///  The main entry point for the application.
@@ -11,6 +13,8 @@
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
+
+        //La app se cierra, giardamos los almacenes
+        ProductoAlmacen.Guardar();
         }
     }
-}
