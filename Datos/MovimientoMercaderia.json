@@ -1,2 +1,164 @@
 ﻿[
+  {
+    "Tipo": 0,
+    "FechaHora": "2026-01-12T13:00:00",
+    "CodigoCliente": "C001",
+    "NumeroOrdenRecepcion": 1,
+    "NumeroOrdenPreparacion": null,
+    "NumeroRemitoEntrega": null,
+    "LegajoUsuario": 1013
+  },
+  {
+    "Tipo": 0,
+    "FechaHora": "2026-01-19T13:00:00",
+    "CodigoCliente": "C002",
+    "NumeroOrdenRecepcion": 2,
+    "NumeroOrdenPreparacion": null,
+    "NumeroRemitoEntrega": null,
+    "LegajoUsuario": 1014
+  },
+  {
+    "Tipo": 0,
+    "FechaHora": "2026-01-26T13:00:00",
+    "CodigoCliente": "C003",
+    "NumeroOrdenRecepcion": 3,
+    "NumeroOrdenPreparacion": null,
+    "NumeroRemitoEntrega": null,
+    "LegajoUsuario": 1012
+  },
+  {
+    "Tipo": 0,
+    "FechaHora": "2026-02-02T13:00:00",
+    "CodigoCliente": "C004",
+    "NumeroOrdenRecepcion": 4,
+    "NumeroOrdenPreparacion": null,
+    "NumeroRemitoEntrega": null,
+    "LegajoUsuario": 1013
+  },
+  {
+    "Tipo": 0,
+    "FechaHora": "2026-02-09T13:00:00",
+    "CodigoCliente": "C005",
+    "NumeroOrdenRecepcion": 5,
+    "NumeroOrdenPreparacion": null,
+    "NumeroRemitoEntrega": null,
+    "LegajoUsuario": null
+  },
+  {
+    "Tipo": 0,
+    "FechaHora": "2026-02-16T13:00:00",
+    "CodigoCliente": "C006",
+    "NumeroOrdenRecepcion": 6,
+    "NumeroOrdenPreparacion": null,
+    "NumeroRemitoEntrega": null,
+    "LegajoUsuario": 1012
+  },
+  {
+    "Tipo": 0,
+    "FechaHora": "2026-02-23T13:00:00",
+    "CodigoCliente": "C007",
+    "NumeroOrdenRecepcion": 7,
+    "NumeroOrdenPreparacion": null,
+    "NumeroRemitoEntrega": null,
+    "LegajoUsuario": 1013
+  },
+  {
+    "Tipo": 0,
+    "FechaHora": "2026-03-02T13:00:00",
+    "CodigoCliente": "C008",
+    "NumeroOrdenRecepcion": 8,
+    "NumeroOrdenPreparacion": null,
+    "NumeroRemitoEntrega": null,
+    "LegajoUsuario": 1014
+  },
+  {
+    "Tipo": 0,
+    "FechaHora": "2026-03-09T13:00:00",
+    "CodigoCliente": "C009",
+    "NumeroOrdenRecepcion": 9,
+    "NumeroOrdenPreparacion": null,
+    "NumeroRemitoEntrega": null,
+    "LegajoUsuario": 1012
+  },
+  {
+    "Tipo": 0,
+    "FechaHora": "2026-03-16T13:00:00",
+    "CodigoCliente": "C010",
+    "NumeroOrdenRecepcion": 10,
+    "NumeroOrdenPreparacion": null,
+    "NumeroRemitoEntrega": null,
+    "LegajoUsuario": null
+  },
+  {
+    "Tipo": 0,
+    "FechaHora": "2026-03-23T13:00:00",
+    "CodigoCliente": "C011",
+    "NumeroOrdenRecepcion": 11,
+    "NumeroOrdenPreparacion": null,
+    "NumeroRemitoEntrega": null,
+    "LegajoUsuario": 1014
+  },
+  {
+    "Tipo": 0,
+    "FechaHora": "2026-03-30T13:00:00",
+    "CodigoCliente": "C012",
+    "NumeroOrdenRecepcion": 12,
+    "NumeroOrdenPreparacion": null,
+    "NumeroRemitoEntrega": null,
+    "LegajoUsuario": 1012
+  },
+  {
+    "Tipo": 1,
+    "FechaHora": "2026-06-11T11:00:00",
+    "CodigoCliente": "C001",
+    "NumeroOrdenRecepcion": null,
+    "NumeroOrdenPreparacion": 1,
+    "NumeroRemitoEntrega": 1,
+    "LegajoUsuario": 1011
+  },
+  {
+    "Tipo": 1,
+    "FechaHora": "2026-06-19T11:00:00",
+    "CodigoCliente": "C007",
+    "NumeroOrdenRecepcion": null,
+    "NumeroOrdenPreparacion": 2,
+    "NumeroRemitoEntrega": 2,
+    "LegajoUsuario": 1009
+  },
+  {
+    "Tipo": 1,
+    "FechaHora": "2026-06-19T11:00:00",
+    "CodigoCliente": "C007",
+    "NumeroOrdenRecepcion": null,
+    "NumeroOrdenPreparacion": 3,
+    "NumeroRemitoEntrega": 2,
+    "LegajoUsuario": 1009
+  },
+  {
+    "Tipo": 1,
+    "FechaHora": "2026-07-03T11:00:00",
+    "CodigoCliente": "C003",
+    "NumeroOrdenRecepcion": null,
+    "NumeroOrdenPreparacion": 4,
+    "NumeroRemitoEntrega": 3,
+    "LegajoUsuario": 1010
+  },
+  {
+    "Tipo": 1,
+    "FechaHora": "2026-07-16T11:00:00",
+    "CodigoCliente": "C009",
+    "NumeroOrdenRecepcion": null,
+    "NumeroOrdenPreparacion": 5,
+    "NumeroRemitoEntrega": 4,
+    "LegajoUsuario": 1011
+  },
+  {
+    "Tipo": 1,
+    "FechaHora": "2026-08-06T11:00:00",
+    "CodigoCliente": "C004",
+    "NumeroOrdenRecepcion": null,
+    "NumeroOrdenPreparacion": 6,
+    "NumeroRemitoEntrega": 5,
+    "LegajoUsuario": 1009
+  }
 ]

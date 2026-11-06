@@ -110,6 +110,34 @@
     "CodigoPallet": "016",
     "UnidadesPorPallet": 600,
     "StockMinimoContratado": 600
+  },
+  {
+    "Sku": "017",
+    "Descripcion": "Plancha a vapor",
+    "CodigoPallet": "017",
+    "UnidadesPorPallet": 40,
+    "StockMinimoContratado": null
+  },
+  {
+    "Sku": "018",
+    "Descripcion": "Juego de sabanas 2 plazas",
+    "CodigoPallet": null,
+    "UnidadesPorPallet": 100,
+    "StockMinimoContratado": 15
+  },
+  {
+    "Sku": "019",
+    "Descripcion": "Pava electrica 1.7 litros",
+    "CodigoPallet": "019",
+    "UnidadesPorPallet": 60,
+    "StockMinimoContratado": null
+  },
+  {
+    "Sku": "020",
+    "Descripcion": "Taladro percutor 650 W",
+    "CodigoPallet": null,
+    "UnidadesPorPallet": 24,
+    "StockMinimoContratado": 8
   }
 
 ]

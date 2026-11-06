@@ -1,2 +1,276 @@
 ﻿[
+  {
+    "Numero": 1,
+    "FechaHora": "2026-06-11T09:00:00",
+    "CodigoDeposito": "D01",
+    "Detalles": [
+      {
+        "NumeroOrdenEntrega": 1,
+        "NumeroOrdenPreparacion": 1
+      }
+    ],
+    "LegajoUsuario": 1010,
+    "Estado": 1,
+    "FechaHoraCumplido": "2026-06-11T11:00:00",
+    "LegajoCumplido": 1011,
+    "TransportistaNombre": "Ramon Acosta",
+    "TransportistaDni": 28456123,
+    "CantidadPaquetes": 4
+  },
+  {
+    "Numero": 2,
+    "FechaHora": "2026-06-19T09:00:00",
+    "CodigoDeposito": "D07",
+    "Detalles": [
+      {
+        "NumeroOrdenEntrega": 2,
+        "NumeroOrdenPreparacion": 2
+      },
+      {
+        "NumeroOrdenEntrega": 3,
+        "NumeroOrdenPreparacion": 3
+      }
+    ],
+    "LegajoUsuario": 1011,
+    "Estado": 1,
+    "FechaHoraCumplido": "2026-06-19T11:00:00",
+    "LegajoCumplido": 1009,
+    "TransportistaNombre": "Hector Molina",
+    "TransportistaDni": 31789456,
+    "CantidadPaquetes": 37
+  },
+  {
+    "Numero": 3,
+    "FechaHora": "2026-07-03T09:00:00",
+    "CodigoDeposito": "D03",
+    "Detalles": [
+      {
+        "NumeroOrdenEntrega": 4,
+        "NumeroOrdenPreparacion": 4
+      }
+    ],
+    "LegajoUsuario": 1009,
+    "Estado": 1,
+    "FechaHoraCumplido": "2026-07-03T11:00:00",
+    "LegajoCumplido": 1010,
+    "TransportistaNombre": "Gustavo Pereyra",
+    "TransportistaDni": 25963741,
+    "CantidadPaquetes": 2
+  },
+  {
+    "Numero": 4,
+    "FechaHora": "2026-07-16T09:00:00",
+    "CodigoDeposito": "D09",
+    "Detalles": [
+      {
+        "NumeroOrdenEntrega": 5,
+        "NumeroOrdenPreparacion": 5
+      }
+    ],
+    "LegajoUsuario": 1010,
+    "Estado": 1,
+    "FechaHoraCumplido": "2026-07-16T11:00:00",
+    "LegajoCumplido": 1011,
+    "TransportistaNombre": "Walter Godoy",
+    "TransportistaDni": 33147852,
+    "CantidadPaquetes": 2
+  },
+  {
+    "Numero": 5,
+    "FechaHora": "2026-08-06T09:00:00",
+    "CodigoDeposito": "D04",
+    "Detalles": [
+      {
+        "NumeroOrdenEntrega": 6,
+        "NumeroOrdenPreparacion": 6
+      }
+    ],
+    "LegajoUsuario": 1011,
+    "Estado": 1,
+    "FechaHoraCumplido": "2026-08-06T11:00:00",
+    "LegajoCumplido": 1009,
+    "TransportistaNombre": "Sergio Ledesma",
+    "TransportistaDni": 29874563,
+    "CantidadPaquetes": 3
+  },
+  {
+    "Numero": 6,
+    "FechaHora": "2026-10-21T09:00:00",
+    "CodigoDeposito": "D02",
+    "Detalles": [
+      {
+        "NumeroOrdenEntrega": 7,
+        "NumeroOrdenPreparacion": 7
+      }
+    ],
+    "LegajoUsuario": 1009,
+    "Estado": 2,
+    "FechaHoraCumplido": null,
+    "LegajoCumplido": null,
+    "TransportistaNombre": "Ramon Acosta",
+    "TransportistaDni": 28456123,
+    "CantidadPaquetes": 8
+  },
+  {
+    "Numero": 7,
+    "FechaHora": "2026-10-21T10:30:00",
+    "CodigoDeposito": "D02",
+    "Detalles": [
+      {
+        "NumeroOrdenEntrega": 7,
+        "NumeroOrdenPreparacion": 7
+      }
+    ],
+    "LegajoUsuario": 1010,
+    "Estado": 0,
+    "FechaHoraCumplido": null,
+    "LegajoCumplido": null,
+    "TransportistaNombre": "Ramon Acosta",
+    "TransportistaDni": 28456123,
+    "CantidadPaquetes": 8
+  },
+  {
+    "Numero": 8,
+    "FechaHora": "2026-10-23T09:00:00",
+    "CodigoDeposito": "D05",
+    "Detalles": [
+      {
+        "NumeroOrdenEntrega": 8,
+        "NumeroOrdenPreparacion": 8
+      }
+    ],
+    "LegajoUsuario": 1011,
+    "Estado": 0,
+    "FechaHoraCumplido": null,
+    "LegajoCumplido": null,
+    "TransportistaNombre": "Gustavo Pereyra",
+    "TransportistaDni": 25963741,
+    "CantidadPaquetes": 4
+  },
+  {
+    "Numero": 9,
+    "FechaHora": "2026-10-27T09:00:00",
+    "CodigoDeposito": "D06",
+    "Detalles": [
+      {
+        "NumeroOrdenEntrega": 9,
+        "NumeroOrdenPreparacion": 9
+      }
+    ],
+    "LegajoUsuario": 1009,
+    "Estado": 0,
+    "FechaHoraCumplido": null,
+    "LegajoCumplido": null,
+    "TransportistaNombre": "Hector Molina",
+    "TransportistaDni": 31789456,
+    "CantidadPaquetes": 2
+  },
+  {
+    "Numero": 10,
+    "FechaHora": "2026-10-29T09:00:00",
+    "CodigoDeposito": "D08",
+    "Detalles": [
+      {
+        "NumeroOrdenEntrega": 10,
+        "NumeroOrdenPreparacion": 10
+      }
+    ],
+    "LegajoUsuario": 1010,
+    "Estado": 0,
+    "FechaHoraCumplido": null,
+    "LegajoCumplido": null,
+    "TransportistaNombre": "Walter Godoy",
+    "TransportistaDni": 33147852,
+    "CantidadPaquetes": 1
+  },
+  {
+    "Numero": 11,
+    "FechaHora": "2026-10-31T09:00:00",
+    "CodigoDeposito": "D10",
+    "Detalles": [
+      {
+        "NumeroOrdenEntrega": 11,
+        "NumeroOrdenPreparacion": 11
+      }
+    ],
+    "LegajoUsuario": 1011,
+    "Estado": 0,
+    "FechaHoraCumplido": null,
+    "LegajoCumplido": null,
+    "TransportistaNombre": "Sergio Ledesma",
+    "TransportistaDni": 29874563,
+    "CantidadPaquetes": 3
+  },
+  {
+    "Numero": 12,
+    "FechaHora": "2026-11-03T09:00:00",
+    "CodigoDeposito": "D11",
+    "Detalles": [
+      {
+        "NumeroOrdenEntrega": 12,
+        "NumeroOrdenPreparacion": 12
+      }
+    ],
+    "LegajoUsuario": 1009,
+    "Estado": 2,
+    "FechaHoraCumplido": null,
+    "LegajoCumplido": null,
+    "TransportistaNombre": "Ramon Acosta",
+    "TransportistaDni": 28456123,
+    "CantidadPaquetes": 4
+  },
+  {
+    "Numero": 13,
+    "FechaHora": "2026-11-04T09:00:00",
+    "CodigoDeposito": "D12",
+    "Detalles": [
+      {
+        "NumeroOrdenEntrega": 13,
+        "NumeroOrdenPreparacion": 13
+      }
+    ],
+    "LegajoUsuario": 1010,
+    "Estado": 2,
+    "FechaHoraCumplido": null,
+    "LegajoCumplido": null,
+    "TransportistaNombre": "Gustavo Pereyra",
+    "TransportistaDni": 25963741,
+    "CantidadPaquetes": 1
+  },
+  {
+    "Numero": 14,
+    "FechaHora": "2026-11-05T09:00:00",
+    "CodigoDeposito": "D01",
+    "Detalles": [
+      {
+        "NumeroOrdenEntrega": 14,
+        "NumeroOrdenPreparacion": 14
+      }
+    ],
+    "LegajoUsuario": 1011,
+    "Estado": 2,
+    "FechaHoraCumplido": null,
+    "LegajoCumplido": null,
+    "TransportistaNombre": "Hector Molina",
+    "TransportistaDni": 31789456,
+    "CantidadPaquetes": 2
+  },
+  {
+    "Numero": 15,
+    "FechaHora": "2026-10-28T09:00:00",
+    "CodigoDeposito": "D06",
+    "Detalles": [
+      {
+        "NumeroOrdenEntrega": 15,
+        "NumeroOrdenPreparacion": 15
+      }
+    ],
+    "LegajoUsuario": 1009,
+    "Estado": 2,
+    "FechaHoraCumplido": null,
+    "LegajoCumplido": null,
+    "TransportistaNombre": "Walter Godoy",
+    "TransportistaDni": 33147852,
+    "CantidadPaquetes": 1
+  }
 ]
