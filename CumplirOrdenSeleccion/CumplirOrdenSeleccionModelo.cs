@@ -1,8 +1,20 @@
 #nullable enable
+using Alm = GrupoC.Almacenes;
+
 namespace GrupoC.CumplirOrdenSeleccion;
 
 internal class CumplirOrdenSeleccionModelo
 {
+    // Depósito asignado al usuario logueado (paso 2 del caso de uso).
+    private const string CodigoDeposito = "D05";
+
+    // Legajo del usuario logueado: se toma uno de los empleados al abrir la pantalla.
+    private readonly int legajoUsuario;
+
+    // Relación entre las clases de la pantalla y los datos de los almacenes (no salen del modelo).
+    private readonly Dictionary<OrdenSeleccion, Alm.OrdenSeleccionEntidad> ordenAlmacen = new();
+    private readonly Dictionary<ItemInventario, Alm.Posicion> posicionAlmacen = new();
+
     public string UsuarioActual { get; }
     public string DepositoActual { get; }
     public List<OrdenSeleccion> OrdenesSeleccion { get; }
@@ -13,65 +25,77 @@ internal class CumplirOrdenSeleccionModelo
 
     public CumplirOrdenSeleccionModelo()
     {
-        // Usuario identificado en el sistema: operario de Almacenamiento del depósito DEP01.
-        UsuarioActual = "OPA01";
-        DepositoActual = "DEP01";
-
-        OrdenesSeleccion = new List<OrdenSeleccion>
+        // Usuario identificado en el sistema: operario de Almacenamiento.
+        UsuarioActual = "";
+        List<Alm.EmpleadoEntidad> empleados = Alm.EmpleadoAlmacen.Empleado;
+        if (empleados.Count > 0)
         {
-            // Ya cumplida: no se muestra.
-            new OrdenSeleccion
+            Alm.EmpleadoEntidad empleado = empleados[Random.Shared.Next(empleados.Count)];
+            legajoUsuario = empleado.Legajo;
+            UsuarioActual = empleado.Usuario;
+        }
+        DepositoActual = CodigoDeposito;
+
+        // Descripción de cada SKU y unidades por pallet.
+        var productos = new Dictionary<string, Alm.ProductoEntidad>();
+        foreach (Alm.ProductoEntidad p in Alm.ProductoAlmacen.Producto)
+        {
+            productos[p.Sku] = p;
+        }
+
+        // Órdenes de selección con sus renglones. El renglón del almacén no trae el cliente:
+        // se toma de la orden de preparación incluida en la selección que pide ese SKU,
+        // o si no, del cliente que tiene dado de alta ese SKU.
+        OrdenesSeleccion = new List<OrdenSeleccion>();
+        foreach (Alm.OrdenSeleccionEntidad o in Alm.OrdenSeleccionAlmacen.OrdenSeleccion)
+        {
+            var orden = new OrdenSeleccion
             {
-                Numero = 1000, Deposito = "DEP01", Estado = EstadoOrdenSeleccion.Cumplida,
-                FechaHoraCumplida = new DateTime(2026, 10, 21, 9, 30, 0), UsuarioCumplida = "OPA01",
-                Renglones = new List<RenglonOrdenSeleccion>
+                Numero = o.Numero,
+                Deposito = o.CodigoDeposito,
+                Estado = o.Estado == Alm.EstadoOrdenSeleccionEnum.Cumplida
+                    ? EstadoOrdenSeleccion.Cumplida
+                    : EstadoOrdenSeleccion.Pendiente,
+                FechaHoraCumplida = o.FechaHoraCumplida,
+                UsuarioCumplida = empleados.Find(e => e.Legajo == o.LegajoUsuarioCumplida)?.Usuario,
+                Renglones = o.Renglones.Select(r => new RenglonOrdenSeleccion
                 {
-                    new RenglonOrdenSeleccion { Cliente = "CLI001", Posicion = "5-1-1", Sku = "AUR-200", Descripcion = "Auriculares inalámbricos BT-200", Cantidad = 2 }
-                }
-            },
-            // Pendiente de DEP01. Está antes que la 1001, pero se muestra después porque tiene número más alto.
-            new OrdenSeleccion
+                    Cliente = BuscarCliente(o.Numero, r.SKU_Producto),
+                    Posicion = $"{r.PosicionPasillo}-{r.PosicionFila}-{r.PosicionNivel}",
+                    Sku = r.SKU_Producto,
+                    Descripcion = productos.ContainsKey(r.SKU_Producto) ? productos[r.SKU_Producto].Descripcion : "",
+                    Cantidad = r.Cantidad
+                }).ToList()
+            };
+            OrdenesSeleccion.Add(orden);
+            ordenAlmacen[orden] = o;
+        }
+
+        // Inventario del depósito del usuario: una fila por posición que guarda mercadería,
+        // con la cantidad en unidades (pallets completos más unidades sueltas).
+        Inventario = new List<ItemInventario>();
+        Alm.DepositoEntidad? deposito = Alm.DepositoAlmacen.Deposito.Find(d => d.Codigo == CodigoDeposito);
+        if (deposito != null)
+        {
+            foreach (Alm.Posicion p in deposito.Posiciones)
             {
-                Numero = 1002, Deposito = "DEP01", Estado = EstadoOrdenSeleccion.Pendiente,
-                Renglones = new List<RenglonOrdenSeleccion>
+                if (p.Sku == null)
                 {
-                    new RenglonOrdenSeleccion { Cliente = "CLI003", Posicion = "7-15-2", Sku = "CAB-001", Descripcion = "Cable HDMI 2 m", Cantidad = 8 },
-                    new RenglonOrdenSeleccion { Cliente = "CLI003", Posicion = "7-2-1", Sku = "TEC-300", Descripcion = "Teclado inalámbrico K300", Cantidad = 3 }
+                    continue;
                 }
-            },
-            // Pendiente de DEP01 con el número más bajo: es la primera que se muestra.
-            // Las posiciones están desordenadas a propósito para probar el orden del paso 4.
-            new OrdenSeleccion
-            {
-                Numero = 1001, Deposito = "DEP01", Estado = EstadoOrdenSeleccion.Pendiente,
-                Renglones = new List<RenglonOrdenSeleccion>
+
+                int unidadesPorPallet = productos.ContainsKey(p.Sku) ? productos[p.Sku].UnidadesPorPallet : 0;
+                var item = new ItemInventario
                 {
-                    new RenglonOrdenSeleccion { Cliente = "CLI001", Posicion = "12-43-2", Sku = "AUR-200", Descripcion = "Auriculares inalámbricos BT-200", Cantidad = 4 },
-                    new RenglonOrdenSeleccion { Cliente = "CLI002", Posicion = "3-10-1", Sku = "CAR-020", Descripcion = "Cargador USB-C 20W", Cantidad = 10 },
-                    new RenglonOrdenSeleccion { Cliente = "CLI001", Posicion = "12-5-3", Sku = "FUN-015", Descripcion = "Funda de silicona para celular", Cantidad = 6 },
-                    new RenglonOrdenSeleccion { Cliente = "CLI002", Posicion = "3-10-4", Sku = "MOU-100", Descripcion = "Mouse óptico M100", Cantidad = 2 }
-                }
-            },
-            // Pendiente pero de otro depósito: no se muestra.
-            new OrdenSeleccion
-            {
-                Numero = 1003, Deposito = "DEP02", Estado = EstadoOrdenSeleccion.Pendiente,
-                Renglones = new List<RenglonOrdenSeleccion>
-                {
-                    new RenglonOrdenSeleccion { Cliente = "CLI001", Posicion = "1-1-1", Sku = "AUR-200", Descripcion = "Auriculares inalámbricos BT-200", Cantidad = 1 }
-                }
+                    Cliente = BuscarClienteDelSku(p.Sku),
+                    Sku = p.Sku,
+                    Posicion = $"{p.Pasillo}-{p.Fila}-{p.Nivel}",
+                    Cantidad = p.CantidadPalets * unidadesPorPallet + p.CantidadSueltos
+                };
+                Inventario.Add(item);
+                posicionAlmacen[item] = p;
             }
-        };
-
-        Inventario = new List<ItemInventario>
-        {
-            new ItemInventario { Cliente = "CLI001", Sku = "AUR-200", Posicion = "12-43-2", Cantidad = 20 },
-            new ItemInventario { Cliente = "CLI002", Sku = "CAR-020", Posicion = "3-10-1", Cantidad = 50 },
-            new ItemInventario { Cliente = "CLI001", Sku = "FUN-015", Posicion = "12-5-3", Cantidad = 30 },
-            new ItemInventario { Cliente = "CLI002", Sku = "MOU-100", Posicion = "3-10-4", Cantidad = 12 },
-            new ItemInventario { Cliente = "CLI003", Sku = "TEC-300", Posicion = "7-2-1", Cantidad = 9 },
-            new ItemInventario { Cliente = "CLI003", Sku = "CAB-001", Posicion = "7-15-2", Cantidad = 40 }
-        };
+        }
     }
 
     // Paso 2: toma la orden del depósito del usuario en estado Pendiente con el número más bajo.
@@ -97,9 +121,14 @@ internal class CumplirOrdenSeleccionModelo
     // Paso 3
     public string NumeroOrdenActual => OrdenActual?.Numero.ToString() ?? "-";
 
-    // Paso 4: renglones de la orden ordenados por posición (sector, posición y fila) de menor a mayor.
+    // Paso 4: renglones de la orden ordenados por posición (pasillo, fila y nivel) de menor a mayor.
     public List<RenglonOrdenSeleccion> RenglonesOrdenados =>
-        OrdenActual?.Renglones.OrderBy(r => ClaveDePosicion(r.Posicion)).ToList() ?? new List<RenglonOrdenSeleccion>();
+        OrdenActual?.Renglones
+            .OrderBy(r => ClaveDePosicion(r.Posicion).Pasillo)
+            .ThenBy(r => ClaveDePosicion(r.Posicion).Fila)
+            .ThenBy(r => ClaveDePosicion(r.Posicion).Nivel)
+            .ToList()
+        ?? new List<RenglonOrdenSeleccion>();
 
     // Paso 7
     public string PreguntaConfirmacion =>
@@ -113,10 +142,26 @@ internal class CumplirOrdenSeleccionModelo
             return "No hay una orden de selección para confirmar";
         }
 
-        // Paso 9
+        // Paso 9: se actualiza la orden en la pantalla y en el almacén.
         OrdenActual.Estado = EstadoOrdenSeleccion.Cumplida;
         OrdenActual.FechaHoraCumplida = DateTime.Now;
         OrdenActual.UsuarioCumplida = UsuarioActual;
+
+        Alm.OrdenSeleccionEntidad entidad = ordenAlmacen[OrdenActual];
+        entidad.Estado = Alm.EstadoOrdenSeleccionEnum.Cumplida;
+        entidad.FechaHoraCumplida = OrdenActual.FechaHoraCumplida;
+        entidad.LegajoUsuarioCumplida = legajoUsuario;
+
+        // Las órdenes de preparación de esta selección ya tienen su mercadería en Preparación.
+        foreach (Alm.OrdenPreparacionEntidad op in Alm.OrdenPreparacionAlmacen.OrdenPreparacion
+                     .Where(op => op.NumeroOrdenSeleccion == OrdenActual.Numero))
+        {
+            op.EstadoOrdenSeleccion = Alm.EstadoOrdenSeleccionEnum.Cumplida;
+            if (op.Estado == Alm.EstadoOrdenPreparacionEnum.Pendiente)
+            {
+                op.Estado = Alm.EstadoOrdenPreparacionEnum.EnPreparacion;
+            }
+        }
 
         // Paso 10: resta del inventario cada renglón (clave: cliente, SKU y posición).
         foreach (var renglon in OrdenActual.Renglones)
@@ -127,6 +172,7 @@ internal class CumplirOrdenSeleccionModelo
             if (stock != null)
             {
                 stock.Cantidad -= renglon.Cantidad;
+                DescontarDePosicion(posicionAlmacen[stock], renglon.Cantidad);
             }
         }
 
@@ -134,10 +180,69 @@ internal class CumplirOrdenSeleccionModelo
         return $"Orden de selección N° {OrdenActual.Numero} cumplida";
     }
 
-    // Convierte "12-43-2" en (12, 43, 2) para ordenar por número y no como texto.
-    private (int Sector, int Posicion, int Fila) ClaveDePosicion(string posicion)
+    // Resta las unidades de la posición del almacén. Si la cantidad son pallets completos y los hay,
+    // se bajan pallets cerrados; si no, primero las unidades sueltas y luego se abren los pallets necesarios.
+    private void DescontarDePosicion(Alm.Posicion posicion, int unidades)
+    {
+        Alm.ProductoEntidad? producto = Alm.ProductoAlmacen.Producto.Find(p => p.Sku == posicion.Sku);
+        int unidadesPorPallet = producto?.UnidadesPorPallet ?? 0;
+
+        if (unidadesPorPallet > 0 && unidades % unidadesPorPallet == 0
+            && posicion.CantidadPalets >= unidades / unidadesPorPallet)
+        {
+            posicion.CantidadPalets -= unidades / unidadesPorPallet;
+        }
+        else if (posicion.CantidadSueltos >= unidades)
+        {
+            posicion.CantidadSueltos -= unidades;
+        }
+        else if (unidadesPorPallet > 0)
+        {
+            int unidadesFaltantes = unidades - posicion.CantidadSueltos;
+            int palletsAAbrir = (unidadesFaltantes + unidadesPorPallet - 1) / unidadesPorPallet;
+            posicion.CantidadPalets -= palletsAAbrir;
+            posicion.CantidadSueltos = palletsAAbrir * unidadesPorPallet - unidadesFaltantes;
+        }
+        else
+        {
+            posicion.CantidadSueltos = 0;
+        }
+
+        // Por si en la posición había menos mercadería que la pedida.
+        if (posicion.CantidadPalets < 0)
+        {
+            posicion.CantidadPalets = 0;
+            posicion.CantidadSueltos = 0;
+        }
+
+        // Si la posición quedó vacía, se libera.
+        if (posicion.CantidadPalets == 0 && posicion.CantidadSueltos == 0)
+        {
+            posicion.Sku = null;
+        }
+    }
+
+    // Cliente del renglón: el de la orden de preparación de esta selección que pide el SKU.
+    private string BuscarCliente(int numeroOrdenSeleccion, string sku)
+    {
+        Alm.OrdenPreparacionEntidad? orden = Alm.OrdenPreparacionAlmacen.OrdenPreparacion.Find(op =>
+            op.NumeroOrdenSeleccion == numeroOrdenSeleccion && op.Renglones.Any(r => r.SKU_Producto == sku));
+
+        return orden?.CodigoCliente ?? BuscarClienteDelSku(sku);
+    }
+
+    // Cliente que tiene dado de alta el SKU.
+    private string BuscarClienteDelSku(string sku)
+    {
+        return Alm.ClienteAlmacen.Cliente.Find(c => c.Productos.Contains(sku))?.Codigo ?? "";
+    }
+
+    // Convierte "A-1-2" en ("A", 1, 2) para ordenar la fila y el nivel por número y no como texto.
+    private (string Pasillo, int Fila, int Nivel) ClaveDePosicion(string posicion)
     {
         var partes = posicion.Split('-');
-        return (int.Parse(partes[0]), int.Parse(partes[1]), int.Parse(partes[2]));
+        int fila = partes.Length > 1 && int.TryParse(partes[1], out int f) ? f : 0;
+        int nivel = partes.Length > 2 && int.TryParse(partes[2], out int n) ? n : 0;
+        return (partes[0], fila, nivel);
     }
 }
