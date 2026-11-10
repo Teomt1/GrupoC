@@ -9,6 +9,8 @@ namespace GrupoC.Almacenes
     {
         public static List<EmpleadoEntidad> Empleado { get; private set; }
 
+        public static string EmpleadoActual {  get; set; }
+
         static EmpleadoAlmacen()
         {
             if (File.Exists(@"Datos\Empleado.json"))

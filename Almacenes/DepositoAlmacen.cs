@@ -9,6 +9,8 @@ namespace GrupoC.Almacenes
     {
         public static List<DepositoEntidad> Deposito { get; private set; }
 
+        public static string DepositoActual { get; set; }
+
         static DepositoAlmacen()
         {
             if (File.Exists(@"Datos\Deposito.json"))
