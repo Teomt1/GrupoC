@@ -1,0 +1,141 @@
+@startuml DiagramaSecuencia-RegistrarOrdenDePreparacion
+title Diagrama de secuencia - Caso de uso: Registrar orden de preparación
+
+skinparam sequenceArrowThickness 1
+skinparam sequenceParticipantBorderColor black
+skinparam sequenceLifeLineBorderColor black
+skinparam backgroundColor white
+skinparam sequenceMessageAlign left
+skinparam maxMessageSize 200
+
+autonumber
+
+actor "Cliente" as Op
+boundary "RegistrarOrdenDePreparacionForm" as Form
+control "RegistrarOrdenDePreparacionModelo" as Mod
+participant "Sesion" as Ses
+entity "Deposito" as Dep
+entity "StockProducto" as Stock
+entity "Producto" as Prod
+entity "ItemOrden" as Item
+entity "OrdenPreparacion" as OPrep
+
+== Apertura de pantalla (paso 1) ==
+Op -> Form : Abre la pantalla "Registrar orden de preparación"
+Form -> Mod : new RegistrarOrdenDePreparacionModelo()
+Mod -> Ses : ObtenerClienteActual()
+Ses --> Mod : cliente logueado
+Form -> Mod : NombreCliente, Depositos, FechaMinimaRetiro
+Mod -> Dep : ObtenerDepositos()
+Dep --> Mod : depósitos
+Mod --> Form : nombre del cliente, depósitos y fecha mínima de retiro
+Form -> Form : Carga el combo de depósitos y el selector de fecha
+Form --> Op : Muestra la pantalla con el nombre del cliente
+
+== Depósito y modalidad (pasos 2 a 4) ==
+Op -> Form : Selecciona el depósito
+Form -> Mod : SeleccionarDeposito(deposito)
+Mod -> Item : Se limpia la orden actual
+alt Ya había otro depósito seleccionado (excepciones 2.1 y 2.2)
+    Mod --> Form : "Se cambió el depósito, la orden actual ha sido reiniciada"
+    Form --> Op : MessageBox(mensaje)
+else Primer depósito elegido
+    Mod --> Form : null
+end
+Form -> Mod : ProductosDisponibles
+Mod -> Stock : ObtenerStock(deposito)
+Stock --> Mod : stock del depósito
+Mod --> Form : productos del depósito
+Form -> Form : Carga el combo "Productos a retirar" y limpia la orden
+
+Op -> Form : Selecciona la modalidad "Palet Cerrado" o "Fullfilment"
+Form -> Mod : SeleccionarModalidad(modalidad)
+alt Ya había productos en la orden
+    Mod -> Item : Se limpia la orden actual
+    Mod --> Form : "Se cambió la modalidad de empaquetado, la orden actual ha sido reiniciada"
+    Form --> Op : MessageBox(mensaje)
+else La orden estaba vacía
+    Mod --> Form : null
+end
+Form -> Mod : RequiereDatosEtiquetado
+Mod --> Form : true / false
+alt Modalidad Fullfilment (paso 4.1)
+    Form --> Op : Muestra la sección "Datos para el etiquetado"
+else Modalidad Palet Cerrado (paso 4.2)
+    Form --> Op : Oculta la sección "Datos para el etiquetado"
+end
+
+== Carga de productos (pasos 5 a 9) ==
+loop Por cada producto a retirar
+    Op -> Form : Selecciona el producto, ingresa la cantidad y presiona "Agregar a la Orden"
+    Form -> Mod : AgregarProducto(producto, cantidad)
+    alt No eligió modalidad
+        Mod --> Form : "Error: seleccione una modalidad de empaquetado antes de agregar productos"
+    else Falta el producto o la cantidad no es mayor a cero
+        Mod --> Form : "Error: seleccione un producto e ingrese una cantidad mayor a cero"
+    else Datos completos
+        Mod -> Stock : BuscarStock(deposito, producto)
+        Stock --> Mod : CantidadPalets, /CantidadUnidades
+        Mod -> Mod : Calcula lo disponible según la modalidad (palets o unidades)
+        alt La cantidad supera el stock disponible (excepción 8.1)
+            Mod --> Form : "Error: Stock insuficiente"
+        else Hay stock suficiente (paso 8)
+            alt El producto ya estaba en la orden
+                Mod -> Item : Cantidad += cantidad
+            else Producto nuevo en la orden
+                Mod -> Item : new ItemOrden(producto, cantidad)
+            end
+            Mod --> Form : null
+        end
+    end
+    alt Hubo un error
+        Form --> Op : MessageBox(error)
+    else Sin error (paso 9)
+        Form -> Mod : ItemsOrden, UnidadDeCantidad
+        Mod -> Prod : Sku, Descripcion (por cada ítem)
+        Prod --> Mod : datos del producto
+        Mod --> Form : ítems de la orden
+        Form --> Op : Muestra la orden actual (SKU, Producto y Cantidad)
+    end
+end
+
+== Datos de retiro y confirmación (pasos 10 a 16) ==
+Op -> Form : Elige la fecha de retiro y completa etiquetado y transportista
+Form -> Form : Solo admite letras en los nombres y números en el DNI
+Form -> Mod : EsCaracterValidoParaNombre(caracter) / QuitarCaracteresInvalidosDeNombre(nombre)
+Mod --> Form : texto válido
+Op -> Form : Presiona "Confirmar Orden"
+Form -> Mod : FechaRetiro, NombreDestinatario, DireccionDestino, NombreTransportista, DniTransportista, EmpresaTransportista
+Form -> Mod : ValidarOrden()
+alt Falta algún dato obligatorio (excepción 13.1)
+    Mod --> Form : "Error: por favor rellene todos los campos antes de completar la orden"
+    Form --> Op : MessageBox(error)
+else La orden no tiene productos (excepción 13.2)
+    Mod --> Form : "Error: la orden de preparación debe contener al menos 1 producto"
+    Form --> Op : MessageBox(error)
+else Validación correcta
+    Mod --> Form : null
+    Form -> Mod : RegistrarOrden()
+    Mod -> OPrep : new OrdenPreparacion(numero, cliente, deposito, Modalidad, FechaRetiro, destinatario, transportista, items, EstadoEntrega = Pendiente)
+    note right of OPrep : Estado "Pendiente" del caso de uso.\nEl código actual todavía no crea la orden: solo descuenta el stock.
+    loop Por cada ItemOrden (paso 15)
+        Mod -> Stock : Descuenta palets o unidades sueltas (abre palets si hace falta)
+        Mod -> Prod : StockMinimoContratado
+        Prod --> Mod : mínimo / null
+        opt El stock quedó por debajo del mínimo contratado (excepción 15.2.1)
+            Mod -> Mod : Agrega "Advertencia: El producto [producto] ha quedado por debajo del límite establecido, por favor generar un nuevo ingreso de este"
+        end
+    end
+    Mod -> Mod : Limpia los datos de la orden
+    Mod --> Form : mensajes (advertencias y "Orden de preparación guardada con éxito")
+    loop Por cada mensaje
+        Form --> Op : MessageBox(mensaje) (paso 16)
+    end
+    Form -> Form : Limpia la pantalla
+end
+
+== Cancelar ==
+Op -> Form : Presiona "Cancelar"
+Form -> Form : Close() (no se registra ninguna orden)
+
+@enduml

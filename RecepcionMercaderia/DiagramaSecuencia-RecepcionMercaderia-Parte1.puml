@@ -1,0 +1,144 @@
+@startuml DiagramaSecuencia-RecepcionMercaderia-Parte1
+title Diagrama de secuencia - Caso de uso: Recepción de mercadería (Parte 1)
+
+skinparam sequenceArrowThickness 1
+skinparam sequenceParticipantBorderColor black
+skinparam sequenceLifeLineBorderColor black
+skinparam backgroundColor white
+skinparam sequenceMessageAlign left
+skinparam maxMessageSize 200
+
+autonumber
+
+actor "Operario de\nDescarga" as Op
+boundary "RecepcionMercaderiaForm" as Form
+control "RecepcionMercaderiaModelo" as Mod
+entity "Cliente" as Cli
+entity "Contrato" as Con
+entity "Producto" as Prod
+entity "Posicion" as Pos
+entity "ItemRecepcion" as Item
+
+== Apertura de pantalla ==
+Op -> Form : Abre la pantalla "Recepción de mercadería"
+Form -> Mod : new RecepcionMercaderiaModelo()
+Form -> Mod : ValidarHayClientes()
+Mod -> Cli : ObtenerClientes()
+Cli --> Mod : clientes
+Mod -> Con : Vigente (por cada cliente)
+Con --> Mod : true / false
+alt No hay clientes con contrato vigente (excepción paso 3)
+    Mod --> Form : "No hay clientes con contrato vigente para registrar recepciones"
+    Form --> Op : MessageBox(error)
+    Form -> Form : Close()
+else Hay clientes con contrato vigente
+    Mod --> Form : null
+    Form -> Mod : ClientesConContratoVigente
+    Mod --> Form : clientes con contrato vigente
+    Form -> Form : Carga el combo Cliente y la fecha del remito con la fecha actual
+    Form --> Op : Muestra la pantalla
+end
+
+== Datos del remito y del transportista ==
+Op -> Form : Selecciona el cliente
+Form -> Mod : PreguntarCambioDeCliente(nuevo)
+alt Ya había ítems cargados para otro cliente
+    Mod --> Form : "Si cambia el cliente, se quitarán los ítems cargados del detalle. ¿Desea cambiar el cliente?"
+    Form --> Op : MessageBox Sí / No
+    alt El operario elige "No"
+        Form -> Form : Vuelve a seleccionar el cliente anterior
+    else El operario elige "Sí"
+        Form -> Mod : SeleccionarCliente(nuevo)
+        Mod -> Pos : Ocupada = false (libera las posiciones de los ítems)
+        Mod -> Item : Se quitan los ítems cargados
+        Form -> Form : Limpia el detalle
+    end
+else No había ítems o es el mismo cliente
+    Form -> Mod : SeleccionarCliente(nuevo)
+end
+opt El operario escribe el cliente a mano
+    Form -> Mod : ValidarClienteEscrito(razonSocial)
+    alt El cliente no tiene contrato vigente
+        Mod --> Form : "El cliente [cliente] no figura en el sistema con contrato vigente. Elija uno de los clientes de la lista"
+        Form --> Op : MessageBox(error)
+    else El cliente es válido
+        Form -> Mod : BuscarCliente(razonSocial)
+        Mod --> Form : cliente
+    end
+end
+
+Op -> Form : Ingresa el N° de remito
+Form -> Mod : FormatearNumeroRemito(numero)
+Mod --> Form : número con guion (00001-00012345)
+Form -> Mod : ValidarRemitoNoRegistrado(numero)
+Mod -> Cli : RemitosRegistrados
+Cli --> Mod : remitos del cliente
+alt El remito ya fue registrado para ese cliente (excepción paso 6)
+    Mod --> Form : "El remito N° [nro] ya fue registrado para el cliente [cliente]"
+    Form --> Op : MessageBox(error)
+    Form -> Form : Limpia el campo N° Remito
+end
+Op -> Form : Ingresa fecha del remito, transportista, chofer y patente
+Form -> Mod : AdmiteSoloLetras(caracter) / AdmiteSoloNumeros(caracter)
+Mod --> Form : true / false
+
+== Carga de la mercadería recibida (pasos 8 a 11) ==
+loop Por cada ítem del remito
+    Op -> Form : Ingresa SKU/Código, Cant. Contada y Cant. Remito y presiona "+ Agregar Ítem"
+    Form -> Mod : AgregarItem(codigo, textoContada, textoRemito)
+    alt No hay cliente seleccionado
+        Mod --> Form : "Seleccione el cliente antes de cargar la mercadería..."
+    else Faltan datos del ítem
+        Mod --> Form : "Complete SKU/ Código, Cant. Contada y Cant. Remito para agregar el ítem."
+    else Datos completos
+        Mod -> Prod : BuscarPorSkuOCodigoPallet(cliente, codigo)
+        Prod --> Mod : producto / null
+        alt El SKU no está dado de alta para el cliente (excepción 10.1)
+            Mod --> Form : "El SKU [sku] no está dado de alta para el cliente [cliente]"
+        else Las cantidades no son válidas (excepción 10.2)
+            Mod --> Form : "Ingrese cantidades enteras: la del remito mayor a cero y la contada mayor o igual a cero"
+        else El SKU ya está en la lista (excepción 10.3)
+            Mod --> Form : "El SKU [sku] ya fue agregado. Quítelo para volver a cargarlo"
+        else Ítem válido
+            opt Cantidad contada mayor a 0
+                Mod -> Pos : BuscarPrimeraLibre()
+                Pos --> Mod : posición / null
+                alt No hay posiciones libres
+                    Mod --> Form : "No hay posiciones libres en el depósito para ubicar esta mercadería. Avise al jefe de Almacenamiento."
+                else Hay posición libre
+                    Mod -> Pos : Ocupada = true
+                end
+            end
+            Mod -> Item : new ItemRecepcion(producto, esPallet, contada, remito, posicion)
+            Mod --> Form : null
+        end
+    end
+    alt Hubo un error
+        Form --> Op : MessageBox(error)
+        Form -> Form : Limpia el campo SKU o las cantidades, según CodigoInvalido / CantidadesInvalidas
+    else Sin error
+        Form -> Mod : Items
+        Mod --> Form : ítems cargados
+        Form --> Op : Muestra el detalle de mercadería recibida
+    end
+
+    opt Quitar un ítem (excepción paso 11)
+        Op -> Form : Selecciona un ítem y presiona "− Quitar Ítem"
+        Form -> Mod : QuitarItem(indice)
+        alt No hay ítems cargados
+            Mod --> Form : "No hay mercadería disponible para quitar."
+            Form --> Op : MessageBox(error)
+        else No hay un ítem seleccionado
+            Mod --> Form : "Seleccione el ítem que desea quitar"
+            Form --> Op : MessageBox(error)
+        else Hay un ítem seleccionado
+            Mod -> Pos : Ocupada = false (libera la posición propuesta)
+            Mod -> Item : Se quita de la lista
+            Mod --> Form : null
+            Form -> Form : Quita el ítem del detalle
+        end
+    end
+end
+
+
+@enduml

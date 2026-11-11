@@ -1,0 +1,89 @@
+@startuml DiagramaSecuencia-RecepcionMercaderia-Parte2
+title Diagrama de secuencia - Caso de uso: Recepción de mercadería (Parte 2)
+
+skinparam sequenceArrowThickness 1
+skinparam sequenceParticipantBorderColor black
+skinparam sequenceLifeLineBorderColor black
+skinparam backgroundColor white
+skinparam sequenceMessageAlign left
+skinparam maxMessageSize 200
+
+autonumber 73
+
+actor "Operario de\nDescarga" as Op
+boundary "RecepcionMercaderiaForm" as Form
+control "RecepcionMercaderiaModelo" as Mod
+entity "Cliente" as Cli
+entity "ItemRecepcion" as Item
+entity "OrdenRecepcion" as OR
+entity "NotaDiferencias" as ND
+entity "NotaEspacioInsuficiente" as NE
+
+== Confirmación de la recepción (pasos 15 a 20) ==
+Op -> Form : Completa Observaciones y presiona "Confirmar"
+Form -> Mod : NumeroRemito, FechaRemito, Transportista, Chofer, Patente, Observaciones
+Form -> Mod : ValidarRecepcion()
+alt Falta un dato obligatorio o la lista está vacía (excepción paso 15)
+    Mod --> Form : "Complete los datos del remito y del transportista y cargue al menos un ítem. Falta completar: [campos]"
+else El N° de remito no tiene 13 números
+    Mod --> Form : "El N° de remito debe tener 13 números..."
+else El remito ya fue registrado para el cliente
+    Mod --> Form : "El remito N° [nro] ya fue registrado para el cliente [cliente]"
+else La fecha del remito es posterior a la actual
+    Mod --> Form : "La fecha del remito no puede ser posterior a la fecha actual."
+else El transportista o el chofer tienen caracteres que no son letras
+    Mod --> Form : "El transportista solo admite letras." / "Ingrese el nombre y el apellido del chofer..."
+else La patente no tiene formato AAA123 o AA123AA
+    Mod --> Form : "La patente debe tener el formato AAA123 o AA123AA, por ejemplo AB123CD."
+else Datos válidos
+    Mod --> Form : null
+end
+alt Hubo un error
+    Form --> Op : MessageBox(error)
+else Sin error
+    Form -> Mod : PreguntaConfirmacion
+    Mod --> Form : "¿Confirma el registro de la recepción del remito N° [nro] del cliente [cliente]?"
+    Form --> Op : MessageBox Sí / No
+    alt El operario elige "No" (excepción paso 17)
+        Form -> Form : Cierra el mensaje sin guardar nada
+    else El operario elige "Sí"
+        Form -> Mod : RegistrarRecepcion()
+        Mod -> Item : CantidadContada, CantidadRemito (por cada ítem)
+        Item --> Mod : diferencias
+        alt Algún ítem tiene contada menor que el remito (excepción paso 18)
+            Mod -> Mod : estado = "Recibida con diferencias"
+        else Algún ítem tiene contada mayor que el remito (excepción paso 19)
+            Mod -> Mod : estado = "Pendiente - Excedente"
+        else Las cantidades coinciden
+            Mod -> Mod : estado = "Pendiente de almacenamiento"
+        end
+        Mod -> OR : new OrdenRecepcion(numero, cliente, numeroRemito, fechaRemito, transportista, chofer, patente, observaciones, items, estado)
+        opt Hubo diferencias
+            Mod -> ND : new NotaDiferencias(numero, numeroOrdenRecepcion, fechaHora)
+        end
+        opt Hubo excedente
+            Mod -> NE : new NotaEspacioInsuficiente(numero, numeroOrdenRecepcion, fechaHora)
+        end
+        Mod -> Cli : RemitosRegistrados.Add(numeroRemito)
+        Mod -> Mod : Limpia los datos de la recepción
+        Mod --> Form : mensajes (diferencias, excedente y "Orden de recepción N° [nro] registrada con éxito...")
+        loop Por cada mensaje
+            Form --> Op : MessageBox(mensaje)
+        end
+        Form -> Form : Limpia la pantalla para la próxima recepción
+    end
+end
+
+== Cancelar o cerrar con la X (pasos 2 a 16) ==
+Op -> Form : Presiona "Cancelar" o cierra con la X
+Form -> Mod : MensajeCancelacion
+Mod --> Form : "Si selecciona cancelar, los cambios no se guardarán. ¿Desea cancelar?"
+Form --> Op : Cartel "Sí, descartar cambios" / "No"
+alt El operario elige "Sí, descartar cambios"
+    Form -> Form : Cierra la pantalla sin registrar nada
+else El operario elige "No"
+    Form -> Form : Cancela el cierre y sigue en la pantalla
+end
+
+
+@enduml
