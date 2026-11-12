@@ -266,12 +266,13 @@ internal class RegistrarOrdenDePreparacionModelo
         // (las posiciones del depósito no cambian hasta que se prepare).
         List<Alm.OrdenPreparacionEntidad> ordenes = Alm.OrdenPreparacionAlmacen.OrdenPreparacion;
         bool esPaletCerrado = Modalidad == ModalidadEmpaquetado.PaletCerrado;
+        string deposito = codigoDeposito[DepositoSeleccionado!];
 
-        ordenes.Add(new Alm.OrdenPreparacionEntidad
+        var ordenPreparacion = new Alm.OrdenPreparacionEntidad
         {
             Numero = ordenes.Count == 0 ? 1 : ordenes.Max(o => o.Numero) + 1,
             CodigoCliente = codigoCliente,
-            CodigoDeposito = codigoDeposito[DepositoSeleccionado!],
+            CodigoDeposito = deposito,
             // En el almacén la cantidad del renglón va siempre en unidades.
             Renglones = ItemsOrden.Select(i => new Alm.RenglonOrdenPreparacion
             {
@@ -291,7 +292,12 @@ internal class RegistrarOrdenDePreparacionModelo
             LegajoEmpleadoTomador = 0,
             FechaPreparada = null,
             LegajoEmpleadoPreparación = 0
-        });
+        };
+        ordenes.Add(ordenPreparacion);
+
+        // Se genera la orden de selección de esta orden de preparación, con las posiciones
+        // de las que hay que sacar la mercadería.
+        GenerarOrdenSeleccion(ordenPreparacion);
 
         mensajes.Add("Orden de preparación guardada con éxito");
 
@@ -306,6 +312,81 @@ internal class RegistrarOrdenDePreparacionModelo
         EmpresaTransportista = "";
 
         return mensajes;
+    }
+
+    // Registra la orden de selección "Pendiente" de la orden de preparación y las asocia.
+    // Cada SKU se toma de las posiciones del depósito que lo guardan, de la primera a la última
+    // (pasillo, fila y nivel), descontando lo que ya piden otras órdenes de selección pendientes.
+    private void GenerarOrdenSeleccion(Alm.OrdenPreparacionEntidad ordenPreparacion)
+    {
+        List<Alm.OrdenSeleccionEntidad> ordenesSeleccion = Alm.OrdenSeleccionAlmacen.OrdenSeleccion;
+        Alm.DepositoEntidad? deposito = Alm.DepositoAlmacen.Deposito.Find(d => d.Codigo == ordenPreparacion.CodigoDeposito);
+
+        List<Alm.Posicion> posiciones = deposito == null
+            ? new List<Alm.Posicion>()
+            : deposito.Posiciones
+                .OrderBy(p => p.Pasillo)
+                .ThenBy(p => int.TryParse(p.Fila, out int f) ? f : 0)
+                .ThenBy(p => int.TryParse(p.Nivel, out int n) ? n : 0)
+                .ToList();
+
+        // Lo que ya está pedido en cada posición por órdenes de selección pendientes del depósito.
+        List<Alm.RenglonOrdenSeleccion> comprometidos = ordenesSeleccion
+            .Where(o => o.CodigoDeposito == ordenPreparacion.CodigoDeposito && o.Estado == Alm.EstadoOrdenSeleccionEnum.Pendiente)
+            .SelectMany(o => o.Renglones)
+            .ToList();
+
+        var renglones = new List<Alm.RenglonOrdenSeleccion>();
+        foreach (Alm.RenglonOrdenPreparacion renglon in ordenPreparacion.Renglones)
+        {
+            Alm.ProductoEntidad? producto = Alm.ProductoAlmacen.Producto.Find(p => p.Sku == renglon.SKU_Producto);
+            int unidadesPorPallet = producto?.UnidadesPorPallet ?? 0;
+            int faltante = renglon.Cantidad;
+
+            foreach (Alm.Posicion p in posiciones.Where(p => p.Sku == renglon.SKU_Producto))
+            {
+                if (faltante <= 0)
+                {
+                    break;
+                }
+
+                int pedido = comprometidos
+                    .Concat(renglones)
+                    .Where(r => r.SKU_Producto == p.Sku && r.PosicionPasillo == p.Pasillo
+                                && r.PosicionFila == p.Fila && r.PosicionNivel == p.Nivel)
+                    .Sum(r => r.Cantidad);
+                int disponible = p.CantidadPalets * unidadesPorPallet + p.CantidadSueltos - pedido;
+                if (disponible <= 0)
+                {
+                    continue;
+                }
+
+                int cantidad = Math.Min(disponible, faltante);
+                renglones.Add(new Alm.RenglonOrdenSeleccion
+                {
+                    SKU_Producto = renglon.SKU_Producto,
+                    PosicionPasillo = p.Pasillo,
+                    PosicionFila = p.Fila,
+                    PosicionNivel = p.Nivel,
+                    Cantidad = cantidad
+                });
+                faltante -= cantidad;
+            }
+        }
+
+        int numero = ordenesSeleccion.Count == 0 ? 1 : ordenesSeleccion.Max(o => o.Numero) + 1;
+        ordenesSeleccion.Add(new Alm.OrdenSeleccionEntidad
+        {
+            Numero = numero,
+            CodigoDeposito = ordenPreparacion.CodigoDeposito,
+            Renglones = renglones,
+            Estado = Alm.EstadoOrdenSeleccionEnum.Pendiente,
+            FechaHoraCumplida = null,
+            LegajoUsuarioCumplida = 0
+        });
+
+        ordenPreparacion.NumeroOrdenSeleccion = numero;
+        ordenPreparacion.EstadoOrdenSeleccion = Alm.EstadoOrdenSeleccionEnum.Pendiente;
     }
 
     // Descuenta del stock la cantidad pedida: en palets para Palet Cerrado, en unidades para Fullfilment
