@@ -1,0 +1,312 @@
+﻿[
+  {
+    "Numero": 1,
+    "CodigoDeposito": "D01",
+    "Renglones": [
+      {
+        "SKU_Producto": "001",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "1",
+        "Cantidad": 30
+      },
+      {
+        "SKU_Producto": "002",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "2",
+        "Cantidad": 10
+      }
+    ],
+    "Estado": 1,
+    "FechaHoraCumplida": "2026-06-09T16:00:00",
+    "LegajoUsuarioCumplida": 1002
+  },
+  {
+    "Numero": 2,
+    "CodigoDeposito": "D07",
+    "Renglones": [
+      {
+        "SKU_Producto": "008",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "1",
+        "Cantidad": 400
+      },
+      {
+        "SKU_Producto": "011",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "2",
+        "Cantidad": 250
+      },
+      {
+        "SKU_Producto": "016",
+        "PosicionPasillo": "A",
+        "PosicionFila": "2",
+        "PosicionNivel": "1",
+        "Cantidad": 100
+      }
+    ],
+    "Estado": 1,
+    "FechaHoraCumplida": "2026-06-17T16:00:00",
+    "LegajoUsuarioCumplida": 1001
+  },
+  {
+    "Numero": 3,
+    "CodigoDeposito": "D03",
+    "Renglones": [
+      {
+        "SKU_Producto": "004",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "1",
+        "Cantidad": 4
+      }
+    ],
+    "Estado": 1,
+    "FechaHoraCumplida": "2026-07-01T16:00:00",
+    "LegajoUsuarioCumplida": 1002
+  },
+  {
+    "Numero": 4,
+    "CodigoDeposito": "D09",
+    "Renglones": [
+      {
+        "SKU_Producto": "010",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "1",
+        "Cantidad": 1440
+      }
+    ],
+    "Estado": 1,
+    "FechaHoraCumplida": "2026-07-14T16:00:00",
+    "LegajoUsuarioCumplida": 1001
+  },
+  {
+    "Numero": 5,
+    "CodigoDeposito": "D04",
+    "Renglones": [
+      {
+        "SKU_Producto": "005",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "1",
+        "Cantidad": 3
+      },
+      {
+        "SKU_Producto": "013",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "2",
+        "Cantidad": 12
+      }
+    ],
+    "Estado": 1,
+    "FechaHoraCumplida": "2026-08-04T16:00:00",
+    "LegajoUsuarioCumplida": 1002
+  },
+  {
+    "Numero": 6,
+    "CodigoDeposito": "D02",
+    "Renglones": [
+      {
+        "SKU_Producto": "003",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "1",
+        "Cantidad": 75
+      }
+    ],
+    "Estado": 1,
+    "FechaHoraCumplida": "2026-10-19T16:00:00",
+    "LegajoUsuarioCumplida": 1001
+  },
+  {
+    "Numero": 7,
+    "CodigoDeposito": "D05",
+    "Renglones": [
+      {
+        "SKU_Producto": "006",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "1",
+        "Cantidad": 5
+      },
+      {
+        "SKU_Producto": "019",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "2",
+        "Cantidad": 30
+      }
+    ],
+    "Estado": 1,
+    "FechaHoraCumplida": "2026-10-21T16:00:00",
+    "LegajoUsuarioCumplida": 1002
+  },
+  {
+    "Numero": 8,
+    "CodigoDeposito": "D06",
+    "Renglones": [
+      {
+        "SKU_Producto": "007",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "1",
+        "Cantidad": 24
+      },
+      {
+        "SKU_Producto": "014",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "2",
+        "Cantidad": 3
+      }
+    ],
+    "Estado": 1,
+    "FechaHoraCumplida": "2026-10-25T16:00:00",
+    "LegajoUsuarioCumplida": 1001
+  },
+  {
+    "Numero": 9,
+    "CodigoDeposito": "D08",
+    "Renglones": [
+      {
+        "SKU_Producto": "009",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "1",
+        "Cantidad": 2
+      }
+    ],
+    "Estado": 1,
+    "FechaHoraCumplida": "2026-10-27T16:00:00",
+    "LegajoUsuarioCumplida": 1002
+  },
+  {
+    "Numero": 10,
+    "CodigoDeposito": "D10",
+    "Renglones": [
+      {
+        "SKU_Producto": "015",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "1",
+        "Cantidad": 10
+      },
+      {
+        "SKU_Producto": "017",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "2",
+        "Cantidad": 20
+      }
+    ],
+    "Estado": 1,
+    "FechaHoraCumplida": "2026-10-29T16:00:00",
+    "LegajoUsuarioCumplida": 1001
+  },
+  {
+    "Numero": 11,
+    "CodigoDeposito": "D11",
+    "Renglones": [
+      {
+        "SKU_Producto": "018",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "1",
+        "Cantidad": 35
+      }
+    ],
+    "Estado": 1,
+    "FechaHoraCumplida": "2026-11-01T16:00:00",
+    "LegajoUsuarioCumplida": 1002
+  },
+  {
+    "Numero": 12,
+    "CodigoDeposito": "D12",
+    "Renglones": [
+      {
+        "SKU_Producto": "020",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "1",
+        "Cantidad": 6
+      }
+    ],
+    "Estado": 1,
+    "FechaHoraCumplida": "2026-11-02T16:00:00",
+    "LegajoUsuarioCumplida": 1001
+  },
+  {
+    "Numero": 13,
+    "CodigoDeposito": "D01",
+    "Renglones": [
+      {
+        "SKU_Producto": "001",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "1",
+        "Cantidad": 100
+      }
+    ],
+    "Estado": 1,
+    "FechaHoraCumplida": "2026-11-03T16:00:00",
+    "LegajoUsuarioCumplida": 1002
+  },
+  {
+    "Numero": 14,
+    "CodigoDeposito": "D07",
+    "Renglones": [
+      {
+        "SKU_Producto": "016",
+        "PosicionPasillo": "A",
+        "PosicionFila": "2",
+        "PosicionNivel": "1",
+        "Cantidad": 60
+      },
+      {
+        "SKU_Producto": "008",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "1",
+        "Cantidad": 50
+      },
+      {
+        "SKU_Producto": "011",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "2",
+        "Cantidad": 120
+      }
+    ],
+    "Estado": 1,
+    "FechaHoraCumplida": "2026-11-04T11:00:00",
+    "LegajoUsuarioCumplida": 1001
+  },
+  {
+    "Numero": 15,
+    "CodigoDeposito": "D05",
+    "Renglones": [
+      {
+        "SKU_Producto": "006",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "1",
+        "Cantidad": 40
+      },
+      {
+        "SKU_Producto": "019",
+        "PosicionPasillo": "A",
+        "PosicionFila": "1",
+        "PosicionNivel": "2",
+        "Cantidad": 15
+      }
+    ],
+    "Estado": 0,
+    "FechaHoraCumplida": null,
+    "LegajoUsuarioCumplida": 0
+  }
+]

@@ -1,0 +1,130 @@
+﻿[
+  {
+    "Numero": 1,
+    "Fecha": "2026-10-31T18:00:00",
+    "Concepto": "Facturacion servicio de almacenamiento octubre 2026",
+    "Importe": 185000.50,
+    "CodigoCliente": "C001",
+    "CUIT_Proveedor": ""
+  },
+  {
+    "Numero": 2,
+    "Fecha": "2026-10-31T18:00:00",
+    "Concepto": "Facturacion servicio de almacenamiento octubre 2026",
+    "Importe": 92000.00,
+    "CodigoCliente": "C002",
+    "CUIT_Proveedor": ""
+  },
+  {
+    "Numero": 3,
+    "Fecha": "2026-10-31T18:00:00",
+    "Concepto": "Facturacion servicio de almacenamiento octubre 2026",
+    "Importe": 240500.75,
+    "CodigoCliente": "C003",
+    "CUIT_Proveedor": ""
+  },
+  {
+    "Numero": 4,
+    "Fecha": "2026-10-31T18:00:00",
+    "Concepto": "Facturacion servicio de almacenamiento octubre 2026",
+    "Importe": 131250.00,
+    "CodigoCliente": "C004",
+    "CUIT_Proveedor": ""
+  },
+  {
+    "Numero": 5,
+    "Fecha": "2026-10-31T18:00:00",
+    "Concepto": "Facturacion servicio de almacenamiento octubre 2026",
+    "Importe": 99800.90,
+    "CodigoCliente": "C005",
+    "CUIT_Proveedor": ""
+  },
+  {
+    "Numero": 6,
+    "Fecha": "2026-10-31T18:00:00",
+    "Concepto": "Facturacion servicio de almacenamiento octubre 2026",
+    "Importe": 156700.00,
+    "CodigoCliente": "C006",
+    "CUIT_Proveedor": ""
+  },
+  {
+    "Numero": 7,
+    "Fecha": "2026-10-31T18:00:00",
+    "Concepto": "Facturacion servicio de almacenamiento octubre 2026",
+    "Importe": 310000.00,
+    "CodigoCliente": "C007",
+    "CUIT_Proveedor": ""
+  },
+  {
+    "Numero": 8,
+    "Fecha": "2026-10-31T18:00:00",
+    "Concepto": "Facturacion servicio de almacenamiento octubre 2026",
+    "Importe": 64500.25,
+    "CodigoCliente": "C008",
+    "CUIT_Proveedor": ""
+  },
+  {
+    "Numero": 9,
+    "Fecha": "2026-10-31T18:00:00",
+    "Concepto": "Facturacion servicio de almacenamiento octubre 2026",
+    "Importe": 120000.00,
+    "CodigoCliente": "C009",
+    "CUIT_Proveedor": ""
+  },
+  {
+    "Numero": 10,
+    "Fecha": "2026-10-31T18:00:00",
+    "Concepto": "Facturacion servicio de almacenamiento octubre 2026",
+    "Importe": 143900.60,
+    "CodigoCliente": "C010",
+    "CUIT_Proveedor": ""
+  },
+  {
+    "Numero": 11,
+    "Fecha": "2026-02-27T18:00:00",
+    "Concepto": "Facturacion servicio de almacenamiento febrero 2026",
+    "Importe": 51000.00,
+    "CodigoCliente": "C013",
+    "CUIT_Proveedor": ""
+  },
+  {
+    "Numero": 12,
+    "Fecha": "2026-10-05T11:00:00",
+    "Concepto": "Pago mantenimiento de autoelevadores",
+    "Importe": 254300.00,
+    "CodigoCliente": "",
+    "CUIT_Proveedor": "30-71100000-0"
+  },
+  {
+    "Numero": 13,
+    "Fecha": "2026-10-09T15:20:00",
+    "Concepto": "Compra de film y cajas de embalaje",
+    "Importe": 87650.40,
+    "CodigoCliente": "",
+    "CUIT_Proveedor": "30-71113579-7"
+  },
+  {
+    "Numero": 14,
+    "Fecha": "2026-10-15T10:00:00",
+    "Concepto": "Servicio de vigilancia octubre 2026",
+    "Importe": 412000.00,
+    "CodigoCliente": "",
+    "CUIT_Proveedor": "30-71127158-4"
+  },
+  {
+    "Numero": 15,
+    "Fecha": "2026-10-20T09:30:00",
+    "Concepto": "Instalacion de racks en Deposito Central de Traslados",
+    "Importe": 1530000.00,
+    "CodigoCliente": "",
+    "CUIT_Proveedor": "30-71167895-5"
+  },
+  {
+    "Numero": 16,
+    "Fecha": "2026-10-28T16:45:00",
+    "Concepto": "Compra de etiquetas para pallets",
+    "Importe": 43200.75,
+    "CodigoCliente": "",
+    "CUIT_Proveedor": "30-71235790-0"
+  }
+]

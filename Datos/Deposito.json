@@ -1,0 +1,532 @@
+﻿[
+  {
+    "Codigo": "D01",
+    "Nombre": "Deposito Barracas",
+    "Posiciones": [
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": "001",
+        "CantidadPalets": 2,
+        "CantidadSueltos": 7
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": "002",
+        "CantidadPalets": 3,
+        "CantidadSueltos": 14
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      }
+    ]
+  },
+  {
+    "Codigo": "D02",
+    "Nombre": "Deposito Avellaneda",
+    "Posiciones": [
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": "003",
+        "CantidadPalets": 1,
+        "CantidadSueltos": 21
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      }
+    ]
+  },
+  {
+    "Codigo": "D03",
+    "Nombre": "Deposito Lanus",
+    "Posiciones": [
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": "004",
+        "CantidadPalets": 2,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": "012",
+        "CantidadPalets": 1,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      }
+    ]
+  },
+  {
+    "Codigo": "D04",
+    "Nombre": "Deposito Quilmes",
+    "Posiciones": [
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": "005",
+        "CantidadPalets": 3,
+        "CantidadSueltos": 3
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": "013",
+        "CantidadPalets": 2,
+        "CantidadSueltos": 1
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      }
+    ]
+  },
+  {
+    "Codigo": "D05",
+    "Nombre": "Deposito Pilar",
+    "Posiciones": [
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": "006",
+        "CantidadPalets": 3,
+        "CantidadSueltos": 2
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": "019",
+        "CantidadPalets": 2,
+        "CantidadSueltos": 28
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      }
+    ]
+  },
+  {
+    "Codigo": "D06",
+    "Nombre": "Deposito Tigre",
+    "Posiciones": [
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": "007",
+        "CantidadPalets": 3,
+        "CantidadSueltos": 1
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": "014",
+        "CantidadPalets": 3,
+        "CantidadSueltos": 8
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      }
+    ]
+  },
+  {
+    "Codigo": "D07",
+    "Nombre": "Deposito San Martin",
+    "Posiciones": [
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": "008",
+        "CantidadPalets": 3,
+        "CantidadSueltos": 56
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": "011",
+        "CantidadPalets": 3,
+        "CantidadSueltos": 77
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": "016",
+        "CantidadPalets": 2,
+        "CantidadSueltos": 112
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      }
+    ]
+  },
+  {
+    "Codigo": "D08",
+    "Nombre": "Deposito Moron",
+    "Posiciones": [
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": "009",
+        "CantidadPalets": 1,
+        "CantidadSueltos": 3
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      }
+    ]
+  },
+  {
+    "Codigo": "D09",
+    "Nombre": "Deposito La Matanza",
+    "Posiciones": [
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": "010",
+        "CantidadPalets": 2,
+        "CantidadSueltos": 70
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      }
+    ]
+  },
+  {
+    "Codigo": "D10",
+    "Nombre": "Deposito Ezeiza",
+    "Posiciones": [
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": "015",
+        "CantidadPalets": 1,
+        "CantidadSueltos": 5
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": "017",
+        "CantidadPalets": 3,
+        "CantidadSueltos": 39
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      }
+    ]
+  },
+  {
+    "Codigo": "D11",
+    "Nombre": "Deposito Escobar",
+    "Posiciones": [
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": "018",
+        "CantidadPalets": 0,
+        "CantidadSueltos": 126
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      }
+    ]
+  },
+  {
+    "Codigo": "D12",
+    "Nombre": "Deposito Campana",
+    "Posiciones": [
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": "020",
+        "CantidadPalets": 0,
+        "CantidadSueltos": 92
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      }
+    ]
+  },
+  {
+    "Codigo": "D13",
+    "Nombre": "Deposito Central de Traslados",
+    "Posiciones": [
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": "001",
+        "CantidadPalets": 1,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": "003",
+        "CantidadPalets": 2,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": "008",
+        "CantidadPalets": 2,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "2",
+        "Sku": "010",
+        "CantidadPalets": 1,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      }
+    ]
+  },
+  {
+    "Codigo": "D14",
+    "Nombre": "Deposito Zarate",
+    "Posiciones": [
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      }
+    ]
+  },
+  {
+    "Codigo": "D15",
+    "Nombre": "Deposito Lujan",
+    "Posiciones": [
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      }
+    ]
+  }
+]

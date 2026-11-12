@@ -1,0 +1,77 @@
+﻿[
+  {
+    "Legajo": 1001,
+    "Nombre": "Laura Gomez",
+    "Usuario": "lgomez"
+  },
+  {
+    "Legajo": 1002,
+    "Nombre": "Martin Fernandez",
+    "Usuario": "mfernandez"
+  },
+  {
+    "Legajo": 1003,
+    "Nombre": "Sofia Ramirez",
+    "Usuario": "sramirez"
+  },
+  {
+    "Legajo": 1004,
+    "Nombre": "Diego Torres",
+    "Usuario": "dtorres"
+  },
+  {
+    "Legajo": 1005,
+    "Nombre": "Valentina Lopez",
+    "Usuario": "vlopez"
+  },
+  {
+    "Legajo": 1006,
+    "Nombre": "Lucas Martinez",
+    "Usuario": "lmartinez"
+  },
+  {
+    "Legajo": 1007,
+    "Nombre": "Camila Diaz",
+    "Usuario": "cdiaz"
+  },
+  {
+    "Legajo": 1008,
+    "Nombre": "Mateo Romero",
+    "Usuario": "mromero"
+  },
+  {
+    "Legajo": 1009,
+    "Nombre": "Julieta Sosa",
+    "Usuario": "jsosa"
+  },
+  {
+    "Legajo": 1010,
+    "Nombre": "Tomas Alvarez",
+    "Usuario": "talvarez"
+  },
+  {
+    "Legajo": 1011,
+    "Nombre": "Agustina Ruiz",
+    "Usuario": "aruiz"
+  },
+  {
+    "Legajo": 1012,
+    "Nombre": "Federico Herrera",
+    "Usuario": "fherrera"
+  },
+  {
+    "Legajo": 1013,
+    "Nombre": "Micaela Castro",
+    "Usuario": "mcastro"
+  },
+  {
+    "Legajo": 1014,
+    "Nombre": "Nicolas Medina",
+    "Usuario": "nmedina"
+  },
+  {
+    "Legajo": 1015,
+    "Nombre": "Rocio Benitez",
+    "Usuario": "rbenitez"
+  }
+]

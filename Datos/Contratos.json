@@ -1,0 +1,146 @@
+﻿[
+  {
+    "Número": 1,
+    "CodigoCliente": "C001",
+    "FechaInicio": "2025-08-01T00:00:00",
+    "FechaFin": "2027-07-30T00:00:00",
+    "Ubicaciondep": "D01",
+    "Tarifa": 185000.50
+  },
+  {
+    "Número": 2,
+    "CodigoCliente": "C002",
+    "FechaInicio": "2025-09-01T00:00:00",
+    "FechaFin": "2027-08-30T00:00:00",
+    "Ubicaciondep": "D02",
+    "Tarifa": 92000.00
+  },
+  {
+    "Número": 3,
+    "CodigoCliente": "C003",
+    "FechaInicio": "2025-10-01T00:00:00",
+    "FechaFin": "2027-09-30T00:00:00",
+    "Ubicaciondep": "D03",
+    "Tarifa": 240500.75
+  },
+  {
+    "Número": 4,
+    "CodigoCliente": "C004",
+    "FechaInicio": "2025-11-01T00:00:00",
+    "FechaFin": "2027-10-30T00:00:00",
+    "Ubicaciondep": "D04",
+    "Tarifa": 131250.00
+  },
+  {
+    "Número": 5,
+    "CodigoCliente": "C005",
+    "FechaInicio": "2025-12-01T00:00:00",
+    "FechaFin": "2027-11-30T00:00:00",
+    "Ubicaciondep": "D05",
+    "Tarifa": 99800.90
+  },
+  {
+    "Número": 6,
+    "CodigoCliente": "C006",
+    "FechaInicio": "2025-07-01T00:00:00",
+    "FechaFin": "2027-06-30T00:00:00",
+    "Ubicaciondep": "D06",
+    "Tarifa": 156700.00
+  },
+  {
+    "Número": 7,
+    "CodigoCliente": "C007",
+    "FechaInicio": "2025-08-01T00:00:00",
+    "FechaFin": "2027-07-30T00:00:00",
+    "Ubicaciondep": "D07",
+    "Tarifa": 310000.00
+  },
+  {
+    "Número": 8,
+    "CodigoCliente": "C008",
+    "FechaInicio": "2025-09-01T00:00:00",
+    "FechaFin": "2027-08-30T00:00:00",
+    "Ubicaciondep": "D08",
+    "Tarifa": 64500.25
+  },
+  {
+    "Número": 9,
+    "CodigoCliente": "C009",
+    "FechaInicio": "2025-10-01T00:00:00",
+    "FechaFin": "2027-09-30T00:00:00",
+    "Ubicaciondep": "D09",
+    "Tarifa": 120000.00
+  },
+  {
+    "Número": 10,
+    "CodigoCliente": "C010",
+    "FechaInicio": "2025-11-01T00:00:00",
+    "FechaFin": "2027-10-30T00:00:00",
+    "Ubicaciondep": "D10",
+    "Tarifa": 143900.60
+  },
+  {
+    "Número": 11,
+    "CodigoCliente": "C011",
+    "FechaInicio": "2025-12-01T00:00:00",
+    "FechaFin": "2027-11-30T00:00:00",
+    "Ubicaciondep": "D11",
+    "Tarifa": 78250.00
+  },
+  {
+    "Número": 12,
+    "CodigoCliente": "C012",
+    "FechaInicio": "2025-07-01T00:00:00",
+    "FechaFin": "2027-06-30T00:00:00",
+    "Ubicaciondep": "D12",
+    "Tarifa": 88000.40
+  },
+  {
+    "Número": 13,
+    "CodigoCliente": "C013",
+    "FechaInicio": "2024-03-01T00:00:00",
+    "FechaFin": "2026-02-28T00:00:00",
+    "Ubicaciondep": "D14",
+    "Tarifa": 51000.00
+  },
+  {
+    "Número": 14,
+    "CodigoCliente": "C014",
+    "FechaInicio": "2024-04-01T00:00:00",
+    "FechaFin": "2026-04-28T00:00:00",
+    "Ubicaciondep": "D14",
+    "Tarifa": 47500.80
+  },
+  {
+    "Número": 15,
+    "CodigoCliente": "C015",
+    "FechaInicio": "2024-05-01T00:00:00",
+    "FechaFin": "2026-06-28T00:00:00",
+    "Ubicaciondep": "D15",
+    "Tarifa": 69900.00
+  },
+  {
+    "Número": 16,
+    "CodigoCliente": "C016",
+    "FechaInicio": "2024-06-01T00:00:00",
+    "FechaFin": "2026-08-28T00:00:00",
+    "Ubicaciondep": "D15",
+    "Tarifa": 58000.00
+  },
+  {
+    "Número": 17,
+    "CodigoCliente": "C001",
+    "FechaInicio": "2023-07-01T00:00:00",
+    "FechaFin": "2025-06-30T00:00:00",
+    "Ubicaciondep": "D01",
+    "Tarifa": 150000.00
+  },
+  {
+    "Número": 18,
+    "CodigoCliente": "C002",
+    "FechaInicio": "2024-01-01T00:00:00",
+    "FechaFin": "2025-12-31T00:00:00",
+    "Ubicaciondep": "D02",
+    "Tarifa": 80500.00
+  }
+]

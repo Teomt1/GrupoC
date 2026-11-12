@@ -1,0 +1,122 @@
+﻿[
+  {
+    "Numero": 1,
+    "SKU_Producto": "001",
+    "Cantidad": 100,
+    "CodigoDepositoOrigen": "D01",
+    "CodigoDepositoDestino": "D13",
+    "Estado": 2
+  },
+  {
+    "Numero": 2,
+    "SKU_Producto": "003",
+    "Cantidad": 300,
+    "CodigoDepositoOrigen": "D02",
+    "CodigoDepositoDestino": "D13",
+    "Estado": 2
+  },
+  {
+    "Numero": 3,
+    "SKU_Producto": "008",
+    "Cantidad": 400,
+    "CodigoDepositoOrigen": "D07",
+    "CodigoDepositoDestino": "D13",
+    "Estado": 2
+  },
+  {
+    "Numero": 4,
+    "SKU_Producto": "010",
+    "Cantidad": 720,
+    "CodigoDepositoOrigen": "D09",
+    "CodigoDepositoDestino": "D13",
+    "Estado": 2
+  },
+  {
+    "Numero": 5,
+    "SKU_Producto": "001",
+    "Cantidad": 50,
+    "CodigoDepositoOrigen": "D13",
+    "CodigoDepositoDestino": "D01",
+    "Estado": 2
+  },
+  {
+    "Numero": 6,
+    "SKU_Producto": "003",
+    "Cantidad": 150,
+    "CodigoDepositoOrigen": "D13",
+    "CodigoDepositoDestino": "D02",
+    "Estado": 0
+  },
+  {
+    "Numero": 7,
+    "SKU_Producto": "008",
+    "Cantidad": 200,
+    "CodigoDepositoOrigen": "D13",
+    "CodigoDepositoDestino": "D07",
+    "Estado": 0
+  },
+  {
+    "Numero": 8,
+    "SKU_Producto": "010",
+    "Cantidad": 360,
+    "CodigoDepositoOrigen": "D13",
+    "CodigoDepositoDestino": "D09",
+    "Estado": 0
+  },
+  {
+    "Numero": 9,
+    "SKU_Producto": "001",
+    "Cantidad": 50,
+    "CodigoDepositoOrigen": null,
+    "CodigoDepositoDestino": "D01",
+    "Estado": 0
+  },
+  {
+    "Numero": 10,
+    "SKU_Producto": "010",
+    "Cantidad": 720,
+    "CodigoDepositoOrigen": null,
+    "CodigoDepositoDestino": "D09",
+    "Estado": 0
+  },
+  {
+    "Numero": 11,
+    "SKU_Producto": "001",
+    "Cantidad": 200,
+    "CodigoDepositoOrigen": "D13",
+    "CodigoDepositoDestino": "D01",
+    "Estado": 1
+  },
+  {
+    "Numero": 12,
+    "SKU_Producto": "004",
+    "Cantidad": 10,
+    "CodigoDepositoOrigen": "D03",
+    "CodigoDepositoDestino": "D13",
+    "Estado": 1
+  },
+  {
+    "Numero": 13,
+    "SKU_Producto": "013",
+    "Cantidad": 151,
+    "CodigoDepositoOrigen": "D04",
+    "CodigoDepositoDestino": "D13",
+    "Estado": 1
+  },
+  {
+    "Numero": 14,
+    "SKU_Producto": "020",
+    "Cantidad": 164,
+    "CodigoDepositoOrigen": "D12",
+    "CodigoDepositoDestino": "D13",
+    "Estado": 1
+  },
+  {
+    "Numero": 15,
+    "SKU_Producto": "007",
+    "Cantidad": 12,
+    "CodigoDepositoOrigen": "D06",
+    "CodigoDepositoDestino": "D13",
+    "Estado": 0
+  }
+]

@@ -1,0 +1,143 @@
+﻿[
+  {
+    "Sku": "001",
+    "Descripcion": "Licuadora",
+    "CodigoPallet": "001",
+    "UnidadesPorPallet": 50,
+    "StockMinimoContratado": null
+  },
+  {
+    "Sku": "002",
+    "Descripcion": "Ventidalor de Techo",
+    "CodigoPallet": "002",
+    "UnidadesPorPallet": 15,
+    "StockMinimoContratado": null
+  },
+  {
+    "Sku": "003",
+    "Descripcion": "Martillo",
+    "CodigoPallet": "003",
+    "UnidadesPorPallet": 150,
+    "StockMinimoContratado": 10
+  },
+  {
+    "Sku": "004",
+    "Descripcion": "Heladera con freezer",
+    "CodigoPallet": "004",
+    "UnidadesPorPallet": 2,
+    "StockMinimoContratado": 5
+  },
+  {
+    "Sku": "005",
+    "Descripcion": "Televisor LED 50 pulgadas",
+    "CodigoPallet": "005",
+    "UnidadesPorPallet": 8,
+    "StockMinimoContratado": null
+  },
+  {
+    "Sku": "006",
+    "Descripcion": "Microondas 20 litros",
+    "CodigoPallet": "006",
+    "UnidadesPorPallet": 20,
+    "StockMinimoContratado": null
+  },
+  {
+    "Sku": "007",
+    "Descripcion": "Silla de oficina",
+    "CodigoPallet": "007",
+    "UnidadesPorPallet": 12,
+    "StockMinimoContratado": 24
+  },
+  {
+    "Sku": "008",
+    "Descripcion": "Resma papel A4 x 500 hojas",
+    "CodigoPallet": "008",
+    "UnidadesPorPallet": 200,
+    "StockMinimoContratado": 40
+  },
+  {
+    "Sku": "009",
+    "Descripcion": "Bicicleta rodado 26",
+    "CodigoPallet": "009",
+    "UnidadesPorPallet": 6,
+    "StockMinimoContratado": null
+  },
+  {
+    "Sku": "010",
+    "Descripcion": "Detergente lavavajillas 750 ml",
+    "CodigoPallet": "010",
+    "UnidadesPorPallet": 720,
+    "StockMinimoContratado": null
+  },
+  {
+    "Sku": "011",
+    "Descripcion": "Cuaderno tapa dura 80 hojas",
+    "CodigoPallet": "011",
+    "UnidadesPorPallet": 1000,
+    "StockMinimoContratado": 10
+  },
+  {
+    "Sku": "012",
+    "Descripcion": "Lavarropas automatico 8 kg",
+    "CodigoPallet": "012",
+    "UnidadesPorPallet": 3,
+    "StockMinimoContratado": null
+  },
+  {
+    "Sku": "013",
+    "Descripcion": "Notebook 15 pulgadas",
+    "CodigoPallet": "013",
+    "UnidadesPorPallet": 30,
+    "StockMinimoContratado": null
+  },
+  {
+    "Sku": "014",
+    "Descripcion": "Escritorio de melamina",
+    "CodigoPallet": "014",
+    "UnidadesPorPallet": 10,
+    "StockMinimoContratado": null
+  },
+  {
+    "Sku": "015",
+    "Descripcion": "Ventilador de pie",
+    "CodigoPallet": "015",
+    "UnidadesPorPallet": 25,
+    "StockMinimoContratado": null
+  },
+  {
+    "Sku": "016",
+    "Descripcion": "Caja de lapiceras x 50 unidades",
+    "CodigoPallet": "016",
+    "UnidadesPorPallet": 600,
+    "StockMinimoContratado": 600
+  },
+  {
+    "Sku": "017",
+    "Descripcion": "Plancha a vapor",
+    "CodigoPallet": "017",
+    "UnidadesPorPallet": 40,
+    "StockMinimoContratado": null
+  },
+  {
+    "Sku": "018",
+    "Descripcion": "Juego de sabanas 2 plazas",
+    "CodigoPallet": null,
+    "UnidadesPorPallet": 100,
+    "StockMinimoContratado": 15
+  },
+  {
+    "Sku": "019",
+    "Descripcion": "Pava electrica 1.7 litros",
+    "CodigoPallet": "019",
+    "UnidadesPorPallet": 60,
+    "StockMinimoContratado": null
+  },
+  {
+    "Sku": "020",
+    "Descripcion": "Taladro percutor 650 W",
+    "CodigoPallet": null,
+    "UnidadesPorPallet": 24,
+    "StockMinimoContratado": 8
+  }
+
+]

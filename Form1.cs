@@ -1,3 +1,4 @@
+using GrupoC.Almacenes;
 using GrupoC.EmpaquetarPedido;
 using GrupoC.EntregaATransportista;
 using GrupoC.IngresoStock;
@@ -11,6 +12,40 @@ namespace GrupoC
         public Form1()
         {
             InitializeComponent();
+            CargarCombos();
+        }
+
+        private void CargarCombos()
+        {
+            ComboDepo.DropDownStyle = ComboBoxStyle.DropDownList;
+            ComboDepo.DisplayMember = "Nombre";
+            ComboDepo.ValueMember = "Codigo";
+            ComboDepo.DataSource = DepositoAlmacen.Deposito;
+            ComboDepo.SelectedIndex = -1;
+            ComboDepo.SelectedIndexChanged += ComboDepo_SelectedIndexChanged;
+
+            ComboEmpleado.DropDownStyle = ComboBoxStyle.DropDownList;
+            ComboEmpleado.DisplayMember = "Nombre";
+            ComboEmpleado.ValueMember = "Legajo";
+            ComboEmpleado.DataSource = EmpleadoAlmacen.Empleado;
+            ComboEmpleado.SelectedIndex = -1;
+            ComboEmpleado.SelectedIndexChanged += ComboEmpleado_SelectedIndexChanged;
+        }
+
+        private void ComboDepo_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            if (ComboDepo.SelectedItem is DepositoEntidad deposito)
+            {
+                DepositoAlmacen.DepositoActual = deposito.Codigo;
+            }
+        }
+
+        private void ComboEmpleado_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            if (ComboEmpleado.SelectedItem is EmpleadoEntidad empleado)
+            {
+                EmpleadoAlmacen.EmpleadoActual = empleado.Legajo.ToString();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -58,9 +93,7 @@ namespace GrupoC
 
         private void button8_Click(object sender, EventArgs e)
         {
-            /*
-            RegistroExcedenteForm registroExcedente = new RegistroExcedenteForm();
-            registroExcedente.Show();*/
+           
         }
     }
 }

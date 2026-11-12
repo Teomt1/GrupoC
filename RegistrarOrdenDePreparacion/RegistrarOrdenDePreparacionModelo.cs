@@ -2,11 +2,18 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Alm = GrupoC.Almacenes;
 
 namespace GrupoC.RegistrarOrdenDePreparacion;
 
 internal class RegistrarOrdenDePreparacionModelo
 {
+    // Código del cliente logueado (paso 1 del caso de uso): se toma uno de los clientes con contrato vigente.
+    private readonly string codigoCliente = "";
+
+    // Relación entre las clases de la pantalla y los datos de los almacenes (no salen del modelo).
+    private readonly Dictionary<Deposito, string> codigoDeposito = new();
+
     public string NombreCliente { get; }
     public List<Deposito> Depositos { get; }
     public Deposito? DepositoSeleccionado { get; private set; }
@@ -22,48 +29,99 @@ internal class RegistrarOrdenDePreparacionModelo
 
     public RegistrarOrdenDePreparacionModelo()
     {
-        NombreCliente = "Distribuidora Del Plata S.A.";
+        Depositos = new List<Deposito>();
+        NombreCliente = "";
 
-        var yerba = new Producto { Sku = "YER-500-001", Nombre = "Yerba mate 500 g", StockMinimoContratado = 500, UnidadesPorPalet = 480 };
-        var cafe = new Producto { Sku = "CAF-250-002", Nombre = "Café molido 250 g", UnidadesPorPalet = 600 };
-        var azucar = new Producto { Sku = "AZU-1000-003", Nombre = "Azúcar 1 kg", StockMinimoContratado = 400, UnidadesPorPalet = 400 };
-        var aceite = new Producto { Sku = "ACE-900-004", Nombre = "Aceite de girasol 900 ml", UnidadesPorPalet = 360 };
-        var harina = new Producto { Sku = "HAR-1000-005", Nombre = "Harina 000 1 kg", StockMinimoContratado = 400, UnidadesPorPalet = 400 };
-
-        Depositos = new List<Deposito>
+        // Cliente logueado: uno de los clientes con contrato vigente y productos dados de alta.
+        List<Alm.ClienteEntidad> clientes = Alm.ClienteAlmacen.Cliente
+            .Where(c => c.VigenteContratos && c.Productos.Count > 0)
+            .ToList();
+        if (clientes.Count == 0)
         {
-            new Deposito
+            return;
+        }
+
+        Alm.ClienteEntidad cliente = clientes[Random.Shared.Next(clientes.Count)];
+        codigoCliente = cliente.Codigo;
+        NombreCliente = cliente.RazonSocial;
+
+        // Productos del cliente: se transforman una sola vez para que cada SKU sea un único objeto Producto.
+        var productos = new Dictionary<string, Producto>();
+        foreach (Alm.ProductoEntidad p in Alm.ProductoAlmacen.Producto)
+        {
+            if (cliente.Productos.Contains(p.Sku))
             {
-                Nombre = "Depósito Avellaneda",
-                Stock = new List<StockProducto>
+                productos[p.Sku] = new Producto
                 {
-                    new StockProducto { Producto = yerba, CantidadPalets = 3, UnidadesSueltas = 120 },
-                    new StockProducto { Producto = cafe, CantidadPalets = 2, UnidadesSueltas = 0 },
-                    new StockProducto { Producto = azucar, CantidadPalets = 1, UnidadesSueltas = 200 },
-                    new StockProducto { Producto = aceite, CantidadPalets = 4, UnidadesSueltas = 90 }
+                    Sku = p.Sku,
+                    Nombre = p.Descripcion,
+                    StockMinimoContratado = p.StockMinimoContratado,
+                    UnidadesPorPalet = p.UnidadesPorPallet
+                };
+            }
+        }
+
+        // Órdenes de preparación pendientes del cliente: su mercadería sigue en las posiciones
+        // pero ya está comprometida, así que se descuenta del stock disponible.
+        List<Alm.OrdenPreparacionEntidad> ordenesPendientes = Alm.OrdenPreparacionAlmacen.OrdenPreparacion
+            .Where(o => o.CodigoCliente == codigoCliente && o.Estado == Alm.EstadoOrdenPreparacionEnum.Pendiente)
+            .ToList();
+
+        // Depósitos donde el cliente ingresó mercadería (precondición del caso de uso).
+        // El stock de cada producto es la suma de las posiciones del depósito que lo guardan.
+        foreach (Alm.DepositoEntidad d in Alm.DepositoAlmacen.Deposito)
+        {
+            var stock = new List<StockProducto>();
+            foreach (Alm.Posicion p in d.Posiciones)
+            {
+                if (p.Sku == null || !productos.ContainsKey(p.Sku))
+                {
+                    continue;
                 }
-            },
-            new Deposito
-            {
-                Nombre = "Depósito Pilar",
-                Stock = new List<StockProducto>
+
+                StockProducto? stockProducto = stock.Find(s => s.Producto.Sku == p.Sku);
+                if (stockProducto == null)
                 {
-                    new StockProducto { Producto = yerba, CantidadPalets = 2, UnidadesSueltas = 40 },
-                    new StockProducto { Producto = harina, CantidadPalets = 3, UnidadesSueltas = 150 },
-                    new StockProducto { Producto = aceite, CantidadPalets = 1, UnidadesSueltas = 0 }
+                    stockProducto = new StockProducto { Producto = productos[p.Sku] };
+                    stock.Add(stockProducto);
                 }
-            },
-            new Deposito
+                stockProducto.CantidadPalets += p.CantidadPalets;
+                stockProducto.UnidadesSueltas += p.CantidadSueltos;
+            }
+
+            if (stock.Count == 0)
             {
-                Nombre = "Depósito Córdoba",
-                Stock = new List<StockProducto>
+                continue;
+            }
+
+            foreach (Alm.OrdenPreparacionEntidad orden in ordenesPendientes.Where(o => o.CodigoDeposito == d.Codigo))
+            {
+                ModalidadEmpaquetado modalidad = orden.TipoPedido == Alm.TipoPedidoEnum.PalletCerrado
+                    ? ModalidadEmpaquetado.PaletCerrado
+                    : ModalidadEmpaquetado.Fullfilment;
+
+                foreach (Alm.RenglonOrdenPreparacion renglon in orden.Renglones)
                 {
-                    new StockProducto { Producto = cafe, CantidadPalets = 5, UnidadesSueltas = 300 },
-                    new StockProducto { Producto = azucar, CantidadPalets = 6, UnidadesSueltas = 0 },
-                    new StockProducto { Producto = harina, CantidadPalets = 1, UnidadesSueltas = 50 }
+                    StockProducto? stockProducto = stock.Find(s => s.Producto.Sku == renglon.SKU_Producto);
+                    if (stockProducto == null)
+                    {
+                        continue;
+                    }
+
+                    // En el almacén la cantidad del renglón está siempre en unidades.
+                    int cantidad = renglon.Cantidad;
+                    if (modalidad == ModalidadEmpaquetado.PaletCerrado && stockProducto.Producto.UnidadesPorPalet > 0)
+                    {
+                        cantidad = renglon.Cantidad / stockProducto.Producto.UnidadesPorPalet;
+                    }
+                    DescontarStock(stockProducto, modalidad, cantidad);
                 }
             }
-        };
+
+            var deposito = new Deposito { Nombre = d.Nombre, Stock = stock };
+            Depositos.Add(deposito);
+            codigoDeposito[deposito] = d.Codigo;
+        }
     }
 
     public bool RequiereDatosEtiquetado => Modalidad == ModalidadEmpaquetado.Fullfilment;
@@ -172,6 +230,12 @@ internal class RegistrarOrdenDePreparacionModelo
             return "Error: por favor rellene todos los campos antes de completar la orden";
         }
 
+        // El DNI debe tener 8 dígitos.
+        if (DniTransportista < 10000000 || DniTransportista > 99999999)
+        {
+            return "El DNI del transportista debe tener un formato de documento válido";
+        }
+
         if (ItemsOrden.Count == 0)
         {
             return "Error: la orden de preparación debe contener al menos 1 producto";
@@ -180,6 +244,8 @@ internal class RegistrarOrdenDePreparacionModelo
         return null;
     }
 
+    // Pasos 15 y 16: registra la orden de preparación en estado Pendiente y deja el modelo listo para otra.
+    // Devuelve los mensajes a mostrar, en orden.
     public List<string> RegistrarOrden()
     {
         var mensajes = new List<string>();
@@ -187,28 +253,45 @@ internal class RegistrarOrdenDePreparacionModelo
         foreach (ItemOrden item in ItemsOrden)
         {
             StockProducto stock = DepositoSeleccionado!.Stock.Find(s => s.Producto == item.Producto)!;
+            DescontarStock(stock, Modalidad!.Value, item.Cantidad);
 
-            if (Modalidad == ModalidadEmpaquetado.PaletCerrado)
-            {
-                stock.CantidadPalets -= item.Cantidad;
-            }
-            else if (stock.UnidadesSueltas >= item.Cantidad)
-            {
-                stock.UnidadesSueltas -= item.Cantidad;
-            }
-            else
-            {
-                int unidadesFaltantes = item.Cantidad - stock.UnidadesSueltas;
-                int paletsAAbrir = (unidadesFaltantes + item.Producto.UnidadesPorPalet - 1) / item.Producto.UnidadesPorPalet;
-                stock.CantidadPalets -= paletsAAbrir;
-                stock.UnidadesSueltas = paletsAAbrir * item.Producto.UnidadesPorPalet - unidadesFaltantes;
-            }
-
+            // Paso 15.2.1.
             if (item.Producto.StockMinimoContratado != null && stock.CantidadUnidades < item.Producto.StockMinimoContratado)
             {
                 mensajes.Add($"Advertencia: El producto {item.Producto.Nombre} ha quedado por debajo del límite establecido, por favor generar un nuevo ingreso de este");
             }
         }
+
+        // Se registra la orden de preparación en el almacén. La mercadería queda comprometida por la orden
+        // (las posiciones del depósito no cambian hasta que se prepare).
+        List<Alm.OrdenPreparacionEntidad> ordenes = Alm.OrdenPreparacionAlmacen.OrdenPreparacion;
+        bool esPaletCerrado = Modalidad == ModalidadEmpaquetado.PaletCerrado;
+
+        ordenes.Add(new Alm.OrdenPreparacionEntidad
+        {
+            Numero = ordenes.Count == 0 ? 1 : ordenes.Max(o => o.Numero) + 1,
+            CodigoCliente = codigoCliente,
+            CodigoDeposito = codigoDeposito[DepositoSeleccionado!],
+            // En el almacén la cantidad del renglón va siempre en unidades.
+            Renglones = ItemsOrden.Select(i => new Alm.RenglonOrdenPreparacion
+            {
+                SKU_Producto = i.Producto.Sku,
+                Cantidad = esPaletCerrado ? i.Cantidad * i.Producto.UnidadesPorPalet : i.Cantidad
+            }).ToList(),
+            FechaRetiro = FechaRetiro.Date,
+            TipoPedido = esPaletCerrado ? Alm.TipoPedidoEnum.PalletCerrado : Alm.TipoPedidoEnum.Fulfillment,
+            NombreDestinatario = RequiereDatosEtiquetado ? NombreDestinatario.Trim() : null,
+            DireccionDestino = RequiereDatosEtiquetado ? DireccionDestino.Trim() : null,
+            TransportistaNombre = NombreTransportista.Trim(),
+            TransportistaDni = DniTransportista!.Value,
+            TransportistaEmpresa = EmpresaTransportista.Trim(),
+            Estado = Alm.EstadoOrdenPreparacionEnum.Pendiente,
+            NumeroOrdenSeleccion = null,
+            EstadoOrdenSeleccion = Alm.EstadoOrdenSeleccionEnum.Pendiente,
+            LegajoEmpleadoTomador = 0,
+            FechaPreparada = null,
+            LegajoEmpleadoPreparación = 0
+        });
 
         mensajes.Add("Orden de preparación guardada con éxito");
 
@@ -223,5 +306,39 @@ internal class RegistrarOrdenDePreparacionModelo
         EmpresaTransportista = "";
 
         return mensajes;
+    }
+
+    // Descuenta del stock la cantidad pedida: en palets para Palet Cerrado, en unidades para Fullfilment
+    // (primero las unidades sueltas y, si no alcanzan, se abren los palets necesarios).
+    private void DescontarStock(StockProducto stock, ModalidadEmpaquetado modalidad, int cantidad)
+    {
+        int unidadesPorPalet = stock.Producto.UnidadesPorPalet;
+
+        if (modalidad == ModalidadEmpaquetado.PaletCerrado)
+        {
+            stock.CantidadPalets -= cantidad;
+        }
+        else if (stock.UnidadesSueltas >= cantidad)
+        {
+            stock.UnidadesSueltas -= cantidad;
+        }
+        else if (unidadesPorPalet > 0)
+        {
+            int unidadesFaltantes = cantidad - stock.UnidadesSueltas;
+            int paletsAAbrir = (unidadesFaltantes + unidadesPorPalet - 1) / unidadesPorPalet;
+            stock.CantidadPalets -= paletsAAbrir;
+            stock.UnidadesSueltas = paletsAAbrir * unidadesPorPalet - unidadesFaltantes;
+        }
+        else
+        {
+            stock.UnidadesSueltas = 0;
+        }
+
+        // Por si los datos de los almacenes comprometen más de lo que hay.
+        if (stock.CantidadPalets < 0)
+        {
+            stock.CantidadPalets = 0;
+            stock.UnidadesSueltas = 0;
+        }
     }
 }

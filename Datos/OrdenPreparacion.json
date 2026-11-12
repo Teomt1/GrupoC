@@ -1,0 +1,510 @@
+﻿[
+  {
+    "Numero": 1,
+    "CodigoCliente": "C001",
+    "CodigoDeposito": "D01",
+    "Renglones": [
+      {
+        "SKU_Producto": "001",
+        "Cantidad": 30
+      },
+      {
+        "SKU_Producto": "002",
+        "Cantidad": 10
+      }
+    ],
+    "FechaRetiro": "2026-06-11T00:00:00",
+    "TipoPedido": 1,
+    "NombreDestinatario": "Jorge Paz",
+    "DireccionDestino": "Calle 12 N 1345, La Plata",
+    "TransportistaNombre": "Ramon Acosta",
+    "TransportistaDni": 28456123,
+    "TransportistaEmpresa": "Expreso Austral S.A.",
+    "Estado": 3,
+    "NumeroOrdenSeleccion": 1,
+    "EstadoOrdenSeleccion": 1,
+    "LegajoEmpleadoTomador": 1004,
+    "FechaPreparada": "2026-06-10T10:00:00",
+    "LegajoEmpleadoPreparación": 1004
+  },
+  {
+    "Numero": 2,
+    "CodigoCliente": "C007",
+    "CodigoDeposito": "D07",
+    "Renglones": [
+      {
+        "SKU_Producto": "008",
+        "Cantidad": 400
+      }
+    ],
+    "FechaRetiro": "2026-06-19T00:00:00",
+    "TipoPedido": 0,
+    "NombreDestinatario": null,
+    "DireccionDestino": null,
+    "TransportistaNombre": "Hector Molina",
+    "TransportistaDni": 31789456,
+    "TransportistaEmpresa": "Cargas Rapidas S.R.L.",
+    "Estado": 3,
+    "NumeroOrdenSeleccion": 2,
+    "EstadoOrdenSeleccion": 1,
+    "LegajoEmpleadoTomador": 1005,
+    "FechaPreparada": "2026-06-18T09:30:00",
+    "LegajoEmpleadoPreparación": 1005
+  },
+  {
+    "Numero": 3,
+    "CodigoCliente": "C007",
+    "CodigoDeposito": "D07",
+    "Renglones": [
+      {
+        "SKU_Producto": "011",
+        "Cantidad": 250
+      },
+      {
+        "SKU_Producto": "016",
+        "Cantidad": 100
+      }
+    ],
+    "FechaRetiro": "2026-06-19T00:00:00",
+    "TipoPedido": 1,
+    "NombreDestinatario": "Pablo Rios",
+    "DireccionDestino": "Belgrano 233, Cordoba",
+    "TransportistaNombre": "Hector Molina",
+    "TransportistaDni": 31789456,
+    "TransportistaEmpresa": "Cargas Rapidas S.R.L.",
+    "Estado": 3,
+    "NumeroOrdenSeleccion": 2,
+    "EstadoOrdenSeleccion": 1,
+    "LegajoEmpleadoTomador": 1006,
+    "FechaPreparada": "2026-06-18T11:00:00",
+    "LegajoEmpleadoPreparación": 1006
+  },
+  {
+    "Numero": 4,
+    "CodigoCliente": "C003",
+    "CodigoDeposito": "D03",
+    "Renglones": [
+      {
+        "SKU_Producto": "004",
+        "Cantidad": 4
+      }
+    ],
+    "FechaRetiro": "2026-07-03T00:00:00",
+    "TipoPedido": 0,
+    "NombreDestinatario": null,
+    "DireccionDestino": null,
+    "TransportistaNombre": "Gustavo Pereyra",
+    "TransportistaDni": 25963741,
+    "TransportistaEmpresa": "Logistica Federal S.A.",
+    "Estado": 3,
+    "NumeroOrdenSeleccion": 3,
+    "EstadoOrdenSeleccion": 1,
+    "LegajoEmpleadoTomador": 1007,
+    "FechaPreparada": "2026-07-02T14:00:00",
+    "LegajoEmpleadoPreparación": 1007
+  },
+  {
+    "Numero": 5,
+    "CodigoCliente": "C009",
+    "CodigoDeposito": "D09",
+    "Renglones": [
+      {
+        "SKU_Producto": "010",
+        "Cantidad": 1440
+      }
+    ],
+    "FechaRetiro": "2026-07-16T00:00:00",
+    "TipoPedido": 0,
+    "NombreDestinatario": null,
+    "DireccionDestino": null,
+    "TransportistaNombre": "Walter Godoy",
+    "TransportistaDni": 33147852,
+    "TransportistaEmpresa": "Fletes del Plata S.R.L.",
+    "Estado": 3,
+    "NumeroOrdenSeleccion": 4,
+    "EstadoOrdenSeleccion": 1,
+    "LegajoEmpleadoTomador": 1008,
+    "FechaPreparada": "2026-07-15T08:45:00",
+    "LegajoEmpleadoPreparación": 1008
+  },
+  {
+    "Numero": 6,
+    "CodigoCliente": "C004",
+    "CodigoDeposito": "D04",
+    "Renglones": [
+      {
+        "SKU_Producto": "005",
+        "Cantidad": 3
+      },
+      {
+        "SKU_Producto": "013",
+        "Cantidad": 12
+      }
+    ],
+    "FechaRetiro": "2026-08-06T00:00:00",
+    "TipoPedido": 1,
+    "NombreDestinatario": "Jorge Paz",
+    "DireccionDestino": "Calle 12 N 1345, La Plata",
+    "TransportistaNombre": "Sergio Ledesma",
+    "TransportistaDni": 29874563,
+    "TransportistaEmpresa": "Transportes Pampeanos S.A.",
+    "Estado": 3,
+    "NumeroOrdenSeleccion": 5,
+    "EstadoOrdenSeleccion": 1,
+    "LegajoEmpleadoTomador": 1003,
+    "FechaPreparada": "2026-08-05T16:20:00",
+    "LegajoEmpleadoPreparación": 1003
+  },
+  {
+    "Numero": 7,
+    "CodigoCliente": "C002",
+    "CodigoDeposito": "D02",
+    "Renglones": [
+      {
+        "SKU_Producto": "003",
+        "Cantidad": 75
+      }
+    ],
+    "FechaRetiro": "2026-10-23T00:00:00",
+    "TipoPedido": 1,
+    "NombreDestinatario": "Ana Villalba",
+    "DireccionDestino": "San Martin 880, Rosario",
+    "TransportistaNombre": "Ramon Acosta",
+    "TransportistaDni": 28456123,
+    "TransportistaEmpresa": "Expreso Austral S.A.",
+    "Estado": 2,
+    "NumeroOrdenSeleccion": 6,
+    "EstadoOrdenSeleccion": 1,
+    "LegajoEmpleadoTomador": 1004,
+    "FechaPreparada": "2026-10-20T10:15:00",
+    "LegajoEmpleadoPreparación": 1004
+  },
+  {
+    "Numero": 8,
+    "CodigoCliente": "C005",
+    "CodigoDeposito": "D05",
+    "Renglones": [
+      {
+        "SKU_Producto": "006",
+        "Cantidad": 5
+      },
+      {
+        "SKU_Producto": "019",
+        "Cantidad": 30
+      }
+    ],
+    "FechaRetiro": "2026-10-25T00:00:00",
+    "TipoPedido": 1,
+    "NombreDestinatario": "Pablo Rios",
+    "DireccionDestino": "Belgrano 233, Cordoba",
+    "TransportistaNombre": "Gustavo Pereyra",
+    "TransportistaDni": 25963741,
+    "TransportistaEmpresa": "Logistica Federal S.A.",
+    "Estado": 2,
+    "NumeroOrdenSeleccion": 7,
+    "EstadoOrdenSeleccion": 1,
+    "LegajoEmpleadoTomador": 1005,
+    "FechaPreparada": "2026-10-22T09:00:00",
+    "LegajoEmpleadoPreparación": 1005
+  },
+  {
+    "Numero": 9,
+    "CodigoCliente": "C006",
+    "CodigoDeposito": "D06",
+    "Renglones": [
+      {
+        "SKU_Producto": "007",
+        "Cantidad": 24
+      }
+    ],
+    "FechaRetiro": "2026-10-29T00:00:00",
+    "TipoPedido": 0,
+    "NombreDestinatario": null,
+    "DireccionDestino": null,
+    "TransportistaNombre": "Hector Molina",
+    "TransportistaDni": 31789456,
+    "TransportistaEmpresa": "Cargas Rapidas S.R.L.",
+    "Estado": 2,
+    "NumeroOrdenSeleccion": 8,
+    "EstadoOrdenSeleccion": 1,
+    "LegajoEmpleadoTomador": 1006,
+    "FechaPreparada": "2026-10-26T13:30:00",
+    "LegajoEmpleadoPreparación": 1006
+  },
+  {
+    "Numero": 10,
+    "CodigoCliente": "C008",
+    "CodigoDeposito": "D08",
+    "Renglones": [
+      {
+        "SKU_Producto": "009",
+        "Cantidad": 2
+      }
+    ],
+    "FechaRetiro": "2026-10-31T00:00:00",
+    "TipoPedido": 1,
+    "NombreDestinatario": "Maria Quiroga",
+    "DireccionDestino": "Av. Rivadavia 4520, CABA",
+    "TransportistaNombre": "Walter Godoy",
+    "TransportistaDni": 33147852,
+    "TransportistaEmpresa": "Fletes del Plata S.R.L.",
+    "Estado": 2,
+    "NumeroOrdenSeleccion": 9,
+    "EstadoOrdenSeleccion": 1,
+    "LegajoEmpleadoTomador": 1007,
+    "FechaPreparada": "2026-10-28T11:45:00",
+    "LegajoEmpleadoPreparación": 1007
+  },
+  {
+    "Numero": 11,
+    "CodigoCliente": "C010",
+    "CodigoDeposito": "D10",
+    "Renglones": [
+      {
+        "SKU_Producto": "015",
+        "Cantidad": 10
+      },
+      {
+        "SKU_Producto": "017",
+        "Cantidad": 20
+      }
+    ],
+    "FechaRetiro": "2026-11-02T00:00:00",
+    "TipoPedido": 1,
+    "NombreDestinatario": "Jorge Paz",
+    "DireccionDestino": "Calle 12 N 1345, La Plata",
+    "TransportistaNombre": "Sergio Ledesma",
+    "TransportistaDni": 29874563,
+    "TransportistaEmpresa": "Transportes Pampeanos S.A.",
+    "Estado": 2,
+    "NumeroOrdenSeleccion": 10,
+    "EstadoOrdenSeleccion": 1,
+    "LegajoEmpleadoTomador": 1008,
+    "FechaPreparada": "2026-10-30T15:00:00",
+    "LegajoEmpleadoPreparación": 1008
+  },
+  {
+    "Numero": 12,
+    "CodigoCliente": "C011",
+    "CodigoDeposito": "D11",
+    "Renglones": [
+      {
+        "SKU_Producto": "018",
+        "Cantidad": 35
+      }
+    ],
+    "FechaRetiro": "2026-11-05T00:00:00",
+    "TipoPedido": 1,
+    "NombreDestinatario": "Ana Villalba",
+    "DireccionDestino": "San Martin 880, Rosario",
+    "TransportistaNombre": "Ramon Acosta",
+    "TransportistaDni": 28456123,
+    "TransportistaEmpresa": "Expreso Austral S.A.",
+    "Estado": 2,
+    "NumeroOrdenSeleccion": 11,
+    "EstadoOrdenSeleccion": 1,
+    "LegajoEmpleadoTomador": 1003,
+    "FechaPreparada": "2026-11-02T09:20:00",
+    "LegajoEmpleadoPreparación": 1003
+  },
+  {
+    "Numero": 13,
+    "CodigoCliente": "C012",
+    "CodigoDeposito": "D12",
+    "Renglones": [
+      {
+        "SKU_Producto": "020",
+        "Cantidad": 6
+      }
+    ],
+    "FechaRetiro": "2026-11-06T00:00:00",
+    "TipoPedido": 1,
+    "NombreDestinatario": "Pablo Rios",
+    "DireccionDestino": "Belgrano 233, Cordoba",
+    "TransportistaNombre": "Gustavo Pereyra",
+    "TransportistaDni": 25963741,
+    "TransportistaEmpresa": "Logistica Federal S.A.",
+    "Estado": 2,
+    "NumeroOrdenSeleccion": 12,
+    "EstadoOrdenSeleccion": 1,
+    "LegajoEmpleadoTomador": 1004,
+    "FechaPreparada": "2026-11-03T10:40:00",
+    "LegajoEmpleadoPreparación": 1004
+  },
+  {
+    "Numero": 14,
+    "CodigoCliente": "C001",
+    "CodigoDeposito": "D01",
+    "Renglones": [
+      {
+        "SKU_Producto": "001",
+        "Cantidad": 100
+      }
+    ],
+    "FechaRetiro": "2026-11-07T00:00:00",
+    "TipoPedido": 0,
+    "NombreDestinatario": null,
+    "DireccionDestino": null,
+    "TransportistaNombre": "Hector Molina",
+    "TransportistaDni": 31789456,
+    "TransportistaEmpresa": "Cargas Rapidas S.R.L.",
+    "Estado": 2,
+    "NumeroOrdenSeleccion": 13,
+    "EstadoOrdenSeleccion": 1,
+    "LegajoEmpleadoTomador": 1005,
+    "FechaPreparada": "2026-11-04T14:10:00",
+    "LegajoEmpleadoPreparación": 1005
+  },
+  {
+    "Numero": 15,
+    "CodigoCliente": "C006",
+    "CodigoDeposito": "D06",
+    "Renglones": [
+      {
+        "SKU_Producto": "014",
+        "Cantidad": 3
+      }
+    ],
+    "FechaRetiro": "2026-10-30T00:00:00",
+    "TipoPedido": 1,
+    "NombreDestinatario": "Maria Quiroga",
+    "DireccionDestino": "Av. Rivadavia 4520, CABA",
+    "TransportistaNombre": "Walter Godoy",
+    "TransportistaDni": 33147852,
+    "TransportistaEmpresa": "Fletes del Plata S.R.L.",
+    "Estado": 2,
+    "NumeroOrdenSeleccion": 8,
+    "EstadoOrdenSeleccion": 1,
+    "LegajoEmpleadoTomador": 1006,
+    "FechaPreparada": "2026-10-27T12:00:00",
+    "LegajoEmpleadoPreparación": 1006
+  },
+  {
+    "Numero": 16,
+    "CodigoCliente": "C007",
+    "CodigoDeposito": "D07",
+    "Renglones": [
+      {
+        "SKU_Producto": "016",
+        "Cantidad": 60
+      }
+    ],
+    "FechaRetiro": "2026-11-10T00:00:00",
+    "TipoPedido": 1,
+    "NombreDestinatario": "Jorge Paz",
+    "DireccionDestino": "Calle 12 N 1345, La Plata",
+    "TransportistaNombre": "Sergio Ledesma",
+    "TransportistaDni": 29874563,
+    "TransportistaEmpresa": "Transportes Pampeanos S.A.",
+    "Estado": 1,
+    "NumeroOrdenSeleccion": 14,
+    "EstadoOrdenSeleccion": 1,
+    "LegajoEmpleadoTomador": 1007,
+    "FechaPreparada": null,
+    "LegajoEmpleadoPreparación": 0
+  },
+  {
+    "Numero": 17,
+    "CodigoCliente": "C007",
+    "CodigoDeposito": "D07",
+    "Renglones": [
+      {
+        "SKU_Producto": "008",
+        "Cantidad": 50
+      },
+      {
+        "SKU_Producto": "011",
+        "Cantidad": 120
+      }
+    ],
+    "FechaRetiro": "2026-11-10T00:00:00",
+    "TipoPedido": 1,
+    "NombreDestinatario": "Ana Villalba",
+    "DireccionDestino": "San Martin 880, Rosario",
+    "TransportistaNombre": "Ramon Acosta",
+    "TransportistaDni": 28456123,
+    "TransportistaEmpresa": "Expreso Austral S.A.",
+    "Estado": 1,
+    "NumeroOrdenSeleccion": 14,
+    "EstadoOrdenSeleccion": 1,
+    "LegajoEmpleadoTomador": 1008,
+    "FechaPreparada": null,
+    "LegajoEmpleadoPreparación": 0
+  },
+  {
+    "Numero": 18,
+    "CodigoCliente": "C005",
+    "CodigoDeposito": "D05",
+    "Renglones": [
+      {
+        "SKU_Producto": "006",
+        "Cantidad": 40
+      }
+    ],
+    "FechaRetiro": "2026-11-16T00:00:00",
+    "TipoPedido": 0,
+    "NombreDestinatario": null,
+    "DireccionDestino": null,
+    "TransportistaNombre": "Hector Molina",
+    "TransportistaDni": 31789456,
+    "TransportistaEmpresa": "Cargas Rapidas S.R.L.",
+    "Estado": 0,
+    "NumeroOrdenSeleccion": 15,
+    "EstadoOrdenSeleccion": 0,
+    "LegajoEmpleadoTomador": 0,
+    "FechaPreparada": null,
+    "LegajoEmpleadoPreparación": 0
+  },
+  {
+    "Numero": 19,
+    "CodigoCliente": "C005",
+    "CodigoDeposito": "D05",
+    "Renglones": [
+      {
+        "SKU_Producto": "019",
+        "Cantidad": 15
+      }
+    ],
+    "FechaRetiro": "2026-11-17T00:00:00",
+    "TipoPedido": 1,
+    "NombreDestinatario": "Lucia Ojeda",
+    "DireccionDestino": "Mitre 1500, Mar del Plata",
+    "TransportistaNombre": "Gustavo Pereyra",
+    "TransportistaDni": 25963741,
+    "TransportistaEmpresa": "Logistica Federal S.A.",
+    "Estado": 0,
+    "NumeroOrdenSeleccion": 15,
+    "EstadoOrdenSeleccion": 0,
+    "LegajoEmpleadoTomador": 0,
+    "FechaPreparada": null,
+    "LegajoEmpleadoPreparación": 0
+  },
+  {
+    "Numero": 20,
+    "CodigoCliente": "C010",
+    "CodigoDeposito": "D10",
+    "Renglones": [
+      {
+        "SKU_Producto": "015",
+        "Cantidad": 50
+      },
+      {
+        "SKU_Producto": "017",
+        "Cantidad": 80
+      }
+    ],
+    "FechaRetiro": "2026-11-18T00:00:00",
+    "TipoPedido": 0,
+    "NombreDestinatario": null,
+    "DireccionDestino": null,
+    "TransportistaNombre": "Walter Godoy",
+    "TransportistaDni": 33147852,
+    "TransportistaEmpresa": "Fletes del Plata S.R.L.",
+    "Estado": 0,
+    "NumeroOrdenSeleccion": null,
+    "EstadoOrdenSeleccion": 0,
+    "LegajoEmpleadoTomador": 0,
+    "FechaPreparada": null,
+    "LegajoEmpleadoPreparación": 0
+  }
+]

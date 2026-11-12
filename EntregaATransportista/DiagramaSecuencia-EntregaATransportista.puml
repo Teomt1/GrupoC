@@ -1,0 +1,119 @@
+@startuml DiagramaSecuencia-EntregaATransportista
+title Diagrama de secuencia - Caso de uso: Entregar mercadería al transportista
+
+skinparam sequenceArrowThickness 1
+skinparam sequenceParticipantBorderColor black
+skinparam sequenceLifeLineBorderColor black
+skinparam backgroundColor white
+skinparam sequenceMessageAlign left
+skinparam maxMessageSize 200
+
+autonumber
+
+actor "Operario de\nDespacho" as Op
+boundary "EntregaATransportistaForm" as Form
+control "EntregaATransportistaModelo" as Mod
+participant "Sesion" as Ses
+entity "OrdenPreparacion" as OPrep
+entity "OrdenEntrega" as OE
+entity "RemitoEntrega" as Rem
+entity "DetalleRemitoEntrega" as Det
+entity "MovimientoMercaderia" as Mov
+
+== Apertura de pantalla (paso 1) ==
+Op -> Form : Abre la pantalla "Entrega a transportista"
+Form -> Mod : new EntregaATransportistaModelo()
+Mod -> Ses : ObtenerUsuarioActual(), ObtenerDepositoActual()
+Ses --> Mod : código de usuario y código de depósito
+
+== Búsqueda por DNI del transportista (pasos 2 a 5) ==
+Op -> Form : Escribe el DNI y presiona "Buscar"
+Form -> Form : El campo DNI solo admite números
+Form -> Mod : Buscar(dni)
+Mod -> Mod : Reiniciar()
+alt El DNI está vacío o no tiene 8 dígitos (excepción paso 3)
+    Mod --> Form : "Ingrese un DNI válido"
+else DNI válido
+    Mod -> OPrep : BuscarPorTransportista(CodigoDeposito, DniTransportista = dni)
+    OPrep --> Mod : órdenes de preparación del transportista
+    alt El DNI no figura en ninguna orden del depósito (excepción 4.1)
+        Mod --> Form : "El transportista no está autorizado a retirar mercadería en este depósito"
+    else El transportista está autorizado
+        Mod -> OPrep : NombreTransportista
+        OPrep --> Mod : nombre del transportista autorizado
+        loop Por cada orden de preparación del transportista
+            Mod -> OE : BuscarPendiente(NumeroOrdenPreparacion, CodigoDeposito, EstadoDespacho = Pendiente)
+            OE --> Mod : orden de entrega / null
+        end
+        alt No tiene órdenes de entrega pendientes (excepción 4.2)
+            Mod --> Form : "El transportista no tiene órdenes listas para retirar"
+        else Tiene órdenes pendientes (paso 5)
+            Mod --> Form : null
+        end
+    end
+end
+Form -> Mod : TransportistaNombre, OrdenesAEntregar, PuedeGenerarRemito
+Mod --> Form : nombre, órdenes (N° de orden de preparación y paquetes)
+Form -> Form : Completa "Transportista", la grilla "Detalles de la Entrega" y habilita "Generar Remito"
+opt Hubo un error
+    Form --> Op : MessageBox(error)
+end
+opt El operario cambia el DNI antes de generar el remito
+    Form -> Mod : Reiniciar()
+    Form -> Form : Limpia el nombre y la grilla
+end
+
+== Generación del remito (pasos 6 a 9) ==
+Op -> Form : Carga los paquetes en el camión y presiona "Generar Remito"
+Form -> Mod : GenerarRemito()
+Mod -> Rem : new RemitoEntrega(Numero = último + 1, FechaHora, CodigoDeposito, NombreTransportista, DniTransportista, CodigoUsuario, Estado = Emitido)
+loop Por cada orden de la grilla
+    Mod -> Det : new DetalleRemitoEntrega(NumeroRemito, NumeroOrdenPreparacion, CantidadPaquetes)
+end
+Mod --> Form : remito
+Form -> Form : Imprime el remito en original y copia (vista previa)
+Form --> Op : MessageBox("Remito N° [nro] generado. Entregue el original y solicite la firma de la copia")
+Form -> Mod : PuedeBuscar, PuedeGenerarRemito, PuedeMarcarRemitoFirmado
+Mod --> Form : estado de los botones
+Form -> Form : Bloquea la búsqueda y habilita la casilla "Remito Firmado"
+
+== Cumplido y confirmación del despacho (pasos 10 a 17) ==
+Op -> Form : Entrega el original, recibe la copia firmada y marca "Remito Firmado"
+Form -> Mod : RemitoFirmado = true
+Form -> Mod : PuedeConfirmarDespacho
+Mod --> Form : true
+Form -> Form : Habilita "Confirmar Despacho"
+Op -> Form : Presiona "Confirmar Despacho"
+Form --> Op : "¿Confirma el despacho de [cantidad] órdenes al transportista [nombre] con el remito N° [nro]?" (Sí / No)
+alt El operario elige "No" (excepción paso 13)
+    Form -> Form : Cierra el mensaje sin guardar nada
+else El operario elige "Sí"
+    Form -> Mod : ConfirmarDespacho()
+    Mod -> Rem : Estado = Firmado, FechaHoraCumplido = ahora, CodigoUsuarioCumplido = usuario (paso 14)
+    loop Por cada orden de la grilla (pasos 15 y 16)
+        Mod -> OPrep : EstadoEntrega = Cumplida, NumeroRemito = remito
+        Mod -> OE : EstadoDespacho = Despachada, FechaHoraDespacho = ahora
+        Mod -> Mov : new MovimientoMercaderia(CodigoCliente, Tipo = Out, NumeroOrdenPreparacion, NumeroRemito, Fecha)
+    end
+    Form --> Op : MessageBox("Despacho confirmado. Remito N° [nro]")
+    Form -> Mod : Reiniciar()
+    Form -> Form : Limpia los campos y la grilla para el siguiente transportista (paso 17)
+end
+
+== Cancelar o cerrar con la X (pasos 2 a 12 y excepciones 6 y 10) ==
+Op -> Form : Presiona "Cancelar" o cierra la pantalla con la X
+note right of Op : Por ejemplo, si falta un paquete (excepción 6)\no el transportista no firma la copia (excepción 10).
+Form --> Op : "¿Desea cancelar la entrega? No se registrará el despacho" (Sí / No)
+note right of Form : Con la X solo pregunta si hay un remito Emitido.
+alt El operario elige "Sí"
+    Form -> Mod : Cancelar()
+    opt El remito ya estaba generado y sin confirmar
+        Mod -> Rem : Estado = Anulado
+    end
+    Mod -> Mod : Reiniciar() (las órdenes siguen Pendiente)
+    Form -> Form : Cierra la pantalla
+else El operario elige "No"
+    Form -> Form : Sigue en el paso en que estaba
+end
+
+@enduml

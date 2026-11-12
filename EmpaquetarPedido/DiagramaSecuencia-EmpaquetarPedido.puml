@@ -1,0 +1,82 @@
+@startuml DiagramaSecuencia-EmpaquetarPedido
+title Diagrama de secuencia - Caso de uso: Empaquetar pedido y generar orden de entrega
+
+skinparam sequenceArrowThickness 1
+skinparam sequenceParticipantBorderColor black
+skinparam sequenceLifeLineBorderColor black
+skinparam backgroundColor white
+skinparam sequenceMessageAlign left
+skinparam maxMessageSize 200
+
+autonumber
+
+actor "Operario de\nPreparación" as Op
+boundary "EmpaquetarPedidoForm" as Form
+control "EmpaquetarPedidoModelo" as Mod
+participant "Sesion" as Ses
+entity "OrdenPreparacion" as OPrep
+entity "ItemOrden" as Item
+entity "OrdenEntrega" as OE
+
+== Apertura de pantalla y toma de la orden (pasos 1 a 3) ==
+Op -> Form : Abre la pantalla "Empaquetar pedido"
+Form -> Mod : new EmpaquetarPedidoModelo()
+Mod -> Ses : ObtenerUsuarioActual(), ObtenerDepositoActual()
+Ses --> Mod : usuario y depósito
+loop Mientras haya órdenes para preparar
+    Form -> Mod : TomarSiguienteOrden()
+    Mod -> OPrep : BuscarParaPreparar(CodigoDeposito, Estado = EnPreparacion, OrdenSeleccionCumplida = true, TomadaPor libre o del usuario)
+    OPrep --> Mod : órdenes disponibles
+    Mod -> Mod : Toma la de número más bajo
+    alt No hay órdenes para preparar (excepción paso 2)
+        Mod --> Form : null
+        Form -> Form : Etiqueta "Sin órdenes para preparar" y deshabilita el botón de confirmar
+        Form --> Op : MessageBox("No hay órdenes para preparar")
+    else Hay una orden disponible
+        Mod -> OPrep : TomadaPor = usuario
+        Mod -> Item : Items de la orden
+        Item --> Mod : productos (SKU y cantidad)
+        Mod --> Form : orden (número, productos y tipo de pedido)
+        Form -> Mod : DescripcionTipoPedido(TipoPedido)
+        Mod --> Form : "Fulfillment" / "Palé cerrado"
+        Form --> Op : Muestra "Orden de prep. N° [nro]" y los productos a preparar (SKU, cantidad, tipo de pedido)
+
+        Op -> Form : Empaqueta los productos y presiona "Confirmar" (pasos 4 y 5)
+        Form --> Op : "¿Confirma que la orden de preparación N° [nro] quedó empaquetada completa y desea generar la orden de entrega?" (Sí / No)
+        alt El operario elige "No" (excepción paso 6)
+            Form -> Form : No se guarda nada y la orden sigue en pantalla
+        else El operario elige "Sí"
+            Form -> Mod : ConfirmarEmpaquetado()
+            Mod -> Item : Items de la orden
+            Item --> Mod : productos
+            alt La orden no tiene productos
+                Mod --> Form : null
+            else La orden tiene productos (pasos 8 y 9)
+                Mod -> OE : new OrdenEntrega(Numero = último + 1, FechaHora, CodigoDeposito, NumeroOrdenPreparacion, Transportista, Usuario, Estado = Pendiente)
+                Mod -> OPrep : Estado = Preparada, FechaPreparada = ahora, PreparadaPor = usuario, TomadaPor = null
+                Mod --> Form : orden de entrega
+                Form --> Op : MessageBox("Orden de entrega N° [nro] generada")
+                Form -> Form : Limpia la grilla y vuelve a tomar la siguiente orden (paso 13)
+            end
+        end
+    end
+end
+
+== Cierre con la X (excepción) ==
+Op -> Form : Cierra la pantalla con la X
+Form -> Mod : OrdenActual
+Mod --> Form : orden en pantalla / null
+alt Hay una orden en pantalla
+    Form --> Op : "¿Desea salir? La orden N° [nro] quedará disponible para otro puesto" (Sí / No)
+    alt El operario elige "Sí"
+        Form -> Mod : LiberarOrdenActual()
+        Mod -> OPrep : TomadaPor = null (sigue En preparación)
+        Form -> Form : Cierra la pantalla
+    else El operario elige "No"
+        Form -> Form : Cancela el cierre y sigue en la pantalla
+    end
+else No hay orden en pantalla
+    Form -> Form : Cierra la pantalla
+end
+
+@enduml

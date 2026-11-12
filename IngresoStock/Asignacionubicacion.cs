@@ -4,7 +4,7 @@ namespace GrupoC.IngresoStock
     public class AsignacionUbicacion
     {
         public ItemOrdenRecepcion Item { get; }
-        public int Cantidad { get; set; }
+        public int Cantidad { get; }
         public string Pasillo { get; }
         public string Fila { get; }
         public string Nivel { get; }

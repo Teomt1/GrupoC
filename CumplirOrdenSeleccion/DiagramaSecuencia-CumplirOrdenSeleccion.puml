@@ -1,0 +1,77 @@
+@startuml DiagramaSecuencia-CumplirOrdenSeleccion
+title Diagrama de secuencia - Caso de uso: Cumplir orden de selección
+
+skinparam sequenceArrowThickness 1
+skinparam sequenceParticipantBorderColor black
+skinparam sequenceLifeLineBorderColor black
+skinparam backgroundColor white
+skinparam sequenceMessageAlign left
+skinparam maxMessageSize 200
+
+autonumber
+
+actor "Operario de\nAlmacenamiento" as Op
+boundary "CumplirOrdenSeleccionForm" as Form
+control "CumplirOrdenSeleccionModelo" as Mod
+participant "Sesion" as Ses
+entity "OrdenSeleccion" as OS
+entity "RenglonOrdenSeleccion" as Ren
+entity "ItemInventario" as Inv
+
+== Apertura de pantalla y búsqueda de la orden (pasos 1 a 4) ==
+Op -> Form : Abre la pantalla "Cumplir orden de selección"
+Form -> Mod : new CumplirOrdenSeleccionModelo()
+Mod -> Ses : ObtenerUsuarioActual(), ObtenerDepositoActual()
+Ses --> Mod : usuario y código de depósito
+Form -> Form : MostrarOrdenPendiente()
+Form -> Mod : BuscarOrdenPendiente()
+Mod -> OS : BuscarPendientes(CodigoDeposito, Estado = Pendiente)
+OS --> Mod : órdenes pendientes del depósito
+Mod -> Mod : Toma la de número más bajo
+Form -> Mod : NumeroOrdenActual, Fecha, HayOrdenPendiente
+Mod --> Form : número de orden, fecha actual y si hay orden
+alt No hay órdenes pendientes (excepción 2.1)
+    Mod --> Form : "No hay órdenes de selección pendientes"
+    Form --> Op : MessageBox(mensaje)
+    Form -> Form : Deshabilita "Confirmar entrega a Preparación"
+else Hay una orden pendiente (pasos 3 y 4)
+    Mod --> Form : null
+    Form -> Mod : RenglonesOrdenados
+    Mod -> Ren : ObtenerRenglones(orden)
+    Ren --> Mod : renglones (Posicion, Sku, Descripcion, Cantidad)
+    Mod -> Mod : Ordena por posición (sector, posición y fila como números)
+    Mod --> Form : renglones ordenados
+    Form --> Op : Muestra N° de orden, fecha y mercadería a bajar
+end
+
+== Confirmación de entrega a Preparación (pasos 5 a 11) ==
+loop Mientras haya órdenes pendientes
+    Op -> Form : Baja la mercadería, la entrega a Preparación y presiona "Confirmar entrega a Preparación"
+    Form -> Mod : PreguntaConfirmacion
+    Mod --> Form : "¿Confirma que entregó a Preparación toda la mercadería de la orden de selección N° [nro]?"
+    Form --> Op : MessageBox Sí / No (paso 7)
+    alt El operario elige "No" (excepción 8.1)
+        Form -> Form : No se guarda nada y la orden sigue en pantalla
+    else El operario elige "Sí"
+        Form -> Mod : CumplirOrden()
+        alt No hay una orden en pantalla
+            Mod --> Form : "No hay una orden de selección para confirmar"
+        else Hay una orden en pantalla
+            Mod -> OS : Estado = Cumplida, FechaHoraCumplida = ahora, UsuarioCumplida = usuario (paso 9)
+            loop Por cada RenglonOrdenSeleccion (paso 10)
+                Mod -> Ren : Cliente, Sku, Posicion, Cantidad
+                Ren --> Mod : datos del renglón
+                Mod -> Inv : BuscarStock(cliente, sku, posicion)
+                Inv --> Mod : stock / null
+                opt Existe el stock
+                    Mod -> Inv : Cantidad -= cantidad del renglón
+                end
+            end
+            Mod --> Form : "Orden de selección N° [nro] cumplida" (paso 11)
+        end
+        Form --> Op : MessageBox(mensaje)
+        Form -> Form : MostrarOrdenPendiente() (vuelve a buscar la siguiente orden)
+    end
+end
+
+@enduml

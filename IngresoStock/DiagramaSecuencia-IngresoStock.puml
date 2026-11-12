@@ -1,0 +1,180 @@
+@startuml DiagramaSecuencia-IngresoStock
+title Diagrama de secuencia - Caso de uso: Ingreso a stock
+
+skinparam sequenceArrowThickness 1
+skinparam sequenceParticipantBorderColor black
+skinparam sequenceLifeLineBorderColor black
+skinparam backgroundColor white
+skinparam sequenceMessageAlign left
+skinparam maxMessageSize 200
+
+autonumber
+
+actor "Operario de\nAlmacenamiento" as Op
+boundary "IngresoStockForm" as Form
+control "IngresoStockModelo" as Mod
+participant "Sesion" as Ses
+entity "Posicion" as Pos
+entity "OrdenRecepcion" as OR
+entity "ItemOrdenRecepcion" as Item
+entity "AsignacionUbicacion" as Asig
+entity "Mercaderia" as Merc
+entity "RegistroAuditoria" as Aud
+entity "MovimientoMercaderia" as Mov
+
+== Apertura de pantalla (paso 1) ==
+Op -> Form : Abre la pantalla "Ingreso a Stock"
+Form -> Mod : new IngresoStockModelo()
+Form -> Mod : Pasillos, Filas, Niveles
+Mod -> Pos : ObtenerPosiciones()
+Pos --> Mod : posiciones del depósito
+Mod --> Form : listas de Pasillo (X), Fila (Y) y Nivel (Z)
+Form -> Form : Carga cmbPasilloX, cmbFilaY y cmbNivelZ
+Form --> Op : Muestra la pantalla
+
+== Búsqueda de la orden (pasos 2 a 6) ==
+Op -> Form : Ingresa el N° de Orden y presiona "Buscar"
+Form -> Mod : NumeroOrden = txtNroOrden.Text
+Form -> Mod : BuscarOrden()
+Mod -> Mod : Valida que NumeroOrden sea un entero positivo
+alt N° de orden no es un entero positivo (paso 4)
+    Mod -> Mod : NumeroOrden = ""
+    Mod --> Form : "El número de orden debe ser un valor numérico"
+    Form --> Op : MessageBox(error)
+    Form -> Form : MostrarDatos() (limpia el N° de Orden)
+else N° de orden válido
+    Mod -> OR : BuscarPorNumero(numero, EstadoUbicacion = PendienteDeUbicacion)
+    OR --> Mod : orden / null
+    alt La orden no existe o no está Pendiente de Ubicación (paso 5)
+        Mod -> Mod : Restablecer()
+        Mod --> Form : "No se encontró ninguna orden pendiente de ubicación con ese número"
+        Form --> Op : MessageBox(error)
+        Form -> Form : MostrarDatos() (limpia la pantalla)
+    else Orden encontrada (paso 6)
+        Mod -> Item : ObtenerItems(orden)
+        Item --> Mod : ítems (Sku, Descripcion, CantidadRecepcionada)
+        Mod -> Item : CantidadAUbicar = CantidadRecepcionada (por cada ítem)
+        Mod --> Form : null
+        Form -> Mod : ClienteOrigen, Items
+        Mod --> Form : datos de la orden
+        Form -> Form : MostrarDatos()
+        Form --> Op : Muestra Cliente / Origen, la grilla de ítems y el desplegable de SKU
+    end
+end
+
+== Carga de ubicaciones (pasos 7 a 11) ==
+loop Hasta ubicar todas las unidades de la orden
+    Op -> Form : Selecciona SKU, ingresa Cantidad y elige Pasillo, Fila y Nivel
+    Op -> Form : Presiona "Agregar Ubicación"
+    Form -> Mod : SkuSeleccionado, Cantidad, Pasillo, Fila, Nivel
+    Form -> Mod : AgregarUbicacion()
+    Mod -> Mod : Valida SKU, cantidad, coordenadas y saldo (paso 10)
+    alt No seleccionó un SKU
+        Mod --> Form : "Debe seleccionar un SKU de la orden de recepción"
+    else La cantidad no es numérica
+        Mod --> Form : "La cantidad debe ser un valor numérico"
+    else La cantidad es 0 o negativa
+        Mod --> Form : "La cantidad debe ser mayor a 0"
+    else Faltan coordenadas
+        Mod --> Form : "Debe seleccionar Pasillo, Fila y Nivel"
+    else La cantidad supera el CantidadAUbicar del SKU
+        Mod -> Mod : Cantidad = ""
+        Mod --> Form : "La cantidad a ubicar no puede ser mayor a la cantidad pendiente recepcionada"
+    else Datos válidos
+        Mod -> Merc : ObtenerSkuEnPosicion(Pasillo, Fila, Nivel)
+        Merc --> Mod : Sku guardado / null
+        Mod -> Asig : Revisa las ubicaciones ya agregadas
+        Asig --> Mod : ubicaciones de la orden
+        alt La posición está ocupada por otro SKU
+            Mod --> Form : "La ubicación seleccionada ya está ocupada por otro SKU"
+        else La coordenada ya fue asignada en esta orden
+            Mod --> Form : "El SKU ya fue ubicado en esas coordenadas"
+        else Posición libre
+            Mod -> Asig : new AsignacionUbicacion(item, cantidad, Pasillo, Fila, Nivel)
+            Mod -> Item : CantidadAUbicar -= cantidad
+            Mod -> Mod : LimpiarDatosUbicacion()
+            Mod --> Form : null
+        end
+    end
+    alt Hubo un error
+        Form --> Op : MessageBox(error)
+        Form -> Form : Actualiza el campo Cantidad
+    else Sin error
+        Form -> Form : MostrarDatos()
+        Form --> Op : Grilla con el saldo actualizado y lista de ubicaciones asignadas
+    end
+
+    opt Quitar una ubicación (paso 11)
+        Op -> Form : Selecciona una ubicación de la lista
+        Form -> Mod : UbicacionSeleccionada = ubicación elegida
+        Op -> Form : Presiona "Quitar seleccionada"
+        Form -> Mod : QuitarUbicacion()
+        alt No hay una ubicación seleccionada
+            Mod --> Form : "Debe seleccionar una ubicación de la lista para quitar"
+            Form --> Op : MessageBox(error)
+        else Hay una ubicación seleccionada
+            Mod -> Item : CantidadAUbicar += cantidad de la ubicación
+            Mod -> Asig : Se quita de la lista (no se había guardado)
+            Mod --> Form : null
+            Form -> Form : MostrarDatos()
+        end
+    end
+end
+
+== Confirmación del ingreso (pasos 12 a 17) ==
+Op -> Form : Presiona "Confirmar Ingreso"
+Form -> Mod : ValidarIngreso()
+alt No se buscó ninguna orden (paso 13)
+    Mod --> Form : "Debe buscar una orden de recepción antes de confirmar el ingreso"
+    Form --> Op : MessageBox(error)
+else Quedan unidades sin ubicar (paso 13)
+    Mod --> Form : "Debe ubicar toda la mercadería recepcionada antes de confirmar el ingreso"
+    Form --> Op : MessageBox(error)
+else Validación correcta
+    Mod --> Form : null
+    Form -> Mod : ConfirmarIngreso()
+    Mod -> Ses : ObtenerUsuarioActual()
+    Ses --> Mod : usuario
+    loop Por cada AsignacionUbicacion (paso 14)
+        Mod -> Asig : Sku, Pasillo, Fila, Nivel, Cantidad
+        Asig --> Mod : datos de la ubicación
+        Mod -> Merc : BuscarPorSkuYPosicion(Sku, Pasillo, Fila, Nivel)
+        Merc --> Mod : mercaderia / null
+        alt No hay stock de ese SKU en esa posición
+            Mod -> Merc : new Mercaderia(Sku, Pasillo, Fila, Nivel, 0)
+        end
+        Mod -> Merc : Cantidad += cantidad
+    end
+    note right of Merc : "Disponible en Guarda": falta agregar el estado a Mercaderia en el diagrama de clases
+    Mod -> OR : EstadoUbicacion = Cumplida (paso 15)
+    Mod -> Aud : new RegistroAuditoria(usuario, FechaHora, NumeroOrdenRecepcion) (paso 16)
+    Mod -> Mov : new MovimientoMercaderia(CodigoCliente, Tipo = In, NumeroOrdenRecepcion, Fecha) (paso 16)
+    Mod -> Mod : Restablecer()
+    Mod --> Form : "Mercadería ingresada a stock con éxito"
+    Form --> Op : MessageBox(mensaje) (paso 17)
+    Form -> Form : MostrarDatos() (pantalla restablecida)
+end
+
+== Cancelar (excepción del paso 12) ==
+Op -> Form : Presiona "Cancelar"
+Form -> Mod : Cancelar()
+Mod -> Mod : Restablecer() (descarta las ubicaciones cargadas)
+Form -> Form : MostrarDatos()
+Form --> Op : Formulario restablecido, sin cambios en la base de datos
+
+== Cierre con la X (excepción) ==
+Op -> Form : Cierra la pantalla con la X
+Form -> Mod : HayUbicacionesSinConfirmar
+Mod --> Form : true / false
+alt Hay ubicaciones sin confirmar
+    Form --> Op : "Hay ubicaciones agregadas sin confirmar. Si sale, se descartan. ¿Desea salir?"
+    alt El operario elige "Sí"
+        Form -> Form : Cierra la pantalla sin modificar la base de datos
+    else El operario elige "No"
+        Form -> Form : Cancela el cierre y sigue en la pantalla
+    end
+else No hay ubicaciones sin confirmar
+    Form -> Form : Cierra la pantalla
+end
+
+@enduml

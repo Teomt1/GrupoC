@@ -1,43 +1,28 @@
 #nullable enable
+using Alm = GrupoC.Almacenes;
+
 namespace GrupoC.EntregaATransportista;
 
 internal class EntregaATransportistaModelo
 {
+    // Depósito del usuario si no se eligió uno en la pantalla principal.
+    private const string DepositoPorDefecto = "D01";
+
+    // Legajo del usuario logueado (el elegido en la pantalla principal, o uno de los empleados).
+    private readonly int legajoUsuario;
+
+    // Relación entre las clases de la pantalla y los datos de los almacenes (no salen del modelo).
+    private readonly Dictionary<OrdenPreparacion, Alm.OrdenPreparacionEntidad> ordenPreparacionAlmacen = new();
+    private readonly Dictionary<OrdenEntrega, Alm.OrdenEntregaEntidad> ordenEntregaAlmacen = new();
+    private readonly Dictionary<RemitoEntrega, Alm.RemitoEntregaEntidad> remitoAlmacen = new();
+
     // Usuario identificado en el sistema y su depósito.
-    public string CodigoUsuario { get; } = "OPD01";
-    public string CodigoDeposito { get; } = "DEP01";
+    public string CodigoUsuario { get; }
+    public string CodigoDeposito { get; }
 
-    // Datos de prueba de la planilla "Prueba - Entregar mercadería al transportista".
-    // 99999999 no figura en ninguna orden a propósito (excepción "no autorizado").
-    public List<OrdenPreparacion> OrdenesPreparacion { get; } = new()
-    {
-        // Martínez, Luis: dos órdenes listas para retirar en DEP01.
-        new OrdenPreparacion { Numero = 2001, CodigoCliente = "CLI001", CodigoDeposito = "DEP01", TransportistaNombre = "Martínez, Luis", TransportistaDni = 30123456, Estado = EstadoOrdenPreparacion.Preparada },
-        new OrdenPreparacion { Numero = 2005, CodigoCliente = "CLI002", CodigoDeposito = "DEP01", TransportistaNombre = "Martínez, Luis", TransportistaDni = 30123456, Estado = EstadoOrdenPreparacion.Preparada },
-        // Martínez, Luis en otro depósito: no debe aparecer en la grilla.
-        new OrdenPreparacion { Numero = 2006, CodigoCliente = "CLI003", CodigoDeposito = "DEP02", TransportistaNombre = "Martínez, Luis", TransportistaDni = 30123456, Estado = EstadoOrdenPreparacion.Preparada },
-        // Gómez, Carlos: otro transportista con una orden lista.
-        new OrdenPreparacion { Numero = 2002, CodigoCliente = "CLI001", CodigoDeposito = "DEP01", TransportistaNombre = "Gómez, Carlos", TransportistaDni = 27888999, Estado = EstadoOrdenPreparacion.Preparada },
-        // Sosa, Ana: autorizada, pero una orden ya fue despachada y la otra todavía no está preparada.
-        new OrdenPreparacion { Numero = 2003, CodigoCliente = "CLI002", CodigoDeposito = "DEP01", TransportistaNombre = "Sosa, Ana", TransportistaDni = 28555111, Estado = EstadoOrdenPreparacion.Cumplida, NumeroRemito = 5000 },
-        new OrdenPreparacion { Numero = 2004, CodigoCliente = "CLI003", CodigoDeposito = "DEP01", TransportistaNombre = "Sosa, Ana", TransportistaDni = 28555111, Estado = EstadoOrdenPreparacion.Pendiente }
-    };
-
-    public List<OrdenEntrega> OrdenesEntrega { get; } = new()
-    {
-        new OrdenEntrega { NumeroOrdenPreparacion = 2001, CodigoDeposito = "DEP01", CantidadPaquetes = 3, Estado = EstadoOrdenEntrega.Pendiente },
-        new OrdenEntrega { NumeroOrdenPreparacion = 2002, CodigoDeposito = "DEP01", CantidadPaquetes = 1, Estado = EstadoOrdenEntrega.Pendiente },
-        new OrdenEntrega { NumeroOrdenPreparacion = 2003, CodigoDeposito = "DEP01", CantidadPaquetes = 4, Estado = EstadoOrdenEntrega.Despachada, FechaHoraDespacho = new DateTime(2026, 10, 1, 10, 30, 0) },
-        new OrdenEntrega { NumeroOrdenPreparacion = 2005, CodigoDeposito = "DEP01", CantidadPaquetes = 2, Estado = EstadoOrdenEntrega.Pendiente },
-        new OrdenEntrega { NumeroOrdenPreparacion = 2006, CodigoDeposito = "DEP02", CantidadPaquetes = 4, Estado = EstadoOrdenEntrega.Pendiente }
-    };
-
-    // Último remito registrado: el próximo será el 5001.
-    public List<RemitoEntrega> RemitosEntrega { get; } = new()
-    {
-        new RemitoEntrega { Numero = 5000, FechaHora = new DateTime(2026, 10, 1, 10, 15, 0), CodigoDeposito = "DEP01", TransportistaNombre = "Sosa, Ana", TransportistaDni = 28555111, CodigoUsuario = "OPD01", Estado = EstadoRemito.Firmado, FechaHoraCumplido = new DateTime(2026, 10, 1, 10, 30, 0), CodigoUsuarioCumplido = "OPD01" }
-    };
-
+    public List<OrdenPreparacion> OrdenesPreparacion { get; }
+    public List<OrdenEntrega> OrdenesEntrega { get; }
+    public List<RemitoEntrega> RemitosEntrega { get; }
     public List<DetalleRemitoEntrega> DetallesRemitoEntrega { get; } = new();
     public List<MovimientoMercaderia> MovimientosMercaderia { get; } = new();
 
@@ -52,6 +37,126 @@ internal class EntregaATransportistaModelo
     public bool PuedeGenerarRemito => Remito == null && OrdenesAEntregar.Count > 0;
     public bool PuedeMarcarRemitoFirmado => Remito != null;
     public bool PuedeConfirmarDespacho => Remito != null && RemitoFirmado;
+
+    public EntregaATransportistaModelo()
+    {
+        // Usuario identificado en el sistema: operario de Despacho.
+        CodigoUsuario = "";
+        List<Alm.EmpleadoEntidad> empleados = Alm.EmpleadoAlmacen.Empleado;
+        Alm.EmpleadoEntidad? empleado = int.TryParse(Alm.EmpleadoAlmacen.EmpleadoActual, out int legajoElegido)
+            ? empleados.Find(e => e.Legajo == legajoElegido)
+            : null;
+        if (empleado == null && empleados.Count > 0)
+        {
+            empleado = empleados[Random.Shared.Next(empleados.Count)];
+        }
+        if (empleado != null)
+        {
+            legajoUsuario = empleado.Legajo;
+            CodigoUsuario = empleado.Usuario;
+        }
+
+        // Depósito del usuario (paso 4 del caso de uso).
+        CodigoDeposito = string.IsNullOrEmpty(Alm.DepositoAlmacen.DepositoActual)
+            ? DepositoPorDefecto
+            : Alm.DepositoAlmacen.DepositoActual;
+
+        List<Alm.RemitoEntregaEntidad> remitos = Alm.RemitoEntregaAlmacen.RemitoEntrega;
+
+        // Órdenes de preparación con el transportista autorizado por el cliente.
+        // El número de remito es el del remito firmado en el que se despachó la orden.
+        OrdenesPreparacion = new List<OrdenPreparacion>();
+        foreach (Alm.OrdenPreparacionEntidad op in Alm.OrdenPreparacionAlmacen.OrdenPreparacion)
+        {
+            var orden = new OrdenPreparacion
+            {
+                Numero = op.Numero,
+                CodigoCliente = op.CodigoCliente ?? "",
+                CodigoDeposito = op.CodigoDeposito ?? "",
+                TransportistaNombre = op.TransportistaNombre ?? "",
+                TransportistaDni = op.TransportistaDni,
+                Estado = ConvertirEstado(op.Estado),
+                NumeroRemito = remitos
+                    .Find(r => r.Estado == Alm.EstadoRemitoEnum.Firmado
+                               && r.Detalles != null
+                               && r.Detalles.Any(d => d.NumeroOrdenPreparacion == op.Numero))
+                    ?.Numero
+            };
+            OrdenesPreparacion.Add(orden);
+            ordenPreparacionAlmacen[orden] = op;
+        }
+
+        // Órdenes de entrega. El depósito es el de su orden de preparación.
+        OrdenesEntrega = new List<OrdenEntrega>();
+        foreach (Alm.OrdenEntregaEntidad oe in Alm.OrdenEntregaAlmacen.OrdenEntrega)
+        {
+            Alm.OrdenPreparacionEntidad? op = Alm.OrdenPreparacionAlmacen.OrdenPreparacion
+                .Find(o => o.Numero == oe.NumeroOrdenPreparacion);
+
+            var orden = new OrdenEntrega
+            {
+                NumeroOrdenPreparacion = oe.NumeroOrdenPreparacion,
+                CodigoDeposito = op?.CodigoDeposito ?? "",
+                CantidadPaquetes = oe.CantidadPaquetes,
+                Estado = oe.Estado == Alm.EstadoOrdenEntregaEnum.Despachada
+                    ? EstadoOrdenEntrega.Despachada
+                    : EstadoOrdenEntrega.Pendiente,
+                FechaHoraDespacho = oe.FechaHoraDespacho
+            };
+            OrdenesEntrega.Add(orden);
+            ordenEntregaAlmacen[orden] = oe;
+        }
+
+        // Remitos de entrega con un renglón de detalle por orden.
+        RemitosEntrega = new List<RemitoEntrega>();
+        foreach (Alm.RemitoEntregaEntidad r in remitos)
+        {
+            var remito = new RemitoEntrega
+            {
+                Numero = r.Numero,
+                FechaHora = r.FechaHora,
+                CodigoDeposito = r.CodigoDeposito ?? "",
+                TransportistaNombre = r.TransportistaNombre ?? "",
+                TransportistaDni = r.TransportistaDni,
+                CodigoUsuario = empleados.Find(e => e.Legajo == r.LegajoUsuario)?.Usuario ?? "",
+                Estado = ConvertirEstado(r.Estado),
+                FechaHoraCumplido = r.FechaHoraCumplido,
+                CodigoUsuarioCumplido = empleados.Find(e => e.Legajo == r.LegajoCumplido)?.Usuario
+            };
+            RemitosEntrega.Add(remito);
+            remitoAlmacen[remito] = r;
+
+            foreach (Alm.DetalleRemitoEntrega d in r.Detalles ?? new List<Alm.DetalleRemitoEntrega>())
+            {
+                Alm.OrdenEntregaEntidad? oe = Alm.OrdenEntregaAlmacen.OrdenEntrega
+                    .Find(o => o.Numero == d.NumeroOrdenEntrega);
+
+                DetallesRemitoEntrega.Add(new DetalleRemitoEntrega
+                {
+                    NumeroRemito = r.Numero,
+                    NumeroOrdenPreparacion = d.NumeroOrdenPreparacion,
+                    CantidadPaquetes = oe?.CantidadPaquetes ?? 0
+                });
+            }
+        }
+
+        // Egresos de mercadería ya registrados.
+        foreach (Alm.MovimientoMercaderiaEntidad m in Alm.MovimientoMercaderiaAlmacen.MovimientoMercaderia)
+        {
+            if (m.Tipo != Alm.TipoMovimientoEnum.Egreso || m.NumeroOrdenPreparacion == null || m.NumeroRemitoEntrega == null)
+            {
+                continue;
+            }
+
+            MovimientosMercaderia.Add(new MovimientoMercaderia
+            {
+                CodigoCliente = m.CodigoCliente ?? "",
+                NumeroOrdenPreparacion = m.NumeroOrdenPreparacion.Value,
+                NumeroRemito = m.NumeroRemitoEntrega.Value,
+                Fecha = m.FechaHora.Date
+            });
+        }
+    }
 
     // Devuelve el error a mostrar, o null si encontró órdenes para el transportista.
     // Si está autorizado pero no tiene órdenes pendientes, el nombre queda cargado igual.
@@ -131,6 +236,28 @@ internal class EntregaATransportistaModelo
             });
         }
 
+        // Se registra el remito en el almacén con su detalle.
+        var entidad = new Alm.RemitoEntregaEntidad
+        {
+            Numero = Remito.Numero,
+            FechaHora = Remito.FechaHora,
+            CodigoDeposito = Remito.CodigoDeposito,
+            Detalles = OrdenesAEntregar.Select(oe => new Alm.DetalleRemitoEntrega
+            {
+                NumeroOrdenEntrega = ordenEntregaAlmacen[oe].Numero,
+                NumeroOrdenPreparacion = oe.NumeroOrdenPreparacion
+            }).ToList(),
+            LegajoUsuario = legajoUsuario,
+            Estado = Alm.EstadoRemitoEnum.Emitido,
+            FechaHoraCumplido = null,
+            LegajoCumplido = null,
+            TransportistaNombre = Remito.TransportistaNombre,
+            TransportistaDni = Remito.TransportistaDni,
+            CantidadPaquetes = OrdenesAEntregar.Sum(oe => oe.CantidadPaquetes)
+        };
+        Alm.RemitoEntregaAlmacen.RemitoEntrega.Add(entidad);
+        remitoAlmacen[Remito] = entidad;
+
         return Remito;
     }
 
@@ -144,25 +271,48 @@ internal class EntregaATransportistaModelo
 
         DateTime ahora = DateTime.Now;
 
+        // Paso 14: cumplido del remito, en la pantalla y en el almacén.
         Remito.Estado = EstadoRemito.Firmado;
         Remito.FechaHoraCumplido = ahora;
         Remito.CodigoUsuarioCumplido = CodigoUsuario;
 
+        Alm.RemitoEntregaEntidad remitoEntidad = remitoAlmacen[Remito];
+        remitoEntidad.Estado = Alm.EstadoRemitoEnum.Firmado;
+        remitoEntidad.FechaHoraCumplido = ahora;
+        remitoEntidad.LegajoCumplido = legajoUsuario;
+
         foreach (OrdenEntrega oe in OrdenesAEntregar)
         {
+            // Paso 15: orden de preparación Cumplida y orden de entrega Despachada.
             OrdenPreparacion op = BuscarOrdenPreparacion(oe);
             op.Estado = EstadoOrdenPreparacion.Cumplida;
             op.NumeroRemito = Remito.Numero;
+            ordenPreparacionAlmacen[op].Estado = Alm.EstadoOrdenPreparacionEnum.Cumplida;
 
             oe.Estado = EstadoOrdenEntrega.Despachada;
             oe.FechaHoraDespacho = ahora;
+            Alm.OrdenEntregaEntidad oeEntidad = ordenEntregaAlmacen[oe];
+            oeEntidad.Estado = Alm.EstadoOrdenEntregaEnum.Despachada;
+            oeEntidad.FechaHoraDespacho = ahora;
 
+            // Paso 16: egreso en Movimientos de mercadería para la factura mensual.
             MovimientosMercaderia.Add(new MovimientoMercaderia
             {
                 CodigoCliente = op.CodigoCliente,
                 NumeroOrdenPreparacion = op.Numero,
                 NumeroRemito = Remito.Numero,
                 Fecha = ahora.Date
+            });
+
+            Alm.MovimientoMercaderiaAlmacen.MovimientoMercaderia.Add(new Alm.MovimientoMercaderiaEntidad
+            {
+                Tipo = Alm.TipoMovimientoEnum.Egreso,
+                FechaHora = ahora,
+                CodigoCliente = op.CodigoCliente,
+                NumeroOrdenRecepcion = null,
+                NumeroOrdenPreparacion = op.Numero,
+                NumeroRemitoEntrega = Remito.Numero,
+                LegajoUsuario = legajoUsuario
             });
         }
     }
@@ -174,6 +324,7 @@ internal class EntregaATransportistaModelo
         if (Remito != null && Remito.Estado == EstadoRemito.Emitido)
         {
             Remito.Estado = EstadoRemito.Anulado;
+            remitoAlmacen[Remito].Estado = Alm.EstadoRemitoEnum.Anulado;
         }
 
         Reiniciar();
@@ -191,5 +342,32 @@ internal class EntregaATransportistaModelo
     private OrdenPreparacion BuscarOrdenPreparacion(OrdenEntrega oe)
     {
         return OrdenesPreparacion.Find(op => op.Numero == oe.NumeroOrdenPreparacion && op.CodigoDeposito == oe.CodigoDeposito)!;
+    }
+
+    // La pantalla no distingue "En preparación": para entregar, esa orden todavía no está lista.
+    private EstadoOrdenPreparacion ConvertirEstado(Alm.EstadoOrdenPreparacionEnum estado)
+    {
+        switch (estado)
+        {
+            case Alm.EstadoOrdenPreparacionEnum.Preparada:
+                return EstadoOrdenPreparacion.Preparada;
+            case Alm.EstadoOrdenPreparacionEnum.Cumplida:
+                return EstadoOrdenPreparacion.Cumplida;
+            default:
+                return EstadoOrdenPreparacion.Pendiente;
+        }
+    }
+
+    private EstadoRemito ConvertirEstado(Alm.EstadoRemitoEnum estado)
+    {
+        switch (estado)
+        {
+            case Alm.EstadoRemitoEnum.Firmado:
+                return EstadoRemito.Firmado;
+            case Alm.EstadoRemitoEnum.Anulado:
+                return EstadoRemito.Anulado;
+            default:
+                return EstadoRemito.Emitido;
+        }
     }
 }

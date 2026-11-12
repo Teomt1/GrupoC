@@ -1,0 +1,130 @@
+﻿[
+  {
+    "Codigo": "C001",
+    "RazonSocial": "Electro Hogar S.A.",
+    "VigenteContratos": true,
+    "Productos": [
+      "001",
+      "002"
+    ]
+  },
+  {
+    "Codigo": "C002",
+    "RazonSocial": "Herramientas Mendoza S.R.L.",
+    "VigenteContratos": true,
+    "Productos": [
+      "003"
+    ]
+  },
+  {
+    "Codigo": "C003",
+    "RazonSocial": "Frio Total S.A.",
+    "VigenteContratos": true,
+    "Productos": [
+      "004",
+      "012"
+    ]
+  },
+  {
+    "Codigo": "C004",
+    "RazonSocial": "Tecno Vision S.A.",
+    "VigenteContratos": true,
+    "Productos": [
+      "005",
+      "013"
+    ]
+  },
+  {
+    "Codigo": "C005",
+    "RazonSocial": "Cocina Facil S.R.L.",
+    "VigenteContratos": true,
+    "Productos": [
+      "006",
+      "019"
+    ]
+  },
+  {
+    "Codigo": "C006",
+    "RazonSocial": "Muebles de Oficina Litoral S.A.",
+    "VigenteContratos": true,
+    "Productos": [
+      "007",
+      "014"
+    ]
+  },
+  {
+    "Codigo": "C007",
+    "RazonSocial": "Libreria Escolar Avellaneda S.A.",
+    "VigenteContratos": true,
+    "Productos": [
+      "008",
+      "011",
+      "016"
+    ]
+  },
+  {
+    "Codigo": "C008",
+    "RazonSocial": "Bici Sport S.R.L.",
+    "VigenteContratos": true,
+    "Productos": [
+      "009"
+    ]
+  },
+  {
+    "Codigo": "C009",
+    "RazonSocial": "Limpieza Hogar S.A.",
+    "VigenteContratos": true,
+    "Productos": [
+      "010"
+    ]
+  },
+  {
+    "Codigo": "C010",
+    "RazonSocial": "Clima y Confort S.R.L.",
+    "VigenteContratos": true,
+    "Productos": [
+      "015",
+      "017"
+    ]
+  },
+  {
+    "Codigo": "C011",
+    "RazonSocial": "Textil Blanco S.A.",
+    "VigenteContratos": true,
+    "Productos": [
+      "018"
+    ]
+  },
+  {
+    "Codigo": "C012",
+    "RazonSocial": "Obra Rapida S.R.L.",
+    "VigenteContratos": true,
+    "Productos": [
+      "020"
+    ]
+  },
+  {
+    "Codigo": "C013",
+    "RazonSocial": "Distribuidora Oeste S.A.",
+    "VigenteContratos": false,
+    "Productos": []
+  },
+  {
+    "Codigo": "C014",
+    "RazonSocial": "Juguetes del Parque S.R.L.",
+    "VigenteContratos": false,
+    "Productos": []
+  },
+  {
+    "Codigo": "C015",
+    "RazonSocial": "Optica Central S.A.",
+    "VigenteContratos": false,
+    "Productos": []
+  },
+  {
+    "Codigo": "C016",
+    "RazonSocial": "Vinos de Cuyo S.R.L.",
+    "VigenteContratos": false,
+    "Productos": []
+  }
+]
