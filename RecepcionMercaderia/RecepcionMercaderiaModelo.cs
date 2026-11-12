@@ -5,8 +5,13 @@ namespace GrupoC.RecepcionMercaderia;
 
 internal class RecepcionMercaderiaModelo
 {
-    // Depósito asignado al usuario logueado (paso 3 del caso de uso).
-    private const string CodigoDeposito = "D01";
+    // Depósito que se usa si no se eligió ninguno en el menú principal.
+    private const string DepositoPorDefecto = "D01";
+
+    // Depósito asignado al usuario logueado (paso 3 del caso de uso): el elegido en el menú principal.
+    private readonly string CodigoDeposito = string.IsNullOrEmpty(Alm.DepositoAlmacen.DepositoActual)
+        ? DepositoPorDefecto
+        : Alm.DepositoAlmacen.DepositoActual;
 
     // Legajo del usuario logueado: se toma uno de los empleados habilitados al abrir la pantalla.
     private readonly int? legajoUsuario;

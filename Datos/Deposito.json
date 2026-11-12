@@ -34,6 +34,38 @@
         "Sku": null,
         "CantidadPalets": 0,
         "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
       }
     ]
   },
@@ -61,6 +93,38 @@
         "Pasillo": "A",
         "Fila": "2",
         "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "2",
         "Sku": null,
         "CantidadPalets": 0,
         "CantidadSueltos": 0
@@ -97,6 +161,38 @@
       },
       {
         "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
         "Fila": "2",
         "Nivel": "2",
         "Sku": null,
@@ -140,6 +236,38 @@
         "Sku": null,
         "CantidadPalets": 0,
         "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
       }
     ]
   },
@@ -178,6 +306,38 @@
         "Sku": null,
         "CantidadPalets": 0,
         "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
       }
     ]
   },
@@ -211,6 +371,38 @@
       },
       {
         "Pasillo": "A",
+        "Fila": "2",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
         "Fila": "2",
         "Nivel": "2",
         "Sku": null,
@@ -262,6 +454,30 @@
         "Sku": null,
         "CantidadPalets": 0,
         "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
       }
     ]
   },
@@ -292,6 +508,38 @@
         "Sku": null,
         "CantidadPalets": 0,
         "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
       }
     ]
   },
@@ -319,6 +567,38 @@
         "Pasillo": "A",
         "Fila": "2",
         "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "2",
         "Sku": null,
         "CantidadPalets": 0,
         "CantidadSueltos": 0
@@ -360,6 +640,38 @@
         "Sku": null,
         "CantidadPalets": 0,
         "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
       }
     ]
   },
@@ -390,6 +702,38 @@
         "Sku": null,
         "CantidadPalets": 0,
         "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
       }
     ]
   },
@@ -417,6 +761,38 @@
         "Pasillo": "A",
         "Fila": "2",
         "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "2",
         "Sku": null,
         "CantidadPalets": 0,
         "CantidadSueltos": 0
@@ -466,6 +842,30 @@
         "Sku": null,
         "CantidadPalets": 0,
         "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
       }
     ]
   },
@@ -496,6 +896,38 @@
         "Sku": null,
         "CantidadPalets": 0,
         "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
       }
     ]
   },
@@ -523,6 +955,38 @@
         "Pasillo": "A",
         "Fila": "2",
         "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "1",
+        "Nivel": "2",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "1",
+        "Sku": null,
+        "CantidadPalets": 0,
+        "CantidadSueltos": 0
+      },
+      {
+        "Pasillo": "B",
+        "Fila": "2",
+        "Nivel": "2",
         "Sku": null,
         "CantidadPalets": 0,
         "CantidadSueltos": 0
