@@ -5,8 +5,13 @@ namespace GrupoC.CumplirOrdenSeleccion;
 
 internal class CumplirOrdenSeleccionModelo
 {
-    // Depósito asignado al usuario logueado (paso 2 del caso de uso).
-    private const string CodigoDeposito = "D05";
+    // Depósito que se usa si no se eligió ninguno en el menú principal.
+    private const string DepositoPorDefecto = "D05";
+
+    // Depósito asignado al usuario logueado (paso 2 del caso de uso): el elegido en el menú principal.
+    private readonly string CodigoDeposito = string.IsNullOrEmpty(Alm.DepositoAlmacen.DepositoActual)
+        ? DepositoPorDefecto
+        : Alm.DepositoAlmacen.DepositoActual;
 
     // Legajo del usuario logueado: se toma uno de los empleados al abrir la pantalla.
     private readonly int legajoUsuario;
