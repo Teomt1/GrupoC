@@ -30,7 +30,7 @@
   {
     "Numero": 2,
     "CodigoCliente": "C007",
-    "CodigoDeposito": "D07",
+    "CodigoDeposito": "D01",
     "Renglones": [
       {
         "SKU_Producto": "008",
@@ -54,7 +54,7 @@
   {
     "Numero": 3,
     "CodigoCliente": "C007",
-    "CodigoDeposito": "D07",
+    "CodigoDeposito": "D01",
     "Renglones": [
       {
         "SKU_Producto": "011",
@@ -106,7 +106,7 @@
   {
     "Numero": 5,
     "CodigoCliente": "C009",
-    "CodigoDeposito": "D09",
+    "CodigoDeposito": "D02",
     "Renglones": [
       {
         "SKU_Producto": "010",
@@ -130,7 +130,7 @@
   {
     "Numero": 6,
     "CodigoCliente": "C004",
-    "CodigoDeposito": "D04",
+    "CodigoDeposito": "D02",
     "Renglones": [
       {
         "SKU_Producto": "005",
@@ -182,7 +182,7 @@
   {
     "Numero": 8,
     "CodigoCliente": "C005",
-    "CodigoDeposito": "D05",
+    "CodigoDeposito": "D03",
     "Renglones": [
       {
         "SKU_Producto": "006",
@@ -210,7 +210,7 @@
   {
     "Numero": 9,
     "CodigoCliente": "C006",
-    "CodigoDeposito": "D06",
+    "CodigoDeposito": "D02",
     "Renglones": [
       {
         "SKU_Producto": "007",
@@ -234,7 +234,7 @@
   {
     "Numero": 10,
     "CodigoCliente": "C008",
-    "CodigoDeposito": "D08",
+    "CodigoDeposito": "D03",
     "Renglones": [
       {
         "SKU_Producto": "009",
@@ -258,7 +258,7 @@
   {
     "Numero": 11,
     "CodigoCliente": "C010",
-    "CodigoDeposito": "D10",
+    "CodigoDeposito": "D01",
     "Renglones": [
       {
         "SKU_Producto": "015",
@@ -286,7 +286,7 @@
   {
     "Numero": 12,
     "CodigoCliente": "C011",
-    "CodigoDeposito": "D11",
+    "CodigoDeposito": "D03",
     "Renglones": [
       {
         "SKU_Producto": "018",
@@ -310,7 +310,7 @@
   {
     "Numero": 13,
     "CodigoCliente": "C012",
-    "CodigoDeposito": "D12",
+    "CodigoDeposito": "D03",
     "Renglones": [
       {
         "SKU_Producto": "020",
@@ -358,7 +358,7 @@
   {
     "Numero": 15,
     "CodigoCliente": "C006",
-    "CodigoDeposito": "D06",
+    "CodigoDeposito": "D02",
     "Renglones": [
       {
         "SKU_Producto": "014",
@@ -382,7 +382,7 @@
   {
     "Numero": 16,
     "CodigoCliente": "C007",
-    "CodigoDeposito": "D07",
+    "CodigoDeposito": "D01",
     "Renglones": [
       {
         "SKU_Producto": "016",
@@ -406,7 +406,7 @@
   {
     "Numero": 17,
     "CodigoCliente": "C007",
-    "CodigoDeposito": "D07",
+    "CodigoDeposito": "D01",
     "Renglones": [
       {
         "SKU_Producto": "008",
@@ -434,7 +434,7 @@
   {
     "Numero": 18,
     "CodigoCliente": "C005",
-    "CodigoDeposito": "D05",
+    "CodigoDeposito": "D03",
     "Renglones": [
       {
         "SKU_Producto": "006",
@@ -458,7 +458,7 @@
   {
     "Numero": 19,
     "CodigoCliente": "C005",
-    "CodigoDeposito": "D05",
+    "CodigoDeposito": "D03",
     "Renglones": [
       {
         "SKU_Producto": "019",
@@ -482,7 +482,7 @@
   {
     "Numero": 20,
     "CodigoCliente": "C010",
-    "CodigoDeposito": "D10",
+    "CodigoDeposito": "D01",
     "Renglones": [
       {
         "SKU_Producto": "015",

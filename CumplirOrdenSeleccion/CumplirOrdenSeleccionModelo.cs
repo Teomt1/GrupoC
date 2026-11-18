@@ -6,7 +6,7 @@ namespace GrupoC.CumplirOrdenSeleccion;
 internal class CumplirOrdenSeleccionModelo
 {
     // Depósito que se usa si no se eligió ninguno en el menú principal.
-    private const string DepositoPorDefecto = "D05";
+    private const string DepositoPorDefecto = "D03";
 
     // Depósito asignado al usuario logueado (paso 2 del caso de uso): el elegido en el menú principal.
     private readonly string CodigoDeposito = string.IsNullOrEmpty(Alm.DepositoAlmacen.DepositoActual)

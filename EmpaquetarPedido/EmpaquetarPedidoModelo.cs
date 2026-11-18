@@ -46,7 +46,7 @@ internal class EmpaquetarPedidoModelo
             Usuario = empleado.Usuario;
         }
 
-        // Depósito del usuario. En la pantalla es un número: "D07" pasa a ser 7.
+        // Depósito del usuario. En la pantalla es un número: "D03" pasa a ser 3.
         codigoDeposito = string.IsNullOrEmpty(Alm.DepositoAlmacen.DepositoActual)
             ? DepositoPorDefecto
             : Alm.DepositoAlmacen.DepositoActual;
@@ -187,7 +187,7 @@ internal class EmpaquetarPedidoModelo
         return legajo == 0 ? null : empleados.Find(e => e.Legajo == legajo)?.Usuario;
     }
 
-    // Convierte el código del almacén ("D07") en el número que usa la pantalla (7).
+    // Convierte el código del almacén ("D03") en el número que usa la pantalla (3).
     private int NumeroDeDeposito(string? codigo)
     {
         string digitos = new string((codigo ?? "").Where(char.IsDigit).ToArray());

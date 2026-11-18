@@ -160,5 +160,32 @@
     "NumeroOrdenPreparacion": 6,
     "NumeroRemitoEntrega": 5,
     "LegajoUsuario": 1009
+  },
+  {
+    "Tipo": 0,
+    "FechaHora": "2026-11-13T09:30:00",
+    "CodigoCliente": "C006",
+    "NumeroOrdenRecepcion": 16,
+    "NumeroOrdenPreparacion": null,
+    "NumeroRemitoEntrega": null,
+    "LegajoUsuario": 1012
+  },
+  {
+    "Tipo": 0,
+    "FechaHora": "2026-11-16T10:15:00",
+    "CodigoCliente": "C005",
+    "NumeroOrdenRecepcion": 17,
+    "NumeroOrdenPreparacion": null,
+    "NumeroRemitoEntrega": null,
+    "LegajoUsuario": 1013
+  },
+  {
+    "Tipo": 0,
+    "FechaHora": "2026-11-17T14:00:00",
+    "CodigoCliente": "C009",
+    "NumeroOrdenRecepcion": 18,
+    "NumeroOrdenPreparacion": null,
+    "NumeroRemitoEntrega": null,
+    "LegajoUsuario": 1014
   }
 ]

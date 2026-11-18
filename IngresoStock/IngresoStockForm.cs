@@ -10,16 +10,42 @@ namespace GrupoC.IngresoStock
         public IngresoStockForm()
         {
             InitializeComponent();
+            cmbPasilloX.SelectionChangeCommitted += cmbPasilloX_SelectionChangeCommitted;
+            cmbFilaY.SelectionChangeCommitted += cmbFilaY_SelectionChangeCommitted;
         }
 
         private void IngresoStockForm_Load(object sender, EventArgs e)
         {
             cmbPasilloX.Items.Clear();
             cmbPasilloX.Items.AddRange(modelo.Pasillos.ToArray());
+            MostrarCoordenadas();
+        }
+
+        // Al elegir el pasillo solo se ofrecen sus filas; al elegir la fila, solo sus niveles.
+        private void cmbPasilloX_SelectionChangeCommitted(object? sender, EventArgs e)
+        {
+            modelo.Fila = cmbFilaY.SelectedItem as string ?? string.Empty;
+            modelo.Nivel = cmbNivelZ.SelectedItem as string ?? string.Empty;
+            modelo.SeleccionarPasillo(cmbPasilloX.SelectedItem as string ?? string.Empty);
+            MostrarCoordenadas();
+        }
+
+        private void cmbFilaY_SelectionChangeCommitted(object? sender, EventArgs e)
+        {
+            modelo.Nivel = cmbNivelZ.SelectedItem as string ?? string.Empty;
+            modelo.SeleccionarFila(cmbFilaY.SelectedItem as string ?? string.Empty);
+            MostrarCoordenadas();
+        }
+
+        private void MostrarCoordenadas()
+        {
+            cmbPasilloX.SelectedIndex = cmbPasilloX.Items.IndexOf(modelo.Pasillo);
             cmbFilaY.Items.Clear();
             cmbFilaY.Items.AddRange(modelo.Filas.ToArray());
+            cmbFilaY.SelectedIndex = cmbFilaY.Items.IndexOf(modelo.Fila);
             cmbNivelZ.Items.Clear();
             cmbNivelZ.Items.AddRange(modelo.Niveles.ToArray());
+            cmbNivelZ.SelectedIndex = cmbNivelZ.Items.IndexOf(modelo.Nivel);
         }
 
         private void IngresoStockForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -124,9 +150,7 @@ namespace GrupoC.IngresoStock
             cmbSkuSeleccionado.Items.AddRange(modelo.Items.ToArray());
             cmbSkuSeleccionado.SelectedItem = modelo.SkuSeleccionado;
             txtCantidadUbicar.Text = modelo.Cantidad;
-            cmbPasilloX.SelectedIndex = cmbPasilloX.Items.IndexOf(modelo.Pasillo);
-            cmbFilaY.SelectedIndex = cmbFilaY.Items.IndexOf(modelo.Fila);
-            cmbNivelZ.SelectedIndex = cmbNivelZ.Items.IndexOf(modelo.Nivel);
+            MostrarCoordenadas();
 
             listView1.Items.Clear();
             foreach (AsignacionUbicacion ubicacion in modelo.Ubicaciones)

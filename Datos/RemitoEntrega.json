@@ -20,7 +20,7 @@
   {
     "Numero": 2,
     "FechaHora": "2026-06-19T09:00:00",
-    "CodigoDeposito": "D07",
+    "CodigoDeposito": "D01",
     "Detalles": [
       {
         "NumeroOrdenEntrega": 2,
@@ -60,7 +60,7 @@
   {
     "Numero": 4,
     "FechaHora": "2026-07-16T09:00:00",
-    "CodigoDeposito": "D09",
+    "CodigoDeposito": "D02",
     "Detalles": [
       {
         "NumeroOrdenEntrega": 5,
@@ -78,7 +78,7 @@
   {
     "Numero": 5,
     "FechaHora": "2026-08-06T09:00:00",
-    "CodigoDeposito": "D04",
+    "CodigoDeposito": "D02",
     "Detalles": [
       {
         "NumeroOrdenEntrega": 6,
@@ -132,7 +132,7 @@
   {
     "Numero": 8,
     "FechaHora": "2026-10-23T09:00:00",
-    "CodigoDeposito": "D05",
+    "CodigoDeposito": "D03",
     "Detalles": [
       {
         "NumeroOrdenEntrega": 8,
@@ -150,7 +150,7 @@
   {
     "Numero": 9,
     "FechaHora": "2026-10-27T09:00:00",
-    "CodigoDeposito": "D06",
+    "CodigoDeposito": "D02",
     "Detalles": [
       {
         "NumeroOrdenEntrega": 9,
@@ -168,7 +168,7 @@
   {
     "Numero": 10,
     "FechaHora": "2026-10-29T09:00:00",
-    "CodigoDeposito": "D08",
+    "CodigoDeposito": "D03",
     "Detalles": [
       {
         "NumeroOrdenEntrega": 10,
@@ -186,7 +186,7 @@
   {
     "Numero": 11,
     "FechaHora": "2026-10-31T09:00:00",
-    "CodigoDeposito": "D10",
+    "CodigoDeposito": "D01",
     "Detalles": [
       {
         "NumeroOrdenEntrega": 11,
@@ -204,7 +204,7 @@
   {
     "Numero": 12,
     "FechaHora": "2026-11-03T09:00:00",
-    "CodigoDeposito": "D11",
+    "CodigoDeposito": "D03",
     "Detalles": [
       {
         "NumeroOrdenEntrega": 12,
@@ -222,7 +222,7 @@
   {
     "Numero": 13,
     "FechaHora": "2026-11-04T09:00:00",
-    "CodigoDeposito": "D12",
+    "CodigoDeposito": "D03",
     "Detalles": [
       {
         "NumeroOrdenEntrega": 13,
@@ -258,7 +258,7 @@
   {
     "Numero": 15,
     "FechaHora": "2026-10-28T09:00:00",
-    "CodigoDeposito": "D06",
+    "CodigoDeposito": "D02",
     "Detalles": [
       {
         "NumeroOrdenEntrega": 15,

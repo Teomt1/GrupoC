@@ -119,7 +119,7 @@
   {
     "NumeroOrdRecep": 4,
     "CodigoCliente": "C004",
-    "CodigoDeposito": "D04",
+    "CodigoDeposito": "D02",
     "TransportistaEmpresa": "Transportes Pampeanos S.A.",
     "Patente": "AB654TU",
     "TransportistaNombreYApellido": "Sergio Ledesma",
@@ -136,7 +136,7 @@
         "CantidadContada": 3,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
-        "PosicionNivel": "1"
+        "PosicionNivel": "2"
       },
       {
         "SKU_Producto": "005",
@@ -145,7 +145,7 @@
         "CantidadContada": 6,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
-        "PosicionNivel": "1"
+        "PosicionNivel": "2"
       },
       {
         "SKU_Producto": "013",
@@ -154,7 +154,7 @@
         "CantidadContada": 2,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
-        "PosicionNivel": "2"
+        "PosicionNivel": "3"
       },
       {
         "SKU_Producto": "013",
@@ -163,14 +163,14 @@
         "CantidadContada": 13,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
-        "PosicionNivel": "2"
+        "PosicionNivel": "3"
       }
     ]
   },
   {
     "NumeroOrdRecep": 5,
     "CodigoCliente": "C005",
-    "CodigoDeposito": "D05",
+    "CodigoDeposito": "D03",
     "TransportistaEmpresa": "Expreso Austral S.A.",
     "Patente": "AE123KL",
     "TransportistaNombreYApellido": "Ramon Acosta",
@@ -187,7 +187,7 @@
         "CantidadContada": 3,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
-        "PosicionNivel": "1"
+        "PosicionNivel": "3"
       },
       {
         "SKU_Producto": "006",
@@ -196,7 +196,7 @@
         "CantidadContada": 7,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
-        "PosicionNivel": "1"
+        "PosicionNivel": "3"
       },
       {
         "SKU_Producto": "019",
@@ -204,8 +204,8 @@
         "CantidadRemito": 2,
         "CantidadContada": 2,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
-        "PosicionNivel": "2"
+        "PosicionFila": "2",
+        "PosicionNivel": "1"
       },
       {
         "SKU_Producto": "019",
@@ -213,15 +213,15 @@
         "CantidadRemito": 58,
         "CantidadContada": 58,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
-        "PosicionNivel": "2"
+        "PosicionFila": "2",
+        "PosicionNivel": "1"
       }
     ]
   },
   {
     "NumeroOrdRecep": 6,
     "CodigoCliente": "C006",
-    "CodigoDeposito": "D06",
+    "CodigoDeposito": "D02",
     "TransportistaEmpresa": "Cargas Rapidas S.R.L.",
     "Patente": "AF456MN",
     "TransportistaNombreYApellido": "Hector Molina",
@@ -237,7 +237,7 @@
         "CantidadRemito": 5,
         "CantidadContada": 5,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
+        "PosicionFila": "2",
         "PosicionNivel": "1"
       },
       {
@@ -246,7 +246,7 @@
         "CantidadRemito": 1,
         "CantidadContada": 1,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
+        "PosicionFila": "2",
         "PosicionNivel": "1"
       },
       {
@@ -255,7 +255,7 @@
         "CantidadRemito": 4,
         "CantidadContada": 4,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
+        "PosicionFila": "2",
         "PosicionNivel": "2"
       },
       {
@@ -264,7 +264,7 @@
         "CantidadRemito": 1,
         "CantidadContada": 1,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
+        "PosicionFila": "2",
         "PosicionNivel": "2"
       }
     ]
@@ -272,7 +272,7 @@
   {
     "NumeroOrdRecep": 7,
     "CodigoCliente": "C007",
-    "CodigoDeposito": "D07",
+    "CodigoDeposito": "D01",
     "TransportistaEmpresa": "Logistica Federal S.A.",
     "Patente": "AC789PQ",
     "TransportistaNombreYApellido": "Gustavo Pereyra",
@@ -289,7 +289,7 @@
         "CantidadContada": 7,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
-        "PosicionNivel": "1"
+        "PosicionNivel": "3"
       },
       {
         "SKU_Producto": "008",
@@ -298,7 +298,7 @@
         "CantidadContada": 106,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
-        "PosicionNivel": "1"
+        "PosicionNivel": "3"
       },
       {
         "SKU_Producto": "011",
@@ -306,8 +306,8 @@
         "CantidadRemito": 3,
         "CantidadContada": 3,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
-        "PosicionNivel": "2"
+        "PosicionFila": "2",
+        "PosicionNivel": "1"
       },
       {
         "SKU_Producto": "011",
@@ -315,8 +315,8 @@
         "CantidadRemito": 447,
         "CantidadContada": 447,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
-        "PosicionNivel": "2"
+        "PosicionFila": "2",
+        "PosicionNivel": "1"
       },
       {
         "SKU_Producto": "016",
@@ -325,7 +325,7 @@
         "CantidadContada": 2,
         "PosicionPasillo": "A",
         "PosicionFila": "2",
-        "PosicionNivel": "1"
+        "PosicionNivel": "2"
       },
       {
         "SKU_Producto": "016",
@@ -334,14 +334,14 @@
         "CantidadContada": 272,
         "PosicionPasillo": "A",
         "PosicionFila": "2",
-        "PosicionNivel": "1"
+        "PosicionNivel": "2"
       }
     ]
   },
   {
     "NumeroOrdRecep": 8,
     "CodigoCliente": "C008",
-    "CodigoDeposito": "D08",
+    "CodigoDeposito": "D03",
     "TransportistaEmpresa": "Fletes del Plata S.R.L.",
     "Patente": "AD321RS",
     "TransportistaNombreYApellido": "Walter Godoy",
@@ -357,8 +357,8 @@
         "CantidadRemito": 1,
         "CantidadContada": 1,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
-        "PosicionNivel": "1"
+        "PosicionFila": "2",
+        "PosicionNivel": "2"
       },
       {
         "SKU_Producto": "009",
@@ -366,15 +366,15 @@
         "CantidadRemito": 5,
         "CantidadContada": 5,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
-        "PosicionNivel": "1"
+        "PosicionFila": "2",
+        "PosicionNivel": "2"
       }
     ]
   },
   {
     "NumeroOrdRecep": 9,
     "CodigoCliente": "C009",
-    "CodigoDeposito": "D09",
+    "CodigoDeposito": "D02",
     "TransportistaEmpresa": "Transportes Pampeanos S.A.",
     "Patente": "AB654TU",
     "TransportistaNombreYApellido": "Sergio Ledesma",
@@ -390,8 +390,8 @@
         "CantidadRemito": 5,
         "CantidadContada": 5,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
-        "PosicionNivel": "1"
+        "PosicionFila": "2",
+        "PosicionNivel": "3"
       },
       {
         "SKU_Producto": "010",
@@ -399,15 +399,15 @@
         "CantidadRemito": 70,
         "CantidadContada": 70,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
-        "PosicionNivel": "1"
+        "PosicionFila": "2",
+        "PosicionNivel": "3"
       }
     ]
   },
   {
     "NumeroOrdRecep": 10,
     "CodigoCliente": "C010",
-    "CodigoDeposito": "D10",
+    "CodigoDeposito": "D01",
     "TransportistaEmpresa": "Expreso Austral S.A.",
     "Patente": "AE123KL",
     "TransportistaNombreYApellido": "Ramon Acosta",
@@ -423,8 +423,8 @@
         "CantidadRemito": 1,
         "CantidadContada": 1,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
-        "PosicionNivel": "1"
+        "PosicionFila": "2",
+        "PosicionNivel": "3"
       },
       {
         "SKU_Producto": "015",
@@ -432,8 +432,8 @@
         "CantidadRemito": 15,
         "CantidadContada": 15,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
-        "PosicionNivel": "1"
+        "PosicionFila": "2",
+        "PosicionNivel": "3"
       },
       {
         "SKU_Producto": "017",
@@ -441,8 +441,8 @@
         "CantidadRemito": 4,
         "CantidadContada": 4,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
-        "PosicionNivel": "2"
+        "PosicionFila": "3",
+        "PosicionNivel": "1"
       },
       {
         "SKU_Producto": "017",
@@ -450,15 +450,15 @@
         "CantidadRemito": 19,
         "CantidadContada": 19,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
-        "PosicionNivel": "2"
+        "PosicionFila": "3",
+        "PosicionNivel": "1"
       }
     ]
   },
   {
     "NumeroOrdRecep": 11,
     "CodigoCliente": "C011",
-    "CodigoDeposito": "D11",
+    "CodigoDeposito": "D03",
     "TransportistaEmpresa": "Cargas Rapidas S.R.L.",
     "Patente": "AF456MN",
     "TransportistaNombreYApellido": "Hector Molina",
@@ -474,15 +474,15 @@
         "CantidadRemito": 161,
         "CantidadContada": 161,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
-        "PosicionNivel": "1"
+        "PosicionFila": "2",
+        "PosicionNivel": "3"
       }
     ]
   },
   {
     "NumeroOrdRecep": 12,
     "CodigoCliente": "C012",
-    "CodigoDeposito": "D12",
+    "CodigoDeposito": "D03",
     "TransportistaEmpresa": "Logistica Federal S.A.",
     "Patente": "AC789PQ",
     "TransportistaNombreYApellido": "Gustavo Pereyra",
@@ -498,7 +498,7 @@
         "CantidadRemito": 98,
         "CantidadContada": 98,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
+        "PosicionFila": "3",
         "PosicionNivel": "1"
       }
     ]
@@ -506,7 +506,7 @@
   {
     "NumeroOrdRecep": 13,
     "CodigoCliente": "C004",
-    "CodigoDeposito": "D04",
+    "CodigoDeposito": "D02",
     "TransportistaEmpresa": "Fletes del Plata S.R.L.",
     "Patente": "AD321RS",
     "TransportistaNombreYApellido": "Walter Godoy",
@@ -523,14 +523,14 @@
         "CantidadContada": 14,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
-        "PosicionNivel": "1"
+        "PosicionNivel": "2"
       }
     ]
   },
   {
     "NumeroOrdRecep": 14,
     "CodigoCliente": "C008",
-    "CodigoDeposito": "D08",
+    "CodigoDeposito": "D03",
     "TransportistaEmpresa": "Transportes Pampeanos S.A.",
     "Patente": "AB654TU",
     "TransportistaNombreYApellido": "Sergio Ledesma",
@@ -546,15 +546,15 @@
         "CantidadRemito": 12,
         "CantidadContada": 13,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
-        "PosicionNivel": "1"
+        "PosicionFila": "2",
+        "PosicionNivel": "2"
       }
     ]
   },
   {
     "NumeroOrdRecep": 15,
     "CodigoCliente": "C010",
-    "CodigoDeposito": "D10",
+    "CodigoDeposito": "D01",
     "TransportistaEmpresa": "Expreso Austral S.A.",
     "Patente": "AE123KL",
     "TransportistaNombreYApellido": "Ramon Acosta",
@@ -570,8 +570,8 @@
         "CantidadRemito": 2,
         "CantidadContada": 2,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
-        "PosicionNivel": "1"
+        "PosicionFila": "2",
+        "PosicionNivel": "3"
       },
       {
         "SKU_Producto": "017",
@@ -579,7 +579,79 @@
         "CantidadRemito": 2,
         "CantidadContada": 2,
         "PosicionPasillo": "A",
-        "PosicionFila": "1",
+        "PosicionFila": "3",
+        "PosicionNivel": "1"
+      }
+    ]
+  },
+  {
+    "NumeroOrdRecep": 16,
+    "CodigoCliente": "C006",
+    "CodigoDeposito": "D02",
+    "TransportistaEmpresa": "Logistica Federal S.A.",
+    "Patente": "AC789PQ",
+    "TransportistaNombreYApellido": "Gustavo Pereyra",
+    "NumeroRemito": "00001-00010592",
+    "FechaRemito": "2026-11-12T00:00:00",
+    "FechaHoraRecepcion": "2026-11-13T09:30:00",
+    "Observaciones": "",
+    "Estado": 0,
+    "Items": [
+      {
+        "SKU_Producto": "014",
+        "EsPallet": true,
+        "CantidadRemito": 2,
+        "CantidadContada": 2,
+        "PosicionPasillo": "A",
+        "PosicionFila": "3",
+        "PosicionNivel": "1"
+      }
+    ]
+  },
+  {
+    "NumeroOrdRecep": 17,
+    "CodigoCliente": "C005",
+    "CodigoDeposito": "D03",
+    "TransportistaEmpresa": "Fletes del Plata S.R.L.",
+    "Patente": "AD321RS",
+    "TransportistaNombreYApellido": "Walter Godoy",
+    "NumeroRemito": "00001-00010629",
+    "FechaRemito": "2026-11-14T00:00:00",
+    "FechaHoraRecepcion": "2026-11-16T10:15:00",
+    "Observaciones": "Ingreso por muelle 1",
+    "Estado": 0,
+    "Items": [
+      {
+        "SKU_Producto": "019",
+        "EsPallet": false,
+        "CantidadRemito": 40,
+        "CantidadContada": 40,
+        "PosicionPasillo": "A",
+        "PosicionFila": "3",
+        "PosicionNivel": "2"
+      }
+    ]
+  },
+  {
+    "NumeroOrdRecep": 18,
+    "CodigoCliente": "C009",
+    "CodigoDeposito": "D04",
+    "TransportistaEmpresa": "Transportes Pampeanos S.A.",
+    "Patente": "AB654TU",
+    "TransportistaNombreYApellido": "Sergio Ledesma",
+    "NumeroRemito": "00001-00010666",
+    "FechaRemito": "2026-11-16T00:00:00",
+    "FechaHoraRecepcion": "2026-11-17T14:00:00",
+    "Observaciones": "Pallets con film en buen estado",
+    "Estado": 0,
+    "Items": [
+      {
+        "SKU_Producto": "010",
+        "EsPallet": true,
+        "CantidadRemito": 2,
+        "CantidadContada": 2,
+        "PosicionPasillo": "A",
+        "PosicionFila": "2",
         "PosicionNivel": "2"
       }
     ]

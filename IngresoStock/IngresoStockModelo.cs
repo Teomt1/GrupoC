@@ -44,8 +44,18 @@ namespace GrupoC.IngresoStock
 
         // Se cargan con las posiciones del depósito del usuario (paso 1 del caso de uso).
         public List<string> Pasillos { get; } = new List<string>();
-        public List<string> Filas { get; } = new List<string>();
-        public List<string> Niveles { get; } = new List<string>();
+
+        // Solo las filas que existen en el pasillo elegido.
+        public List<string> Filas
+        {
+            get { return todasLasFilas.Where(f => PosicionesQueCoinciden(Pasillo, f, null).Any()).ToList(); }
+        }
+
+        // Solo los niveles que existen en el pasillo y la fila elegidos.
+        public List<string> Niveles
+        {
+            get { return todosLosNiveles.Where(n => PosicionesQueCoinciden(Pasillo, Fila, n).Any()).ToList(); }
+        }
 
         #endregion
 
@@ -67,6 +77,8 @@ namespace GrupoC.IngresoStock
         private readonly Dictionary<string, string> pasilloAlmacen = new Dictionary<string, string>();
         private readonly Dictionary<string, string> filaAlmacen = new Dictionary<string, string>();
         private readonly Dictionary<string, string> nivelAlmacen = new Dictionary<string, string>();
+        private readonly List<string> todasLasFilas = new List<string>();
+        private readonly List<string> todosLosNiveles = new List<string>();
         private readonly Dictionary<ItemOrdenRecepcion, bool> itemEsPallet = new Dictionary<ItemOrdenRecepcion, bool>();
         private Alm.OrdenRecepcionEntidad? ordenAlmacen;
 
@@ -106,8 +118,8 @@ namespace GrupoC.IngresoStock
             foreach (Alm.Posicion p in deposito.Posiciones)
             {
                 AgregarCoordenada(Pasillos, pasilloAlmacen, "Pasillo", p.Pasillo);
-                AgregarCoordenada(Filas, filaAlmacen, "Fila", p.Fila);
-                AgregarCoordenada(Niveles, nivelAlmacen, "Nivel", p.Nivel);
+                AgregarCoordenada(todasLasFilas, filaAlmacen, "Fila", p.Fila);
+                AgregarCoordenada(todosLosNiveles, nivelAlmacen, "Nivel", p.Nivel);
 
                 if (p.Sku != null)
                 {
@@ -119,9 +131,36 @@ namespace GrupoC.IngresoStock
             }
 
             Pasillos.Sort();
-            Filas.Sort();
-            Niveles.Sort();
+            todasLasFilas.Sort();
+            todosLosNiveles.Sort();
         }
+
+        #region Paso 9: elegir la posición
+
+        // Al cambiar el pasillo o la fila, se descarta lo elegido después si esa combinación no existe en el depósito.
+        public void SeleccionarPasillo(string pasillo)
+        {
+            Pasillo = pasillo;
+            if (!Filas.Contains(Fila))
+            {
+                Fila = string.Empty;
+            }
+            if (!Niveles.Contains(Nivel))
+            {
+                Nivel = string.Empty;
+            }
+        }
+
+        public void SeleccionarFila(string fila)
+        {
+            Fila = fila;
+            if (!Niveles.Contains(Nivel))
+            {
+                Nivel = string.Empty;
+            }
+        }
+
+        #endregion
 
         #region Pasos 3 a 6: buscar la orden
 
@@ -354,15 +393,22 @@ namespace GrupoC.IngresoStock
         // Busca la posición del depósito que corresponde a lo elegido en los desplegables.
         private Alm.Posicion? BuscarPosicion(string pasillo, string fila, string nivel)
         {
+            return PosicionesQueCoinciden(pasillo, fila, nivel).FirstOrDefault();
+        }
+
+        // Posiciones del depósito con ese pasillo y fila (y ese nivel, si se indica).
+        private IEnumerable<Alm.Posicion> PosicionesQueCoinciden(string pasillo, string fila, string? nivel)
+        {
             Alm.DepositoEntidad? deposito = BuscarDeposito();
-            if (deposito == null
-                || !pasilloAlmacen.ContainsKey(pasillo) || !filaAlmacen.ContainsKey(fila) || !nivelAlmacen.ContainsKey(nivel))
+            if (deposito == null || !pasilloAlmacen.ContainsKey(pasillo) || !filaAlmacen.ContainsKey(fila)
+                || (nivel != null && !nivelAlmacen.ContainsKey(nivel)))
             {
-                return null;
+                return Enumerable.Empty<Alm.Posicion>();
             }
 
-            return deposito.Posiciones.Find(p =>
-                p.Pasillo == pasilloAlmacen[pasillo] && p.Fila == filaAlmacen[fila] && p.Nivel == nivelAlmacen[nivel]);
+            return deposito.Posiciones.Where(p =>
+                p.Pasillo == pasilloAlmacen[pasillo] && p.Fila == filaAlmacen[fila]
+                && (nivel == null || p.Nivel == nivelAlmacen[nivel]));
         }
 
         // Agrega una coordenada al desplegable con el mismo formato de siempre ("Pasillo A", "Fila 1", "Nivel 1").
