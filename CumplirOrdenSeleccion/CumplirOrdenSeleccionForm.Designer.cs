@@ -84,6 +84,8 @@
             lvMercaderia.Location = new Point(20, 102);
             lvMercaderia.MultiSelect = false;
             lvMercaderia.Name = "lvMercaderia";
+            lvMercaderia.BackColor = Color.White;
+            lvMercaderia.ForeColor = Color.FromArgb(64, 64, 64);
             lvMercaderia.Size = new Size(748, 330);
             lvMercaderia.TabIndex = 1;
             lvMercaderia.UseCompatibleStateImageBehavior = false;
@@ -118,10 +120,14 @@
             // 
             btnConfirmar.Location = new Point(20, 450);
             btnConfirmar.Name = "btnConfirmar";
+            btnConfirmar.BackColor = Color.FromArgb(160, 108, 245);
+            btnConfirmar.FlatAppearance.BorderSize = 0;
+            btnConfirmar.FlatStyle = FlatStyle.Flat;
+            btnConfirmar.ForeColor = Color.White;
+            btnConfirmar.UseVisualStyleBackColor = false;
             btnConfirmar.Size = new Size(748, 35);
             btnConfirmar.TabIndex = 0;
             btnConfirmar.Text = "Confirmar entrega a Preparación";
-            btnConfirmar.UseVisualStyleBackColor = true;
             btnConfirmar.Click += btnConfirmar_Click;
             // 
             // CumplirOrdenSeleccionForm
@@ -139,6 +145,8 @@
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             Name = "CumplirOrdenSeleccionForm";
+            BackColor = Color.FromArgb(246, 242, 253);
+            ForeColor = Color.FromArgb(46, 26, 71);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cumplir orden de selección";
             Shown += CumplirOrdenSeleccionForm_Shown;

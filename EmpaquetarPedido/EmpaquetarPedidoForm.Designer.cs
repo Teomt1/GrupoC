@@ -56,6 +56,8 @@
             listViewProdPrep.Location = new Point(11, 113);
             listViewProdPrep.Margin = new Padding(1, 2, 1, 2);
             listViewProdPrep.Name = "listViewProdPrep";
+            listViewProdPrep.BackColor = Color.White;
+            listViewProdPrep.ForeColor = Color.FromArgb(64, 64, 64);
             listViewProdPrep.Size = new Size(504, 301);
             listViewProdPrep.TabIndex = 4;
             listViewProdPrep.UseCompatibleStateImageBehavior = false;
@@ -78,14 +80,17 @@
             // 
             // buttonConfIEmp
             // 
-            buttonConfIEmp.BackColor = SystemColors.ControlLight;
             buttonConfIEmp.Location = new Point(11, 589);
             buttonConfIEmp.Margin = new Padding(1, 2, 1, 2);
             buttonConfIEmp.Name = "buttonConfIEmp";
+            buttonConfIEmp.BackColor = Color.FromArgb(160, 108, 245);
+            buttonConfIEmp.FlatAppearance.BorderSize = 0;
+            buttonConfIEmp.FlatStyle = FlatStyle.Flat;
+            buttonConfIEmp.ForeColor = Color.White;
+            buttonConfIEmp.UseVisualStyleBackColor = false;
             buttonConfIEmp.Size = new Size(504, 38);
             buttonConfIEmp.TabIndex = 24;
             buttonConfIEmp.Text = "Confirmar ingreso";
-            buttonConfIEmp.UseVisualStyleBackColor = false;
             buttonConfIEmp.Click += buttonConfIEmp_Click;
             // 
             // OrdenPrepNro
@@ -118,10 +123,14 @@
             // 
             btnpaquetes.Location = new Point(279, 474);
             btnpaquetes.Name = "btnpaquetes";
+            btnpaquetes.BackColor = Color.FromArgb(0, 163, 180);
+            btnpaquetes.FlatAppearance.BorderSize = 0;
+            btnpaquetes.FlatStyle = FlatStyle.Flat;
+            btnpaquetes.ForeColor = Color.White;
+            btnpaquetes.UseVisualStyleBackColor = false;
             btnpaquetes.Size = new Size(125, 58);
             btnpaquetes.TabIndex = 28;
             btnpaquetes.Text = "Confirmar Cantidad de Paquetes";
-            btnpaquetes.UseVisualStyleBackColor = true;
             // 
             // EmpaquetarPedidoForm
             // 
@@ -138,6 +147,8 @@
             Controls.Add(Prodaprep);
             Margin = new Padding(1, 2, 1, 2);
             Name = "EmpaquetarPedidoForm";
+            BackColor = Color.FromArgb(246, 242, 253);
+            ForeColor = Color.FromArgb(46, 26, 71);
             Text = "Empaquetar_Pedido_y_Generar_Orden_de_Entrega_Form";
             FormClosing += EmpaquetarPedidoForm_FormClosing;
             Load += EmpaquetarPedidoForm_Load;

@@ -70,9 +70,11 @@
             // 
             // groupBox1
             // 
+            groupBox1.BackColor = Color.White;
             groupBox1.Controls.Add(btnBuscar);
             groupBox1.Controls.Add(txtNroOrden);
             groupBox1.Controls.Add(label1);
+            groupBox1.ForeColor = Color.FromArgb(46, 26, 71);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(620, 60);
@@ -82,12 +84,16 @@
             // 
             // btnBuscar
             // 
+            btnBuscar.BackColor = Color.FromArgb(0, 163, 180);
+            btnBuscar.FlatAppearance.BorderSize = 0;
+            btnBuscar.FlatStyle = FlatStyle.Flat;
+            btnBuscar.ForeColor = Color.White;
             btnBuscar.Location = new Point(430, 21);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(90, 25);
             btnBuscar.TabIndex = 2;
             btnBuscar.Text = "Buscar";
-            btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.UseVisualStyleBackColor = false;
             btnBuscar.Click += btnBuscar_Click;
             // 
             // txtNroOrden
@@ -108,8 +114,10 @@
             // 
             // groupBox2
             // 
+            groupBox2.BackColor = Color.White;
             groupBox2.Controls.Add(txtClienteOrigen);
             groupBox2.Controls.Add(label2);
+            groupBox2.ForeColor = Color.FromArgb(46, 26, 71);
             groupBox2.Location = new Point(12, 78);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(620, 60);
@@ -136,7 +144,9 @@
             // 
             // groupBox3
             // 
+            groupBox3.BackColor = Color.White;
             groupBox3.Controls.Add(listViewSkus);
+            groupBox3.ForeColor = Color.FromArgb(46, 26, 71);
             groupBox3.Location = new Point(12, 144);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(800, 160);
@@ -146,7 +156,9 @@
             // 
             // listViewSkus
             // 
+            listViewSkus.BackColor = Color.White;
             listViewSkus.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader8, columnHeader3, columnHeader4 });
+            listViewSkus.ForeColor = Color.FromArgb(64, 64, 64);
             listViewSkus.Location = new Point(15, 22);
             listViewSkus.Name = "listViewSkus";
             listViewSkus.Size = new Size(775, 125);
@@ -181,6 +193,7 @@
             // 
             // groupBox4
             // 
+            groupBox4.BackColor = Color.White;
             groupBox4.Controls.Add(btnAgregarUbicacion);
             groupBox4.Controls.Add(txtCantidadUbicar);
             groupBox4.Controls.Add(label8);
@@ -192,6 +205,7 @@
             groupBox4.Controls.Add(label5);
             groupBox4.Controls.Add(cmbSkuSeleccionado);
             groupBox4.Controls.Add(label4);
+            groupBox4.ForeColor = Color.FromArgb(46, 26, 71);
             groupBox4.Location = new Point(27, 310);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(620, 130);
@@ -201,12 +215,16 @@
             // 
             // btnAgregarUbicacion
             // 
+            btnAgregarUbicacion.BackColor = Color.FromArgb(255, 194, 61);
+            btnAgregarUbicacion.FlatAppearance.BorderSize = 0;
+            btnAgregarUbicacion.FlatStyle = FlatStyle.Flat;
+            btnAgregarUbicacion.ForeColor = Color.FromArgb(46, 26, 71);
             btnAgregarUbicacion.Location = new Point(460, 92);
             btnAgregarUbicacion.Name = "btnAgregarUbicacion";
             btnAgregarUbicacion.Size = new Size(145, 28);
             btnAgregarUbicacion.TabIndex = 10;
             btnAgregarUbicacion.Text = "Agregar Ubicación";
-            btnAgregarUbicacion.UseVisualStyleBackColor = true;
+            btnAgregarUbicacion.UseVisualStyleBackColor = false;
             btnAgregarUbicacion.Click += btnAgregarUbicacion_Click;
             // 
             // txtCantidadUbicar
@@ -302,27 +320,37 @@
             // 
             // btnConfirmar
             // 
-            btnConfirmar.Location = new Point(495, 626);
+            btnConfirmar.BackColor = Color.FromArgb(160, 108, 245);
+            btnConfirmar.FlatAppearance.BorderSize = 0;
+            btnConfirmar.FlatStyle = FlatStyle.Flat;
+            btnConfirmar.ForeColor = Color.White;
+            btnConfirmar.Location = new Point(650, 614);
             btnConfirmar.Name = "btnConfirmar";
             btnConfirmar.Size = new Size(152, 35);
             btnConfirmar.TabIndex = 4;
             btnConfirmar.Text = "Confirmar Ingreso";
-            btnConfirmar.UseVisualStyleBackColor = true;
+            btnConfirmar.UseVisualStyleBackColor = false;
             btnConfirmar.Click += btnConfirmar_Click;
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(380, 626);
+            btnCancelar.BackColor = Color.FromArgb(74, 74, 74);
+            btnCancelar.FlatAppearance.BorderSize = 0;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.ForeColor = Color.White;
+            btnCancelar.Location = new Point(517, 614);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(100, 35);
             btnCancelar.TabIndex = 5;
             btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.UseVisualStyleBackColor = false;
             btnCancelar.Click += btnCancelar_Click;
             // 
             // listView1
             // 
+            listView1.BackColor = Color.White;
             listView1.Columns.AddRange(new ColumnHeader[] { columnHeader5, columnHeader9, columnHeader6, columnHeader7 });
+            listView1.ForeColor = Color.FromArgb(64, 64, 64);
             listView1.Location = new Point(27, 446);
             listView1.Name = "listView1";
             listView1.Size = new Size(651, 88);
@@ -353,18 +381,23 @@
             // 
             // button1
             // 
+            button1.BackColor = Color.FromArgb(255, 77, 77);
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.ForeColor = Color.White;
             button1.Location = new Point(533, 540);
             button1.Name = "button1";
             button1.Size = new Size(145, 28);
             button1.TabIndex = 11;
             button1.Text = "Quitar seleccionada";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // IngresoStockForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(246, 242, 253);
             ClientSize = new Size(824, 661);
             Controls.Add(button1);
             Controls.Add(listView1);
@@ -374,6 +407,7 @@
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
+            ForeColor = Color.FromArgb(46, 26, 71);
             Name = "IngresoStockForm";
             Text = "Pampazon S.A. - Ingreso a Stock";
             FormClosing += IngresoStockForm_FormClosing;

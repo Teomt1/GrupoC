@@ -96,6 +96,8 @@
             lstDetalle.Location = new Point(12, 161);
             lstDetalle.MultiSelect = false;
             lstDetalle.Name = "lstDetalle";
+            lstDetalle.BackColor = Color.White;
+            lstDetalle.ForeColor = Color.FromArgb(64, 64, 64);
             lstDetalle.Size = new Size(244, 155);
             lstDetalle.TabIndex = 6;
             lstDetalle.UseCompatibleStateImageBehavior = false;
@@ -114,14 +116,16 @@
             //
             // btnBuscar
             //
-            btnBuscar.BackColor = SystemColors.ControlLight;
-            btnBuscar.FlatStyle = FlatStyle.Popup;
             btnBuscar.Location = new Point(152, 30);
             btnBuscar.Name = "btnBuscar";
+            btnBuscar.BackColor = Color.FromArgb(0, 163, 180);
+            btnBuscar.FlatAppearance.BorderSize = 0;
+            btnBuscar.FlatStyle = FlatStyle.Flat;
+            btnBuscar.ForeColor = Color.White;
+            btnBuscar.UseVisualStyleBackColor = false;
             btnBuscar.Size = new Size(104, 35);
             btnBuscar.TabIndex = 2;
             btnBuscar.Text = "Buscar";
-            btnBuscar.UseVisualStyleBackColor = false;
             btnBuscar.Click += btnBuscar_Click;
             //
             // btnConfirmarDespacho
@@ -129,20 +133,28 @@
             btnConfirmarDespacho.Enabled = false;
             btnConfirmarDespacho.Location = new Point(157, 386);
             btnConfirmarDespacho.Name = "btnConfirmarDespacho";
+            btnConfirmarDespacho.BackColor = Color.FromArgb(160, 108, 245);
+            btnConfirmarDespacho.FlatAppearance.BorderSize = 0;
+            btnConfirmarDespacho.FlatStyle = FlatStyle.Flat;
+            btnConfirmarDespacho.ForeColor = Color.White;
+            btnConfirmarDespacho.UseVisualStyleBackColor = false;
             btnConfirmarDespacho.Size = new Size(99, 63);
             btnConfirmarDespacho.TabIndex = 10;
             btnConfirmarDespacho.Text = "Confirmar Despacho";
-            btnConfirmarDespacho.UseVisualStyleBackColor = true;
             btnConfirmarDespacho.Click += btnConfirmarDespacho_Click;
             //
             // btnCancelar
             //
             btnCancelar.Location = new Point(17, 386);
             btnCancelar.Name = "btnCancelar";
+            btnCancelar.BackColor = Color.FromArgb(74, 74, 74);
+            btnCancelar.FlatAppearance.BorderSize = 0;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.ForeColor = Color.White;
+            btnCancelar.UseVisualStyleBackColor = false;
             btnCancelar.Size = new Size(105, 63);
             btnCancelar.TabIndex = 9;
             btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += btnCancelar_Click;
             //
             // chkRemitoFirmado
@@ -162,10 +174,14 @@
             btnGenerarRemito.Enabled = false;
             btnGenerarRemito.Location = new Point(157, 326);
             btnGenerarRemito.Name = "btnGenerarRemito";
+            btnGenerarRemito.BackColor = Color.FromArgb(0, 163, 180);
+            btnGenerarRemito.FlatAppearance.BorderSize = 0;
+            btnGenerarRemito.FlatStyle = FlatStyle.Flat;
+            btnGenerarRemito.ForeColor = Color.White;
+            btnGenerarRemito.UseVisualStyleBackColor = false;
             btnGenerarRemito.Size = new Size(99, 40);
             btnGenerarRemito.TabIndex = 7;
             btnGenerarRemito.Text = "Generar Remito";
-            btnGenerarRemito.UseVisualStyleBackColor = true;
             btnGenerarRemito.Click += btnGenerarRemito_Click;
             //
             // EntregaATransportistaForm
@@ -185,6 +201,8 @@
             Controls.Add(lblTransportista);
             Controls.Add(lblDni);
             Name = "EntregaATransportistaForm";
+            BackColor = Color.FromArgb(246, 242, 253);
+            ForeColor = Color.FromArgb(46, 26, 71);
             Text = "Entrega a transportista";
             FormClosing += EntregaATransportistaForm_FormClosing;
             ResumeLayout(false);

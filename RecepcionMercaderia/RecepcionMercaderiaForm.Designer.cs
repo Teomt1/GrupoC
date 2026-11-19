@@ -61,6 +61,8 @@
             // 
             // Remito
             // 
+            Remito.BackColor = Color.White;
+            Remito.ForeColor = Color.FromArgb(64, 64, 64);
             Remito.FormattingEnabled = true;
             Remito.Location = new Point(15, 20);
             Remito.Margin = new Padding(2);
@@ -72,8 +74,6 @@
             // ClieRem
             // 
             ClieRem.AutoSize = true;
-            ClieRem.BackColor = SystemColors.ButtonHighlight;
-            ClieRem.ForeColor = SystemColors.ActiveCaptionText;
             ClieRem.Location = new Point(22, 50);
             ClieRem.Margin = new Padding(2, 0, 2, 0);
             ClieRem.Name = "ClieRem";
@@ -84,8 +84,6 @@
             // NRem
             // 
             NRem.AutoSize = true;
-            NRem.BackColor = SystemColors.ButtonHighlight;
-            NRem.ForeColor = SystemColors.ActiveCaptionText;
             NRem.Location = new Point(22, 72);
             NRem.Margin = new Padding(2, 0, 2, 0);
             NRem.Name = "NRem";
@@ -96,8 +94,6 @@
             // TranspRem
             // 
             TranspRem.AutoSize = true;
-            TranspRem.BackColor = SystemColors.ButtonHighlight;
-            TranspRem.ForeColor = SystemColors.ActiveCaptionText;
             TranspRem.Location = new Point(22, 92);
             TranspRem.Margin = new Padding(2, 0, 2, 0);
             TranspRem.Name = "TranspRem";
@@ -148,8 +144,6 @@
             // FecRem
             // 
             FecRem.AutoSize = true;
-            FecRem.BackColor = SystemColors.ButtonHighlight;
-            FecRem.ForeColor = SystemColors.ActiveCaptionText;
             FecRem.Location = new Point(318, 50);
             FecRem.Margin = new Padding(2, 0, 2, 0);
             FecRem.Name = "FecRem";
@@ -160,8 +154,6 @@
             // NARem
             // 
             NARem.AutoSize = true;
-            NARem.BackColor = SystemColors.ButtonHighlight;
-            NARem.ForeColor = SystemColors.ActiveCaptionText;
             NARem.Location = new Point(318, 72);
             NARem.Margin = new Padding(2, 0, 2, 0);
             NARem.Name = "NARem";
@@ -181,8 +173,6 @@
             // PatenR
             // 
             PatenR.AutoSize = true;
-            PatenR.BackColor = SystemColors.ButtonHighlight;
-            PatenR.ForeColor = SystemColors.ActiveCaptionText;
             PatenR.Location = new Point(318, 98);
             PatenR.Margin = new Padding(2, 0, 2, 0);
             PatenR.Name = "PatenR";
@@ -201,8 +191,6 @@
             // CantRem
             // 
             CantRem.AutoSize = true;
-            CantRem.BackColor = SystemColors.ControlLight;
-            CantRem.ForeColor = SystemColors.ActiveCaptionText;
             CantRem.Location = new Point(277, 141);
             CantRem.Margin = new Padding(2, 0, 2, 0);
             CantRem.Name = "CantRem";
@@ -214,8 +202,6 @@
             // CantContRem
             // 
             CantContRem.AutoSize = true;
-            CantContRem.BackColor = SystemColors.ControlLight;
-            CantContRem.ForeColor = SystemColors.ActiveCaptionText;
             CantContRem.Location = new Point(149, 141);
             CantContRem.Margin = new Padding(2, 0, 2, 0);
             CantContRem.Name = "CantContRem";
@@ -226,7 +212,10 @@
             // 
             // buttonAgregIRem
             // 
-            buttonAgregIRem.BackColor = SystemColors.ButtonFace;
+            buttonAgregIRem.BackColor = Color.FromArgb(255, 194, 61);
+            buttonAgregIRem.FlatAppearance.BorderSize = 0;
+            buttonAgregIRem.FlatStyle = FlatStyle.Flat;
+            buttonAgregIRem.ForeColor = Color.FromArgb(46, 26, 71);
             buttonAgregIRem.Location = new Point(506, 168);
             buttonAgregIRem.Margin = new Padding(2);
             buttonAgregIRem.Name = "buttonAgregIRem";
@@ -246,11 +235,14 @@
             // 
             // CancRem
             // 
-            CancRem.BackColor = SystemColors.ButtonFace;
-            CancRem.Location = new Point(494, 411);
+            CancRem.BackColor = Color.FromArgb(74, 74, 74);
+            CancRem.FlatAppearance.BorderSize = 0;
+            CancRem.FlatStyle = FlatStyle.Flat;
+            CancRem.ForeColor = Color.White;
+            CancRem.Location = new Point(469, 413);
             CancRem.Margin = new Padding(2);
             CancRem.Name = "CancRem";
-            CancRem.Size = new Size(105, 20);
+            CancRem.Size = new Size(110, 47);
             CancRem.TabIndex = 33;
             CancRem.Text = "Cancelar";
             CancRem.UseVisualStyleBackColor = false;
@@ -258,11 +250,14 @@
             // 
             // ConfRem
             // 
-            ConfRem.BackColor = SystemColors.ButtonFace;
-            ConfRem.Location = new Point(603, 411);
+            ConfRem.BackColor = Color.FromArgb(160, 108, 245);
+            ConfRem.FlatAppearance.BorderSize = 0;
+            ConfRem.FlatStyle = FlatStyle.Flat;
+            ConfRem.ForeColor = Color.White;
+            ConfRem.Location = new Point(598, 413);
             ConfRem.Margin = new Padding(2);
             ConfRem.Name = "ConfRem";
-            ConfRem.Size = new Size(105, 20);
+            ConfRem.Size = new Size(110, 47);
             ConfRem.TabIndex = 34;
             ConfRem.Text = "Confirmar Recepeción";
             ConfRem.UseVisualStyleBackColor = false;
@@ -271,9 +266,7 @@
             // ObsRem
             // 
             ObsRem.AutoSize = true;
-            ObsRem.BackColor = SystemColors.ControlLight;
-            ObsRem.ForeColor = SystemColors.ActiveCaptionText;
-            ObsRem.Location = new Point(15, 362);
+            ObsRem.Location = new Point(22, 386);
             ObsRem.Margin = new Padding(2, 0, 2, 0);
             ObsRem.Name = "ObsRem";
             ObsRem.Size = new Size(87, 15);
@@ -282,7 +275,7 @@
             // 
             // textBoxObsRem
             // 
-            textBoxObsRem.Location = new Point(16, 379);
+            textBoxObsRem.Location = new Point(22, 403);
             textBoxObsRem.Margin = new Padding(2);
             textBoxObsRem.Name = "textBoxObsRem";
             textBoxObsRem.Size = new Size(234, 23);
@@ -297,8 +290,6 @@
             // SKUREM
             // 
             SKUREM.AutoSize = true;
-            SKUREM.BackColor = SystemColors.ControlLight;
-            SKUREM.ForeColor = SystemColors.ActiveCaptionText;
             SKUREM.Location = new Point(15, 141);
             SKUREM.Margin = new Padding(2, 0, 2, 0);
             SKUREM.Name = "SKUREM";
@@ -328,8 +319,6 @@
             // DetMercRRem
             // 
             DetMercRRem.AutoSize = true;
-            DetMercRRem.BackColor = SystemColors.ControlLight;
-            DetMercRRem.ForeColor = SystemColors.ActiveCaptionText;
             DetMercRRem.Location = new Point(15, 204);
             DetMercRRem.Margin = new Padding(2, 0, 2, 0);
             DetMercRRem.Name = "DetMercRRem";
@@ -340,7 +329,9 @@
             // 
             // listViewRem
             // 
+            listViewRem.BackColor = Color.White;
             listViewRem.Columns.AddRange(new ColumnHeader[] { SkuCodigo, Descripción, Tipo, CantcR, CantR });
+            listViewRem.ForeColor = Color.FromArgb(64, 64, 64);
             listViewRem.Location = new Point(16, 232);
             listViewRem.Margin = new Padding(3, 2, 3, 2);
             listViewRem.Name = "listViewRem";
@@ -377,7 +368,10 @@
             // 
             // buttonQuitIRem
             // 
-            buttonQuitIRem.BackColor = SystemColors.ButtonFace;
+            buttonQuitIRem.BackColor = Color.FromArgb(255, 77, 77);
+            buttonQuitIRem.FlatAppearance.BorderSize = 0;
+            buttonQuitIRem.FlatStyle = FlatStyle.Flat;
+            buttonQuitIRem.ForeColor = Color.White;
             buttonQuitIRem.Location = new Point(16, 324);
             buttonQuitIRem.Margin = new Padding(2);
             buttonQuitIRem.Name = "buttonQuitIRem";
@@ -413,9 +407,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlLight;
+            BackColor = Color.FromArgb(246, 242, 253);
             BackgroundImageLayout = ImageLayout.Center;
-            ClientSize = new Size(722, 540);
+            ClientSize = new Size(722, 471);
             Controls.Add(radiounidad);
             Controls.Add(radiopalet);
             Controls.Add(buttonQuitIRem);
@@ -446,6 +440,7 @@
             Controls.Add(ClieRem);
             Controls.Add(Remito);
             Cursor = Cursors.AppStarting;
+            ForeColor = Color.FromArgb(46, 26, 71);
             Margin = new Padding(2);
             Name = "RecepcionMercaderiaForm";
             Text = "RecepcionMercaderia";

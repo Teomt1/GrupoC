@@ -208,10 +208,14 @@
             // 
             btnagregar.Location = new Point(267, 382);
             btnagregar.Name = "btnagregar";
+            btnagregar.BackColor = Color.FromArgb(255, 194, 61);
+            btnagregar.FlatAppearance.BorderSize = 0;
+            btnagregar.FlatStyle = FlatStyle.Flat;
+            btnagregar.ForeColor = Color.FromArgb(46, 26, 71);
+            btnagregar.UseVisualStyleBackColor = false;
             btnagregar.Size = new Size(127, 41);
             btnagregar.TabIndex = 16;
             btnagregar.Text = "Agregar a la Orden";
-            btnagregar.UseVisualStyleBackColor = true;
             btnagregar.Click += btnagregar_Click;
             // 
             // textcantretirar
@@ -237,6 +241,8 @@
             listordenact.Columns.AddRange(new ColumnHeader[] { SKU, Producto, Cantidad });
             listordenact.Location = new Point(12, 242);
             listordenact.Name = "listordenact";
+            listordenact.BackColor = Color.White;
+            listordenact.ForeColor = Color.FromArgb(64, 64, 64);
             listordenact.Size = new Size(382, 134);
             listordenact.TabIndex = 19;
             listordenact.UseCompatibleStateImageBehavior = false;
@@ -318,23 +324,30 @@
             // 
             // btnconfirmar
             // 
-            btnconfirmar.BackColor = SystemColors.Control;
             btnconfirmar.Location = new Point(749, 404);
             btnconfirmar.Name = "btnconfirmar";
+            btnconfirmar.BackColor = Color.FromArgb(160, 108, 245);
+            btnconfirmar.FlatAppearance.BorderSize = 0;
+            btnconfirmar.FlatStyle = FlatStyle.Flat;
+            btnconfirmar.ForeColor = Color.White;
+            btnconfirmar.UseVisualStyleBackColor = false;
             btnconfirmar.Size = new Size(103, 45);
             btnconfirmar.TabIndex = 28;
             btnconfirmar.Text = "Confirmar Orden";
-            btnconfirmar.UseVisualStyleBackColor = false;
             btnconfirmar.Click += btnconfirmar_Click;
             // 
             // btncancelar
             // 
             btncancelar.Location = new Point(592, 404);
             btncancelar.Name = "btncancelar";
+            btncancelar.BackColor = Color.FromArgb(74, 74, 74);
+            btncancelar.FlatAppearance.BorderSize = 0;
+            btncancelar.FlatStyle = FlatStyle.Flat;
+            btncancelar.ForeColor = Color.White;
+            btncancelar.UseVisualStyleBackColor = false;
             btncancelar.Size = new Size(103, 45);
             btncancelar.TabIndex = 29;
             btncancelar.Text = "Cancelar";
-            btncancelar.UseVisualStyleBackColor = true;
             btncancelar.Click += btncancelar_Click;
             // 
             // labdepo
@@ -393,6 +406,8 @@
             Controls.Add(labtemp);
             Controls.Add(labusuario);
             Name = "RegistrarOrdenDePreparacionForm";
+            BackColor = Color.FromArgb(246, 242, 253);
+            ForeColor = Color.FromArgb(46, 26, 71);
             Text = "Registrar_orden_de_preparación";
             Load += RegistrarOrdenDePreparacionForm_Load;
             ResumeLayout(false);
