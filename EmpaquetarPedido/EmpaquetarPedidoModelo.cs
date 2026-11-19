@@ -26,6 +26,13 @@ internal class EmpaquetarPedidoModelo
 
     public OrdenPreparacion? OrdenActual { get; private set; }
 
+    // Cantidad total de paquetes que informa el operario al terminar de empaquetar (null: todavía no la ingresó).
+    public int? CantidadPaquetes { get; private set; }
+
+    // La cantidad de paquetes se ingresa una sola vez por orden, y recién con ella se puede confirmar.
+    public bool PuedeIngresarPaquetes => OrdenActual != null && CantidadPaquetes == null;
+    public bool PuedeConfirmar => OrdenActual != null && CantidadPaquetes != null;
+
     private readonly List<OrdenPreparacion> ordenesPreparacion;
 
     public EmpaquetarPedidoModelo()
@@ -94,6 +101,7 @@ internal class EmpaquetarPedidoModelo
     // Devuelve null si no hay órdenes para preparar (excepción del paso 2).
     public OrdenPreparacion? TomarSiguienteOrden()
     {
+        CantidadPaquetes = null;
         OrdenActual = ordenesPreparacion
             .Where(o => o.Deposito == Deposito
                         && o.Estado == EstadoOrdenPreparacion.EnPreparacion
@@ -111,16 +119,41 @@ internal class EmpaquetarPedidoModelo
         return OrdenActual;
     }
 
+    // Cantidad de paquetes: solo admite números.
+    public bool AdmiteSoloNumeros(char caracter)
+    {
+        return char.IsControl(caracter) || char.IsDigit(caracter);
+    }
+
+    // Registra la cantidad total de paquetes de la orden actual.
+    // Devuelve el error a mostrar, o null si quedó registrada.
+    public string? IngresarCantidadPaquetes(string texto)
+    {
+        if (!PuedeIngresarPaquetes)
+        {
+            return "La cantidad de paquetes de esta orden ya fue ingresada";
+        }
+
+        if (!int.TryParse(texto.Trim(), out int cantidad) || cantidad <= 0)
+        {
+            return "Ingrese una cantidad de paquetes mayor a cero";
+        }
+
+        CantidadPaquetes = cantidad;
+        return null;
+    }
+
     public string DescripcionTipoPedido(TipoPedido tipoPedido)
     {
         return tipoPedido == TipoPedido.Fulfillment ? "Fulfillment" : "Palé cerrado";
     }
 
     // Pasos 8 y 9: registra la orden de entrega "Pendiente" y deja la orden de preparación
-    // "Preparada" con fecha, hora y usuario, liberándola. Devuelve null si no hay orden con productos.
+    // "Preparada" con fecha, hora y usuario, liberándola. Devuelve null si no hay orden con productos
+    // o si todavía no se ingresó la cantidad de paquetes.
     public OrdenEntrega? ConfirmarEmpaquetado()
     {
-        if (OrdenActual == null || OrdenActual.Renglones.Count == 0)
+        if (OrdenActual == null || OrdenActual.Renglones.Count == 0 || CantidadPaquetes == null)
         {
             return null;
         }
@@ -138,6 +171,7 @@ internal class EmpaquetarPedidoModelo
             NumeroOrdenPreparacion = OrdenActual.Numero,
             Transportista = OrdenActual.Transportista,
             Usuario = Usuario,
+            CantidadPaquetes = CantidadPaquetes.Value,
             Estado = EstadoOrdenEntrega.Pendiente
         };
 
@@ -150,8 +184,8 @@ internal class EmpaquetarPedidoModelo
             TransportistaDniPreparacion = op.TransportistaDni,
             FechaHora = ahora,
             LegajoEmpleado = legajoUsuario,
-            // La pantalla no pide la cantidad de paquetes: se cuenta un paquete por producto de la orden.
-            CantidadPaquetes = OrdenActual.Renglones.Count,
+            // La cantidad de paquetes es la que informó el operario; es la que después figura en el remito.
+            CantidadPaquetes = ordenEntrega.CantidadPaquetes,
             Estado = Alm.EstadoOrdenEntregaEnum.Pendiente,
             FechaHoraDespacho = null
         });
@@ -168,6 +202,7 @@ internal class EmpaquetarPedidoModelo
         op.LegajoEmpleadoTomador = 0;
 
         OrdenActual = null;
+        CantidadPaquetes = null;
 
         return ordenEntrega;
     }
@@ -183,6 +218,7 @@ internal class EmpaquetarPedidoModelo
         OrdenActual.TomadaPor = null;
         ordenAlmacen[OrdenActual].LegajoEmpleadoTomador = 0;
         OrdenActual = null;
+        CantidadPaquetes = null;
     }
 
     // Usuario del empleado con ese legajo, o null si no hay legajo (0) o no existe.

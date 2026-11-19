@@ -8,5 +8,6 @@ internal class OrdenEntrega
     public int NumeroOrdenPreparacion { get; set; }
     public string Transportista { get; set; } = "";
     public string Usuario { get; set; } = "";
+    public int CantidadPaquetes { get; set; }
     public EstadoOrdenEntrega Estado { get; set; }
 }

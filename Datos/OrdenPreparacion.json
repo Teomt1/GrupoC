@@ -399,7 +399,7 @@
     "Estado": 1,
     "NumeroOrdenSeleccion": 14,
     "EstadoOrdenSeleccion": 1,
-    "LegajoEmpleadoTomador": 1007,
+    "LegajoEmpleadoTomador": 0,
     "FechaPreparada": null,
     "LegajoEmpleadoPreparación": 0
   },
@@ -427,7 +427,7 @@
     "Estado": 1,
     "NumeroOrdenSeleccion": 14,
     "EstadoOrdenSeleccion": 1,
-    "LegajoEmpleadoTomador": 1008,
+    "LegajoEmpleadoTomador": 0,
     "FechaPreparada": null,
     "LegajoEmpleadoPreparación": 0
   },

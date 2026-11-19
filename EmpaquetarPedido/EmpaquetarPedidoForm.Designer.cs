@@ -35,6 +35,9 @@
             Tipo_de_Pedido = new ColumnHeader();
             buttonConfIEmp = new Button();
             OrdenPrepNro = new Label();
+            lblpaquetes = new Label();
+            textpaquetes = new TextBox();
+            btnpaquetes = new Button();
             SuspendLayout();
             // 
             // Prodaprep
@@ -76,7 +79,7 @@
             // buttonConfIEmp
             // 
             buttonConfIEmp.BackColor = SystemColors.ControlLight;
-            buttonConfIEmp.Location = new Point(11, 418);
+            buttonConfIEmp.Location = new Point(11, 589);
             buttonConfIEmp.Margin = new Padding(1, 2, 1, 2);
             buttonConfIEmp.Name = "buttonConfIEmp";
             buttonConfIEmp.Size = new Size(504, 38);
@@ -95,12 +98,40 @@
             OrdenPrepNro.TabIndex = 25;
             OrdenPrepNro.Text = "[Orden de prep. Nro...]";
             // 
+            // lblpaquetes
+            // 
+            lblpaquetes.AutoSize = true;
+            lblpaquetes.Location = new Point(124, 444);
+            lblpaquetes.Name = "lblpaquetes";
+            lblpaquetes.Size = new Size(257, 15);
+            lblpaquetes.TabIndex = 26;
+            lblpaquetes.Text = "Ingrese la cantidad final de aquetes preparados:";
+            // 
+            // textpaquetes
+            // 
+            textpaquetes.Location = new Point(112, 493);
+            textpaquetes.Name = "textpaquetes";
+            textpaquetes.Size = new Size(116, 23);
+            textpaquetes.TabIndex = 27;
+            // 
+            // btnpaquetes
+            // 
+            btnpaquetes.Location = new Point(279, 474);
+            btnpaquetes.Name = "btnpaquetes";
+            btnpaquetes.Size = new Size(125, 58);
+            btnpaquetes.TabIndex = 28;
+            btnpaquetes.Text = "Confirmar Cantidad de Paquetes";
+            btnpaquetes.UseVisualStyleBackColor = true;
+            // 
             // EmpaquetarPedidoForm
             // 
             AccessibleName = "";
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(525, 489);
+            ClientSize = new Size(525, 650);
+            Controls.Add(btnpaquetes);
+            Controls.Add(textpaquetes);
+            Controls.Add(lblpaquetes);
             Controls.Add(OrdenPrepNro);
             Controls.Add(buttonConfIEmp);
             Controls.Add(listViewProdPrep);
@@ -122,5 +153,8 @@
         private ColumnHeader Tipo_de_Pedido;
         private Button buttonConfIEmp;
         private Label OrdenPrepNro;
+        private Label lblpaquetes;
+        private TextBox textpaquetes;
+        private Button btnpaquetes;
     }
 }
