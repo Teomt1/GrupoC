@@ -26,6 +26,7 @@
             colPosicion = new ColumnHeader();
             colSKU = new ColumnHeader();
             colDescripcion = new ColumnHeader();
+            colTipo = new ColumnHeader();
             colCantidad = new ColumnHeader();
             btnConfirmar = new Button();
             SuspendLayout();
@@ -77,13 +78,13 @@
             // 
             // lvMercaderia
             // 
-            lvMercaderia.Columns.AddRange(new ColumnHeader[] { colPosicion, colSKU, colDescripcion, colCantidad });
+            lvMercaderia.Columns.AddRange(new ColumnHeader[] { colPosicion, colSKU, colDescripcion, colTipo, colCantidad });
             lvMercaderia.FullRowSelect = true;
             lvMercaderia.GridLines = true;
             lvMercaderia.Location = new Point(20, 102);
             lvMercaderia.MultiSelect = false;
             lvMercaderia.Name = "lvMercaderia";
-            lvMercaderia.Size = new Size(645, 330);
+            lvMercaderia.Size = new Size(748, 330);
             lvMercaderia.TabIndex = 1;
             lvMercaderia.UseCompatibleStateImageBehavior = false;
             lvMercaderia.View = View.Details;
@@ -103,6 +104,11 @@
             colDescripcion.Text = "Descripción";
             colDescripcion.Width = 280;
             // 
+            // colTipo
+            // 
+            colTipo.Text = "Tipo";
+            colTipo.Width = 120;
+            // 
             // colCantidad
             // 
             colCantidad.Text = "Cantidad";
@@ -112,7 +118,7 @@
             // 
             btnConfirmar.Location = new Point(20, 450);
             btnConfirmar.Name = "btnConfirmar";
-            btnConfirmar.Size = new Size(645, 35);
+            btnConfirmar.Size = new Size(748, 35);
             btnConfirmar.TabIndex = 0;
             btnConfirmar.Text = "Confirmar entrega a Preparación";
             btnConfirmar.UseVisualStyleBackColor = true;
@@ -122,7 +128,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(684, 505);
+            ClientSize = new Size(784, 505);
             Controls.Add(btnConfirmar);
             Controls.Add(lvMercaderia);
             Controls.Add(lblMercaderia);
@@ -153,5 +159,6 @@
         private ColumnHeader colDescripcion;
         private ColumnHeader colCantidad;
         private Button btnConfirmar;
+        private ColumnHeader colTipo;
     }
 }

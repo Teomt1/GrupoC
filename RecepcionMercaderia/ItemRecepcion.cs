@@ -22,11 +22,12 @@ internal class ItemRecepcion
         Posicion = posicion;
     }
 
-    public string Codigo => EsPallet ? Producto.CodigoPallet! : Producto.Sku;
+    public string Codigo => EsPallet ? Producto.CodigoPallet ?? Producto.Sku : Producto.Sku;
 
-    public string Descripcion => EsPallet
-        ? $"{Producto.Descripcion} (pallet x {Producto.UnidadesPorPallet} u.)"
-        : Producto.Descripcion;
+    public string Descripcion => Producto.Descripcion;
+
+    // Columna "Tipo": las cantidades de un ítem en pallets están en pallets; las de uno suelto, en unidades.
+    public string Tipo => EsPallet ? $"Pallets x {Producto.UnidadesPorPallet} u." : "Unidades sueltas";
 
     // Negativa: faltante respecto del remito. Positiva: excedente.
     public int Diferencia => CantidadContada - CantidadRemito;

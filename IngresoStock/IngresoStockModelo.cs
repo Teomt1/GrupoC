@@ -10,7 +10,7 @@ namespace GrupoC.IngresoStock
         // Depósito que se usa si no se eligió ninguno en el menú principal.
         private const string DepositoPorDefecto = "D01";
 
-        #region Datos que ingresa el operario
+        // Datos que ingresa el operario
 
         public string NumeroOrden { get; set; } = string.Empty;
         public ItemOrdenRecepcion? SkuSeleccionado { get; set; }
@@ -20,9 +20,7 @@ namespace GrupoC.IngresoStock
         public string Nivel { get; set; } = string.Empty;
         public AsignacionUbicacion? UbicacionSeleccionada { get; set; }
 
-        #endregion
-
-        #region Datos que muestra la pantalla
+        // Datos que muestra la pantalla
 
         public string ClienteOrigen
         {
@@ -57,9 +55,7 @@ namespace GrupoC.IngresoStock
             get { return todosLosNiveles.Where(n => PosicionesQueCoinciden(Pasillo, Fila, n).Any()).ToList(); }
         }
 
-        #endregion
-
-        #region Datos de los almacenes
+        // Datos de los almacenes
 
         // Depósito, legajo y usuario del usuario logueado.
         private readonly string codigoDeposito;
@@ -79,10 +75,7 @@ namespace GrupoC.IngresoStock
         private readonly Dictionary<string, string> nivelAlmacen = new Dictionary<string, string>();
         private readonly List<string> todasLasFilas = new List<string>();
         private readonly List<string> todosLosNiveles = new List<string>();
-        private readonly Dictionary<ItemOrdenRecepcion, bool> itemEsPallet = new Dictionary<ItemOrdenRecepcion, bool>();
         private Alm.OrdenRecepcionEntidad? ordenAlmacen;
-
-        #endregion
 
         private OrdenRecepcion? ordenActual;
 
@@ -135,7 +128,7 @@ namespace GrupoC.IngresoStock
             todosLosNiveles.Sort();
         }
 
-        #region Paso 9: elegir la posición
+        // Paso 9: elegir la posición
 
         // Al cambiar el pasillo o la fila, se descarta lo elegido después si esa combinación no existe en el depósito.
         public void SeleccionarPasillo(string pasillo)
@@ -160,9 +153,7 @@ namespace GrupoC.IngresoStock
             }
         }
 
-        #endregion
-
-        #region Pasos 3 a 6: buscar la orden
+        // Pasos 3 a 6: buscar la orden
 
         // Devuelve el error a mostrar, o null si se encontró la orden.
         public string? BuscarOrden()
@@ -199,30 +190,22 @@ namespace GrupoC.IngresoStock
             Alm.ClienteEntidad? cliente = Alm.ClienteAlmacen.Cliente.Find(c => c.Codigo == entidad.CodigoCliente);
             string clienteOrigen = cliente == null ? entidad.CodigoCliente : cliente.RazonSocial;
 
-            itemEsPallet.Clear();
             var items = new List<ItemOrdenRecepcion>();
             foreach (Alm.ItemRecepcion i in entidad.Items)
             {
-                // Lo que se ubica es lo que se contó en la recepción. Si vino en pallets cerrados,
-                // la cantidad está en pallets y se aclara en la descripción.
+                // Lo que se ubica es lo que se contó en la recepción, en la misma forma en que llegó:
+                // si vino en pallets cerrados la cantidad está en pallets, si vino suelto en unidades.
                 Alm.ProductoEntidad? producto = Alm.ProductoAlmacen.Producto.Find(p => p.Sku == i.SKU_Producto);
                 string descripcion = producto == null ? string.Empty : producto.Descripcion;
-                if (i.EsPallet && producto != null)
-                {
-                    descripcion += $" (pallet x {producto.UnidadesPorPallet} u.)";
-                }
+                int unidadesPorPallet = producto == null ? 0 : producto.UnidadesPorPallet;
 
-                var item = new ItemOrdenRecepcion(i.SKU_Producto, descripcion, i.CantidadContada);
-                items.Add(item);
-                itemEsPallet[item] = i.EsPallet;
+                items.Add(new ItemOrdenRecepcion(i.SKU_Producto, descripcion, i.EsPallet, unidadesPorPallet, i.CantidadContada));
             }
 
             return new OrdenRecepcion(entidad.NumeroOrdRecep, clienteOrigen, EstadoOrdenRecepcion.PendienteDeUbicacion, items);
         }
 
-        #endregion
-
-        #region Pasos 9 a 11: agregar y quitar ubicaciones
+        // Pasos 9 a 11: agregar y quitar ubicaciones
 
         // Devuelve el error a mostrar, o null si se agregó la ubicación.
         public string? AgregarUbicacion()
@@ -271,12 +254,14 @@ namespace GrupoC.IngresoStock
                 return "La ubicación seleccionada ya está ocupada por otro SKU";
             }
 
-            // Cada coordenada se ubica una sola vez: al fraccionar, cada parte va a una coordenada distinta
-            bool yaUbicadoEnLaPosicion = Ubicaciones.Any(u => u.Pasillo == Pasillo && u.Fila == Fila && u.Nivel == Nivel);
+            // Cada ítem se ubica una sola vez en cada coordenada: al fraccionar, cada parte va a una coordenada distinta.
+            // Los pallets y las unidades sueltas del mismo SKU sí pueden compartir la posición.
+            bool yaUbicadoEnLaPosicion = Ubicaciones.Any(u => u.Item == SkuSeleccionado && u.Pasillo == Pasillo && u.Fila == Fila && u.Nivel == Nivel);
 
             if (yaUbicadoEnLaPosicion)
             {
-                return "El SKU ya fue ubicado en esas coordenadas";
+                string forma = SkuSeleccionado.EsPallet ? "en pallets" : "suelto";
+                return $"El SKU ya fue ubicado {forma} en esas coordenadas";
             }
 
             Ubicaciones.Add(new AsignacionUbicacion(SkuSeleccionado, cantidad, Pasillo, Fila, Nivel));
@@ -299,9 +284,7 @@ namespace GrupoC.IngresoStock
             return null;
         }
 
-        #endregion
-
-        #region Pasos 12 a 16: confirmar el ingreso
+        // Pasos 12 a 16: confirmar el ingreso
 
         // Devuelve el error a mostrar, o null si el ingreso se puede confirmar.
         public string? ValidarIngreso()
@@ -321,13 +304,13 @@ namespace GrupoC.IngresoStock
 
         public string ConfirmarIngreso()
         {
-            // Paso 13: el stock queda guardado en las posiciones del depósito.
-            // Lo recibido en pallets cerrados suma pallets; lo recibido suelto suma unidades.
+            // Paso 13: el stock queda guardado en las posiciones del depósito, en la misma forma en que llegó:
+            // lo recibido en pallets cerrados suma pallets y lo recibido suelto suma unidades sueltas.
             foreach (AsignacionUbicacion ubicacion in Ubicaciones)
             {
                 Alm.Posicion posicion = BuscarPosicion(ubicacion.Pasillo, ubicacion.Fila, ubicacion.Nivel)!;
                 posicion.Sku = ubicacion.Item.Sku;
-                if (itemEsPallet[ubicacion.Item])
+                if (ubicacion.Item.EsPallet)
                 {
                     posicion.CantidadPalets += ubicacion.Cantidad;
                 }
@@ -345,9 +328,7 @@ namespace GrupoC.IngresoStock
                     mercaderias.Add(mercaderia);
                 }
 
-                Alm.ProductoEntidad? producto = Alm.ProductoAlmacen.Producto.Find(p => p.Sku == ubicacion.Item.Sku);
-                int unidadesPorPallet = producto == null ? 0 : producto.UnidadesPorPallet;
-                mercaderia.Cantidad += itemEsPallet[ubicacion.Item] ? ubicacion.Cantidad * unidadesPorPallet : ubicacion.Cantidad;
+                mercaderia.Cantidad += ubicacion.Item.EsPallet ? ubicacion.Cantidad * ubicacion.Item.UnidadesPorPallet : ubicacion.Cantidad;
             }
 
             // Paso 14
@@ -374,16 +355,12 @@ namespace GrupoC.IngresoStock
             return "Mercadería ingresada a stock con éxito";
         }
 
-        #endregion
-
-        #region Excepción paso 12: cancelar
+        // Excepción paso 12: cancelar
 
         public void Cancelar()
         {
             Restablecer();
         }
-
-        #endregion
 
         private Alm.DepositoEntidad? BuscarDeposito()
         {

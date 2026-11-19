@@ -118,7 +118,8 @@ namespace GrupoC.RecepcionMercaderia
 
         private void buttonAgregIRem_Click(object? sender, EventArgs e)
         {
-            string? error = modelo.AgregarItem(textBoxSKURem.Text, textBoxCatnCRem.Text, textBoxCanRem.Text);
+            bool? esPallet = radiopalet.Checked ? true : radiounidad.Checked ? false : null;
+            string? error = modelo.AgregarItem(textBoxSKURem.Text, textBoxCatnCRem.Text, textBoxCanRem.Text, esPallet);
             if (error != null)
             {
                 MessageBox.Show(error, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -137,7 +138,7 @@ namespace GrupoC.RecepcionMercaderia
             listViewRem.Items.Clear();
             foreach (ItemRecepcion item in modelo.Items)
             {
-                listViewRem.Items.Add(new ListViewItem(new[] { item.Codigo, item.Descripcion, item.CantidadContada.ToString(), item.CantidadRemito.ToString() }));
+                listViewRem.Items.Add(new ListViewItem(new[] { item.Codigo, item.Descripcion, item.Tipo, item.CantidadContada.ToString(), item.CantidadRemito.ToString() }));
             }
 
             textBoxSKURem.Clear();

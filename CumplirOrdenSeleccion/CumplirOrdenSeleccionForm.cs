@@ -53,7 +53,8 @@ namespace GrupoC.CumplirOrdenSeleccion
                 var item = new ListViewItem(renglon.Posicion);
                 item.SubItems.Add(renglon.Sku);
                 item.SubItems.Add(renglon.Descripcion);
-                item.SubItems.Add(renglon.Cantidad.ToString());
+                item.SubItems.Add(renglon.Tipo);
+                item.SubItems.Add(renglon.CantidadABajar.ToString());
                 lvMercaderia.Items.Add(item);
             }
         }

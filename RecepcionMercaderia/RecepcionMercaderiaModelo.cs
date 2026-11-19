@@ -147,9 +147,9 @@ internal class RecepcionMercaderiaModelo
         }
 
         ClienteSeleccionado = cliente;
-        foreach (ItemRecepcion item in Items)
+        foreach (ItemRecepcion item in Items.Where(i => i.Posicion != null))
         {
-            LiberarPosicion(item);
+            item.Posicion!.Ocupada = false;
         }
         Items.Clear();
     }
@@ -197,10 +197,11 @@ internal class RecepcionMercaderiaModelo
         return $"El remito N° {formateado} ya fue registrado para el cliente {ClienteSeleccionado.RazonSocial}";
     }
 
-    // Pasos 8 a 10. El código puede ser el SKU (recepción por ítem) o el código de pallet del producto
-    // (recepción en pallet cerrado: las cantidades se cuentan en pallets).
+    // Pasos 8 a 10. El código identifica el producto (su SKU o su código de pallet) y el operario indica
+    // si llegó en pallets cerrados (las cantidades se cuentan en pallets) o suelto (se cuentan en unidades).
+    // esPallet es null si no eligió ninguna de las dos opciones.
     // Devuelve el error a mostrar, o null si el ítem se agregó al detalle.
-    public string? AgregarItem(string codigo, string textoContada, string textoRemito)
+    public string? AgregarItem(string codigo, string textoContada, string textoRemito, bool? esPallet)
     {
         CodigoInvalido = false;
         CantidadesInvalidas = false;
@@ -224,6 +225,12 @@ internal class RecepcionMercaderiaModelo
             return $"El SKU {codigo} no está dado de alta para el cliente {ClienteSeleccionado.RazonSocial}";
         }
 
+        // Todo producto puede recibirse en pallets o suelto: lo indica el operario.
+        if (esPallet == null)
+        {
+            return "Indique si la mercadería llegó en palet o en unidades sueltas.";
+        }
+
         // Excepción 10.2.
         if (!int.TryParse(textoContada, out int contada) || !int.TryParse(textoRemito, out int remito)
             || remito <= 0 || contada < 0 || remito > 999999 || contada > 999999)
@@ -232,25 +239,32 @@ internal class RecepcionMercaderiaModelo
             return "Ingrese cantidades enteras: la del remito mayor a cero y la contada mayor o igual a cero";
         }
 
-        // Excepción 10.3.
-        if (Items.Find(i => i.Producto == producto) != null)
+        // Excepción 10.3: el mismo SKU puede venir una vez en pallets cerrados y otra suelto, no dos veces igual.
+        if (Items.Find(i => i.Producto == producto && i.EsPallet == esPallet.Value) != null)
         {
-            return $"El SKU {producto.Sku} ya fue agregado. Quítelo para volver a cargarlo";
+            string forma = esPallet.Value ? "en pallets" : "suelto";
+            return $"El SKU {producto.Sku} ya fue agregado {forma}. Quítelo para volver a cargarlo";
         }
 
         // Cada ítem con unidades contadas recibe una posición libre; con cantidad contada 0 queda sin posición.
+        // Si el mismo SKU ya se cargó de la otra forma, va a la misma posición (una posición guarda un solo SKU,
+        // tanto en pallets como suelto).
         Posicion? posicion = null;
         if (contada > 0)
         {
-            posicion = Posiciones.Find(p => !p.Ocupada);
+            posicion = Items.Find(i => i.Producto == producto && i.Posicion != null)?.Posicion;
             if (posicion == null)
             {
-                return "No hay posiciones libres en el depósito para ubicar esta mercadería. Avise al jefe de Almacenamiento.";
+                posicion = Posiciones.Find(p => !p.Ocupada);
+                if (posicion == null)
+                {
+                    return "No hay posiciones libres en el depósito para ubicar esta mercadería. Avise al jefe de Almacenamiento.";
+                }
+                posicion.Ocupada = true;
             }
-            posicion.Ocupada = true;
         }
 
-        Items.Add(new ItemRecepcion(producto, producto.CodigoPallet == codigo, contada, remito, posicion));
+        Items.Add(new ItemRecepcion(producto, esPallet.Value, contada, remito, posicion));
         return null;
     }
 
@@ -267,14 +281,16 @@ internal class RecepcionMercaderiaModelo
             return "Seleccione el ítem que desea quitar";
         }
 
-        LiberarPosicion(Items[indice]);
+        ItemRecepcion item = Items[indice];
         Items.RemoveAt(indice);
+        LiberarPosicion(item);
         return null;
     }
 
+    // La posición se libera solo si ningún otro ítem cargado la usa (pallets y sueltos del mismo SKU la comparten).
     private void LiberarPosicion(ItemRecepcion item)
     {
-        if (item.Posicion != null)
+        if (item.Posicion != null && !Items.Any(i => i != item && i.Posicion == item.Posicion))
         {
             item.Posicion.Ocupada = false;
         }

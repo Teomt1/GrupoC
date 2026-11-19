@@ -5,6 +5,7 @@
     "Renglones": [
       {
         "SKU_Producto": "001",
+        "EsPallet": false,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
         "PosicionNivel": "1",
@@ -12,6 +13,7 @@
       },
       {
         "SKU_Producto": "002",
+        "EsPallet": false,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
         "PosicionNivel": "2",
@@ -28,6 +30,7 @@
     "Renglones": [
       {
         "SKU_Producto": "008",
+        "EsPallet": true,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
         "PosicionNivel": "3",
@@ -35,6 +38,7 @@
       },
       {
         "SKU_Producto": "011",
+        "EsPallet": false,
         "PosicionPasillo": "A",
         "PosicionFila": "2",
         "PosicionNivel": "1",
@@ -42,6 +46,7 @@
       },
       {
         "SKU_Producto": "016",
+        "EsPallet": false,
         "PosicionPasillo": "A",
         "PosicionFila": "2",
         "PosicionNivel": "2",
@@ -58,6 +63,7 @@
     "Renglones": [
       {
         "SKU_Producto": "004",
+        "EsPallet": true,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
         "PosicionNivel": "1",
@@ -74,6 +80,7 @@
     "Renglones": [
       {
         "SKU_Producto": "010",
+        "EsPallet": true,
         "PosicionPasillo": "A",
         "PosicionFila": "2",
         "PosicionNivel": "3",
@@ -90,6 +97,7 @@
     "Renglones": [
       {
         "SKU_Producto": "005",
+        "EsPallet": false,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
         "PosicionNivel": "2",
@@ -97,6 +105,7 @@
       },
       {
         "SKU_Producto": "013",
+        "EsPallet": false,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
         "PosicionNivel": "3",
@@ -113,6 +122,7 @@
     "Renglones": [
       {
         "SKU_Producto": "003",
+        "EsPallet": false,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
         "PosicionNivel": "1",
@@ -129,6 +139,7 @@
     "Renglones": [
       {
         "SKU_Producto": "006",
+        "EsPallet": false,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
         "PosicionNivel": "3",
@@ -136,6 +147,7 @@
       },
       {
         "SKU_Producto": "019",
+        "EsPallet": false,
         "PosicionPasillo": "A",
         "PosicionFila": "2",
         "PosicionNivel": "1",
@@ -152,6 +164,7 @@
     "Renglones": [
       {
         "SKU_Producto": "007",
+        "EsPallet": true,
         "PosicionPasillo": "A",
         "PosicionFila": "2",
         "PosicionNivel": "1",
@@ -159,6 +172,7 @@
       },
       {
         "SKU_Producto": "014",
+        "EsPallet": false,
         "PosicionPasillo": "A",
         "PosicionFila": "2",
         "PosicionNivel": "2",
@@ -175,6 +189,7 @@
     "Renglones": [
       {
         "SKU_Producto": "009",
+        "EsPallet": false,
         "PosicionPasillo": "A",
         "PosicionFila": "2",
         "PosicionNivel": "2",
@@ -191,6 +206,7 @@
     "Renglones": [
       {
         "SKU_Producto": "015",
+        "EsPallet": false,
         "PosicionPasillo": "A",
         "PosicionFila": "2",
         "PosicionNivel": "3",
@@ -198,6 +214,7 @@
       },
       {
         "SKU_Producto": "017",
+        "EsPallet": false,
         "PosicionPasillo": "A",
         "PosicionFila": "3",
         "PosicionNivel": "1",
@@ -214,6 +231,7 @@
     "Renglones": [
       {
         "SKU_Producto": "018",
+        "EsPallet": false,
         "PosicionPasillo": "A",
         "PosicionFila": "2",
         "PosicionNivel": "3",
@@ -230,6 +248,7 @@
     "Renglones": [
       {
         "SKU_Producto": "020",
+        "EsPallet": false,
         "PosicionPasillo": "A",
         "PosicionFila": "3",
         "PosicionNivel": "1",
@@ -246,6 +265,7 @@
     "Renglones": [
       {
         "SKU_Producto": "001",
+        "EsPallet": true,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
         "PosicionNivel": "1",
@@ -262,6 +282,7 @@
     "Renglones": [
       {
         "SKU_Producto": "016",
+        "EsPallet": false,
         "PosicionPasillo": "A",
         "PosicionFila": "2",
         "PosicionNivel": "2",
@@ -269,6 +290,7 @@
       },
       {
         "SKU_Producto": "008",
+        "EsPallet": false,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
         "PosicionNivel": "3",
@@ -276,6 +298,7 @@
       },
       {
         "SKU_Producto": "011",
+        "EsPallet": false,
         "PosicionPasillo": "A",
         "PosicionFila": "2",
         "PosicionNivel": "1",
@@ -292,6 +315,7 @@
     "Renglones": [
       {
         "SKU_Producto": "006",
+        "EsPallet": true,
         "PosicionPasillo": "A",
         "PosicionFila": "1",
         "PosicionNivel": "3",
@@ -299,6 +323,7 @@
       },
       {
         "SKU_Producto": "019",
+        "EsPallet": false,
         "PosicionPasillo": "A",
         "PosicionFila": "2",
         "PosicionNivel": "1",

@@ -73,11 +73,15 @@ internal class EmpaquetarPedidoModelo
                 OrdenSeleccionCumplida = op.EstadoOrdenSeleccion == Alm.EstadoOrdenSeleccionEnum.Cumplida,
                 Estado = EstadoOrdenPreparacion.EnPreparacion,
                 TomadaPor = BuscarUsuario(op.LegajoEmpleadoTomador),
+                // En el almacén la cantidad está en unidades; en la pantalla va en pallets si el pedido
+                // es a palé cerrado y en unidades si es fulfillment (lo indica la columna del tipo de pedido).
                 Renglones = (op.Renglones ?? new List<Alm.RenglonOrdenPreparacion>())
                     .Select(r => new RenglonOrdenPreparacion
                     {
                         Sku = r.SKU_Producto,
-                        Cantidad = r.Cantidad
+                        Cantidad = op.TipoPedido == Alm.TipoPedidoEnum.PalletCerrado
+                            ? CantidadEnPallets(r.SKU_Producto, r.Cantidad)
+                            : r.Cantidad
                     }).ToList()
             };
             ordenesPreparacion.Add(orden);
@@ -185,6 +189,13 @@ internal class EmpaquetarPedidoModelo
     private string? BuscarUsuario(int legajo)
     {
         return legajo == 0 ? null : empleados.Find(e => e.Legajo == legajo)?.Usuario;
+    }
+
+    // Pasa unidades a pallets con las unidades por pallet del producto.
+    private int CantidadEnPallets(string sku, int unidades)
+    {
+        int unidadesPorPallet = Alm.ProductoAlmacen.Producto.Find(p => p.Sku == sku)?.UnidadesPorPallet ?? 0;
+        return unidadesPorPallet > 0 ? unidades / unidadesPorPallet : unidades;
     }
 
     // Convierte el código del almacén ("D03") en el número que usa la pantalla (3).

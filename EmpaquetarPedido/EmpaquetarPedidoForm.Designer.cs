@@ -40,24 +40,23 @@
             // Prodaprep
             // 
             Prodaprep.AutoSize = true;
-            Prodaprep.Location = new Point(16, 111);
-            Prodaprep.Margin = new Padding(2, 0, 2, 0);
+            Prodaprep.Location = new Point(11, 67);
+            Prodaprep.Margin = new Padding(1, 0, 1, 0);
             Prodaprep.Name = "Prodaprep";
-            Prodaprep.Size = new Size(179, 25);
+            Prodaprep.Size = new Size(117, 15);
             Prodaprep.TabIndex = 3;
             Prodaprep.Text = "Productos a preparar";
             // 
             // listViewProdPrep
             // 
             listViewProdPrep.Columns.AddRange(new ColumnHeader[] { Producto, Cantidad, Tipo_de_Pedido });
-            listViewProdPrep.Location = new Point(16, 189);
-            listViewProdPrep.Margin = new Padding(2, 4, 2, 4);
+            listViewProdPrep.Location = new Point(11, 113);
+            listViewProdPrep.Margin = new Padding(1, 2, 1, 2);
             listViewProdPrep.Name = "listViewProdPrep";
-            listViewProdPrep.Size = new Size(675, 499);
+            listViewProdPrep.Size = new Size(504, 301);
             listViewProdPrep.TabIndex = 4;
             listViewProdPrep.UseCompatibleStateImageBehavior = false;
             listViewProdPrep.View = View.Details;
-            // listViewProdPrep.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
             // Producto
             // 
@@ -77,10 +76,10 @@
             // buttonConfIEmp
             // 
             buttonConfIEmp.BackColor = SystemColors.ControlLight;
-            buttonConfIEmp.Location = new Point(16, 696);
-            buttonConfIEmp.Margin = new Padding(2, 4, 2, 4);
+            buttonConfIEmp.Location = new Point(11, 418);
+            buttonConfIEmp.Margin = new Padding(1, 2, 1, 2);
             buttonConfIEmp.Name = "buttonConfIEmp";
-            buttonConfIEmp.Size = new Size(690, 64);
+            buttonConfIEmp.Size = new Size(504, 38);
             buttonConfIEmp.TabIndex = 24;
             buttonConfIEmp.Text = "Confirmar ingreso";
             buttonConfIEmp.UseVisualStyleBackColor = false;
@@ -90,24 +89,23 @@
             // 
             OrdenPrepNro.AutoSize = true;
             OrdenPrepNro.Font = new Font("Segoe UI", 15F);
-            OrdenPrepNro.Location = new Point(398, 34);
-            OrdenPrepNro.Margin = new Padding(4, 0, 4, 0);
+            OrdenPrepNro.Location = new Point(279, 20);
             OrdenPrepNro.Name = "OrdenPrepNro";
-            OrdenPrepNro.Size = new Size(318, 41);
+            OrdenPrepNro.Size = new Size(207, 28);
             OrdenPrepNro.TabIndex = 25;
             OrdenPrepNro.Text = "[Orden de prep. Nro...]";
             // 
             // EmpaquetarPedidoForm
             // 
             AccessibleName = "";
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(722, 815);
+            ClientSize = new Size(525, 489);
             Controls.Add(OrdenPrepNro);
             Controls.Add(buttonConfIEmp);
             Controls.Add(listViewProdPrep);
             Controls.Add(Prodaprep);
-            Margin = new Padding(2, 4, 2, 4);
+            Margin = new Padding(1, 2, 1, 2);
             Name = "EmpaquetarPedidoForm";
             Text = "Empaquetar_Pedido_y_Generar_Orden_de_Entrega_Form";
             FormClosing += EmpaquetarPedidoForm_FormClosing;

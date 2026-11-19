@@ -61,6 +61,12 @@ namespace GrupoC.RegistrarOrdenDePreparacion
             labdireccion.Visible = modelo.RequiereDatosEtiquetado;
             textdireccion.Visible = modelo.RequiereDatosEtiquetado;
 
+            // Los productos que se ofrecen dependen de la modalidad.
+            object? productoElegido = comboprodretirar.SelectedItem;
+            comboprodretirar.Items.Clear();
+            comboprodretirar.Items.AddRange(modelo.ProductosDisponibles.ToArray());
+            comboprodretirar.SelectedItem = productoElegido;
+
             if (mensaje != null)
             {
                 listordenact.Items.Clear();

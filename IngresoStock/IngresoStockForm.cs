@@ -141,6 +141,7 @@ namespace GrupoC.IngresoStock
                 {
                     item.Sku,
                     item.Descripcion,
+                    item.Tipo,
                     item.CantidadRecepcionada.ToString(),
                     item.CantidadAUbicar.ToString()
                 }));
@@ -158,6 +159,7 @@ namespace GrupoC.IngresoStock
                 ListViewItem fila = new ListViewItem(new[]
                 {
                     ubicacion.Item.Sku,
+                    ubicacion.Item.Tipo,
                     ubicacion.Cantidad.ToString(),
                     ubicacion.Posicion
                 });

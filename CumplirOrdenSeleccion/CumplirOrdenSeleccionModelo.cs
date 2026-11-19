@@ -69,6 +69,8 @@ internal class CumplirOrdenSeleccionModelo
                     Posicion = $"{r.PosicionPasillo}-{r.PosicionFila}-{r.PosicionNivel}",
                     Sku = r.SKU_Producto,
                     Descripcion = productos.ContainsKey(r.SKU_Producto) ? productos[r.SKU_Producto].Descripcion : "",
+                    EsPallet = r.EsPallet,
+                    UnidadesPorPallet = productos.ContainsKey(r.SKU_Producto) ? productos[r.SKU_Producto].UnidadesPorPallet : 0,
                     Cantidad = r.Cantidad
                 }).ToList()
             };
@@ -177,7 +179,7 @@ internal class CumplirOrdenSeleccionModelo
             if (stock != null)
             {
                 stock.Cantidad -= renglon.Cantidad;
-                DescontarDePosicion(posicionAlmacen[stock], renglon.Cantidad);
+                DescontarDePosicion(posicionAlmacen[stock], renglon.Cantidad, renglon.EsPallet);
             }
         }
 
@@ -185,15 +187,15 @@ internal class CumplirOrdenSeleccionModelo
         return $"Orden de selección N° {OrdenActual.Numero} cumplida";
     }
 
-    // Resta las unidades de la posición del almacén. Si la cantidad son pallets completos y los hay,
-    // se bajan pallets cerrados; si no, primero las unidades sueltas y luego se abren los pallets necesarios.
-    private void DescontarDePosicion(Alm.Posicion posicion, int unidades)
+    // Resta las unidades de la posición del almacén según lo que indica el renglón:
+    // si son pallets cerrados se bajan pallets; si son sueltas, primero las unidades sueltas
+    // y luego se abren los pallets necesarios (lo que sobra del pallet abierto queda suelto en la posición).
+    private void DescontarDePosicion(Alm.Posicion posicion, int unidades, bool esPallet)
     {
         Alm.ProductoEntidad? producto = Alm.ProductoAlmacen.Producto.Find(p => p.Sku == posicion.Sku);
         int unidadesPorPallet = producto?.UnidadesPorPallet ?? 0;
 
-        if (unidadesPorPallet > 0 && unidades % unidadesPorPallet == 0
-            && posicion.CantidadPalets >= unidades / unidadesPorPallet)
+        if (esPallet && unidadesPorPallet > 0)
         {
             posicion.CantidadPalets -= unidades / unidadesPorPallet;
         }

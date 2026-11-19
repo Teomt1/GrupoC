@@ -16,5 +16,7 @@ namespace GrupoC.Almacenes
 
         public int? StockMinimoContratado { get; set; }
 
+        public int? StockMinimoContratadoPallets { get; set; }
+
     }
 }

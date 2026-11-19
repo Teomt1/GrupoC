@@ -8,6 +8,8 @@ namespace GrupoC.Almacenes
     {
         public string SKU_Producto { get; set; }
 
+        public bool EsPallet { get; set; }
+
         public string PosicionPasillo { get; set; }
 
         public string PosicionFila { get; set; }

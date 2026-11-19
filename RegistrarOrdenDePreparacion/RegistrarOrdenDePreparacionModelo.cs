@@ -56,6 +56,7 @@ internal class RegistrarOrdenDePreparacionModelo
                     Sku = p.Sku,
                     Nombre = p.Descripcion,
                     StockMinimoContratado = p.StockMinimoContratado,
+                    StockMinimoContratadoPalets = p.StockMinimoContratadoPallets,
                     UnidadesPorPalet = p.UnidadesPorPallet
                 };
             }
@@ -130,8 +131,16 @@ internal class RegistrarOrdenDePreparacionModelo
 
     public string UnidadDeCantidad => Modalidad == ModalidadEmpaquetado.PaletCerrado ? "palets" : "unidades";
 
+    // Hasta que se elige la modalidad no se ofrece ningún producto. Con Palet Cerrado solo se ofrecen
+    // los que tienen pallets cerrados disponibles (las unidades sueltas no forman un pallet cerrado).
     public List<Producto> ProductosDisponibles =>
-        DepositoSeleccionado?.Stock.Select(s => s.Producto).ToList() ?? new List<Producto>();
+        Modalidad == null
+            ? new List<Producto>()
+            : DepositoSeleccionado?.Stock
+            .Where(s => Modalidad != ModalidadEmpaquetado.PaletCerrado || s.CantidadPalets > 0)
+            .Select(s => s.Producto)
+            .ToList()
+        ?? new List<Producto>();
 
     public string? SeleccionarDeposito(Deposito? deposito)
     {
@@ -256,7 +265,12 @@ internal class RegistrarOrdenDePreparacionModelo
             DescontarStock(stock, Modalidad!.Value, item.Cantidad);
 
             // Paso 15.2.1.
-            if (item.Producto.StockMinimoContratado != null && stock.CantidadUnidades < item.Producto.StockMinimoContratado)
+            // El mínimo se controla en unidades (todo el stock) y en pallets cerrados.
+            bool debajoDelMinimoEnUnidades = item.Producto.StockMinimoContratado != null
+                && stock.CantidadUnidades < item.Producto.StockMinimoContratado;
+            bool debajoDelMinimoEnPalets = item.Producto.StockMinimoContratadoPalets != null
+                && stock.CantidadPalets < item.Producto.StockMinimoContratadoPalets;
+            if (debajoDelMinimoEnUnidades || debajoDelMinimoEnPalets)
             {
                 mensajes.Add($"Advertencia: El producto {item.Producto.Nombre} ha quedado por debajo del límite establecido, por favor generar un nuevo ingreso de este");
             }
@@ -317,6 +331,8 @@ internal class RegistrarOrdenDePreparacionModelo
     // Registra la orden de selección "Pendiente" de la orden de preparación y las asocia.
     // Cada SKU se toma de las posiciones del depósito que lo guardan, de la primera a la última
     // (pasillo, fila y nivel), descontando lo que ya piden otras órdenes de selección pendientes.
+    // Palet cerrado: solo se bajan pallets cerrados (nunca se arma un pallet con unidades sueltas).
+    // Fullfilment: se usan primero las unidades sueltas y, si no alcanzan, se abren pallets.
     private void GenerarOrdenSeleccion(Alm.OrdenPreparacionEntidad ordenPreparacion)
     {
         List<Alm.OrdenSeleccionEntidad> ordenesSeleccion = Alm.OrdenSeleccionAlmacen.OrdenSeleccion;
@@ -336,41 +352,75 @@ internal class RegistrarOrdenDePreparacionModelo
             .SelectMany(o => o.Renglones)
             .ToList();
 
+        bool esPaletCerrado = ordenPreparacion.TipoPedido == Alm.TipoPedidoEnum.PalletCerrado;
         var renglones = new List<Alm.RenglonOrdenSeleccion>();
         foreach (Alm.RenglonOrdenPreparacion renglon in ordenPreparacion.Renglones)
         {
             Alm.ProductoEntidad? producto = Alm.ProductoAlmacen.Producto.Find(p => p.Sku == renglon.SKU_Producto);
             int unidadesPorPallet = producto?.UnidadesPorPallet ?? 0;
+            List<Alm.Posicion> posicionesDelSku = posiciones.Where(p => p.Sku == renglon.SKU_Producto).ToList();
+
+            // Unidades que se toman de cada posición (en el orden de las posiciones).
+            var tomado = new Dictionary<Alm.Posicion, int>();
             int faltante = renglon.Cantidad;
 
-            foreach (Alm.Posicion p in posiciones.Where(p => p.Sku == renglon.SKU_Producto))
+            if (esPaletCerrado)
             {
-                if (faltante <= 0)
+                // Solo pallets cerrados libres de cada posición.
+                foreach (Alm.Posicion p in posicionesDelSku)
                 {
-                    break;
-                }
+                    if (faltante <= 0 || unidadesPorPallet <= 0)
+                    {
+                        break;
+                    }
 
-                int pedido = comprometidos
-                    .Concat(renglones)
-                    .Where(r => r.SKU_Producto == p.Sku && r.PosicionPasillo == p.Pasillo
-                                && r.PosicionFila == p.Fila && r.PosicionNivel == p.Nivel)
-                    .Sum(r => r.Cantidad);
-                int disponible = p.CantidadPalets * unidadesPorPallet + p.CantidadSueltos - pedido;
-                if (disponible <= 0)
+                    int pallets = Math.Min(Disponible(p, unidadesPorPallet, comprometidos.Concat(renglones)).Pallets,
+                                           faltante / unidadesPorPallet);
+                    if (pallets > 0)
+                    {
+                        tomado[p] = pallets * unidadesPorPallet;
+                        faltante -= pallets * unidadesPorPallet;
+                    }
+                }
+            }
+            else
+            {
+                // Primero las unidades sueltas de todas las posiciones; después se abren pallets.
+                foreach (bool abriendoPallets in new[] { false, true })
                 {
-                    continue;
-                }
+                    foreach (Alm.Posicion p in posicionesDelSku)
+                    {
+                        if (faltante <= 0)
+                        {
+                            break;
+                        }
 
-                int cantidad = Math.Min(disponible, faltante);
+                        (int pallets, int sueltas) = Disponible(p, unidadesPorPallet, comprometidos.Concat(renglones));
+                        int yaTomado = tomado.GetValueOrDefault(p);
+                        int disponible = abriendoPallets
+                            ? sueltas + pallets * unidadesPorPallet - yaTomado
+                            : sueltas - yaTomado;
+                        int cantidad = Math.Min(Math.Max(disponible, 0), faltante);
+                        if (cantidad > 0)
+                        {
+                            tomado[p] = yaTomado + cantidad;
+                            faltante -= cantidad;
+                        }
+                    }
+                }
+            }
+
+            foreach (Alm.Posicion p in posicionesDelSku.Where(tomado.ContainsKey))
+            {
                 renglones.Add(new Alm.RenglonOrdenSeleccion
                 {
                     SKU_Producto = renglon.SKU_Producto,
+                    EsPallet = esPaletCerrado,
                     PosicionPasillo = p.Pasillo,
                     PosicionFila = p.Fila,
                     PosicionNivel = p.Nivel,
-                    Cantidad = cantidad
+                    Cantidad = tomado[p]
                 });
-                faltante -= cantidad;
             }
         }
 
@@ -387,6 +437,30 @@ internal class RegistrarOrdenDePreparacionModelo
 
         ordenPreparacion.NumeroOrdenSeleccion = numero;
         ordenPreparacion.EstadoOrdenSeleccion = Alm.EstadoOrdenSeleccionEnum.Pendiente;
+    }
+
+    // Pallets cerrados y unidades sueltas de la posición que todavía no pidió ninguna orden de selección.
+    // Lo pedido en pallets se resta de los pallets; lo pedido suelto se resta de las sueltas y,
+    // si no alcanzan, de los pallets que hay que abrir (lo que sobra de esos pallets queda suelto).
+    private (int Pallets, int Sueltas) Disponible(Alm.Posicion p, int unidadesPorPallet, IEnumerable<Alm.RenglonOrdenSeleccion> pedidos)
+    {
+        List<Alm.RenglonOrdenSeleccion> enLaPosicion = pedidos
+            .Where(r => r.SKU_Producto == p.Sku && r.PosicionPasillo == p.Pasillo
+                        && r.PosicionFila == p.Fila && r.PosicionNivel == p.Nivel)
+            .ToList();
+        int unidadesEnPallets = enLaPosicion.Where(r => r.EsPallet).Sum(r => r.Cantidad);
+        int unidadesSueltas = enLaPosicion.Where(r => !r.EsPallet).Sum(r => r.Cantidad);
+
+        int pallets = p.CantidadPalets - (unidadesPorPallet > 0 ? unidadesEnPallets / unidadesPorPallet : 0);
+        int sueltas = p.CantidadSueltos - unidadesSueltas;
+        if (sueltas < 0 && unidadesPorPallet > 0)
+        {
+            int palletsAAbrir = (-sueltas + unidadesPorPallet - 1) / unidadesPorPallet;
+            pallets -= palletsAAbrir;
+            sueltas += palletsAAbrir * unidadesPorPallet;
+        }
+
+        return (Math.Max(pallets, 0), Math.Max(sueltas, 0));
     }
 
     // Descuenta del stock la cantidad pedida: en palets para Palet Cerrado, en unidades para Fullfilment
