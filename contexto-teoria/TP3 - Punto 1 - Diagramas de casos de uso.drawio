@@ -1,0 +1,262 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Nivel 0 - Administración de un depósito" id="nivel0">
+    <mxGraphModel dx="1200" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="n0sys" value="&lt;b&gt;Proceso de administración de un depósito&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="230" y="40" width="340" height="460" as="geometry" />
+        </mxCell>
+        <mxCell id="n0u1" value="Gestionar ingreso de mercadería" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="290" y="90" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="n0u2" value="Gestionar almacenamiento y stock" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="290" y="230" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="n0u3" value="Gestionar salida de mercadería&lt;br&gt;&lt;i&gt;(Procesamiento de órdenes de preparación)&lt;/i&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="290" y="370" width="220" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="n0aDesc" value="Operario de&lt;br&gt;Descarga" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="80" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n0aAlm" value="Operario de&lt;br&gt;Almacén" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="220" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n0aJPrep" value="Jefe de&lt;br&gt;Preparación" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="330" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n0aPrep" value="Operario de&lt;br&gt;Preparación" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="420" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n0aDesp" value="Operario de&lt;br&gt;Despacho" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="510" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n0aCli" value="Cliente" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="680" y="60" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n0aTra" value="Transportista" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="680" y="160" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n0aFin" value="«subsistema»&lt;br&gt;Administración&lt;br&gt;Financiera" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="680" y="260" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n0aGGD" value="«subsistema»&lt;br&gt;Gestión general&lt;br&gt;de depósitos" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="680" y="370" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n0aAtc" value="«subsistema»&lt;br&gt;Atención al&lt;br&gt;Cliente" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="680" y="480" width="30" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="n0e1" style="endArrow=none;html=1;" edge="1" parent="1" source="n0aDesc" target="n0u1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="n0e2" style="endArrow=none;html=1;" edge="1" parent="1" source="n0aAlm" target="n0u1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="n0e3" style="endArrow=none;html=1;" edge="1" parent="1" source="n0aAlm" target="n0u2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="n0e4" style="endArrow=none;html=1;" edge="1" parent="1" source="n0aAlm" target="n0u3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="n0e5" style="endArrow=none;html=1;" edge="1" parent="1" source="n0aJPrep" target="n0u3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="n0e6" style="endArrow=none;html=1;" edge="1" parent="1" source="n0aPrep" target="n0u3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="n0e7" style="endArrow=none;html=1;" edge="1" parent="1" source="n0aDesp" target="n0u3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="n0e8" style="endArrow=none;html=1;" edge="1" parent="1" source="n0aCli" target="n0u1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="n0e9" style="endArrow=none;html=1;" edge="1" parent="1" source="n0aCli" target="n0u3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="n0e10" style="endArrow=none;html=1;" edge="1" parent="1" source="n0aTra" target="n0u1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="n0e11" style="endArrow=none;html=1;" edge="1" parent="1" source="n0aTra" target="n0u3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="n0e12" style="endArrow=none;html=1;" edge="1" parent="1" source="n0aFin" target="n0u1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="n0e13" style="endArrow=none;html=1;" edge="1" parent="1" source="n0aFin" target="n0u2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="n0e14" style="endArrow=none;html=1;" edge="1" parent="1" source="n0aFin" target="n0u3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="n0e15" style="endArrow=none;html=1;" edge="1" parent="1" source="n0aGGD" target="n0u2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="n0e16" style="endArrow=none;html=1;" edge="1" parent="1" source="n0aAtc" target="n0u2"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="n0legend" value="&lt;b&gt;Referencias&lt;/b&gt;&lt;br&gt;Azul: alcance de la primera entrega (Procesamiento de órdenes de preparación).&lt;br&gt;Violeta: funcionalidad del proceso fuera de la primera entrega.&lt;br&gt;«subsistema»: otro proceso / subsistema con el que interactúa el depósito (I/O).&lt;br&gt;&lt;br&gt;Cada caso de uso de este nivel se abre en un diagrama de Nivel 1 (ver las otras páginas)." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=10;strokeColor=#999999;fillColor=#f9f9f9;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="820" y="40" width="300" height="130" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Nivel 1 - Ingreso de mercadería" id="nivel1ingreso">
+    <mxGraphModel dx="1200" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="i_sys" value="&lt;b&gt;Gestionar ingreso de mercadería&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="230" y="30" width="460" height="470" as="geometry" />
+        </mxCell>
+        <mxCell id="i1" value="Recibir mercadería del transportista" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="260" y="140" width="180" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="i2" value="Emitir nota de diferencias" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="490" y="70" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="i3" value="Emitir nota de espacio insuficiente" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="490" y="160" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="i4" value="Consolidar mercadería en palé" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="490" y="250" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="i5" value="Ingresar mercadería al stock&lt;br&gt;&lt;i&gt;(cumplir orden de recepción)&lt;/i&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="300" y="380" width="200" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="i_x2" value="«extend»" style="dashed=1;endArrow=open;endFill=0;html=1;fontSize=10;" edge="1" parent="1" source="i2" target="i1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="i_x3" value="«extend»" style="dashed=1;endArrow=open;endFill=0;html=1;fontSize=10;" edge="1" parent="1" source="i3" target="i1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="i_x4" value="«extend»" style="dashed=1;endArrow=open;endFill=0;html=1;fontSize=10;" edge="1" parent="1" source="i4" target="i1"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="i_aTra" value="Transportista" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="70" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="i_aDesc" value="Operario de&lt;br&gt;Descarga" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="190" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="i_aFin" value="«subsistema»&lt;br&gt;Administración&lt;br&gt;Financiera" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="300" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="i_aAlm" value="Operario de&lt;br&gt;Almacén" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="420" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="i_aJDesc" value="Jefe de&lt;br&gt;Descarga" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="760" y="50" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="i_aCli" value="Cliente" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="760" y="190" width="30" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="i_e1" style="endArrow=none;html=1;" edge="1" parent="1" source="i_aTra" target="i1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="i_e2" style="endArrow=none;html=1;" edge="1" parent="1" source="i_aDesc" target="i1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="i_e3" style="endArrow=none;html=1;" edge="1" parent="1" source="i_aFin" target="i1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="i_e4" style="endArrow=none;html=1;" edge="1" parent="1" source="i_aAlm" target="i5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="i_e5" style="endArrow=none;html=1;" edge="1" parent="1" source="i_aJDesc" target="i2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="i_e6" style="endArrow=none;html=1;" edge="1" parent="1" source="i_aCli" target="i2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="i_e7" style="endArrow=none;html=1;" edge="1" parent="1" source="i_aCli" target="i3"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="i_note" value="&lt;b&gt;Condiciones de las extensiones&lt;/b&gt;&lt;br&gt;• Nota de diferencias: lo contado no coincide con el remito del cliente (firma el Jefe de Descarga).&lt;br&gt;• Nota de espacio insuficiente: el espacio contratado no alcanza (se cobra adicional según contrato).&lt;br&gt;• Consolidar en palé: la carga llega suelta (no paletizada).&lt;br&gt;&lt;br&gt;Recibir mercadería termina emitiendo la orden de recepción, que queda pendiente hasta que Almacén la cumple al ingresar la mercadería al stock. Administración Financiera recibe los servicios a cobrar (In y excedentes)." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=10;strokeColor=#999999;fillColor=#f9f9f9;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="840" y="40" width="300" height="190" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Nivel 1 - Almacenamiento y stock" id="nivel1almac">
+    <mxGraphModel dx="1200" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="a_sys" value="&lt;b&gt;Gestionar almacenamiento y stock&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="230" y="30" width="440" height="440" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" value="Controlar stock mínimo por cliente" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="270" y="80" width="190" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" value="Emitir orden de traslado interno" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="470" y="170" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" value="Notificar falta de stock para traslado" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="470" y="260" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" value="Registrar baja o rotura de mercadería" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="260" y="350" width="190" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="a_x2" value="«extend»" style="dashed=1;endArrow=open;endFill=0;html=1;fontSize=10;" edge="1" parent="1" source="a2" target="a1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="a_x3" value="«extend»" style="dashed=1;endArrow=open;endFill=0;html=1;fontSize=10;" edge="1" parent="1" source="a3" target="a2"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="a_aJAlm" value="Jefe de&lt;br&gt;Almacén" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="85" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a_aAlm" value="Operario de&lt;br&gt;Almacén" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="355" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a_aGGD" value="«subsistema»&lt;br&gt;Gestión general&lt;br&gt;de depósitos" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="740" y="80" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a_aFin" value="«subsistema»&lt;br&gt;Administración&lt;br&gt;Financiera" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="740" y="190" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a_aAtc" value="«subsistema»&lt;br&gt;Atención al&lt;br&gt;Cliente" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="740" y="300" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a_aCli" value="Cliente" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="740" y="420" width="30" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="a_e1" style="endArrow=none;html=1;" edge="1" parent="1" source="a_aJAlm" target="a1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="a_e2" style="endArrow=none;html=1;" edge="1" parent="1" source="a_aAlm" target="a4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="a_e3" style="endArrow=none;html=1;" edge="1" parent="1" source="a_aGGD" target="a2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="a_e4" style="endArrow=none;html=1;" edge="1" parent="1" source="a_aFin" target="a2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="a_e5" style="endArrow=none;html=1;" edge="1" parent="1" source="a_aAtc" target="a3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="a_e6" style="endArrow=none;html=1;" edge="1" parent="1" source="a_aCli" target="a4"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="a_note" value="&lt;b&gt;Notas&lt;/b&gt;&lt;br&gt;• Orden de traslado interno: el stock del cliente quedó por debajo del mínimo pactado en el contrato.&lt;br&gt;• Notificar falta de stock: no hay stock suficiente en otro depósito para el traslado (Atención al Cliente notifica al cliente).&lt;br&gt;• La baja o rotura se informa de inmediato al cliente.&lt;br&gt;&lt;br&gt;El traslado reutiliza los circuitos ya modelados: sale del depósito de origen por el circuito de salida (con una orden de preparación de traslado) y entra al de destino por el circuito de ingreso." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=10;strokeColor=#999999;fillColor=#f9f9f9;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="840" y="30" width="300" height="190" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Nivel 1 - Salida de mercadería" id="nivel1salida">
+    <mxGraphModel dx="1200" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="s_sys" value="&lt;b&gt;Gestionar salida de mercadería&lt;/b&gt;&lt;br&gt;(Procesamiento de órdenes de preparación)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="230" y="20" width="480" height="580" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" value="Registrar orden de preparación" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="260" y="80" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s1i" value="Validar stock disponible del cliente" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="70" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" value="Generar orden de selección" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="260" y="180" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="Cumplir orden de selección" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="260" y="280" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" value="Empaquetar pedido y emitir orden de entrega" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="260" y="380" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s5" value="Despachar mercadería al transportista" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="260" y="480" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s6" value="Consultar estado de orden de preparación" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="280" width="180" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s_inc1" value="«include»" style="dashed=1;endArrow=open;endFill=0;html=1;fontSize=10;" edge="1" parent="1" source="s1" target="s1i"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="s_aJPrep" value="Jefe de&lt;br&gt;Preparación" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="185" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="s_aAlm" value="Operario de&lt;br&gt;Almacén" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="285" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="s_aPrep" value="Operario de&lt;br&gt;Preparación" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="380" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="s_aDesp" value="Operario de&lt;br&gt;Despacho" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="490" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="s_aCli" value="Cliente" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="780" y="180" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="s_aFin" value="«subsistema»&lt;br&gt;Administración&lt;br&gt;Financiera" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="780" y="330" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="s_aTra" value="Transportista" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="780" y="470" width="30" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s_e1" style="endArrow=none;html=1;" edge="1" parent="1" source="s_aCli" target="s1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="s_e2" style="endArrow=none;html=1;" edge="1" parent="1" source="s_aCli" target="s6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="s_e3" style="endArrow=none;html=1;" edge="1" parent="1" source="s_aJPrep" target="s2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="s_e4" style="endArrow=none;html=1;" edge="1" parent="1" source="s_aAlm" target="s3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="s_e5" style="endArrow=none;html=1;" edge="1" parent="1" source="s_aPrep" target="s3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="s_e6" style="endArrow=none;html=1;" edge="1" parent="1" source="s_aPrep" target="s4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="s_e7" style="endArrow=none;html=1;" edge="1" parent="1" source="s_aDesp" target="s4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="s_e8" style="endArrow=none;html=1;" edge="1" parent="1" source="s_aDesp" target="s5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="s_e9" style="endArrow=none;html=1;" edge="1" parent="1" source="s_aTra" target="s5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="s_e10" style="endArrow=none;html=1;" edge="1" parent="1" source="s_aFin" target="s5"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="s_note" value="&lt;b&gt;Notas&lt;/b&gt;&lt;br&gt;• Azul: casos de uso de la primera entrega (Recepción de órdenes de preparación, Generación de órdenes de selección, Empaquetado y Despacho).&lt;br&gt;• Validar stock disponible es «include» porque también lo usa la orden de traslado interno.&lt;br&gt;• Estados de la orden de preparación: Pendiente → En preparación → Preparada → Despachada.&lt;br&gt;• Al despachar (remito firmado) se descuenta definitivamente la mercadería, se cumplen la orden de entrega y la de preparación, y nace el derecho de cobro (Fulfillment / Out) que recibe Administración Financiera." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=10;strokeColor=#999999;fillColor=#f9f9f9;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="860" y="20" width="290" height="220" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

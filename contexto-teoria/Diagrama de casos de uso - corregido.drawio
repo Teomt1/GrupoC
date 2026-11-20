@@ -1,0 +1,82 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Casos de uso" id="cu-corregido">
+    <mxGraphModel dx="1149" dy="605" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Frontera del sistema -->
+        <mxCell id="sys" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="260" y="110" width="260" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="sysTitle" value="&lt;b&gt;Sistema de Gestión de Depósito&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="260" y="115" width="260" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Casos de uso (en infinitivo) -->
+        <mxCell id="uc1" value="Recibir mercadería" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="315" y="160" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uc2" value="Ingresar mercadería a stock" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="315" y="250" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uc3" value="Registrar orden de preparación" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="315" y="340" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uc4" value="Cumplir orden de selección" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="315" y="430" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uc5" value="Empaquetar pedido y generar orden de entrega" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="315" y="520" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uc6" value="Entregar mercadería al transportista" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="315" y="610" width="150" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Actores: un solo símbolo por rol, fuera del sistema -->
+        <mxCell id="aRecep" value="Operario de&lt;br&gt;Recepción" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="150" y="150" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aCliente" value="Cliente" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="150" y="320" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aTransp" value="Transportista" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="150" y="540" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aAdmFin" value="Administración&lt;br&gt;Financiera" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="600" y="120" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aAlmac" value="Operario de&lt;br&gt;Almacenamiento" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="600" y="260" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aPrep" value="Operario de&lt;br&gt;Preparación" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="600" y="430" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aDesp" value="Operario de&lt;br&gt;Despacho" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="600" y="580" width="30" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Asociaciones (según campos Actor / Beneficiario de cada caso de uso) -->
+        <mxCell id="e1" style="endArrow=none;html=1;" edge="1" parent="1" source="aRecep" target="uc1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e2" style="endArrow=none;html=1;" edge="1" parent="1" source="aTransp" target="uc1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e3" style="endArrow=none;html=1;" edge="1" parent="1" source="aCliente" target="uc1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e4" style="endArrow=none;html=1;" edge="1" parent="1" source="aAdmFin" target="uc1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e5" style="endArrow=none;html=1;" edge="1" parent="1" source="aAlmac" target="uc1"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="e6" style="endArrow=none;html=1;" edge="1" parent="1" source="aAlmac" target="uc2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e7" style="endArrow=none;html=1;" edge="1" parent="1" source="aPrep" target="uc2"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="e8" style="endArrow=none;html=1;" edge="1" parent="1" source="aCliente" target="uc3"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="e9" style="endArrow=none;html=1;" edge="1" parent="1" source="aAlmac" target="uc4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e10" style="endArrow=none;html=1;" edge="1" parent="1" source="aPrep" target="uc4"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="e11" style="endArrow=none;html=1;" edge="1" parent="1" source="aPrep" target="uc5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e12" style="endArrow=none;html=1;" edge="1" parent="1" source="aDesp" target="uc5"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="e13" style="endArrow=none;html=1;" edge="1" parent="1" source="aDesp" target="uc6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e14" style="endArrow=none;html=1;" edge="1" parent="1" source="aTransp" target="uc6"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
